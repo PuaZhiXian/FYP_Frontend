@@ -1,6 +1,17 @@
 <div class="grid grid-cols-3">
-  <div class="col-span-2">
+  <div class="col-span-1">
     <app-welcome></app-welcome>
+  </div>
+  <div class="col-span-2">
+  </div>
+</div>
+
+<div class="grid grid-cols-4" *ngIf="!loading">
+  <div class="col-span-1">
+
+  </div>
+  <div class="col-span-2">
+    <nz-code-editor class="editor w-full" [ngModel]="code" [nzEditorOption]="{ language: programming_language , theme: this.dark? 'vs-dark':'vs'}"></nz-code-editor>
   </div>
   <div class="col-span-1">
 
