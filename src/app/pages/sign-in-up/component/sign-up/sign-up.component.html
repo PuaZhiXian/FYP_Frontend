@@ -1,0 +1,41 @@
+<div class="flex justify-center mt-9">
+  <div class="bg-white px-9 py-3.5 w-1/2">
+    <div class="text-md font-bold w-full flex justify-center mb-6">Sign Up</div>
+    <form nz-form [formGroup]="validateForm">
+      <div>
+        <nz-form-item class="grid ">
+          <nz-form-control nzErrorTip="Please input your email address!">
+            <div class="float-label group">
+              <input class="rounded bg-[#D9D9D9] focus:h-[66px]  {{ validateForm.value['email']? ' h-[66px] ' : ''}}" formControlName="email"
+                     (focus)="onfocus('email')" (blur)=" onblur('email')"
+                     nz-input/>
+              <label
+                class="{{emailClass}} label {{ validateForm.value['email']? ' label-float' : ''}}">Email</label>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div>
+        <nz-form-item class="grid">
+          <nz-form-control nzErrorTip="Please input your organisation!">
+            <div class="float-label group">
+              <input class="rounded bg-[#D9D9D9] focus:h-[66px] {{validateForm.value['organisation'] ? ' h-[66px]' : ''}}" formControlName="organisation"
+                     (focus)="onfocus('organisation')" (blur)="onblur('organisation')"
+                     nz-input/>
+              <label class="{{passwordClass}} label
+                                {{validateForm.value['organisation'] ? ' label-float' : ''}}">Organisation
+              </label>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </form>
+    <div class="">
+      <button nz-button class="bg-primary-900 h-full w-full
+                    font-bold text-md py-2.5 text-white
+                    text-center rounded-full"  (click)="submit()">
+        Request Sign Up
+      </button>
+    </div>
+  </div>
+</div>

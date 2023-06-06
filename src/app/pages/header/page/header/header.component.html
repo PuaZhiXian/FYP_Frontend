@@ -1,12 +1,10 @@
-<div class="flex items-center">
-  <div class="ml-5">
-    <img class="h-[60px]" width="80px" nz-image nzSrc="assets/images/header/skyworldLogo.png"/>
+<div class="container mx-auto py-5">
+  <div class="flex items-center">
+    <div class="">
+      <img class="h-[60px]" width="80px" nz-image nzSrc="assets/images/header/skyworldLogo.png"/>
+    </div>
+    <div class="grow ml-5">
+    </div>
   </div>
-  <div class="grow ml-5">
-    <ul nz-menu nzTheme="dark" nzMode="horizontal">
-      <li nz-menu-item *ngFor="let list of headerList" [nzSelected]=list.selected>
-        <a [routerLink]="list.link">{{list.nameKey | translate}}</a>
-      </li>
-    </ul>
-  </div>
+
 </div>

@@ -5,12 +5,7 @@ import {DashboardComponent} from "./page/dashboard/dashboard.component";
 const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        component: DashboardComponent,
-      }
-    ]
+    component : DashboardComponent,
   },
 ];
 
