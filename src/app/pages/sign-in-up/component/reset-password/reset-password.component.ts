@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
@@ -19,9 +19,9 @@ export class ResetPasswordComponent implements OnInit {
 
   initForm() {
     this.validateForm = this.fb.group({
-      password: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       repassword: [null, [Validators.required]]
-    });
+    },{validators: this.checkIfMatchingPasswords('password', 'repassword')});
   }
 
   onfocus(type: string) {
@@ -60,6 +60,18 @@ export class ResetPasswordComponent implements OnInit {
           control.updateValueAndValidity({onlySelf: true});
         }
       });
+    }
+  }
+
+  checkIfMatchingPasswords(passwordKey: string, repassword: string) {
+    return (group: FormGroup) => {
+      let passwordInput = group.controls[passwordKey],
+        passwordConfirmationInput = group.controls[repassword];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({notEquivalent: true})
+      } else {
+        return passwordConfirmationInput.setErrors(null);
+      }
     }
   }
 }
