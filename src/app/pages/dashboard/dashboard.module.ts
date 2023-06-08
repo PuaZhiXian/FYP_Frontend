@@ -5,19 +5,27 @@ import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {WelcomeModule} from "../welcome/welcome.module";
 import {FormsModule} from "@angular/forms";
 import {NzCodeEditorModule} from "ng-zorro-antd/code-editor";
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzAutocompleteModule} from "ng-zorro-antd/auto-complete";
+import {NzTableModule} from "ng-zorro-antd/table";
 
 
 @NgModule({
   declarations: [
     DashboardComponent
   ],
-  imports: [
-    DashboardRoutingModule,
-    CommonModule,
-    WelcomeModule,
-    FormsModule,
-    NzCodeEditorModule
-  ],
+    imports: [
+        DashboardRoutingModule,
+        CommonModule,
+        WelcomeModule,
+        FormsModule,
+        NzCodeEditorModule,
+        NzButtonModule,
+        NzInputModule,
+        NzAutocompleteModule,
+        NzTableModule
+    ],
   exports: [
     DashboardComponent
   ]
