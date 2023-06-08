@@ -13,6 +13,7 @@ import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {HeaderModule} from "./pages/header/header.module";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -24,6 +25,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent
   ],
   imports: [
+    NzMessageModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

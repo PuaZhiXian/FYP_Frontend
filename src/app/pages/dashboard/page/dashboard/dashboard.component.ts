@@ -149,7 +149,6 @@ export class DashboardComponent implements OnInit {
 
   createNewProject() {
     this.router.navigate(['/', 'subcription'])
-    console.log('adding new porject')
   }
 
   onChange(value: string): void {

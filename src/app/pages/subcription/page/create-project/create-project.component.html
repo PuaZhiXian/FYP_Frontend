@@ -1,1 +1,33 @@
-<p>create-project works!</p>
+<div class="mx-auto container">
+  <div class="my-10">
+    <form nz-form [formGroup]="validateForm">
+      <div>
+        <div class="text-base my-2">Project Name</div>
+        <nz-form-item class="grid w-3/4 ">
+          <nz-form-control nzErrorTip="Please input your project name!">
+              <input class="rounded bg-[#D9D9D9]" formControlName="name" placeholder="Enter Project Name"
+                     nz-input/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="my-10">
+        <nz-form-item class="grid w-3/4">
+          <div class="text-base my-2">Project Description</div>
+          <nz-form-control nzErrorTip="Please input your project description!">
+            <div class="">
+              <textarea rows="4" nz-input class="rounded bg-[#D9D9D9]" formControlName="description" placeholder="Enter Project Description"></textarea>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </form>
+
+    <div class="">
+      <button nz-button class="bg-primary-900 h-full
+                    font-bold text-[14px] py-2.5 text-white px-[32px]
+                    text-center rounded-lg"  (click)="submit()">
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
