@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule)},
   {path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)},
   {path: 'dev', loadChildren: () => import('./pages/dev/dev.module').then(m => m.DevModule)},
+  {path: 'subcription', loadChildren: () => import('./pages/subcription/subcription.module').then(m => m.SubcriptionModule)},
 ];
 
 @NgModule({

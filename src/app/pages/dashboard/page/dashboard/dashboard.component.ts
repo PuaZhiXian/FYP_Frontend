@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import {ProjectOverview} from "../../../../interface/project/project-overview";
 import {ColumnItem} from "../../../../interface/table/column-item";
+import {Router} from "@angular/router";
+import {HeaderComponent} from "../../../header/page/header/header.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +14,8 @@ export class DashboardComponent implements OnInit {
 
   searchKey: string = '';
 
-  constructor(private nzConfigService: NzConfigService) {
+  constructor(private nzConfigService: NzConfigService,
+              private router: Router,) {
   }
 
   dark = true
@@ -46,6 +49,7 @@ export class DashboardComponent implements OnInit {
     this.initProjects();
     this.initTable();
     this.filteredProjects = this.projects;
+    HeaderComponent.logined = true;
   }
 
   initProjects() {
@@ -84,7 +88,7 @@ export class DashboardComponent implements OnInit {
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
-        width : '80px',
+        width: '80px',
       },
       {
         name: 'Project Name',
@@ -94,7 +98,7 @@ export class DashboardComponent implements OnInit {
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
-        width : null
+        width: null
       },
       {
         name: 'Project Description',
@@ -104,7 +108,7 @@ export class DashboardComponent implements OnInit {
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
-        width : null
+        width: null
       },
       {
         name: 'Project Creation Date',
@@ -114,7 +118,7 @@ export class DashboardComponent implements OnInit {
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
-        width : null
+        width: null
       },
       {
         name: 'Token',
@@ -124,7 +128,7 @@ export class DashboardComponent implements OnInit {
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
-        width : null
+        width: null
       }
     ];
   }
@@ -144,6 +148,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createNewProject() {
+    this.router.navigate(['/', 'subcription'])
     console.log('adding new porject')
   }
 

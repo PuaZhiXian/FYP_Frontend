@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {IHeaderList} from "../../../../interface/header/i-header-list";
+import {AppComponent} from "../../../../app.component";
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,14 @@ import {IHeaderList} from "../../../../interface/header/i-header-list";
 export class HeaderComponent {
 
 
+  static logined: boolean = false;
   headerList!: IHeaderList[];
 
   constructor(private route: ActivatedRoute,) {
+  }
+
+  get staticLogined() {
+    return HeaderComponent.logined;
   }
 
   ngOnInit() {
