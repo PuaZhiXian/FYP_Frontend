@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
 
   dark = true
   programming_language = 'python'
-  loading = true
 
   options = {
     'python': '',
@@ -38,6 +37,13 @@ export class DashboardComponent implements OnInit {
   loadingProject: boolean = true;
 
   ngOnInit(): void {
+
+    this.initProjects();
+    this.initTable();
+    HeaderComponent.logined = true;
+  }
+
+  codeEditor(){
     const defaultEditorOption = this.nzConfigService.getConfigForComponent('codeEditor')?.defaultEditorOption || {};
     this.nzConfigService.set('codeEditor', {
       defaultEditorOption: {
@@ -47,14 +53,7 @@ export class DashboardComponent implements OnInit {
         minimap: {enabled: false},
       }
     });
-    this.loading = false
     this.code = 'sd'
-    console.log(this.options)
-
-    this.initProjects();
-    this.initTable();
-    this.filteredProjects = this.projects;
-    HeaderComponent.logined = true;
   }
 
   initProjects() {
