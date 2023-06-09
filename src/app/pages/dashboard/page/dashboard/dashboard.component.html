@@ -11,7 +11,8 @@
         </button>
       </div>
       <div class="ml-6 w-1/2">
-        <nz-input-group nzSearch nzSize="large" class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl " [nzPrefix]="prefixIcon">
+        <nz-input-group nzSearch nzSize="large" class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl "
+                        [nzPrefix]="prefixIcon">
           <input class="bg-[#F5F5F5] text-[#52606D]"
                  placeholder="Search Project"
                  [(ngModel)]="searchKey" (ngModelChange)="onChange($event)" nz-input/>
@@ -19,8 +20,8 @@
       </div>
     </div>
 
-    <div class="my-6">
-      <nz-table nzBordered  #filterTable [nzData]="filteredProjects" nzTableLayout="fixed">
+    <div class="my-6" *ngIf="!loadingProject ; else loadingTpl">
+      <nz-table nzBordered #filterTable [nzData]="filteredProjects" nzTableLayout="fixed">
         <thead>
         <tr id="trid">
           <th *ngFor="let column of listOfColumns"
@@ -52,4 +53,7 @@
   <span class=" text-[#52606D] material-icons-outlined">search</span>
 </ng-template>
 
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>
 

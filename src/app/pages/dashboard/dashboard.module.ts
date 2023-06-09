@@ -9,6 +9,7 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzAutocompleteModule} from "ng-zorro-antd/auto-complete";
 import {NzTableModule} from "ng-zorro-antd/table";
+import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {NzTableModule} from "ng-zorro-antd/table";
         NzButtonModule,
         NzInputModule,
         NzAutocompleteModule,
-        NzTableModule
+        NzTableModule,
+        NzSkeletonModule
     ],
   exports: [
     DashboardComponent

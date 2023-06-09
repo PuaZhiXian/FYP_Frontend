@@ -4,6 +4,8 @@ import {ProjectOverview} from "../../../../interface/project/project-overview";
 import {ColumnItem} from "../../../../interface/table/column-item";
 import {Router} from "@angular/router";
 import {HeaderComponent} from "../../../header/page/header/header.component";
+import {ProjectService} from "../../../../service/project/project.service";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +17,8 @@ export class DashboardComponent implements OnInit {
   searchKey: string = '';
 
   constructor(private nzConfigService: NzConfigService,
-              private router: Router,) {
+              private router: Router,
+              private projectService: ProjectService) {
   }
 
   dark = true
@@ -31,6 +34,8 @@ export class DashboardComponent implements OnInit {
   projects !: ProjectOverview[];
   filteredProjects: ProjectOverview[] = [];
   listOfColumns !: ColumnItem[];
+
+  loadingProject: boolean = true;
 
   ngOnInit(): void {
     const defaultEditorOption = this.nzConfigService.getConfigForComponent('codeEditor')?.defaultEditorOption || {};
@@ -53,35 +58,20 @@ export class DashboardComponent implements OnInit {
   }
 
   initProjects() {
-    this.projects = [
-      {
-        name: 'Project Name 1',
-        description: 'Project Description 1',
-        id: 'P01',
-        creationDate: new Date(2023, 5, 7),
-        token: 'I89NJASND923',
-      },
-      {
-        name: 'Project Name 2',
-        description: 'Project Description 2',
-        id: 'P02',
-        creationDate: new Date(2023, 4, 20),
-        token: 'WENS23FND92G',
-      },
-      {
-        name: 'Project Name 3',
-        description: 'Project Description 3',
-        id: 'P03',
-        creationDate: new Date(2023, 1, 13),
-        token: 'IES214SNDRG3',
-      }
-    ]
+    this.projectService.getAllProject()
+      .pipe(finalize(() => {
+        this.loadingProject = false;
+      }))
+      .subscribe((resp) => {
+        this.projects = resp;
+        this.filteredProjects = this.projects;
+      })
   }
 
   initTable() {
     this.listOfColumns = [
       {
-        name: 'No',
+        name: 'Id',
         sortOrder: null,
         sortFn: (a: ProjectOverview, b: ProjectOverview) => a.id.localeCompare(b.id),
         sortDirections: [],
