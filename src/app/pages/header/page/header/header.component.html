@@ -4,7 +4,7 @@
       <img class="h-[60px]" width="80px" nz-image nzSrc="assets/images/header/skyworldLogo.png"/>
     </div>
     <div class="grow ml-5 flex justify-end items-center" *ngIf="staticLogined">
-      <div class="text-white px-10 cursor-pointer">
+      <div class="text-white px-10 cursor-pointer" (click)="redirect('product')">
         Product
       </div>
       <div class="text-white px-10 cursor-pointer">

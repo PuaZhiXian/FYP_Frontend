@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {IHeaderList} from "../../../../interface/header/i-header-list";
 import {AppComponent} from "../../../../app.component";
 
@@ -14,7 +14,7 @@ export class HeaderComponent {
   static logined: boolean = false;
   headerList!: IHeaderList[];
 
-  constructor(private route: ActivatedRoute,) {
+  constructor(private router: Router,) {
   }
 
   get staticLogined() {
@@ -38,6 +38,10 @@ export class HeaderComponent {
         selected: false
       },
     ]
+  }
+
+  redirect(url:string){
+    this.router.navigate(['/', url]);
   }
 
 }
