@@ -20,7 +20,7 @@ export class ProjectService {
 
   }
 
-  getAllProject(): Observable<ProjectOverview[]> {
+  getAllProject(): Observable<any> {
     return this.projectRestService.getAllProject();
   }
 

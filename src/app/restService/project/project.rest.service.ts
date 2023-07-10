@@ -14,15 +14,20 @@ export class ProjectRestService {
   constructor(private httpClient: HttpClient) {
   }
 
-  addProject(projectOverview: ProjectOverview) {
-    return this.httpClient.post(this.ProjectUrl + '/add', projectOverview);
+  addProject(projectOverview: ProjectOverview): Observable<any> {
+    //TODO : integrate add Project API
+    // return this.httpClient.post(this.ProjectUrl + '/add', projectOverview);
+    return this.httpClient.get("https://api.github.com/users/hadley/orgs");
   }
 
   deleteProject() {
 
   }
 
-  getAllProject(): Observable<ProjectOverview[]> {
-    return this.httpClient.get<ProjectOverview[]>(this.ProjectUrl + "/project");
+  getAllProject(): Observable<any> {
+    //TODO : integrate add Project API
+    //integrate get all project API
+    //return this.httpClient.get<ProjectOverview[]>(this.ProjectUrl + "/project");
+    return this.httpClient.get("https://api.github.com/users/hadley/orgs");
   }
 }

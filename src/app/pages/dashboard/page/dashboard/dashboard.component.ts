@@ -62,7 +62,79 @@ export class DashboardComponent implements OnInit {
         this.loadingProject = false;
       }))
       .subscribe((resp) => {
-        this.projects = resp;
+        this.projects = [
+          {
+            name: 'Project Copy 1',
+            description: 'Description 1 - Copy',
+            id: '002',
+            creationDate: new Date(2023,3,9),
+            token: 'token1as8d7f',
+          },
+          {
+            name: 'Project Copy 2',
+            description: 'Description 1 - Duplicate',
+            id: '003',
+            creationDate: new Date(2023,5,9),
+            token: 'token8h1n2u3m',
+          },
+          {
+            name: 'Project Replica',
+            description: 'Copy of Description 1',
+            id: '004',
+            creationDate: new Date(2023,3,9),
+            token: 'tokenkju89732',
+          },
+          {
+            name: 'Duplicated Project',
+            description: 'Description 1 Copy',
+            id: '005',
+            creationDate: new Date(2023,10,12),
+            token: 'tokenb2m4n6g8',
+          },
+          {
+            name: 'Project Iteration',
+            description: 'Description 1 - Iteration',
+            id: '006',
+            creationDate: new Date(2023,7,9),
+            token: 'token1j2k3l4',
+          },
+          {
+            name: 'Project Redo',
+            description: 'Redo of Description 1',
+            id: '007',
+            creationDate: new Date(2023,5,9),
+            token: 'token4d7s6a1',
+          },
+          {
+            name: 'Project Clone',
+            description: 'Description 1 Cloned',
+            id: '008',
+            creationDate: new Date(2023,10,23),
+            token: 'token1r2h3i4',
+          },
+          {
+            name: 'Project Duplicate',
+            description: 'Duplicate of Description 1',
+            id: '009',
+            creationDate: new Date(2023,1,9),
+            token: 'token9v8b7n6',
+          },
+          {
+            name: 'Project Reiteration',
+            description: 'Description 1 - Reiteration',
+            id: '010',
+            creationDate: new Date(2023,10,9),
+            token: 'token5f4d3s2',
+          },
+          {
+            name: 'Project Reduplication',
+            description: 'Reduplication of Description 1',
+            id: '011',
+            creationDate: new Date(2023,10,10),
+            token: 'token2d3a4s5',
+          }
+        ]
+        ;
         this.filteredProjects = this.projects;
       })
   }
