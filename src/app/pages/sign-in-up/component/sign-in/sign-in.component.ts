@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 
 @Component({
   selector: 'sign-in',
@@ -14,7 +15,8 @@ export class SignInComponent implements OnInit {
   passwordClass: string = '';
 
   constructor(private fb: UntypedFormBuilder,
-              private router: Router) {
+              private router: Router,
+              private authorizationService: AuthorizationService) {
   }
 
   initForm() {
@@ -54,7 +56,10 @@ export class SignInComponent implements OnInit {
 
   submit() {
     if (this.validateForm.valid) {
-      this.router.navigate(['/', 'dashboard']);
+      this.authorizationService.login(this.validateForm.value['email'], this.validateForm.value['password'])
+        .subscribe((resp) => {
+          this.router.navigate(['/', 'dashboard']);
+        });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

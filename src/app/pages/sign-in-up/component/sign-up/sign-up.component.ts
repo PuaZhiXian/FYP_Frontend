@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 
 @Component({
   selector: 'sign-up',
@@ -14,7 +15,8 @@ export class SignUpComponent implements OnInit {
   passwordClass: string = '';
 
   constructor(private fb: UntypedFormBuilder,
-              private router: Router) {
+              private router: Router,
+              private authorizationService: AuthorizationService) {
   }
 
   initForm() {
@@ -48,13 +50,16 @@ export class SignUpComponent implements OnInit {
     this.initForm();
   }
 
-  redirect(link:string){
-    this.router.navigate(['/','sign', link])
+  redirect(link: string) {
+    this.router.navigate(['/', 'sign', link])
   }
 
   submit() {
     if (this.validateForm.valid) {
-      this.redirect('set-up-password');
+      this.authorizationService.signup(this.validateForm.value['email'], this.validateForm.value['organisation'])
+        .subscribe((resp) => {
+          this.redirect('set-up-password');
+        })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

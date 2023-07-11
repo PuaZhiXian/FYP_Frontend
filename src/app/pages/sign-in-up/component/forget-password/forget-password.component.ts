@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 
 @Component({
   selector: 'forget-password',
@@ -13,7 +14,8 @@ export class ForgetPasswordComponent implements OnInit {
   emailClass: string = '';
 
   constructor(private fb: UntypedFormBuilder,
-              private router: Router) {
+              private router: Router,
+              private authorizationService: AuthorizationService) {
   }
 
   initForm() {
@@ -44,7 +46,10 @@ export class ForgetPasswordComponent implements OnInit {
 
   submit() {
     if (this.validateForm.valid) {
-      this.router.navigate(['/', 'sign','reset-password'])
+      this.authorizationService.sendResetEmail(this.validateForm.value['email'])
+        .subscribe((resp) => {
+          this.router.navigate(['/', 'sign', 'reset-password'])
+        });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
