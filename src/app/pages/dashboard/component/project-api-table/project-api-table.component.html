@@ -1,30 +1,59 @@
-<div class="my-6" *ngIf="!loadingTable; else loadingTpl">
-  <nz-table nzBordered #filterTable [nzData]="filteredTableData" nzTableLayout="fixed">
-    <thead>
-    <tr id="trid">
-      <th *ngFor="let column of listOfColumns"
-          nzAlign='center'
-          [nzShowSort]="!(column.sortFn === null)"
-          [nzSortOrder]="column.sortOrder"
-          [nzSortFn]="column.sortFn"
-          [nzWidth]="column.width"
-          [nzSortDirections]="column.sortDirections">
-        {{column.name}}
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D]">
-      <td class="text-base">{{ data.id }}</td>
-      <td class="text-base">{{ data.name }}</td>
-      <td class="text-base">{{ data.description }}</td>
-      <td class="text-base">{{ data.creationDate |date : 'd MMMM y' }}</td>
-      <td class="text-base">{{ data.token }}</td>
-    </tr>
-    </tbody>
-  </nz-table>
+<div class="my-11">
+  <div class="flex items-center">
+    <div class="font-bold text-md">My Projects</div>
+    <div>
+      <button nz-button nzType="text" (click)="createNewProject()" class="flex items-center">
+        <div class="material-icons-outlined">add</div>
+        <div class="text-sm">Create New Project</div>
+      </button>
+    </div>
+    <div class="ml-6 w-1/2">
+      <form nz-form [formGroup]="validateForm">
+        <nz-form-item class="mb-0">
+          <nz-form-control>
+            <nz-input-group nzSearch nzSize="large" class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl "
+                            [nzPrefix]="prefixIcon">
+              <input class="bg-[#F5F5F5] text-[#52606D]" formControlName="searchKey"
+                     placeholder="Search Project" nz-input/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+
+  <div class="my-6" *ngIf="!loadingTable; else loadingTpl">
+    <nz-table nzBordered #filterTable [nzData]="filteredTableData" nzTableLayout="fixed">
+      <thead>
+      <tr id="trid">
+        <th *ngFor="let column of listOfColumns"
+            nzAlign='center'
+            [nzShowSort]="!(column.sortFn === null)"
+            [nzSortOrder]="column.sortOrder"
+            [nzSortFn]="column.sortFn"
+            [nzWidth]="column.width"
+            [nzSortDirections]="column.sortDirections">
+          {{column.name}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D]">
+        <td class="text-base">{{ data.id }}</td>
+        <td class="text-base">{{ data.name }}</td>
+        <td class="text-base">{{ data.description }}</td>
+        <td class="text-base">{{ data.creationDate |date : 'd MMMM y' }}</td>
+        <td class="text-base">{{ data.token }}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
 </div>
 
 <ng-template #loadingTpl>
   <nz-skeleton></nz-skeleton>
+</ng-template>
+
+<ng-template #prefixIcon>
+  <span class=" text-[#52606D] material-icons-outlined">search</span>
 </ng-template>

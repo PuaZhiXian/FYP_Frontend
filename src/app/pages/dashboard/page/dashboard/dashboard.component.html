@@ -1,27 +1,8 @@
 <div class="container mx-auto min-h-screen">
   <div class="font-bold text-[40px]">Dashboard</div>
   <div class="text-[40px]">Welcome to your Dashboard!</div>
-  <div class="my-11">
-    <div class="flex items-center">
-      <div class="font-bold text-md">My Projects</div>
-      <div>
-        <button nz-button nzType="text" (click)="createNewProject()" class="flex items-center">
-          <div class="material-icons-outlined">add</div>
-          <div class="text-sm">Create New Project</div>
-        </button>
-      </div>
-      <div class="ml-6 w-1/2">
-        <nz-input-group nzSearch nzSize="large" class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl "
-                        [nzPrefix]="prefixIcon">
-          <input class="bg-[#F5F5F5] text-[#52606D]"
-                 placeholder="Search Project"
-                 [(ngModel)]="searchKey" (ngModelChange)="onChange($event)" nz-input/>
-        </nz-input-group>
-      </div>
-    </div>
 
-    <project-api-table [isProject]="true"></project-api-table>
-  </div>
+  <project-api-table [isProject]="true"></project-api-table>
 
 </div>
 <ng-template #prefixIcon>

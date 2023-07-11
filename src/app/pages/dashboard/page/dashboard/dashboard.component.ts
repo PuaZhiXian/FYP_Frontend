@@ -56,12 +56,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  createNewProject() {
-    this.router.navigate(['/', 'subcription'])
-  }
 
-  onChange(value: string): void {
-
-  }
 
 }

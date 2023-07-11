@@ -2,9 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProjectOverview} from "../../../../interface/project/project-overview";
 import {ColumnItem} from "../../../../interface/table/column-item";
 import {finalize} from "rxjs";
-import {NzConfigService} from "ng-zorro-antd/core/config";
 import {Router} from "@angular/router";
 import {ProjectService} from "../../../../service/project/project.service";
+import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 
 @Component({
   selector: 'project-api-table',
@@ -13,8 +13,8 @@ import {ProjectService} from "../../../../service/project/project.service";
 })
 export class ProjectApiTableComponent implements OnInit {
 
-  constructor(private nzConfigService: NzConfigService,
-              private router: Router,
+  constructor(private router: Router,
+              private fb: UntypedFormBuilder,
               private projectService: ProjectService) {
   }
 
@@ -25,10 +25,14 @@ export class ProjectApiTableComponent implements OnInit {
   listOfColumns !: ColumnItem[];
   loadingTable: boolean = true;
 
+  validateForm!: UntypedFormGroup;
+
   ngOnInit(): void {
     this.initTable();
     if (this.isProject) {
       this.initProject();
+      this.initForm();
+      this.changeHandler();
     } else {
 
     }
@@ -171,6 +175,36 @@ export class ProjectApiTableComponent implements OnInit {
         }
       ];
     }
+  }
+
+  initForm() {
+    this.validateForm = this.fb.group({
+      searchKey: [null, []]
+    });
+  }
+
+  changeHandler() {
+    this.validateForm.valueChanges.subscribe((value => {
+      this.searching();
+    }));
+  }
+
+  searching() {
+    if (!this.validateForm.value.searchKey || this.validateForm.value.searchKey.length == 0) {
+      this.filteredTableData = this.tableData;
+    } else {
+      this.filteredTableData = this.tableData.filter((items) => {
+        return this.isMatch(items.name);
+      });
+    }
+  }
+
+  isMatch(str: string): boolean {
+    return str.toLocaleLowerCase().includes(this.validateForm.value.searchKey.toLowerCase());
+  }
+
+  createNewProject() {
+    this.router.navigate(['/', 'subcription'])
   }
 
 }
