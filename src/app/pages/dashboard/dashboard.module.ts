@@ -10,11 +10,13 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzAutocompleteModule} from "ng-zorro-antd/auto-complete";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
+import { ProjectApiTableComponent } from './component/project-api-table/project-api-table.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    ProjectApiTableComponent
   ],
     imports: [
         DashboardRoutingModule,

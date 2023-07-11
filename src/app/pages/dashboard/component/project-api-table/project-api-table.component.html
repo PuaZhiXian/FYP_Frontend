@@ -1,0 +1,30 @@
+<div class="my-6" *ngIf="!loadingTable; else loadingTpl">
+  <nz-table nzBordered #filterTable [nzData]="filteredTableData" nzTableLayout="fixed">
+    <thead>
+    <tr id="trid">
+      <th *ngFor="let column of listOfColumns"
+          nzAlign='center'
+          [nzShowSort]="!(column.sortFn === null)"
+          [nzSortOrder]="column.sortOrder"
+          [nzSortFn]="column.sortFn"
+          [nzWidth]="column.width"
+          [nzSortDirections]="column.sortDirections">
+        {{column.name}}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D]">
+      <td class="text-base">{{ data.id }}</td>
+      <td class="text-base">{{ data.name }}</td>
+      <td class="text-base">{{ data.description }}</td>
+      <td class="text-base">{{ data.creationDate |date : 'd MMMM y' }}</td>
+      <td class="text-base">{{ data.token }}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>
