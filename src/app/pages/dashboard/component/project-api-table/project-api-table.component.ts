@@ -5,6 +5,7 @@ import {finalize} from "rxjs";
 import {Router} from "@angular/router";
 import {ProjectService} from "../../../../service/project/project.service";
 import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
+import {IApiCollectionDetail} from "../../../../interface/api-collection/i-api-collection-detail";
 
 @Component({
   selector: 'project-api-table',
@@ -20,10 +21,13 @@ export class ProjectApiTableComponent implements OnInit {
 
   @Input() isProject: boolean = true;
 
-  tableData: ProjectOverview[] = [];
-  filteredTableData: ProjectOverview[] = [];
+  projectData: ProjectOverview[] = [];
+  filteredProjectData: ProjectOverview[] = [];
   listOfColumns !: ColumnItem[];
   loadingTable: boolean = true;
+
+  apiCollectionData: IApiCollectionDetail[] = [];
+  filteredApiCollectionData: IApiCollectionDetail[] = [];
 
   validateForm!: UntypedFormGroup;
 
@@ -34,7 +38,7 @@ export class ProjectApiTableComponent implements OnInit {
       this.initForm();
       this.changeHandler();
     } else {
-
+      this.initApiCollection();
     }
   }
 
@@ -44,7 +48,7 @@ export class ProjectApiTableComponent implements OnInit {
         this.loadingTable = false;
       }))
       .subscribe((resp) => {
-        this.tableData = [
+        this.projectData = [
           {
             name: 'Project Copy 1',
             description: 'Description 1 - Copy',
@@ -116,8 +120,25 @@ export class ProjectApiTableComponent implements OnInit {
             token: 'token2d3a4s5',
           }
         ];
-        this.filteredTableData = this.tableData;
+        this.filteredProjectData = this.projectData;
       })
+  }
+
+  initApiCollection() {
+    this.loadingTable = false;
+    this.apiCollectionData = [
+      {
+        no: '001',
+        apiCollectionName: 'Api Collection 1',
+        status: 'approved',
+      },
+      {
+        no: '001',
+        apiCollectionName: 'Api Collection 1',
+        status: 'approved',
+      }
+    ];
+    this.filteredApiCollectionData = this.apiCollectionData;
   }
 
   initTable() {
@@ -174,6 +195,39 @@ export class ProjectApiTableComponent implements OnInit {
           width: null
         }
       ];
+    } else {
+      this.listOfColumns = [
+        {
+          name: 'No',
+          sortOrder: null,
+          sortFn: (a: IApiCollectionDetail, b: IApiCollectionDetail) => a.no.localeCompare(b.no),
+          sortDirections: [],
+          filterMultiple: false,
+          listOfFilter: [],
+          filterFn: null,
+          width: '80px',
+        },
+        {
+          name: 'API Collection Name',
+          sortOrder: null,
+          sortFn: (a: IApiCollectionDetail, b: IApiCollectionDetail) => a.apiCollectionName.localeCompare(b.apiCollectionName),
+          sortDirections: ['ascend', 'descend', null],
+          filterMultiple: false,
+          listOfFilter: [],
+          filterFn: null,
+          width: '800px'
+        },
+        {
+          name: 'Status',
+          sortOrder: null,
+          sortFn: null,
+          sortDirections: [],
+          filterMultiple: false,
+          listOfFilter: [],
+          filterFn: null,
+          width: null
+        }
+      ]
     }
   }
 
@@ -191,9 +245,9 @@ export class ProjectApiTableComponent implements OnInit {
 
   searching() {
     if (!this.validateForm.value.searchKey || this.validateForm.value.searchKey.length == 0) {
-      this.filteredTableData = this.tableData;
+      this.filteredProjectData = this.projectData;
     } else {
-      this.filteredTableData = this.tableData.filter((items) => {
+      this.filteredProjectData = this.projectData.filter((items) => {
         return this.isMatch(items.name);
       });
     }
