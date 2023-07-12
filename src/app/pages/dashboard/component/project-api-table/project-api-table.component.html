@@ -2,7 +2,7 @@
   <div class="flex items-center">
     <div class="font-bold text-md">{{isProject ? 'My Projects' : 'Assigned/ Subscribed API Collections'}}</div>
     <div>
-      <button nz-button nzType="text" (click)="isProject?  createNewProject(): subscribeNewProject()"
+      <button nz-button nzType="text" (click)="isProject?  createNewProject(): subscribeNewProduct()"
               class="flex items-center">
         <div class="material-icons-outlined">add</div>
         <div class="text-sm">{{isProject ? 'Create New Project' : 'Subscribe new products'}}</div>

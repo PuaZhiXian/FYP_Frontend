@@ -272,7 +272,7 @@ export class ProjectApiTableComponent implements OnInit {
     console.log('enter project');
   }
 
-  subscribeNewProject() {
+  subscribeNewProduct() {
 
   }
 }
