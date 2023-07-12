@@ -3,3 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 .monaco-editor-overlaymessage { display: none !important; }
+
+
+.big-checkbox .ant-checkbox-checked .ant-checkbox-inner{
+  width: 24px;
+  height: 24px;
+}
+
+.big-checkbox .ant-checkbox-inner{
+  width: 24px;
+  height: 24px;
+}
+.big-checkbox .ant-checkbox-inner::after {
+  width: 9.714286px;
+  height: 18.142857px;
+}
+
+.big-checkbox .ant-checkbox-inner::before {
+  width: 9.714286px;
+  height: 18.142857px;
+}

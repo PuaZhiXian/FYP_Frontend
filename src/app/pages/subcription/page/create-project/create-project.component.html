@@ -5,8 +5,8 @@
         <div class="text-base my-2">Project Name</div>
         <nz-form-item class="grid w-3/4 ">
           <nz-form-control nzErrorTip="Please input your project name!">
-              <input class="rounded bg-[#D9D9D9]" formControlName="name" placeholder="Enter Project Name"
-                     nz-input/>
+            <input class="rounded bg-[#D9D9D9]" formControlName="name" placeholder="Enter Project Name"
+                   nz-input/>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -15,8 +15,31 @@
           <div class="text-base my-2">Project Description</div>
           <nz-form-control nzErrorTip="Please input your project description!">
             <div class="">
-              <textarea rows="4" nz-input class="rounded bg-[#D9D9D9]" formControlName="description" placeholder="Enter Project Description"></textarea>
+              <textarea rows="4" nz-input class="rounded bg-[#D9D9D9]" formControlName="description"
+                        placeholder="Enter Project Description"></textarea>
             </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="my-10">
+        <nz-form-item class="grid w-3/4">
+          <div class="text-base my-2">Select API Collection List</div>
+          <nz-form-control>
+            <nz-checkbox-wrapper class="w-full" (nzOnChange)="updateSelectedApiCollection($event)">
+              <div *ngFor=" let api of apiCollection">
+                <div class="text-[16px]">{{api.category}}</div>
+                <div *ngFor="let singleApi of api.collections" class="my-4" >
+                  <div class="flex items-center big-checkbox" >
+                    <div nz-checkbox [nzValue]="singleApi.id" ></div>
+                    <div class="ml-[8px]">
+                      <div class="text-base text-[#616161]">{{singleApi.name}}</div>
+                      <div class="text-xs text-[#7B8794]">{{singleApi.description}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nz-checkbox-wrapper>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -25,7 +48,7 @@
     <div class="">
       <button nz-button class="bg-primary-900 h-full
                     font-bold text-[14px] py-2.5 text-white px-[32px]
-                    text-center rounded-lg"  (click)="submit()">
+                    text-center rounded-lg" (click)="submit()">
         Submit
       </button>
     </div>
