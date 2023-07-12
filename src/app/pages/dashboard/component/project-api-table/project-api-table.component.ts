@@ -118,7 +118,14 @@ export class ProjectApiTableComponent implements OnInit {
             id: '011',
             creationDate: new Date(2023, 10, 10),
             token: 'token2d3a4s5',
-          }
+          },
+          {
+            name: 'Project Copy 2',
+            description: 'Description 1 - Duplicate',
+            id: '090',
+            creationDate: new Date(2023, 5, 9),
+            token: 'token8h1n2u3m',
+          },
         ];
         this.filteredProjectData = this.projectData;
       })
