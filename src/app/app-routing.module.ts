@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule)},
   {path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)},
   {path: 'dev', loadChildren: () => import('./pages/dev/dev.module').then(m => m.DevModule)},
-  {path: 'subcription', loadChildren: () => import('./pages/subcription/subcription.module').then(m => m.SubcriptionModule)},
+  {path: 'subscription', loadChildren: () => import('./pages/subscription/subscription.module').then(m => m.SubscriptionModule)},
   {path: 'product', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule)},
   {path: 'project', loadChildren: () => import('./pages/project/project.module').then(m => m.ProjectModule)},
 ];

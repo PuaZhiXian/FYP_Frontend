@@ -265,7 +265,7 @@ export class ProjectApiTableComponent implements OnInit {
   }
 
   createNewProject() {
-    this.router.navigate(['/', 'subcription'])
+    this.router.navigate(['/', 'subscription'])
   }
 
   openProjectDetailPage() {
