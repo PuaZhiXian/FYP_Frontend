@@ -10,7 +10,7 @@ import {AppComponent} from "../../../../app.component";
 })
 export class HeaderComponent {
 
-
+  // https://jscrambler.com/blog/working-with-angular-local-storage
   static logined: boolean = false;
   headerList!: IHeaderList[];
 
