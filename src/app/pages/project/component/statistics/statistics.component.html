@@ -1,7 +1,7 @@
 <div>
   <div class="font-bold text-[20px]">Api Log Acess</div>
   <div class="my-6" *ngIf="!loadingTable; else loadingTpl">
-    <nz-table nzBordered #filterTable [nzData]="tableData"
+    <nz-table nzBordered #filterTable [nzData]="tableData" class="border-r-003169"
               nzTableLayout="fixed">
       <thead>
       <tr class="trid">
@@ -17,13 +17,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of filterTable.data" class="cursor-pointer">
-        <td class="text-base">{{ data.timestamp  |date : 'd/MM/y hh:mm'}}</td>
-        <td class="text-base">{{ data.api }}</td>
-        <td class="text-base">{{ data.method }}</td>
-        <td class="text-base">{{ data.responseSize}}</td>
-        <td class="text-base">{{ data.responseTime }}</td>
-        <td class="text-base">{{ data.status }}</td>
+      <tr *ngFor="let data of filterTable.data" class="trid">
+        <td class="text-[16px]">{{ data.timestamp  |date : 'dd/MM/y hh:mm'}}</td>
+        <td class="text-[16px]">{{ data.api }}</td>
+        <td class="text-[16px]">{{ data.method }}</td>
+        <td class="text-[16px]">{{ data.responseSize}}</td>
+        <td class="text-[16px]">{{ data.responseTime }}</td>
+        <td class="text-[16px]">{{ data.status }}</td>
       </tr>
       </tbody>
     </nz-table>

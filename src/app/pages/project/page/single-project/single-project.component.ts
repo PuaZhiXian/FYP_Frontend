@@ -21,7 +21,7 @@ export class SingleProjectComponent implements OnInit {
 
   projectId!: string | null;
   loadingProject: boolean = true;
-  selectingTab: string = 'settings';
+  selectingTab: string = 'statistics';
 
 
   ngOnInit(): void {
