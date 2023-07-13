@@ -1,5 +1,5 @@
 export interface IProjectStatistics {
-  timestamp: Date | string;
+  timestamp: Date ;
   api: string;
   method: string;
   responseSize: number;

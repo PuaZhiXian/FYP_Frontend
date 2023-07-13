@@ -42,7 +42,7 @@ export class StatisticsComponent implements OnInit {
       .subscribe((resp) => {
         this.tableData = [
           {
-            "timestamp": "2019-06-28T08:15:42.000Z",
+            "timestamp": new Date("2019-06-28T08:15:42.000Z"),
             "api": "api name 1",
             "method": "GET",
             "responseSize": 250,
@@ -50,7 +50,7 @@ export class StatisticsComponent implements OnInit {
             "status": "200"
           },
           {
-            "timestamp": "2020-11-15T14:27:56.000Z",
+            "timestamp": new Date("2020-11-15T14:27:56.000Z"),
             "api": "api name 2",
             "method": "POST",
             "responseSize": 320,
@@ -58,7 +58,7 @@ export class StatisticsComponent implements OnInit {
             "status": "201"
           },
           {
-            "timestamp": "2018-09-01T19:50:23.000Z",
+            "timestamp": new Date("2018-09-01T19:50:23.000Z"),
             "api": "api name 3",
             "method": "GET",
             "responseSize": 120,
@@ -66,7 +66,7 @@ export class StatisticsComponent implements OnInit {
             "status": "200"
           },
           {
-            "timestamp": "2021-05-10T10:35:17.000Z",
+            "timestamp": new Date("2021-05-10T10:35:17.000Z"),
             "api": "api name 4",
             "method": "PUT",
             "responseSize": 180,
@@ -74,7 +74,7 @@ export class StatisticsComponent implements OnInit {
             "status": "200"
           },
           {
-            "timestamp": "2022-03-07T07:58:04.000Z",
+            "timestamp": new Date("2022-03-07T07:58:04.000Z"),
             "api": "api name 5",
             "method": "GET",
             "responseSize": 420,
@@ -82,7 +82,7 @@ export class StatisticsComponent implements OnInit {
             "status": "200"
           },
           {
-            "timestamp": "2023-01-18T15:40:53.000Z",
+            "timestamp": new Date("2023-01-18T15:40:53.000Z"),
             "api": "api name 6",
             "method": "POST",
             "responseSize": 280,
@@ -90,7 +90,7 @@ export class StatisticsComponent implements OnInit {
             "status": "201"
           },
           {
-            "timestamp": "2020-07-26T09:52:35.000Z",
+            "timestamp": new Date("2020-07-26T09:52:35.000Z"),
             "api": "api name 7",
             "method": "GET",
             "responseSize": 200,
@@ -98,7 +98,7 @@ export class StatisticsComponent implements OnInit {
             "status": "200"
           },
           {
-            "timestamp": "2022-08-12T12:05:12.000Z",
+            "timestamp": new Date("2022-08-12T12:05:12.000Z"),
             "api": "api name 8",
             "method": "PUT",
             "responseSize": 150,
@@ -106,7 +106,7 @@ export class StatisticsComponent implements OnInit {
             "status": "200"
           },
           {
-            "timestamp": "2021-03-05T17:18:29.000Z",
+            "timestamp": new Date("2021-03-05T17:18:29.000Z"),
             "api": "api name 9",
             "method": "GET",
             "responseSize": 300,
@@ -114,7 +114,7 @@ export class StatisticsComponent implements OnInit {
             "status": "200"
           },
           {
-            "timestamp": "2019-12-02T21:31:07.000Z",
+            "timestamp": new Date("2019-12-02T21:31:07.000Z"),
             "api": "api name 10",
             "method": "POST",
             "responseSize": 400,
@@ -122,7 +122,6 @@ export class StatisticsComponent implements OnInit {
             "status": "201"
           }
         ]
-
       })
   }
 
@@ -131,8 +130,8 @@ export class StatisticsComponent implements OnInit {
       {
         name: 'Timestamp',
         sortOrder: null,
-        sortFn: null,
-        sortDirections: [],
+        sortFn: (a: IProjectStatistics, b: IProjectStatistics) => a.timestamp.toISOString().localeCompare(b.timestamp.toISOString()),
+        sortDirections: ['ascend', 'descend', null],
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
@@ -141,7 +140,7 @@ export class StatisticsComponent implements OnInit {
       {
         name: 'API',
         sortOrder: null,
-        sortFn: null,
+        sortFn: (a: IProjectStatistics, b: IProjectStatistics) => a.api.localeCompare(b.api),
         sortDirections: ['ascend', 'descend', null],
         filterMultiple: false,
         listOfFilter: [],
@@ -151,17 +150,17 @@ export class StatisticsComponent implements OnInit {
       {
         name: 'Method',
         sortOrder: null,
-        sortFn: null,
-        sortDirections: [],
+        sortFn: (a: IProjectStatistics, b: IProjectStatistics) => a.method.localeCompare(b.method),
+        sortDirections: ['ascend', 'descend', null],
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
-        width: null
+        width: '120px'
       },
       {
         name: 'Response Size/KB',
         sortOrder: null,
-        sortFn: null,
+        sortFn: (a: IProjectStatistics, b: IProjectStatistics) => (a.responseSize - b.responseSize),
         sortDirections: ['ascend', 'descend', null],
         filterMultiple: false,
         listOfFilter: [],
@@ -171,8 +170,8 @@ export class StatisticsComponent implements OnInit {
       {
         name: 'Reponse Time/ms',
         sortOrder: null,
-        sortFn: null,
-        sortDirections: [],
+        sortFn: (a: IProjectStatistics, b: IProjectStatistics) => (a.responseTime - b.responseTime),
+        sortDirections: ['ascend', 'descend', null],
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
@@ -181,12 +180,12 @@ export class StatisticsComponent implements OnInit {
       {
         name: 'Status',
         sortOrder: null,
-        sortFn: null,
-        sortDirections: [],
+        sortFn: (a: IProjectStatistics, b: IProjectStatistics) => a.status.localeCompare(b.status),
+        sortDirections: ['ascend', 'descend', null],
         filterMultiple: false,
         listOfFilter: [],
         filterFn: null,
-        width: null
+        width: '120px'
       }
     ];
   }
