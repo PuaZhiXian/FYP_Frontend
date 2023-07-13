@@ -2,18 +2,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.monaco-editor-overlaymessage { display: none !important; }
+.monaco-editor-overlaymessage {
+  display: none !important;
+}
 
 
-.big-checkbox .ant-checkbox-checked .ant-checkbox-inner{
+.big-checkbox .ant-checkbox-checked .ant-checkbox-inner {
   width: 24px;
   height: 24px;
 }
 
-.big-checkbox .ant-checkbox-inner{
+.big-checkbox .ant-checkbox-inner {
   width: 24px;
   height: 24px;
 }
+
 .big-checkbox .ant-checkbox-inner::after {
   width: 9.714286px;
   height: 18.142857px;
@@ -23,3 +26,11 @@
   width: 9.714286px;
   height: 18.142857px;
 }
+
+.button-focus .ant-btn:focus {
+  background-color: #59C3FF;
+  color: black;
+  border: 1px solid black;
+}
+
+

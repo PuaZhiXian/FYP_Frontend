@@ -111,7 +111,7 @@ export class CreateProjectComponent implements OnInit {
       this.message.success('Project have successfully created');
       this.projectService.addProject(this.validateForm.value)
         .pipe(finalize(() => {
-          // this.router.navigate(['/', 'dashboard'])
+          this.router.navigate(['/', 'dashboard'])
         }))
         .subscribe((resp) => {
 
