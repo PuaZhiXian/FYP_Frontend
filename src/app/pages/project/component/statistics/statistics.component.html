@@ -17,12 +17,13 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer">
-        <!--td class="text-base">{{ data.id }}</td>
-        <td class="text-base">{{ data.name }}</td>
-        <td class="text-base">{{ data.description }}</td>
-        <td class="text-base">{{ data.creationDate |date : 'd MMMM y' }}</td>
-        <td class="text-base">{{ data.token }}</td>-->
+      <tr *ngFor="let data of filterTable.data" class="cursor-pointer">
+        <td class="text-base">{{ data.timestamp  |date : 'd/MM/y hh:mm'}}</td>
+        <td class="text-base">{{ data.api }}</td>
+        <td class="text-base">{{ data.method }}</td>
+        <td class="text-base">{{ data.responseSize}}</td>
+        <td class="text-base">{{ data.responseTime }}</td>
+        <td class="text-base">{{ data.status }}</td>
       </tr>
       </tbody>
     </nz-table>
