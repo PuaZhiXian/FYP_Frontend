@@ -21,7 +21,7 @@ export class SingleProjectComponent implements OnInit {
 
   projectId!: string | null;
   loadingProject: boolean = true;
-  selectingTab: string = 'statistics';
+  selectingTab: string = 'settings';
 
 
   ngOnInit(): void {
@@ -47,11 +47,5 @@ export class SingleProjectComponent implements OnInit {
   changeTabs(tab: string) {
     this.selectingTab = tab;
   }
-
-  deleteProject(){
-
-  }
-
-
 
 }

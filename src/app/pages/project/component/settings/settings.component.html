@@ -1,0 +1,32 @@
+<div class="flex justify-between items-center">
+  <div class="font-bold text-[20px]">Project Name</div>
+  <div>
+    <button nz-button class="bg-primary-900 h-full
+                    font-bold text-[14px] py-2.5 text-white px-[32px]
+                    text-center rounded-lg" (click)="deleteProject()">
+      Delete Project
+    </button>
+  </div>
+</div>
+<div class="my-4">
+  <div class="text-[16px]">
+    {{projectName}}
+  </div>
+</div>
+<div class="my-2.5 font-bold text-[20px]">
+  Project Description
+</div>
+
+<div class="my-4">
+  <div class="text-[16px]">
+    {{projectDescription}}
+  </div>
+</div>
+
+<div class="mt-20">
+  <button nz-button class="bg-primary-900 h-full
+                    font-bold text-[14px] py-2.5 text-white px-[32px]
+                    text-center rounded-lg" (click)="deleteProject()">
+    Edit Project
+  </button>
+</div>
