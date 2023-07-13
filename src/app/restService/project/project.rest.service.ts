@@ -17,7 +17,7 @@ export class ProjectRestService {
   addProject(projectOverview: ProjectOverview): Observable<any> {
     //TODO : integrate add Project API
     // return this.httpClient.post(this.ProjectUrl + '/add', projectOverview);
-    return this.httpClient.get("https://api.github.com/users/hadley/orgs");
+    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
 
   deleteProject() {
@@ -28,6 +28,11 @@ export class ProjectRestService {
     //TODO : integrate add Project API
     //integrate get all project API
     //return this.httpClient.get<ProjectOverview[]>(this.ProjectUrl + "/project");
-    return this.httpClient.get("https://api.github.com/users/hadley/orgs");
+    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
+  }
+
+  getSingleProject(): Observable<any> {
+    //TODO: integrate get single project api
+    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
 }

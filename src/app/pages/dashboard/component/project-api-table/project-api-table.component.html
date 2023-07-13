@@ -41,7 +41,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer"
-          (click)="openProjectDetailPage()">
+          (click)="openProjectDetailPage(data.id)">
         <td class="text-base">{{ data.id }}</td>
         <td class="text-base">{{ data.name }}</td>
         <td class="text-base">{{ data.description }}</td>
@@ -66,8 +66,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer"
-          (click)="openProjectDetailPage()">
+      <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer">
         <td class="text-base">{{ data.no }}</td>
         <td class="text-base">{{ data.apiCollectionName }}</td>
         <td class="text-base">{{ data.status }}</td>

@@ -24,4 +24,8 @@ export class ProjectService {
     return this.projectRestService.getAllProject();
   }
 
+  getSingleProject(): Observable<any> {
+    return this.projectRestService.getSingleProject();
+  }
+
 }
