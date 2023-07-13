@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {UntypedFormBuilder} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'settings',
@@ -23,7 +24,20 @@ export class SettingsComponent implements OnInit {
   @Input() projectDescription!: string;
   @Input() projectId!: string | null;
 
+  validateForm!: UntypedFormGroup;
+  editMode: boolean = false;
+  updating: boolean = false;
+
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm() {
+    this.validateForm = this.fb.group({
+      id: [null, [Validators.required]],
+      name: [null, [Validators.required]],
+      description: [null, [Validators.required]]
+    });
   }
 
   deleteProject() {
@@ -31,6 +45,40 @@ export class SettingsComponent implements OnInit {
       .subscribe((resp) => {
         this.message.success('Project have successfully deleted');
         this.router.navigate(['/', 'dashboard']);
+      })
+  }
+
+  editProject() {
+    this.validateForm.patchValue({
+      id: this.projectId,
+      name: this.projectName,
+      description: this.projectDescription
+    })
+    this.editMode = true;
+  }
+
+  reset() {
+    this.validateForm.patchValue({
+      id: this.projectId,
+      name: this.projectName,
+      description: this.projectDescription
+    })
+  }
+
+  saveProject() {
+    this.updating = true;
+    this.ref.detectChanges();
+    this.ref.markForCheck();
+
+    this.projectService.addProject(this.validateForm.value)
+      .pipe(finalize(() => {
+        this.updating = false;
+        this.ref.detectChanges();
+        this.ref.markForCheck();
+      }))
+      .subscribe((resp) => {
+        this.editMode = false;
+        this.message.success('Project have successfully saved');
       })
   }
 }

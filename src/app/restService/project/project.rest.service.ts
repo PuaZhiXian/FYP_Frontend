@@ -16,6 +16,7 @@ export class ProjectRestService {
 
   addProject(projectOverview: ProjectOverview): Observable<any> {
     //TODO : integrate add Project API
+    //Support add and update project
     // return this.httpClient.post(this.ProjectUrl + '/add', projectOverview);
     return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
