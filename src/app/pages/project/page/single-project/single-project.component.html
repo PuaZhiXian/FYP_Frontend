@@ -34,6 +34,7 @@
     <div class="col-span-10 px-8 py-[18px] min-h-[540px] border border-black">
       <settings *ngIf="selectingTab== 'settings'" [projectName]="'Project Name 1'" [projectId]="projectId"
                 [projectDescription]="'Project Description 1'"></settings>
+      <statistics *ngIf="selectingTab =='statistics'" [projectId]="projectId"></statistics>
     </div>
   </div>
 </div>

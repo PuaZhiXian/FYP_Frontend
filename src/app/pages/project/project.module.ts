@@ -9,13 +9,17 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzSpinModule} from "ng-zorro-antd/spin";
+import { StatisticsComponent } from './component/statistics/statistics.component';
+import {NzTableModule} from "ng-zorro-antd/table";
+import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 
 
 @NgModule({
-    imports: [ProjectRoutingModule, NzButtonModule, CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule],
+  imports: [ProjectRoutingModule, NzButtonModule, CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzTableModule, NzSkeletonModule],
   declarations: [
     SingleProjectComponent,
-    SettingsComponent
+    SettingsComponent,
+    StatisticsComponent
   ],
   exports: [SingleProjectComponent]
 })

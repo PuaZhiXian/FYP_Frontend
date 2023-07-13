@@ -17,7 +17,6 @@ export class ProjectService {
   }
 
   deleteProject(projectId: string): Observable<any> {
-    //TODO: integrate delete project api
     return this.projectRestService.deleteProject(projectId);
   }
 
@@ -27,6 +26,10 @@ export class ProjectService {
 
   getSingleProject(): Observable<any> {
     return this.projectRestService.getSingleProject();
+  }
+
+  getProjectStatistics(projectId: string){
+    return this.projectRestService.getProjectStatistics(projectId);
   }
 
 }

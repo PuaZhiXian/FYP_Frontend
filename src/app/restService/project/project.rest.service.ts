@@ -37,4 +37,10 @@ export class ProjectRestService {
     //TODO: integrate get single project api
     return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
+
+  getProjectStatistics(projectId: string): Observable<any> {
+    //TODO: integrate get project's statistics api
+    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
+  }
+
 }
