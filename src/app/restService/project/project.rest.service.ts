@@ -20,8 +20,9 @@ export class ProjectRestService {
     return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
 
-  deleteProject() {
-
+  deleteProject(projectId: string): Observable<any> {
+    //TODO: integrate delete project api
+    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
 
   getAllProject(): Observable<any> {
