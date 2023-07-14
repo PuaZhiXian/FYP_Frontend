@@ -37,6 +37,7 @@
       <statistics *ngIf="selectingTab =='statistics'" [projectId]="projectId"></statistics>
       <credential *ngIf="selectingTab == 'credentials'" [projectId]="projectId"
                   [projectName]="'Project Name 1'"></credential>
+      <api-collection *ngIf="selectingTab == 'api'" [projectId]="projectId"></api-collection>
     </div>
   </div>
 </div>

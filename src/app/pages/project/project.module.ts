@@ -13,6 +13,7 @@ import { StatisticsComponent } from './component/statistics/statistics.component
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import { CredentialComponent } from './component/credential/credential.component';
+import { ApiCollectionComponent } from './component/api-collection/api-collection.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CredentialComponent } from './component/credential/credential.component
     SingleProjectComponent,
     SettingsComponent,
     StatisticsComponent,
-    CredentialComponent
+    CredentialComponent,
+    ApiCollectionComponent
   ],
   exports: [SingleProjectComponent]
 })
