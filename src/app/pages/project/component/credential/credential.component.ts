@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UntypedFormBuilder} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
@@ -18,7 +18,19 @@ export class CredentialComponent implements OnInit {
               private ref: ChangeDetectorRef) {
   }
 
+  @Input() projectName!: string;
+  @Input() projectId!: string | null;
+
   ngOnInit(): void {
 
   }
+
+  requestToken() {
+
+  }
+
+  getTokenHistory(){
+
+  }
+
 }
