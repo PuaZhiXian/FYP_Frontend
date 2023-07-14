@@ -12,6 +12,7 @@ import {NzSpinModule} from "ng-zorro-antd/spin";
 import { StatisticsComponent } from './component/statistics/statistics.component';
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
+import { CredentialComponent } from './component/credential/credential.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
   declarations: [
     SingleProjectComponent,
     SettingsComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    CredentialComponent
   ],
   exports: [SingleProjectComponent]
 })

@@ -35,6 +35,7 @@
       <settings *ngIf="selectingTab== 'settings'" [projectName]="'Project Name 1'" [projectId]="projectId"
                 [projectDescription]="'Project Description 1'"></settings>
       <statistics *ngIf="selectingTab =='statistics'" [projectId]="projectId"></statistics>
+      <credential *ngIf="selectingTab == 'credentials'"></credential>
     </div>
   </div>
 </div>
