@@ -14,10 +14,11 @@ import {NzTableModule} from "ng-zorro-antd/table";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import { CredentialComponent } from './component/credential/credential.component';
 import { ApiCollectionComponent } from './component/api-collection/api-collection.component';
+import {NzCardModule} from "ng-zorro-antd/card";
 
 
 @NgModule({
-  imports: [ProjectRoutingModule, NzButtonModule, CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzTableModule, NzSkeletonModule],
+    imports: [ProjectRoutingModule, NzButtonModule, CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzTableModule, NzSkeletonModule, NzCardModule],
   declarations: [
     SingleProjectComponent,
     SettingsComponent,

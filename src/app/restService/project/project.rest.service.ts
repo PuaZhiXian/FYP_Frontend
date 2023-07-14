@@ -43,4 +43,9 @@ export class ProjectRestService {
     return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
 
+  getProjectAPICollection(projectId: string): Observable<any> {
+    //TODO: integrate get project's api collections
+    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
+  }
+
 }

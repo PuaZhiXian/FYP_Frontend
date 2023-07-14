@@ -28,8 +28,12 @@ export class ProjectService {
     return this.projectRestService.getSingleProject();
   }
 
-  getProjectStatistics(projectId: string){
+  getProjectStatistics(projectId: string): Observable<any> {
     return this.projectRestService.getProjectStatistics(projectId);
+  }
+
+  getProjectAPICollection(projectId: string): Observable<any> {
+    return this.projectRestService.getProjectAPICollection(projectId);
   }
 
 }
