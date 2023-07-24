@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ProfileComponent} from "./page/profile/profile.component";
-import {DetailComponent} from "./page/detail/detail.component";
 
 const routes: Routes = [
   {
@@ -10,10 +9,6 @@ const routes: Routes = [
       {
         path: '',
         component: ProfileComponent,
-      },
-      {
-        path: 'detail',
-        component: DetailComponent,
       }
     ]
   },

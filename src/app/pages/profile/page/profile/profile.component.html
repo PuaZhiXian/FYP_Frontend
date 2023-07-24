@@ -1,5 +1,22 @@
-<p>profile works!</p>
+<div class="mx-auto container">
+  <div class="my-8 grid grid-cols-12">
+    <div class="col-span-2 button-focus">
+      <div class="w-full">
+        <button nz-button
+                class="text-xl w-full h-fit border border-black {{selectingTab == 'personal-information' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                (click)="changeTabs('personal-information')">Personal Information
+        </button>
+      </div>
+      <div class="w-full">
+        <button nz-button
+                class="text-xl w-full h-fit border border-black {{selectingTab == 'password' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                (click)="changeTabs('password')">
+          Change Password
+        </button>
+      </div>
+    </div>
+    <div class="col-span-10 px-8 py-[18px] min-h-[540px] border border-black">
 
-<button (click)="directToChildren()" class="border p-2">
-  Redirect to children
-</button>
+    </div>
+  </div>
+</div>
