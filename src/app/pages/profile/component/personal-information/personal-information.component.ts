@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
+import {IPersonalInformation} from "../../../../interface/user/i-personal-information";
 
 @Component({
   selector: 'personal-information',
@@ -21,7 +22,10 @@ export class PersonalInformationComponent implements OnInit {
   editMode: boolean = false;
   updating: boolean = false;
 
+  personalInformation!: IPersonalInformation;
+
   ngOnInit(): void {
+    this.initPersonalInformation();
     this.initForm();
   }
 
@@ -31,6 +35,14 @@ export class PersonalInformationComponent implements OnInit {
       email: [null, [Validators.required]],
       organisation: [null, [Validators.required]]
     });
+  }
+
+  initPersonalInformation() {
+    this.personalInformation = {
+      email: "xxx@domain.com",
+      organisation: "Company Meow",
+      username: "Meow meow"
+    }
   }
 
   editProject() {

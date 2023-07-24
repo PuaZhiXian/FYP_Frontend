@@ -6,7 +6,7 @@
     <div class="font-bold text-[20px]">Username</div>
     <div class="">
       <div *ngIf="!editMode" class="text-[16px]">
-        Meow meow
+        {{personalInformation.username}}
       </div>
       <nz-form-item *ngIf="editMode" class="grid w-3/4 ">
         <nz-form-control nzErrorTip="Please input your project name!">
@@ -19,7 +19,7 @@
 
     <!--Email-->
     <div class="mt-11 font-bold text-[20px]">
-      Email
+      {{personalInformation.email}}
     </div>
     <div class="">
       <div *ngIf="!editMode" class="text-[16px]">
@@ -42,7 +42,7 @@
     </div>
     <div class="">
       <div *ngIf="!editMode" class="text-[16px]">
-        Company Meow
+        {{personalInformation.organisation}}
       </div>
       <nz-form-item *ngIf="editMode" class="grid w-3/4">
         <nz-form-control nzErrorTip="Please input your project description!">
@@ -61,26 +61,26 @@
         Update Profile
       </button>
     </div>
-<!--    <div *ngIf="editMode" class="mt-20 flex">-->
-<!--      <div class="grid grid-cols-2 gap-12">-->
-<!--        <div class="col-span-1 primary-button">-->
-<!--          <button nz-button class="bg-primary-900 h-full w-full-->
-<!--                    font-bold text-[14px] py-2.5 text-white px-[32px]-->
-<!--                    text-center rounded-lg" (click)="reset()">-->
-<!--            Reset-->
-<!--          </button>-->
-<!--        </div>-->
-<!--        <div class="col-span-1 primary-button">-->
-<!--          <button nz-button class="bg-primary-900 h-full w-full-->
-<!--                    font-bold text-[14px] py-2.5 text-white px-[32px]-->
-<!--                    text-center rounded-lg" (click)="saveProject()">-->
-<!--            Save Changes-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="grow">-->
+    <!--    <div *ngIf="editMode" class="mt-20 flex">-->
+    <!--      <div class="grid grid-cols-2 gap-12">-->
+    <!--        <div class="col-span-1 primary-button">-->
+    <!--          <button nz-button class="bg-primary-900 h-full w-full-->
+    <!--                    font-bold text-[14px] py-2.5 text-white px-[32px]-->
+    <!--                    text-center rounded-lg" (click)="reset()">-->
+    <!--            Reset-->
+    <!--          </button>-->
+    <!--        </div>-->
+    <!--        <div class="col-span-1 primary-button">-->
+    <!--          <button nz-button class="bg-primary-900 h-full w-full-->
+    <!--                    font-bold text-[14px] py-2.5 text-white px-[32px]-->
+    <!--                    text-center rounded-lg" (click)="saveProject()">-->
+    <!--            Save Changes-->
+    <!--          </button>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div class="grow">-->
 
-<!--      </div>-->
-<!--    </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </form>
 </div>
