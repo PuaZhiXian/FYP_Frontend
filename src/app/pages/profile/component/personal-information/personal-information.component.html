@@ -1,0 +1,86 @@
+<div>
+  <form [formGroup]="validateForm" nz-form>
+
+
+    <!--Username-->
+    <div class="font-bold text-[20px]">Username</div>
+    <div class="">
+      <div *ngIf="!editMode" class="text-[16px]">
+        Meow meow
+      </div>
+      <nz-form-item *ngIf="editMode" class="grid w-3/4 ">
+        <nz-form-control nzErrorTip="Please input your project name!">
+          <input class="rounded bg-[#D9D9D9]" formControlName="name" placeholder="Enter Project Name"
+                 nz-input/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+
+    <!--Email-->
+    <div class="mt-11 font-bold text-[20px]">
+      Email
+    </div>
+    <div class="">
+      <div *ngIf="!editMode" class="text-[16px]">
+        xxx@domain.com
+      </div>
+      <nz-form-item *ngIf="editMode" class="grid w-3/4">
+        <nz-form-control nzErrorTip="Please input your project description!">
+          <div class="">
+              <textarea rows="4" nz-input class="rounded bg-[#D9D9D9]" formControlName="description"
+                        placeholder="Enter Project Description"></textarea>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+
+    <!--Organisation-->
+    <div class="mt-11 font-bold text-[20px]">
+      Organisation
+    </div>
+    <div class="">
+      <div *ngIf="!editMode" class="text-[16px]">
+        Company Meow
+      </div>
+      <nz-form-item *ngIf="editMode" class="grid w-3/4">
+        <nz-form-control nzErrorTip="Please input your project description!">
+          <div class="">
+              <textarea rows="4" nz-input class="rounded bg-[#D9D9D9]" formControlName="description"
+                        placeholder="Enter Project Description"></textarea>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div *ngIf="!editMode" class="mt-20 primary-button">
+      <button nz-button class="bg-primary-900 h-full
+                    font-bold text-[14px] text-white
+                    text-center rounded-lg" (click)="editProject()">
+        Update Profile
+      </button>
+    </div>
+<!--    <div *ngIf="editMode" class="mt-20 flex">-->
+<!--      <div class="grid grid-cols-2 gap-12">-->
+<!--        <div class="col-span-1 primary-button">-->
+<!--          <button nz-button class="bg-primary-900 h-full w-full-->
+<!--                    font-bold text-[14px] py-2.5 text-white px-[32px]-->
+<!--                    text-center rounded-lg" (click)="reset()">-->
+<!--            Reset-->
+<!--          </button>-->
+<!--        </div>-->
+<!--        <div class="col-span-1 primary-button">-->
+<!--          <button nz-button class="bg-primary-900 h-full w-full-->
+<!--                    font-bold text-[14px] py-2.5 text-white px-[32px]-->
+<!--                    text-center rounded-lg" (click)="saveProject()">-->
+<!--            Save Changes-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="grow">-->
+
+<!--      </div>-->
+<!--    </div>-->
+  </form>
+</div>
