@@ -31,9 +31,7 @@ export class PersonalInformationComponent implements OnInit {
 
   initForm() {
     this.validateForm = this.fb.group({
-      username: [null, [Validators.required]],
-      email: [null, [Validators.required]],
-      organisation: [null, [Validators.required]]
+      username: [null, [Validators.required]]
     });
   }
 
@@ -47,12 +45,15 @@ export class PersonalInformationComponent implements OnInit {
 
   editProject() {
     this.validateForm.patchValue({
-      username: 'this.projectId',
-      email: 'this.projectName',
-      organisation: 'this.projectDescription'
+      username: this.personalInformation.username
     })
     this.editMode = true;
   }
 
+  savePersonalInformation() {
+    this.editMode = false;
+    this.ref.detectChanges();
+    this.ref.markForCheck();
+  }
 
 }
