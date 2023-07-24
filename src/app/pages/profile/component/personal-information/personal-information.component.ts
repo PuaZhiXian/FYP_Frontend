@@ -1,8 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {ProjectService} from "../../../../service/project/project.service";
 import {IPersonalInformation} from "../../../../interface/user/i-personal-information";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'personal-information',
@@ -14,7 +15,7 @@ export class PersonalInformationComponent implements OnInit {
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
               public activatedRoute: ActivatedRoute,
-              private projectService: ProjectService,
+              private authorizationService: AuthorizationService,
               private ref: ChangeDetectorRef) {
   }
 
@@ -51,9 +52,14 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   savePersonalInformation() {
-    this.editMode = false;
-    this.ref.detectChanges();
-    this.ref.markForCheck();
-  }
+    this.authorizationService.getPersonalInformation()
+      .pipe(finalize(() => {
+        this.editMode = false;
+        this.ref.detectChanges();
+        this.ref.markForCheck();
+      }))
+      .subscribe((resp) => {
 
+      })
+  }
 }

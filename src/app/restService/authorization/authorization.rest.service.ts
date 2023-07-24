@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,11 @@ export class AuthorizationRestService {
 
   signup(email: string, organization: string) {
     //TODO: integrate sign up API
+    return this.httpClient.get("https://api.github.com/users/hadley/orgs");
+  }
+
+  getPersonalInformation():Observable<any> {
+    //TODO: get user perfonal information
     return this.httpClient.get("https://api.github.com/users/hadley/orgs");
   }
 

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AuthorizationRestService} from "../../restService/authorization/authorization.rest.service";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,9 @@ export class AuthorizationService {
 
   signup(email: string, organization: string) {
     return this.authorizationRestService.signup(email, organization);
+  }
+
+  getPersonalInformation():Observable<any>{
+    return this.authorizationRestService.getPersonalInformation();
   }
 }
