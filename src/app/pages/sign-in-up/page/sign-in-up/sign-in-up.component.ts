@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {HeaderComponent} from "../../../header/page/header/header.component";
 
 @Component({
   selector: 'app-sign-in-up',
@@ -21,6 +22,7 @@ export class SignInUpComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.type = params.get('type');
     });
+    HeaderComponent.logined = false;
   }
 
 }
