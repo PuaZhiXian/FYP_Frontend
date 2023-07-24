@@ -12,8 +12,11 @@
       </div>
     </div>
     <div class="col-span-5 border">
-      <div class="">
-
+      <div class="py-7 px-8">
+          <div *ngFor="let guide of guideQNAList">
+            <div class="text-xl font-bold mb-3.5">{{guide.title}}</div>
+            <div class="text-sm mb-7 text-justify">{{guide.answer}}</div>
+          </div>
       </div>
     </div>
   </div>
