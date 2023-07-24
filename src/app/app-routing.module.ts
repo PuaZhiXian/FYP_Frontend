@@ -11,6 +11,7 @@ const routes: Routes = [
   {path: 'subscription', loadChildren: () => import('./pages/subscription/subscription.module').then(m => m.SubscriptionModule)},
   {path: 'product', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule)},
   {path: 'project', loadChildren: () => import('./pages/project/project.module').then(m => m.ProjectModule)},
+  {path: 'guide', loadChildren: () => import('./pages/guide/guide.module').then(m => m.GuideModule)},
 ];
 
 @NgModule({
