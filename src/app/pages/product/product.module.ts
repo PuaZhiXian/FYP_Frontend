@@ -8,13 +8,15 @@ import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
 import {CommonModule} from "@angular/common";
 import {NzCardModule} from "ng-zorro-antd/card";
 import { SingleApiComponent } from './page/single-api/single-api.component';
+import { LockScreenComponent } from './component/lock-screen/lock-screen.component';
 
 
 @NgModule({
   imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule],
   declarations: [
     AllProductComponent,
-    SingleApiComponent
+    SingleApiComponent,
+    LockScreenComponent
   ],
   exports: [AllProductComponent]
 })
