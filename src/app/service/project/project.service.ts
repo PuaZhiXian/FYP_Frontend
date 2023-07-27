@@ -36,4 +36,12 @@ export class ProjectService {
     return this.projectRestService.getProjectAPICollection(projectId);
   }
 
+  getProjectToken(): Observable<any> {
+    return this.projectRestService.getProjectToken();
+  }
+
+  getTokenHistory(): Observable<any> {
+    return this.projectRestService.getTokenHistory();
+  }
+
 }

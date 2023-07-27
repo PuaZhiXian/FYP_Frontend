@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {UntypedFormBuilder} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'credential',
@@ -24,15 +25,29 @@ export class CredentialComponent implements OnInit {
   currentSessionToken!: string;
 
   ngOnInit(): void {
-
+    this.getTokenHistory();
   }
 
   requestToken() {
-    this.currentSessionToken = Array.from({length: 10}, () => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'[Math.floor(Math.random() * 62)]).join('');;
+    this.projectService.getProjectToken()
+      .pipe(finalize(() => {
+        this.ref.detectChanges();
+        this.ref.markForCheck();
+      }))
+      .subscribe((resp) => {
+        this.currentSessionToken = Array.from({length: 10}, () => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'[Math.floor(Math.random() * 62)]).join('');
+      });
   }
 
   getTokenHistory() {
+    this.projectService.getTokenHistory()
+      .pipe(finalize(() => {
+        this.ref.detectChanges();
+        this.ref.markForCheck();
+      }))
+      .subscribe((resp) => {
 
+      })
   }
 
   copyToClipBoard() {

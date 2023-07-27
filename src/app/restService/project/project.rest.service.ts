@@ -48,4 +48,15 @@ export class ProjectRestService {
     return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
 
+  getProjectToken(): Observable<any> {
+    //TODO: integrate get new project token
+    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
+  }
+
+  getTokenHistory(): Observable<any> {
+    //TODO: integrate get all project token history
+    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
+  }
+
+
 }
