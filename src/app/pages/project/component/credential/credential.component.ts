@@ -4,6 +4,9 @@ import {UntypedFormBuilder} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {finalize} from "rxjs";
+import {IProjectStatistics} from "../../../../interface/project/i-project-statistics";
+import {ColumnItem} from "../../../../interface/table/column-item";
+import {IProjectTokenLog} from "../../../../interface/project/i-project-token-log";
 
 @Component({
   selector: 'credential',
@@ -23,8 +26,11 @@ export class CredentialComponent implements OnInit {
   @Input() projectId!: string | null;
 
   currentSessionToken!: string;
+  tokenLog: IProjectTokenLog[] = [];
+  listOfColumns !: ColumnItem[];
 
   ngOnInit(): void {
+    this.initTable()
     this.getTokenHistory();
   }
 
@@ -52,6 +58,41 @@ export class CredentialComponent implements OnInit {
 
   copyToClipBoard() {
     navigator.clipboard.writeText(this.currentSessionToken);
+  }
+
+  initTable() {
+    this.listOfColumns = [
+      {
+        name: 'Created',
+        sortOrder: null,
+        sortFn: null,
+        sortDirections: [],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: null,
+      },
+      {
+        name: 'Expiration',
+        sortOrder: null,
+        sortFn: null,
+        sortDirections: [],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: null
+      },
+      {
+        name: 'Last Used',
+        sortOrder: null,
+        sortFn: null,
+        sortDirections: [],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: null
+      }
+    ];
   }
 
 }
