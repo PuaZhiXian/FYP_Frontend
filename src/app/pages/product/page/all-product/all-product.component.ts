@@ -100,7 +100,7 @@ export class AllProductComponent implements OnInit {
   }
 
   viewDocs() {
-    this.router.navigate(['/', 'product', 'single-api']);
+    this.router.navigate(['/', 'product', 'single-api','apiCollectionId']);
   }
 
 }

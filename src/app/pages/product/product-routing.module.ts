@@ -9,7 +9,7 @@ const routes: Routes = [
     component: AllProductComponent,
   },
   {
-    path: 'single-api',
+    path: 'single-api/:apiCollectionId',
     component: SingleApiComponent,
   },
 ];
