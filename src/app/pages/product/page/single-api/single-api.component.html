@@ -1,3 +1,26 @@
 <div class="container mx-auto">
   <lock-screen *ngIf="!apiCollectionAccess"></lock-screen>
+
+  <div *ngIf="apiCollectionAccess">
+    <div class="font-bold text-[32px]">API Collection 1</div>
+    <div class="text-sm mb-7">API Description niiijijijijijii ncnscwncnascn iwjdijqidjijiwqijq</div>
+    <div class="grid grid-cols-7">
+      <div class="col-span-2 border">
+        <div class="py-[18px] px-4 h-full">
+          <div *ngFor="let apiDocumentation of apiDocumentation" class="mb-5">
+            <div class="text-base font-bold mb-3">{{apiDocumentation.category}}</div>
+            <div class="grid grid-cols-4" *ngFor="let api of apiDocumentation.apis">
+              <div class="text-sm col-span-1">{{api.method}}</div>
+              <div class="text-sm col-span-3">{{api.name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-5 border">
+        <div class="py-7 px-8">
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
