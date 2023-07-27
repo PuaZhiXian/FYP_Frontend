@@ -5,7 +5,7 @@ import { SingleProjectComponent } from './page/single-project/single-project.com
 import {NzButtonModule} from "ng-zorro-antd/button";
 import { SettingsComponent } from './component/settings/settings.component';
 import {CommonModule} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzSpinModule} from "ng-zorro-antd/spin";
@@ -15,10 +15,11 @@ import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import { CredentialComponent } from './component/credential/credential.component';
 import { ApiCollectionComponent } from './component/api-collection/api-collection.component';
 import {NzCardModule} from "ng-zorro-antd/card";
+import {NzCodeEditorModule} from "ng-zorro-antd/code-editor";
 
 
 @NgModule({
-    imports: [ProjectRoutingModule, NzButtonModule, CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzTableModule, NzSkeletonModule, NzCardModule],
+  imports: [ProjectRoutingModule, NzButtonModule, CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzTableModule, NzSkeletonModule, NzCardModule, NzCodeEditorModule, FormsModule],
   declarations: [
     SingleProjectComponent,
     SettingsComponent,

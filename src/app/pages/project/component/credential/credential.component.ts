@@ -21,16 +21,22 @@ export class CredentialComponent implements OnInit {
   @Input() projectName!: string;
   @Input() projectId!: string | null;
 
+  currentSessionToken!: string;
+
   ngOnInit(): void {
 
   }
 
   requestToken() {
+    this.currentSessionToken = Array.from({length: 10}, () => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'[Math.floor(Math.random() * 62)]).join('');;
+  }
+
+  getTokenHistory() {
 
   }
 
-  getTokenHistory(){
-
+  copyToClipBoard() {
+    navigator.clipboard.writeText(this.currentSessionToken);
   }
 
 }
