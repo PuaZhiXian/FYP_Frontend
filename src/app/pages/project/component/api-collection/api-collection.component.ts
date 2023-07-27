@@ -92,4 +92,8 @@ export class ApiCollectionComponent implements OnInit {
       })
   }
 
+  viewDocs(apiCollectionId: string) {
+    this.router.navigate(['/', 'product', 'single-api', apiCollectionId]);
+  }
+
 }
