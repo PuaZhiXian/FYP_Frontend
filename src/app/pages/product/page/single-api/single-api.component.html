@@ -5,7 +5,7 @@
     <div class="font-bold text-[32px]">API Collection 1</div>
     <div class="text-sm mb-7">API Description niiijijijijijii ncnscwncnascn iwjdijqidjijiwqijq</div>
     <div class="grid grid-cols-7">
-      <div class="col-span-2 border">
+      <div class="col-span-2 border border-black">
         <div class="py-[18px] px-4 h-full">
           <div *ngFor="let apiDocumentation of apiDocumentation" class="mb-5">
             <div class="text-base font-bold mb-3">{{apiDocumentation.category}}</div>
@@ -16,9 +16,31 @@
           </div>
         </div>
       </div>
-      <div class="col-span-5 border">
-        <div class="py-7 px-8">
-
+      <div class="col-span-5 border border-black">
+        <div class="py-5 px-12">
+          <div class="font-bold text-base ">List Product</div>
+          <div class="text-sm leading-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+            electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+          </div>
+          <div class="grid grid-cols-8">
+            <div class="col-span-6">
+              <div>Request Payload</div>
+            </div>
+            <div class="col-span-2 button-focus">
+              <div class="w-full" *ngFor="let anchor of anchorText">
+                <button nz-button
+                        class="text-xl w-full h-fit border border-black {{selectingAnchor == anchor ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                        (click)="changeAnchorText(anchor)">
+                  {{anchor}}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

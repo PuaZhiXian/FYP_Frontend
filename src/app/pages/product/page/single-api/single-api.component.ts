@@ -20,6 +20,17 @@ export class SingleApiComponent implements OnInit {
   apiCollectionAccess: boolean = true;
   apiDocumentation: IApiDocumentation[] = []
 
+  selectingAnchor: string = 'Overview';
+
+  anchorText: string[] = [
+    "Overview",
+    "Request Payload",
+    "Response Parameter",
+    "Try it",
+    "Request Samples",
+    "Response Samples"
+  ]
+
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.apiCollectionId = params.get('apiCollectionId');
@@ -64,6 +75,10 @@ export class SingleApiComponent implements OnInit {
         ]
       }
     ]
+  }
+
+  changeAnchorText(anchorText: string) {
+    this.selectingAnchor = anchorText;
   }
 
 }

@@ -9,10 +9,11 @@ import {CommonModule} from "@angular/common";
 import {NzCardModule} from "ng-zorro-antd/card";
 import { SingleApiComponent } from './page/single-api/single-api.component';
 import { LockScreenComponent } from './component/lock-screen/lock-screen.component';
+import {NzButtonModule} from "ng-zorro-antd/button";
 
 
 @NgModule({
-  imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule],
+    imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule],
   declarations: [
     AllProductComponent,
     SingleApiComponent,
