@@ -4,7 +4,6 @@ import {UntypedFormBuilder} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {finalize} from "rxjs";
-import {IProjectStatistics} from "../../../../interface/project/i-project-statistics";
 import {ColumnItem} from "../../../../interface/table/column-item";
 import {IProjectTokenLog} from "../../../../interface/project/i-project-token-log";
 
@@ -52,7 +51,13 @@ export class CredentialComponent implements OnInit {
         this.ref.markForCheck();
       }))
       .subscribe((resp) => {
-
+        this.tokenLog = [
+          {
+            created: new Date("2023-05-10T11:23:00.000Z"),
+            expiration: new Date("2023-05-18T11:23:00.000Z"),
+            lastUsed: new Date("2023-05-17T14:23:00.000Z"),
+          }
+        ]
       })
   }
 
