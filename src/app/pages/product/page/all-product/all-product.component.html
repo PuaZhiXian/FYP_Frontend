@@ -31,7 +31,7 @@
               <nz-card class="bg-[#10064D] rounded">
                 <div class="text-white font-bold text-[20px]">{{api.title}}</div>
                 <div class="text-white text-[16px] text-justify">{{api.description}}</div>
-                <div class="flex justify-end cursor-pointer text-[14px] text-[#DBFF00] underline" (click)="viewDocs()">
+                <div class="flex justify-end cursor-pointer text-[14px] text-[#DBFF00] underline" (click)="viewDocs(api.id)">
                   View Docs
                 </div>
               </nz-card>

@@ -39,44 +39,54 @@ export class ApiCollectionComponent implements OnInit {
       .subscribe((resp) => {
         this.apiCollection = [
           {
-            "title": "API Collection 1",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            id:"AC01",
+            title: "API Collection 1",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           },
           {
-            "title": "API Collection 2",
-            "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+            id:"AC02",
+            title: "API Collection 2",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
           },
           {
-            "title": "API Collection 3",
-            "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti."
+            id:"AC03",
+            title: "API Collection 3",
+            description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti."
           },
           {
-            "title": "API Collection 4",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            id:"AC04",
+            title: "API Collection 4",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           },
           {
-            "title": "API Collection 5",
-            "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+            id:"AC05",
+            title: "API Collection 5",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
           },
           {
-            "title": "API Collection 6",
-            "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti."
+            id:"AC06",
+            title: "API Collection 6",
+            description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti."
           },
           {
-            "title": "API Collection 7",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            id:"AC07",
+            title: "API Collection 7",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           },
           {
-            "title": "API Collection 8",
-            "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+            id:"AC08",
+            title: "API Collection 8",
+            description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
           },
           {
-            "title": "API Collection 9",
-            "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti."
+            id:"AC09",
+            title: "API Collection 9",
+            description: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti."
           },
           {
-            "title": "API Collection 10",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            id:"AC010",
+            title: "API Collection 10",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           }
         ]
       })
