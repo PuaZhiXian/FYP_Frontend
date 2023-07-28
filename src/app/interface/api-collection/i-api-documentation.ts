@@ -8,6 +8,7 @@ export interface IApiDocumentation {
 export interface docs {
   method: string,
   name: string,
+  description: string,
   requestPayload: IApiPayloadParameter[],
   responseParameter: IApiPayloadParameter[],
 
