@@ -5,7 +5,7 @@ export interface IApiDocumentation {
   apis: docs[]
 }
 
-interface docs {
+export interface docs {
   method: string,
   name: string,
   requestPayload: IApiPayloadParameter[],

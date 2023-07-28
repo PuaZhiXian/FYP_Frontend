@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {IApiDocumentation} from "../../../../interface/api-collection/i-api-documentation";
-import {IProjectStatistics} from "../../../../interface/project/i-project-statistics";
+import {docs, IApiDocumentation} from "../../../../interface/api-collection/i-api-documentation";
 
 @Component({
   selector: 'app-single-api',
@@ -22,6 +21,8 @@ export class SingleApiComponent implements OnInit {
   apiDocumentation: IApiDocumentation[] = []
 
   selectingAnchor: string = 'Overview';
+  selectingAPIDocumentation!: docs;
+
 
   anchorText: string[] = [
     "Overview",
@@ -47,20 +48,36 @@ export class SingleApiComponent implements OnInit {
           {
             method: 'GET',
             name: "List Product",
-            requestPayload:[],
-            responseParameter:[]
+            requestPayload: [
+              {
+                parameter: 'string',
+                dataType: 'string',
+                require: 'string',
+                description: 'string',
+                remark: 'string'
+              }
+            ],
+            responseParameter: [
+              {
+                parameter: 'string',
+                dataType: 'string',
+                require: 'string',
+                description: 'string',
+                remark: 'string'
+              }
+            ]
           },
           {
             method: 'POST',
             name: "Update Product",
-            requestPayload:[],
-            responseParameter:[]
+            requestPayload: [],
+            responseParameter: []
           },
           {
             method: 'PUT',
             name: "Buy Product",
-            requestPayload:[],
-            responseParameter:[]
+            requestPayload: [],
+            responseParameter: []
           }
         ]
       },
@@ -70,24 +87,25 @@ export class SingleApiComponent implements OnInit {
           {
             method: 'GET',
             name: "List Product",
-            requestPayload:[],
-            responseParameter:[]
+            requestPayload: [],
+            responseParameter: []
           },
           {
             method: 'POST',
             name: "Update Product",
-            requestPayload:[],
-            responseParameter:[]
+            requestPayload: [],
+            responseParameter: []
           },
           {
             method: 'PUT',
             name: "Buy Product",
-            requestPayload:[],
-            responseParameter:[]
+            requestPayload: [],
+            responseParameter: []
           }
         ]
       }
     ]
+    this.selectingAPIDocumentation = this.apiDocumentation[0]?.apis[0];
   }
 
   changeAnchorText(anchorText: string) {

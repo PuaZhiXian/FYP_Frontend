@@ -30,10 +30,10 @@
           <div class="grid grid-cols-8 mt-7">
             <div class="col-span-6">
               <div class="text-sm font-bold">Request Payload</div>
-              <response-table class="" [tableData]="apiDocumentation[0].apis[0].requestPayload"></response-table>
+              <response-table class="" [tableData]="selectingAPIDocumentation.requestPayload"></response-table>
 
               <div class="text-sm font-bold mt-12">Response Payload</div>
-              <response-table class="" [tableData]="apiDocumentation[0].apis[0].responseParameter"></response-table>
+              <response-table class="" [tableData]="selectingAPIDocumentation.responseParameter"></response-table>
             </div>
 
             <div class="col-span-2 button-focus ml-5">
