@@ -1,3 +1,5 @@
+import {IApiPayloadParameter} from "./i-api-payload-parameter";
+
 export interface IApiDocumentation {
   category: string,
   apis: docs[]
@@ -5,5 +7,8 @@ export interface IApiDocumentation {
 
 interface docs {
   method: string,
-  name: string
+  name: string,
+  requestPayload: IApiPayloadParameter[],
+  responseParameter: IApiPayloadParameter[],
+
 }

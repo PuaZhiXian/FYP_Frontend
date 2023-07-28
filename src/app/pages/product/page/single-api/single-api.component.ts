@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IApiDocumentation} from "../../../../interface/api-collection/i-api-documentation";
+import {IProjectStatistics} from "../../../../interface/project/i-project-statistics";
 
 @Component({
   selector: 'app-single-api',
@@ -46,14 +47,20 @@ export class SingleApiComponent implements OnInit {
           {
             method: 'GET',
             name: "List Product",
+            requestPayload:[],
+            responseParameter:[]
           },
           {
             method: 'POST',
             name: "Update Product",
+            requestPayload:[],
+            responseParameter:[]
           },
           {
             method: 'PUT',
             name: "Buy Product",
+            requestPayload:[],
+            responseParameter:[]
           }
         ]
       },
@@ -63,14 +70,20 @@ export class SingleApiComponent implements OnInit {
           {
             method: 'GET',
             name: "List Product",
+            requestPayload:[],
+            responseParameter:[]
           },
           {
             method: 'POST',
             name: "Update Product",
+            requestPayload:[],
+            responseParameter:[]
           },
           {
             method: 'PUT',
             name: "Buy Product",
+            requestPayload:[],
+            responseParameter:[]
           }
         ]
       }

@@ -1,0 +1,27 @@
+<div class="my-6">
+  <nz-table nzBordered #filterTable [nzData]="tableData" class="border-r-003169"
+            nzTableLayout="fixed">
+    <thead>
+    <tr class="trid">
+      <th *ngFor="let column of listOfColumns"
+          nzAlign='center'
+          [nzShowSort]="!(column.sortFn === null)"
+          [nzSortOrder]="column.sortOrder"
+          [nzSortFn]="column.sortFn"
+          [nzWidth]="column.width"
+          [nzSortDirections]="column.sortDirections">
+        {{column.name}}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of filterTable.data" class="trid">
+      <td class="text-[16px]">{{ data.parameter }}</td>
+      <td class="text-[16px]">{{ data.dataType }}</td>
+      <td class="text-[16px]">{{ data.require }}</td>
+      <td class="text-[16px]">{{ data.description}}</td>
+      <td class="text-[16px]">{{ data.remark }}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
