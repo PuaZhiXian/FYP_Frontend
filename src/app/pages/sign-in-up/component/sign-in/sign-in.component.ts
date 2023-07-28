@@ -58,7 +58,8 @@ export class SignInComponent implements OnInit {
   submit() {
     if (this.validateForm.valid) {
       this.authorizationService.login(this.validateForm.value['email'], this.validateForm.value['password'])
-        .subscribe((resp) => {
+        .subscribe((resp:any) => {
+          console.log('User profile', resp.jwt);
           this.router.navigate(['/', 'dashboard']);
         });
     } else {

@@ -64,7 +64,8 @@ export class SetUpPasswordComponent implements OnInit {
   submit() {
     if (this.validateForm.valid) {
       if (this.validateForm.value.password === this.validateForm.value.repassword) {
-        this.authorizationService.insertNewUser(this.email, this.organisation, this.validateForm.value.password)
+        const username = this.email.split('@')[0];
+        this.authorizationService.insertNewUser(username, this.email, this.organisation, this.validateForm.value.password)
         .subscribe((resp) => {
           this.router.navigate(['/', 'sign', 'sign-in']);
         });

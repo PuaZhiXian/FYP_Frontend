@@ -27,12 +27,12 @@ export class AuthorizationService {
     return this.authorizationRestService.resetPassword(password);
   }
 
-  signup(email: string, organization: string) {
-    return this.authorizationRestService.signup(email, organization);
+  signup() {
+    return this.authorizationRestService.signup();
   }
 
-  insertNewUser(email: string, organization: string, password: string) {
-    return this.authorizationRestService.insertNewUser(email, organization, password);
+  insertNewUser(username: string, email: string, organization: string, password: string) {
+    return this.authorizationRestService.insertNewUser(username, email, organization, password);
   }
 
   getPersonalInformation():Observable<any>{

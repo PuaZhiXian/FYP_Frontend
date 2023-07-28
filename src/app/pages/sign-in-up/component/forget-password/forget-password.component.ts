@@ -46,10 +46,20 @@ export class ForgetPasswordComponent implements OnInit {
 
   submit() {
     if (this.validateForm.valid) {
-      this.authorizationService.sendResetEmail(this.validateForm.value['email'])
-        .subscribe((resp) => {
-          this.router.navigate(['/', 'sign', 'reset-password'])
-        });
+      const email = this.validateForm.value['email'];
+      this.authorizationService.signup()
+        .subscribe((resp:any) => {
+          //console.log(resp.map((item: { email: any; }) => item.email));
+          //check if email exist
+          if(resp.some((user:any) => user.email === email)){
+            // this.authorizationService.sendResetEmail(email)
+            // .subscribe(() => {})
+            this.router.navigate(['/', 'sign', 'reset-password'])
+          }
+          else{
+            console.log("email doesn't exist!");
+          }
+        })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

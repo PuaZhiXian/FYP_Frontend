@@ -60,9 +60,16 @@ export class SignUpComponent implements OnInit {
     if (this.validateForm.valid) {
       const email = this.validateForm.value['email'];
       const organisation = this.validateForm.value['organisation'];
-      this.authorizationService.signup(email, organisation)
-        .subscribe((resp) => {
-          this.redirect('set-up-password', email, organisation);
+      this.authorizationService.signup()
+        .subscribe((resp:any) => {
+          //console.log(resp.map((item: { email: any; }) => item.email));
+          //check if email exist
+          if(resp.some((user:any) => user.email === email)){
+            console.log("email already exist!");
+          }
+          else{
+            this.redirect('set-up-password', email, organisation);
+          }
         })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
