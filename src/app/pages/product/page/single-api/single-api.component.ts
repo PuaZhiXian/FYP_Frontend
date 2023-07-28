@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {docs, IApiDocumentation} from "../../../../interface/api-collection/i-api-documentation";
+import {IApi} from "../../../../interface/api-collection/i-api";
 
 @Component({
   selector: 'app-single-api',
@@ -19,6 +20,7 @@ export class SingleApiComponent implements OnInit {
 
   apiCollectionAccess: boolean = true;
   apiDocumentation: IApiDocumentation[] = []
+  apiOverview!: IApi;
 
   selectingAnchor: string = 'Overview';
   selectingAPIDocumentation!: docs;
@@ -36,6 +38,15 @@ export class SingleApiComponent implements OnInit {
       this.apiCollectionId = params.get('apiCollectionId');
     });
     this.initAPIDocumentation();
+    this.initAPINameDescription();
+  }
+
+  initAPINameDescription() {
+    this.apiOverview = {
+      id: "API01",
+      title: "API Collection 1",
+      description: "API Description niiijijijijijii ncnscwncnascn iwjdijqidjijiwqijq"
+    }
   }
 
   initAPIDocumentation() {
