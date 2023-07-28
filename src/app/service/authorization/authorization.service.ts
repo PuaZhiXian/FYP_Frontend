@@ -31,6 +31,10 @@ export class AuthorizationService {
     return this.authorizationRestService.signup(email, organization);
   }
 
+  insertNewUser(email: string, organization: string, password: string) {
+    return this.authorizationRestService.insertNewUser(email, organization, password);
+  }
+
   getPersonalInformation():Observable<any>{
     return this.authorizationRestService.getPersonalInformation();
   }

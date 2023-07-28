@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 
 @Component({
   selector: 'set-up-password',
@@ -13,13 +14,21 @@ export class SetUpPasswordComponent implements OnInit {
   repasswordClass: string = '';
   passwordClass: string = '';
   passwordVisible: boolean = false;
+  email: string = "";
+  organisation: string = "";
 
   constructor(private fb: UntypedFormBuilder,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute,
+              private authorizationService: AuthorizationService) {
   }
 
   ngOnInit(): void {
     this.initForm();
+    this.route.queryParams.subscribe(params => {
+      this.email = params['email'];
+      this.organisation = params['organisation'];
+    });
   }
 
   initForm() {
@@ -55,7 +64,10 @@ export class SetUpPasswordComponent implements OnInit {
   submit() {
     if (this.validateForm.valid) {
       if (this.validateForm.value.password === this.validateForm.value.repassword) {
-        this.router.navigate(['/', 'sign', 'sign-in']);
+        this.authorizationService.insertNewUser(this.email, this.organisation, this.validateForm.value.password)
+        .subscribe((resp) => {
+          this.router.navigate(['/', 'sign', 'sign-in']);
+        });
       }
     } else {
       Object.values(this.validateForm.controls).forEach(control => {

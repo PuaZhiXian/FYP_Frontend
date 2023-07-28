@@ -50,15 +50,19 @@ export class SignUpComponent implements OnInit {
     this.initForm();
   }
 
-  redirect(link: string) {
-    this.router.navigate(['/', 'sign', link])
+  redirect(link: string, email: string, organisation: string) {
+    this.router.navigate(['/', 'sign', link], {
+      queryParams: { email, organisation },
+    });
   }
 
   submit() {
     if (this.validateForm.valid) {
-      this.authorizationService.signup(this.validateForm.value['email'], this.validateForm.value['organisation'])
+      const email = this.validateForm.value['email'];
+      const organisation = this.validateForm.value['organisation'];
+      this.authorizationService.signup(email, organisation)
         .subscribe((resp) => {
-          this.redirect('set-up-password');
+          this.redirect('set-up-password', email, organisation);
         })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
