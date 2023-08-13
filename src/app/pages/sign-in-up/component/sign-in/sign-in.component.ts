@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
+import {ILoginResponse} from "../../../../interface/authorization/i-login-response";
+
 //import {DataService} from '../../../../data.service';
 
 @Component({
@@ -15,9 +17,16 @@ export class SignInComponent implements OnInit {
   emailClass: string = '';
   passwordClass: string = '';
 
+  errorMessageModalVisible: boolean = false;
+  isInvalidPassword: boolean = false;
+
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
               private authorizationService: AuthorizationService) {
+  }
+
+  ngOnInit(): void {
+    this.initForm();
   }
 
   initForm() {
@@ -47,10 +56,6 @@ export class SignInComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.initForm();
-  }
-
   redirect(link: string) {
     this.router.navigate(['/', 'sign', link])
   }
@@ -58,9 +63,13 @@ export class SignInComponent implements OnInit {
   submit() {
     if (this.validateForm.valid) {
       this.authorizationService.login(this.validateForm.value)
-        .subscribe((resp:any) => {
-          console.log('User profile', resp.jwt);
-          this.router.navigate(['/', 'dashboard']);
+        .subscribe((resp: ILoginResponse) => {
+          if (resp.token) {
+            this.router.navigate(['/', 'dashboard']);
+          } else if (resp.error) {
+            this.errorMessageModalVisible = true;
+            this.isInvalidPassword = resp.error == 'Invalid password !'
+          }
         });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -70,5 +79,9 @@ export class SignInComponent implements OnInit {
         }
       });
     }
+  }
+
+  handleCancel() {
+    this.errorMessageModalVisible = false;
   }
 }

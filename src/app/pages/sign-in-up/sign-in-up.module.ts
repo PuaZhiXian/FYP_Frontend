@@ -12,10 +12,11 @@ import { ForgetPasswordComponent } from './component/forget-password/forget-pass
 import { SetUpPasswordComponent } from './component/set-up-password/set-up-password.component';
 import {NzButtonModule} from "ng-zorro-antd/button";
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 
 @NgModule({
-    imports: [SignInUpRoutingModule, ReactiveFormsModule, NzFormModule, NzInputModule, FormsModule, CommonModule, NzButtonModule],
+    imports: [SignInUpRoutingModule, ReactiveFormsModule, NzFormModule, NzInputModule, FormsModule, CommonModule, NzButtonModule, NzModalModule],
   declarations: [SignInUpComponent, SignInComponent, SignUpComponent, ForgetPasswordComponent, SetUpPasswordComponent, ResetPasswordComponent],
   exports: [SignInUpComponent]
 })

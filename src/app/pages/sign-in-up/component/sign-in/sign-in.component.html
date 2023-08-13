@@ -6,7 +6,8 @@
         <nz-form-item class="grid ">
           <nz-form-control nzErrorTip="Please input your email address!">
             <div class="float-label group">
-              <input class="rounded bg-[#D9D9D9] focus:h-[66px]  {{ validateForm.value['email']? ' h-[66px] ' : ''}}" formControlName="email"
+              <input class="rounded bg-[#D9D9D9] focus:h-[66px]  {{ validateForm.value['email']? ' h-[66px] ' : ''}}"
+                     formControlName="email"
                      (focus)="onfocus('email')" (blur)=" onblur('email')"
                      nz-input/>
               <label
@@ -19,7 +20,8 @@
         <nz-form-item class="grid">
           <nz-form-control nzErrorTip="Please input your password!">
             <div class="float-label group">
-              <input class="rounded bg-[#D9D9D9] focus:h-[66px] {{validateForm.value['password'] ? ' h-[66px]' : ''}}" formControlName="password"
+              <input class="rounded bg-[#D9D9D9] focus:h-[66px] {{validateForm.value['password'] ? ' h-[66px]' : ''}}"
+                     formControlName="password"
                      type="password"
                      (focus)="onfocus('password')" (blur)="onblur('password')"
                      nz-input/>
@@ -34,18 +36,48 @@
     <div class="">
       <button nz-button class="bg-primary-900 h-full w-full
                     font-bold text-md py-2.5 text-white
-                    text-center rounded-full"  (click)="submit()">
+                    text-center rounded-full" (click)="submit()">
         Sign In
       </button>
     </div>
-    <div class="text-danger flex justify-center cursor-pointer my-[15px] text-sm " (click)="redirect('forget-password')">
+    <div class="text-danger flex justify-center cursor-pointer my-[15px] text-sm "
+         (click)="redirect('forget-password')">
       Forget Password?
     </div>
 
     <div class="flex justify-center text-sm">
-      <div>New to API Developer Portal? </div>
+      <div>New to API Developer Portal?</div>
       <div class="text-danger cursor-pointer ml-1" (click)="redirect('sign-up')"> Join Now</div>
     </div>
 
   </div>
 </div>
+
+<nz-modal [(nzVisible)]="errorMessageModalVisible" nzTitle="" (nzOnCancel)="handleCancel()" [nzFooter]="null">
+  <div *nzModalContent>
+    <div class="justify items-center text-center" *ngIf="!isInvalidPassword">
+      <div><span class="material-icons-outlined text-[128px] text-red-600">error</span></div>
+      <div class="text-base my-2.5">Email Not Found! Create a new account ?</div>
+      <div>
+        <button nz-button class="bg-primary-900 h-full w-1/2
+                    font-bold text-sm py-1 text-white
+                    text-center rounded-full" (click)="redirect('sign-up')">
+          Sign Up
+        </button>
+      </div>
+    </div>
+
+    <div class="justify items-center text-center" *ngIf="isInvalidPassword">
+      <div><span class="material-icons-outlined text-[128px] text-red-600">error</span></div>
+      <div class="text-base my-2.5">Invalid Password, You have 3 more try!</div>
+      <div>
+        <button nz-button class="bg-primary-900 h-full w-1/2
+                    font-bold text-sm py-1 text-white
+                    text-center rounded-full" (click)="redirect('forget-password')">
+          Forget Password
+        </button>
+      </div>
+    </div>
+
+  </div>
+</nz-modal>
