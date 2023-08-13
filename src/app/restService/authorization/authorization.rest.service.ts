@@ -25,7 +25,7 @@ export class AuthorizationRestService {
   //   return this.httpClient.post(`${this.ProjectUrl}/user/mysql/login`, {email, password});
   // }
   login(loginRequest: ILoginRequest):Observable<ILoginResponse> {
-    return this.httpClient.post<ILoginResponse>(`${this.ProjectUrl}/auth/local`, loginRequest);
+    return this.httpClient.post<ILoginResponse>(`${this.ProjectUrl}/custom/vendorLogin`, loginRequest);
   }
 
   logout() {
