@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { environment} from "../../../environments/environment";
+import {ILoginRequest} from "../../interface/authorization/i-login-request";
+import {ILoginResponse} from "../../interface/authorization/i-login-response";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class AuthorizationRestService {
 
   constructor(private httpClient: HttpClient) {
   }
-  
+
   // login(email: string, password: string) {
   //   //TODO : integrate log in API
   //   return this.httpClient.get("https://api.github.com/users/hadley/orgs");
@@ -22,8 +24,8 @@ export class AuthorizationRestService {
   // login(email: string, password: string) {
   //   return this.httpClient.post(`${this.ProjectUrl}/user/mysql/login`, {email, password});
   // }
-  login(identifier: string, password: string) {
-    return this.httpClient.post(`${this.ProjectUrl}/auth/local`, {identifier, password});
+  login(loginRequest: ILoginRequest):Observable<ILoginResponse> {
+    return this.httpClient.post<ILoginResponse>(`${this.ProjectUrl}/auth/local`, loginRequest);
   }
 
   logout() {

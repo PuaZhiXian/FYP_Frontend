@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AuthorizationRestService} from "../../restService/authorization/authorization.rest.service";
 import {Observable} from "rxjs";
+import {ILoginRequest} from "../../interface/authorization/i-login-request";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class AuthorizationService {
     private authorizationRestService: AuthorizationRestService,) {
   }
 
-  login(email: string, password: string) {
-    return this.authorizationRestService.login(email, password);
+  login(loginRequest: ILoginRequest) {
+    return this.authorizationRestService.login(loginRequest);
   }
 
   logout() {
