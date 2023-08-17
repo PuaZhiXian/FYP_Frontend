@@ -3,6 +3,8 @@ import {AuthorizationRestService} from "../../restService/authorization/authoriz
 import {Observable} from "rxjs";
 import {ILoginRequest} from "../../interface/authorization/i-login-request";
 import {IMessage} from "../../interface/authorization/i-message";
+import {AES} from 'crypto-ts';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,7 @@ export class AuthorizationService {
   }
 
   login(loginRequest: ILoginRequest): Observable<IMessage> {
+    loginRequest.password = AES.encrypt(loginRequest.password + "", environment.secretKey).toString();
     return this.authorizationRestService.login(loginRequest);
   }
 
