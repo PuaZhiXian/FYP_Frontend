@@ -1,4 +1,5 @@
 export interface ILoginRequest {
   email: string,
-  password: string
+  password?: string
+  organisation: string
 }

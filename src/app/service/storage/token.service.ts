@@ -15,11 +15,17 @@ export class TokenService {
   constructor(private httpClient: HttpClient) {
   }
 
-  login(loginRequest: ILoginRequest): Observable<ILoginResponse> {
+  signIn(loginRequest: ILoginRequest): Observable<ILoginResponse> {
     return this.httpClient.post<ILoginResponse>(`http://localhost:3000/auth/login`, loginRequest, {withCredentials: true});
+  }
+
+  signUp(){
+
   }
 
   project(): Observable<any> {
     return this.httpClient.get<any>(`http://localhost:3000`, {withCredentials: true});
   }
+
+
 }

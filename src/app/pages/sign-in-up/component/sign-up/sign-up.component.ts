@@ -52,23 +52,18 @@ export class SignUpComponent implements OnInit {
 
   redirect(link: string, email: string, organisation: string) {
     this.router.navigate(['/', 'sign', link], {
-      queryParams: { email, organisation },
+      queryParams: {email, organisation},
     });
   }
 
   submit() {
     if (this.validateForm.valid) {
-      const email = this.validateForm.value['email'];
-      const organisation = this.validateForm.value['organisation'];
-      this.authorizationService.signup()
-        .subscribe((resp:any) => {
-          //console.log(resp.map((item: { email: any; }) => item.email));
-          //check if email exist
-          if(resp.some((user:any) => user.email === email)){
-            console.log("email already exist!");
-          }
-          else{
-            this.redirect('set-up-password', email, organisation);
+      this.authorizationService.signup(this.validateForm.value)
+        .subscribe((resp) => {
+          if (resp.message) {
+            console.log(resp.message)
+          } else if (resp.error) {
+            console.log(resp.error)
           }
         })
     } else {

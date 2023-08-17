@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AuthorizationRestService} from "../../restService/authorization/authorization.rest.service";
 import {Observable} from "rxjs";
 import {ILoginRequest} from "../../interface/authorization/i-login-request";
+import {IMessage} from "../../interface/authorization/i-message";
 
 @Injectable({
   providedIn: 'root'
@@ -28,15 +29,15 @@ export class AuthorizationService {
     return this.authorizationRestService.resetPassword(password);
   }
 
-  signup() {
-    return this.authorizationRestService.signup();
+  signup(loginRequest: ILoginRequest): Observable<IMessage> {
+    return this.authorizationRestService.signup(loginRequest);
   }
 
   insertNewUser(username: string, email: string, organization: string, password: string) {
     return this.authorizationRestService.insertNewUser(username, email, organization, password);
   }
 
-  getPersonalInformation():Observable<any>{
+  getPersonalInformation(): Observable<any> {
     return this.authorizationRestService.getPersonalInformation();
   }
 }

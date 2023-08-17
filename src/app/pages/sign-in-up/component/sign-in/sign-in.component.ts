@@ -64,7 +64,7 @@ export class SignInComponent implements OnInit {
 
   submit() {
     if (this.validateForm.valid) {
-      this.tokenService.login(this.validateForm.value)
+      this.tokenService.signIn(this.validateForm.value)
         .subscribe((resp: ILoginResponse) => {
           console.log(resp)
           if (resp.token) {
