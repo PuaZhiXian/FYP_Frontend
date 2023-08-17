@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
-import {ILoginResponse} from "../../../../interface/authorization/i-login-response";
 import {TokenService} from "../../../../service/storage/token.service";
 
 //import {DataService} from '../../../../data.service';
@@ -64,32 +63,15 @@ export class SignInComponent implements OnInit {
 
   submit() {
     if (this.validateForm.valid) {
-      this.tokenService.signIn(this.validateForm.value)
-        .subscribe((resp: ILoginResponse) => {
-          console.log(resp)
-          if (resp.token) {
-            // this.router.navigate(['/', 'dashboard']);
-
+      this.authorizationService.login(this.validateForm.value)
+        .subscribe((resp) => {
+          if (resp.message) {
+            console.log(resp.message)
           } else if (resp.error) {
             this.errorMessageModalVisible = true;
             this.isInvalidPassword = resp.error == 'Invalid password !'
           }
-          this.tokenService.project()
-            .subscribe((resp) => {
-                console.log(resp)
-              }
-            )
-        });
-
-      // this.authorizationService.login(this.validateForm.value)
-      //   .subscribe((resp: ILoginResponse) => {
-      //     if (resp.token) {
-      //       this.router.navigate(['/', 'dashboard']);
-      //     } else if (resp.error) {
-      //       this.errorMessageModalVisible = true;
-      //       this.isInvalidPassword = resp.error == 'Invalid password !'
-      //     }
-      //   });
+        })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

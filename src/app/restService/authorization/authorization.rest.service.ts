@@ -17,16 +17,8 @@ export class AuthorizationRestService {
   constructor(private httpClient: HttpClient) {
   }
 
-  // login(email: string, password: string) {
-  //   //TODO : integrate log in API
-  //   return this.httpClient.get("https://api.github.com/users/hadley/orgs");
-  // }
-
-  // login(email: string, password: string) {
-  //   return this.httpClient.post(`${this.ProjectUrl}/user/mysql/login`, {email, password});
-  // }
-  login(loginRequest: ILoginRequest): Observable<ILoginResponse> {
-    return this.httpClient.post<ILoginResponse>(`${this.ProjectUrl}/custom/vendorLogin`, loginRequest);
+  login(loginRequest: ILoginRequest): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(`${this.ProjectUrl}/custom/login`, loginRequest);
   }
 
   logout() {
@@ -34,10 +26,6 @@ export class AuthorizationRestService {
     return this.httpClient.get("https://api.github.com/users/hadley/orgs");
   }
 
-  // sendResetEmail(email: string) {
-  //   //TODO: integrate send reset email API
-  //   return this.httpClient.get("https://api.github.com/users/hadley/orgs");
-  // }
   sendResetEmail(email: string) {
     //TODO: integrate send reset email API
     return this.httpClient.post(`${this.ProjectUrl}/auth/forgot-password`, {email});

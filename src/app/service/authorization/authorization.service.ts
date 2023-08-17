@@ -13,7 +13,7 @@ export class AuthorizationService {
     private authorizationRestService: AuthorizationRestService,) {
   }
 
-  login(loginRequest: ILoginRequest) {
+  login(loginRequest: ILoginRequest): Observable<IMessage> {
     return this.authorizationRestService.login(loginRequest);
   }
 
