@@ -16,7 +16,7 @@ export class AuthorizationService {
   }
 
   login(loginRequest: ILoginRequest): Observable<IMessage> {
-    loginRequest.password = AES.encrypt(loginRequest.password + "", environment.secretKey).toString();
+    // loginRequest.password = AES.encrypt(loginRequest.password + "", environment.secretKey).toString();
     return this.authorizationRestService.login(loginRequest);
   }
 
