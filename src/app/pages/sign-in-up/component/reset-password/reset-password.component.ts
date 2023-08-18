@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'reset-password',
@@ -18,7 +19,8 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              private authorizationService: AuthorizationService) {
+              private authorizationService: AuthorizationService,
+              private message: NzMessageService) {
   }
 
   initForm() {
@@ -61,7 +63,12 @@ export class ResetPasswordComponent implements OnInit {
     if (this.validateForm.valid) {
       this.authorizationService.resetPassword(this.token + "", this.validateForm.value['password'])
         .subscribe((resp) => {
-          this.router.navigate(['/', 'sign', 'sign-in']);
+          if (resp.message) {
+            this.message.success(resp.message)
+            this.router.navigate(['/', 'sign', 'sign-in']);
+          } else if (resp.error) {
+            this.message.error(resp.error)
+          }
         });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
