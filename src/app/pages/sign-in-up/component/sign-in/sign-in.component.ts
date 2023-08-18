@@ -3,6 +3,7 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 import {TokenService} from "../../../../service/storage/token.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 //import {DataService} from '../../../../data.service';
 
@@ -17,11 +18,9 @@ export class SignInComponent implements OnInit {
   emailClass: string = '';
   passwordClass: string = '';
 
-  errorMessageModalVisible: boolean = false;
-  isInvalidPassword: boolean = false;
-
   constructor(private fb: UntypedFormBuilder,
               private tokenService: TokenService,
+              private message: NzMessageService,
               private router: Router,
               private authorizationService: AuthorizationService) {
   }
@@ -65,11 +64,12 @@ export class SignInComponent implements OnInit {
     if (this.validateForm.valid) {
       this.authorizationService.login(this.validateForm.value)
         .subscribe((resp) => {
+          console.log(resp)
           if (resp.message) {
-            console.log(resp.message)
+            this.router.navigate(['/', 'dashboard'])
+            this.message.success(resp.message)
           } else if (resp.error) {
-            this.errorMessageModalVisible = true;
-            this.isInvalidPassword = resp.error == 'Invalid password !'
+            this.message.error(resp.error)
           }
         })
     } else {
@@ -80,9 +80,5 @@ export class SignInComponent implements OnInit {
         }
       });
     }
-  }
-
-  handleCancel() {
-    this.errorMessageModalVisible = false;
   }
 }
