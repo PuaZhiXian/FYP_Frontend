@@ -48,6 +48,7 @@ export class ProjectApiTableComponent implements OnInit {
         this.loadingTable = false;
       }))
       .subscribe((resp) => {
+        console.log(resp)
         this.projectData = [
           {
             name: 'Project Copy 1',

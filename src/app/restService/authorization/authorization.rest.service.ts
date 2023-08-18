@@ -17,7 +17,7 @@ export class AuthorizationRestService {
   }
 
   login(loginRequest: ILoginRequest): Observable<IMessage> {
-    return this.httpClient.post<IMessage>(`${this.ProjectUrl}/custom/login`, loginRequest);
+    return this.httpClient.post<IMessage>(`${this.ProjectUrl}/custom/login`, loginRequest,{withCredentials: true});
   }
 
   logout() {

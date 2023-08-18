@@ -8,7 +8,7 @@ import {ProjectOverview} from "../../interface/project/project-overview";
 })
 export class ProjectRestService {
 
-  private baseUrl = 'http://localhost:4200';
+  private baseUrl = 'http://localhost:1337';
   private ProjectUrl: string = this.baseUrl + '/api';
 
   constructor(private httpClient: HttpClient) {
@@ -30,7 +30,7 @@ export class ProjectRestService {
     //TODO : integrate add Project API
     //integrate get all project API
     //return this.httpClient.get<ProjectOverview[]>(this.ProjectUrl + "/project");
-    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
+    return this.httpClient.get<any>(this.ProjectUrl + '/projects', {withCredentials: true});
   }
 
   getSingleProject(): Observable<any> {
