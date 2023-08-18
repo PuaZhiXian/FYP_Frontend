@@ -64,7 +64,6 @@ export class SignInComponent implements OnInit {
     if (this.validateForm.valid) {
       this.authorizationService.login(this.validateForm.value)
         .subscribe((resp) => {
-          console.log(resp)
           if (resp.message) {
             this.router.navigate(['/', 'dashboard'])
             this.message.success(resp.message)
