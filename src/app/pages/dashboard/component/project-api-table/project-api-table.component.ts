@@ -197,4 +197,8 @@ export class ProjectApiTableComponent implements OnInit {
   subscribeNewProduct() {
 
   }
+
+  copyToClipBoard(token:string) {
+    navigator.clipboard.writeText(token);
+  }
 }

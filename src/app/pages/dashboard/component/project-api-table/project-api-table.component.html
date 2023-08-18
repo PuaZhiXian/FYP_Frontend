@@ -40,20 +40,25 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer"
-          (click)="openProjectDetailPage(data.id)">
-        <td class="text-base">{{ data.id }}</td>
-        <td class="text-base">{{ data.project_name }}</td>
-        <td class="text-base">{{ data.description }}</td>
-        <td class="text-base">{{ data.createdAt |date : 'd MMMM y' }}</td>
-        <td class="text-base">{{ data.token }}</td>
+      <tr *ngFor="let data of filterTable.data; let i = index" class="bg-[#CAE5FF] hover:bg-[#10064D]">
+        <td class="text-base cursor-pointer" (click)="openProjectDetailPage(data.id)">{{ i + 1}}</td>
+        <td class="text-base cursor-pointer" (click)="openProjectDetailPage(data.id)">{{ data.project_name }}</td>
+        <td class="text-base cursor-pointer" (click)="openProjectDetailPage(data.id)">{{ data.description }}</td>
+        <td class="text-base cursor-pointer"
+            (click)="openProjectDetailPage(data.id)">{{ data.createdAt |date : 'd MMMM y' }}</td>
+        <td class="text-base">
+          <div class="flex items-center justify-between">
+            <div class="cursor-default">**************</div>
+            <div class="material-icons-outlined cursor-pointer" (click)="copyToClipBoard(data.token)">content_copy</div>
+          </div>
+        </td>
       </tr>
       </tbody>
     </nz-table>
     <nz-table *ngIf="!isProject" nzBordered #filterTable [nzData]="filteredApiCollectionData"
               nzTableLayout="fixed">
       <thead>
-      <tr  class="trid">
+      <tr class="trid">
         <th *ngFor="let column of listOfColumns"
             nzAlign='center'
             [nzShowSort]="!(column.sortFn === null)"
