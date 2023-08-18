@@ -20,7 +20,7 @@ export class ProjectService {
     return this.projectRestService.deleteProject(projectId);
   }
 
-  getAllProject(): Observable<any> {
+  getAllProject(): Observable<ProjectOverview[]> {
     return this.projectRestService.getAllProject();
   }
 

@@ -43,9 +43,9 @@
       <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer"
           (click)="openProjectDetailPage(data.id)">
         <td class="text-base">{{ data.id }}</td>
-        <td class="text-base">{{ data.name }}</td>
+        <td class="text-base">{{ data.project_name }}</td>
         <td class="text-base">{{ data.description }}</td>
-        <td class="text-base">{{ data.creationDate |date : 'd MMMM y' }}</td>
+        <td class="text-base">{{ data.createdAt |date : 'd MMMM y' }}</td>
         <td class="text-base">{{ data.token }}</td>
       </tr>
       </tbody>

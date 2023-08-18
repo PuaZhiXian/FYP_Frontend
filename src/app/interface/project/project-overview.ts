@@ -1,7 +1,7 @@
 export interface ProjectOverview {
-  name:string,
+  project_name:string,
   description:string,
   id:string,
-  creationDate:Date,
+  createdAt:Date,
   token:string,
 }

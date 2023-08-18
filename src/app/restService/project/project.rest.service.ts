@@ -26,11 +26,8 @@ export class ProjectRestService {
     return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
   }
 
-  getAllProject(): Observable<any> {
-    //TODO : integrate add Project API
-    //integrate get all project API
-    //return this.httpClient.get<ProjectOverview[]>(this.ProjectUrl + "/project");
-    return this.httpClient.get<any>(this.ProjectUrl + '/projects', {withCredentials: true});
+  getAllProject(): Observable<ProjectOverview[]> {
+    return this.httpClient.get<ProjectOverview[]>(this.ProjectUrl + '/projects', {withCredentials: true});
   }
 
   getSingleProject(): Observable<any> {
