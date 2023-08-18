@@ -46,10 +46,12 @@
         <td class="text-base cursor-pointer" (click)="openProjectDetailPage(data.id)">{{ data.description }}</td>
         <td class="text-base cursor-pointer"
             (click)="openProjectDetailPage(data.id)">{{ data.createdAt |date : 'd MMMM y' }}</td>
-        <td class="text-base">
+        <td class="text-base group">
           <div class="flex items-center justify-between">
             <div class="cursor-default">**************</div>
-            <div class="material-icons-outlined cursor-pointer" (click)="copyToClipBoard(data.token)">content_copy</div>
+            <div class="material-icons-outlined cursor-pointer invisible group-hover:visible"
+                 (click)="copyToClipBoard(data.token)">content_copy
+            </div>
           </div>
         </td>
       </tr>
