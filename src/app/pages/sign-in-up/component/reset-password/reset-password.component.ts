@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 
 @Component({
@@ -13,13 +13,18 @@ export class ResetPasswordComponent implements OnInit {
   temp: string = "";
   repasswordClass: string = '';
   passwordClass: string = '';
+  token!: string | null
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
+              private activatedRoute: ActivatedRoute,
               private authorizationService: AuthorizationService) {
   }
 
   initForm() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.token = params['token'];
+    });
     this.validateForm = this.fb.group({
       password: [null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       repassword: [null, [Validators.required]]
@@ -54,7 +59,7 @@ export class ResetPasswordComponent implements OnInit {
 
   submit() {
     if (this.validateForm.valid) {
-      this.authorizationService.resetPassword(this.validateForm.value['password'])
+      this.authorizationService.resetPassword(this.token + "", this.validateForm.value['password'])
         .subscribe((resp) => {
           this.router.navigate(['/', 'sign', 'sign-in']);
         });

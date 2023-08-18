@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'set-up-password',
@@ -14,20 +15,20 @@ export class SetUpPasswordComponent implements OnInit {
   repasswordClass: string = '';
   passwordClass: string = '';
   passwordVisible: boolean = false;
-  email: string = "";
-  organisation: string = "";
+
+  token!: string | null
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
               private route: ActivatedRoute,
+              private message: NzMessageService,
               private authorizationService: AuthorizationService) {
   }
 
   ngOnInit(): void {
     this.initForm();
     this.route.queryParams.subscribe(params => {
-      this.email = params['email'];
-      this.organisation = params['organisation'];
+      this.token = params['token'];
     });
   }
 
@@ -64,11 +65,15 @@ export class SetUpPasswordComponent implements OnInit {
   submit() {
     if (this.validateForm.valid) {
       if (this.validateForm.value.password === this.validateForm.value.repassword) {
-        const username = this.email.split('@')[0];
-        this.authorizationService.insertNewUser(username, this.email, this.organisation, this.validateForm.value.password)
-        .subscribe((resp) => {
-          this.router.navigate(['/', 'sign', 'sign-in']);
-        });
+        this.authorizationService.resetPassword(this.token + "", this.validateForm.value.password)
+          .subscribe((resp) => {
+            if (resp.message) {
+              this.message.success(resp.message);
+              this.router.navigate(['/', 'sign', 'sign-in']);
+            } else if (resp.error) {
+              this.message.error(resp.error);
+            }
+          })
       }
     } else {
       Object.values(this.validateForm.controls).forEach(control => {

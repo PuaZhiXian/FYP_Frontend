@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {ILoginRequest} from "../../interface/authorization/i-login-request";
-import {ILoginResponse} from "../../interface/authorization/i-login-response";
 import {IMessage} from "../../interface/authorization/i-message";
 
 @Injectable({
@@ -31,9 +30,9 @@ export class AuthorizationRestService {
     return this.httpClient.post(`${this.ProjectUrl}/auth/forgot-password`, {email});
   } //GOT ERROR
 
-  resetPassword(password: string) {
+  resetPassword(token: string, password: string): Observable<IMessage> {
     //TODO: integrate reset password API
-    return this.httpClient.get("https://api.github.com/users/hadley/orgs");
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/setPassword', {token: token, password: password});
   }
 
   signup(loginRequest: ILoginRequest): Observable<IMessage> {
