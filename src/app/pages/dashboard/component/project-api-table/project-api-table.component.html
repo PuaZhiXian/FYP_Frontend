@@ -73,9 +73,9 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of filterTable.data" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer">
-        <td class="text-base">{{ data.no }}</td>
-        <td class="text-base">{{ data.apiCollectionName }}</td>
+      <tr *ngFor="let data of filterTable.data; let i = index" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer">
+        <td class="text-base">{{ i + 1 }}</td>
+        <td class="text-base">{{ data.api_collection_name }}</td>
         <td class="text-base">{{ data.status }}</td>
       </tr>
       </tbody>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {ProjectOverview} from "../../../../interface/project/project-overview";
 import {ColumnItem} from "../../../../interface/table/column-item";
 import {finalize} from "rxjs";
@@ -6,17 +6,21 @@ import {Router} from "@angular/router";
 import {ProjectService} from "../../../../service/project/project.service";
 import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {IApiCollectionDetail} from "../../../../interface/api-collection/i-api-collection-detail";
+import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
 
 @Component({
   selector: 'project-api-table',
   templateUrl: './project-api-table.component.html',
-  styleUrls: ['./project-api-table.component.scss']
+  styleUrls: ['./project-api-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectApiTableComponent implements OnInit {
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
-              private projectService: ProjectService) {
+              private projectService: ProjectService,
+              private apiCollectionService: ApiCollectionService,
+              private ref: ChangeDetectorRef) {
   }
 
   @Input() isProject: boolean = true;
@@ -46,6 +50,8 @@ export class ProjectApiTableComponent implements OnInit {
     this.projectService.getAllProject()
       .pipe(finalize(() => {
         this.loadingTable = false;
+        this.ref.detectChanges();
+        this.ref.markForCheck();
       }))
       .subscribe((resp) => {
         this.projectData = resp;
@@ -54,20 +60,16 @@ export class ProjectApiTableComponent implements OnInit {
   }
 
   initApiCollection() {
-    this.loadingTable = false;
-    this.apiCollectionData = [
-      {
-        no: '001',
-        apiCollectionName: 'Api Collection 1',
-        status: 'approved',
-      },
-      {
-        no: '001',
-        apiCollectionName: 'Api Collection 1',
-        status: 'approved',
-      }
-    ];
-    this.filteredApiCollectionData = this.apiCollectionData;
+    this.apiCollectionService.getGuides()
+      .pipe((finalize(() => {
+        this.loadingTable = false;
+        this.ref.detectChanges();
+        this.ref.markForCheck();
+      })))
+      .subscribe((resp) => {
+        this.apiCollectionData = resp;
+        this.filteredApiCollectionData = this.apiCollectionData;
+      })
   }
 
   initTable() {
@@ -129,7 +131,7 @@ export class ProjectApiTableComponent implements OnInit {
         {
           name: 'No',
           sortOrder: null,
-          sortFn: (a: IApiCollectionDetail, b: IApiCollectionDetail) => a.no.localeCompare(b.no),
+          sortFn: (a: IApiCollectionDetail, b: IApiCollectionDetail) => (a.id - b.id),
           sortDirections: [],
           filterMultiple: false,
           listOfFilter: [],
@@ -139,7 +141,7 @@ export class ProjectApiTableComponent implements OnInit {
         {
           name: 'API Collection Name',
           sortOrder: null,
-          sortFn: (a: IApiCollectionDetail, b: IApiCollectionDetail) => a.apiCollectionName.localeCompare(b.apiCollectionName),
+          sortFn: (a: IApiCollectionDetail, b: IApiCollectionDetail) => a.api_collection_name.localeCompare(b.api_collection_name),
           sortDirections: ['ascend', 'descend', null],
           filterMultiple: false,
           listOfFilter: [],
@@ -198,7 +200,7 @@ export class ProjectApiTableComponent implements OnInit {
 
   }
 
-  copyToClipBoard(token:string) {
+  copyToClipBoard(token: string) {
     navigator.clipboard.writeText(token);
   }
 }

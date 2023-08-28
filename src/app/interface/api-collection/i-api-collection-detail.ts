@@ -1,5 +1,6 @@
 export interface IApiCollectionDetail {
-  no: string;
-  apiCollectionName: string;
+  id: number;
+  api_collection_id: number;
+  api_collection_name: string;
   status: string;
 }
