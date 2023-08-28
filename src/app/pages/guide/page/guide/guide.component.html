@@ -1,6 +1,6 @@
 <div class="container mx-auto">
   <div class="font-bold text-[58px] py-[18px]">Guide</div>
-  <div class="grid grid-cols-7">
+  <div *ngIf="!loadingGuideQNA else loadingTpl" class="grid grid-cols-7">
     <div class="col-span-2 border">
       <div class="py-[18px] px-4 h-full">
         <div class="font-bold text-xl">Quick Start Guide</div>
@@ -21,3 +21,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>
