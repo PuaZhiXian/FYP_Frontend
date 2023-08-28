@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
-import {TokenService} from "../../../../service/storage/token.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 
 //import {DataService} from '../../../../data.service';
@@ -19,7 +18,6 @@ export class SignInComponent implements OnInit {
   passwordClass: string = '';
 
   constructor(private fb: UntypedFormBuilder,
-              private tokenService: TokenService,
               private message: NzMessageService,
               private router: Router,
               private authorizationService: AuthorizationService) {

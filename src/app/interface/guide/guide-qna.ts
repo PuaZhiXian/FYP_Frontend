@@ -1,4 +1,4 @@
 export interface GuideQna {
-  title: string;
+  guide_name: string;
   answer: string;
 }

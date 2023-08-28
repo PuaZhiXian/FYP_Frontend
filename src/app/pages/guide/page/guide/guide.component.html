@@ -6,7 +6,7 @@
         <div class="font-bold text-xl">Quick Start Guide</div>
         <div>
           <ul>
-            <li *ngFor="let guide of guideQNAList" class="cursor-pointer">{{guide.title}}</li>
+            <li *ngFor="let guide of guideQNAList" class="cursor-pointer">{{guide.guide_name}}</li>
           </ul>
         </div>
       </div>
@@ -14,7 +14,7 @@
     <div class="col-span-5 border">
       <div class="py-7 px-8">
           <div *ngFor="let guide of guideQNAList">
-            <div class="text-xl font-bold mb-3.5">{{guide.title}}</div>
+            <div class="text-xl font-bold mb-3.5">{{guide.guide_name}}</div>
             <div class="text-sm mb-7 text-justify">{{guide.answer}}</div>
           </div>
       </div>
