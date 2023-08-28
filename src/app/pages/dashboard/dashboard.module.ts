@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DashboardComponent} from './page/dashboard/dashboard.component';
 import {DashboardRoutingModule} from "./dashboard-routing.module";
-import {WelcomeModule} from "../welcome/welcome.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NzCodeEditorModule} from "ng-zorro-antd/code-editor";
 import {NzButtonModule} from "ng-zorro-antd/button";
@@ -22,7 +21,6 @@ import {NzFormModule} from "ng-zorro-antd/form";
   imports: [
     DashboardRoutingModule,
     CommonModule,
-    WelcomeModule,
     FormsModule,
     NzCodeEditorModule,
     NzButtonModule,
