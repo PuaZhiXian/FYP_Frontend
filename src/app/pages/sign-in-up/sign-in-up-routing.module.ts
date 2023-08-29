@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {SignInUpComponent} from "./page/sign-in-up/sign-in-up.component";
+import {AuthGuard} from "../../guard/auth.guard";
 
 const routes: Routes = [
   {
@@ -8,7 +9,8 @@ const routes: Routes = [
     children: [
       {
         path: ':type',
-        component: SignInUpComponent
+        component: SignInUpComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
