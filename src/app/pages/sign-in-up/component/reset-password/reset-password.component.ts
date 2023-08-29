@@ -33,28 +33,6 @@ export class ResetPasswordComponent implements OnInit {
     }, {validators: this.checkIfMatchingPasswords('password', 'repassword')});
   }
 
-  onfocus(type: string) {
-    switch (type) {
-      case "password":
-        this.passwordClass = 'label-float';
-        break;
-      case "repassword":
-        this.repasswordClass = 'label-float';
-        break;
-    }
-  }
-
-  onblur(type: string) {
-    switch (type) {
-      case "password":
-        this.passwordClass = '';
-        break;
-      case "repassword":
-        this.repasswordClass = 'label-float';
-        break;
-    }
-  }
-
   ngOnInit(): void {
     this.initForm();
   }

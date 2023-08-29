@@ -34,26 +34,6 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  onfocus(type: string) {
-    switch (type) {
-      case "email":
-        this.emailClass = 'label-float';
-        break;
-      case "password":
-        this.passwordClass = 'label-float';
-    }
-  }
-
-  onblur(type: string) {
-    switch (type) {
-      case "email":
-        this.emailClass = '';
-        break;
-      case "password":
-        this.passwordClass = '';
-    }
-  }
-
   redirect(link: string) {
     this.router.navigate(['/', 'sign', link])
   }

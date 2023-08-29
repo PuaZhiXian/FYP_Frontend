@@ -1,109 +1,49 @@
-<div class="mt-9 grid grid-cols-12">
-  <!--<div class="bg-white px-9 py-3.5 w-1/2">
-    <div class="text-md font-bold w-full flex justify-center mb-6">Sign In</div>
-    <form nz-form [formGroup]="validateForm">
-      <div>
-        <nz-form-item class="grid ">
-          <nz-form-control nzErrorTip="Please input your email address!">
-            <div class="float-label group">
-              <input class="rounded bg-[#D9D9D9] focus:h-[66px]  {{ validateForm.value['email']? ' h-[66px] ' : ''}}"
-                     formControlName="email"
-                     (focus)="onfocus('email')" (blur)=" onblur('email')"
-                     nz-input/>
-              <label
-                class="{{emailClass}} label {{ validateForm.value['email']? ' label-float' : ''}}">Email</label>
-            </div>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div>
-        <nz-form-item class="grid">
-          <nz-form-control nzErrorTip="Please input your password!">
-            <div class="float-label group">
-              <input class="rounded bg-[#D9D9D9] focus:h-[66px] {{validateForm.value['password'] ? ' h-[66px]' : ''}}"
-                     formControlName="password"
-                     type="password"
-                     (focus)="onfocus('password')" (blur)="onblur('password')"
-                     nz-input/>
-              <label class="{{passwordClass}} label
-                                {{validateForm.value['password'] ? ' label-float' : ''}}">Password
-              </label>
-            </div>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </form>
-    <div class="">
-      <button nz-button class="bg-primary-900 h-full w-full
-                    font-bold text-md py-2.5 text-white
-                    text-center rounded-full" (click)="submit()">
-        Sign In
-      </button>
+<div>
+  <div class="text-[12px] w-full text-[#8898aa] mb-4 text-center">Sign In</div>
+  <!--Form-->
+  <form nz-form [formGroup]="validateForm">
+    <!--Email-->
+    <div>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your email address!">
+          <div>
+            <input class="rounded py-[10px] px-[12px] text-[#8898aa]"
+                   formControlName="email" placeholder="Email" nz-input/>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
     </div>
-    <div class="text-danger flex justify-center cursor-pointer my-[15px] text-sm "
-         (click)="redirect('forget-password')">
-      Forget Password?
+    <!--Password-->
+    <div>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your password!">
+          <div>
+            <input class="rounded py-[10px] px-[12px] text-[#8898aa]" placeholder="Password"
+                   formControlName="password"
+                   type="password"
+                   nz-input/>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
     </div>
+  </form>
 
-    <div class="flex justify-center text-sm">
-      <div>New to API Developer Portal?</div>
-      <div class="text-danger cursor-pointer ml-1" (click)="redirect('sign-up')"> Join Now</div>
-    </div>
-
-  </div>-->
-  <div class="col-span-4"></div>
-  <div class="bg-[#f7fafc] p-[48px] col-span-4">
-    <div class="text-[12px] w-full text-[#8898aa] mb-4 text-center">Sign In</div>
-    <!--Form-->
-    <form nz-form [formGroup]="validateForm">
-      <!--Email-->
-      <div>
-        <nz-form-item class="grid">
-          <nz-form-control nzErrorTip="Please input your email address!">
-            <div class="">
-              <input class="rounded py-[10px] px-[12px]"
-                     formControlName="email" placeholder="Email"
-                     (focus)="onfocus('email')" (blur)=" onblur('email')"
-                     nz-input/>
-            </div>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <!--Password-->
-      <div>
-        <nz-form-item class="grid">
-          <nz-form-control nzErrorTip="Please input your password!">
-            <div class="group">
-              <input class="rounded py-[10px] px-[12px]" placeholder="Password"
-                     formControlName="password"
-                     type="password"
-                     (focus)="onfocus('password')" (blur)="onblur('password')"
-                     nz-input/>
-            </div>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </form>
-
-    <!--Sign in -->
-    <div class="text-center">
-      <button nz-button class="bg-primary-900 text-white py-[10px] px-[20px] my-[24px] h-full rounded"
-              (click)="submit()">
-        Sign In
-      </button>
-    </div>
-    <!--Forget Password-->
-    <div class="text-danger flex justify-center cursor-pointer text-[12px] "
-         (click)="redirect('forget-password')">
-      Forget Password ?
-    </div>
-    <!--Join-->
-    <div class="flex justify-center text-[12px]">
-      <div>New to API Developer Portal?</div>
-      <div class="text-danger cursor-pointer ml-1" (click)="redirect('sign-up')"> Join Now</div>
-    </div>
-
+  <!--Sign in -->
+  <div class="text-center">
+    <button nz-button class="bg-primary-900 text-white py-[10px] px-[20px] my-[24px] h-full rounded"
+            (click)="submit()">
+      Sign In
+    </button>
   </div>
-  <div class="col-span-4"></div>
+  <!--Forget Password-->
+  <div class="text-danger flex justify-center cursor-pointer text-[12px] "
+       (click)="redirect('forget-password')">
+    Forget Password ?
+  </div>
+  <!--Join-->
+  <div class="flex justify-center text-[12px]">
+    <div>New to API Developer Portal?</div>
+    <div class="text-danger cursor-pointer ml-1" (click)="redirect('sign-up')"> Join Now</div>
+  </div>
 </div>
 

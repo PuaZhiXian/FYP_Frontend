@@ -24,22 +24,6 @@ export class ForgetPasswordComponent implements OnInit {
     });
   }
 
-  onfocus(type: string) {
-    switch (type) {
-      case "email":
-        this.emailClass = 'label-float';
-        break;
-    }
-  }
-
-  onblur(type: string) {
-    switch (type) {
-      case "email":
-        this.emailClass = '';
-        break;
-    }
-  }
-
   ngOnInit(): void {
     this.initForm();
   }

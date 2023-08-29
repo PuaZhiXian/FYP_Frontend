@@ -3,10 +3,16 @@
     <div class="flex justify-center text-white text-lg">
       SKYWORLD API DEVELOPER PORTAL
     </div>
-    <sign-in *ngIf="type === 'sign-in'"></sign-in>
-    <sign-up *ngIf="type === 'sign-up'"></sign-up>
-    <forget-password *ngIf="type === 'forget-password'"></forget-password>
-    <set-up-password *ngIf="type === 'set-up-password'"></set-up-password>
-    <reset-password *ngIf="type === 'reset-password'"></reset-password>
+    <div class="mt-9 grid grid-cols-12 ">
+      <div class="col-span-4"></div>
+      <div class="bg-[#F7FAFC] col-span-4 p-[48px] rounded">
+        <sign-in *ngIf="type === 'sign-in'"></sign-in>
+        <sign-up *ngIf="type === 'sign-up'"></sign-up>
+        <forget-password *ngIf="type === 'forget-password'"></forget-password>
+        <set-up-password *ngIf="type === 'set-up-password'"></set-up-password>
+        <reset-password *ngIf="type === 'reset-password'"></reset-password>
+      </div>
+      <div class="col-span-4"></div>
+    </div>
   </div>
 </div>

@@ -26,26 +26,6 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  onfocus(type: string) {
-    switch (type) {
-      case "email":
-        this.emailClass = 'label-float';
-        break;
-      case "organisation":
-        this.passwordClass = 'label-float';
-    }
-  }
-
-  onblur(type: string) {
-    switch (type) {
-      case "email":
-        this.emailClass = '';
-        break;
-      case "organisation":
-        this.passwordClass = '';
-    }
-  }
-
   ngOnInit(): void {
     this.initForm();
   }
