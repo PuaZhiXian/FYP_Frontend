@@ -18,7 +18,7 @@ export class AuthorizationService {
     return this.authorizationRestService.login(loginRequest);
   }
 
-  logout() {
+  logout(): Observable<IMessage> {
     return this.authorizationRestService.logout();
   }
 

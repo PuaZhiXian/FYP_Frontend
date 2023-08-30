@@ -2,6 +2,8 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UntypedFormBuilder} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +16,8 @@ export class ProfileComponent implements OnInit {
               private fb: UntypedFormBuilder,
               public activatedRoute: ActivatedRoute,
               private projectService: ProjectService,
+              private authorizationService: AuthorizationService,
+              private message: NzMessageService,
               private ref: ChangeDetectorRef) {
   }
 
@@ -24,5 +28,17 @@ export class ProfileComponent implements OnInit {
 
   changeTabs(tab: string) {
     this.selectingTab = tab;
+  }
+
+  logout() {
+    this.authorizationService.logout()
+      .subscribe((resp) => {
+        if (resp.message) {
+          this.message.success(resp.message + "");
+          this.router.navigate(['sign', 'sign-in']);
+        } else if (resp.error) {
+          this.message.error(resp.error);
+        }
+      })
   }
 }

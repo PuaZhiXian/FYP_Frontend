@@ -17,12 +17,11 @@ export class AuthorizationRestService {
   }
 
   login(loginRequest: ILoginRequest): Observable<IMessage> {
-    return this.httpClient.post<IMessage>(`${this.ProjectUrl}/custom/login`, loginRequest,{withCredentials: true});
+    return this.httpClient.post<IMessage>(`${this.ProjectUrl}/custom/login`, loginRequest, {withCredentials: true});
   }
 
-  logout() {
-    //TODO: integrate logout API
-    return this.httpClient.get("https://api.github.com/users/hadley/orgs");
+  logout(): Observable<IMessage> {
+    return this.httpClient.delete<IMessage>(`${this.ProjectUrl}/custom/logout`, {withCredentials: true});
   }
 
   sendResetEmail(email: string) {
