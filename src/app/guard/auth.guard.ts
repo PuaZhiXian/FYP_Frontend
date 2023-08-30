@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {map, Observable} from 'rxjs';
+import {map, Observable, of, switchMap} from 'rxjs';
 import {AuthService} from "./auth.service";
 import {SignInUpComponent} from "../pages/sign-in-up/page/sign-in-up/sign-in-up.component";
+import {AuthorizationService} from "../service/authorization/authorization.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,39 +11,48 @@ import {SignInUpComponent} from "../pages/sign-in-up/page/sign-in-up/sign-in-up.
 export class AuthGuard implements CanActivate {
 
   constructor(public authService: AuthService,
-              public router: Router) {
+              public router: Router,
+              public authorizationService: AuthorizationService) {
   }
 
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.isAuthenticated().pipe(
-      map((isAuthenticated) => {
-
+      switchMap((isAuthenticated) => {
         if (route.component === SignInUpComponent) {
           if (route.params['type'] === 'reset-password' || route.params['type'] === 'set-up-password') {
             let token = route.queryParams['token'];
             if (isAuthenticated) {
               this.router.navigate(['dashboard']);
-              return false;
-            } else if (token && !isAuthenticated) {
-              return true;
+              return of(false);
             } else {
-              this.router.navigate(['error', 'not-found']);
-              return false;
+              return this.authorizationService.checkToken(token).pipe(
+                map((validToken) => {
+                  if (validToken) {
+                    return true;
+                  } else {
+                    this.router.navigate(['error', 'not-found']);
+                    return false;
+                  }
+                })
+              );
             }
-          } else if (isAuthenticated) {
-            this.router.navigate(['dashboard']);
-            return false;
           } else {
-            return true;
+            if (isAuthenticated) {
+              this.router.navigate(['dashboard']);
+              return of(false);
+            } else {
+              return of(true);
+            }
           }
         } else {
           if (isAuthenticated) {
-            return true;
+            return of(true);
           } else {
             this.router.navigate(['sign', 'sign-in']);
-            return false;
+            return of(false);
           }
         }
       })

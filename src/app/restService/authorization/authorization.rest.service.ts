@@ -48,4 +48,8 @@ export class AuthorizationRestService {
     return this.httpClient.get("https://api.github.com/users/hadley/orgs");
   }
 
+  checkToken(verifyToken: string): Observable<boolean> {
+    return this.httpClient.post<boolean>(`${this.ProjectUrl}/custom/checkToken`, verifyToken);
+  }
+
 }
