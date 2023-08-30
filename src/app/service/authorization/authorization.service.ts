@@ -22,7 +22,7 @@ export class AuthorizationService {
     return this.authorizationRestService.logout();
   }
 
-  sendResetEmail(email: string) {
+  sendResetEmail(email: string):Observable<IMessage> {
     return this.authorizationRestService.sendResetEmail(email);
   }
 

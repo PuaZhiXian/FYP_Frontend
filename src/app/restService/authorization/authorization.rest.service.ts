@@ -24,10 +24,9 @@ export class AuthorizationRestService {
     return this.httpClient.delete<IMessage>(`${this.ProjectUrl}/custom/logout`, {withCredentials: true});
   }
 
-  sendResetEmail(email: string) {
-    //TODO: integrate send reset email API
-    return this.httpClient.post(`${this.ProjectUrl}/auth/forgot-password`, {email});
-  } //GOT ERROR
+  sendResetEmail(email: string): Observable<IMessage> {
+    return this.httpClient.post(`${this.ProjectUrl}/custom/sendEmail`, {email});
+  }
 
   resetPassword(token: string, password: string): Observable<IMessage> {
     //TODO: integrate reset password API
@@ -49,7 +48,7 @@ export class AuthorizationRestService {
   }
 
   checkToken(verifyToken: string): Observable<boolean> {
-    return this.httpClient.post<boolean>(`${this.ProjectUrl}/custom/checkToken`, verifyToken);
+    return this.httpClient.post<boolean>(`${this.ProjectUrl}/custom/checkToken`, {verifyToken});
   }
 
 }

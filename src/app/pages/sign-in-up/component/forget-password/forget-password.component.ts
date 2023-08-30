@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {IMessage} from 'src/app/interface/authorization/i-message';
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'forget-password',
@@ -15,6 +17,7 @@ export class ForgetPasswordComponent implements OnInit {
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
+              private message: NzMessageService,
               private authorizationService: AuthorizationService) {
   }
 
@@ -32,16 +35,11 @@ export class ForgetPasswordComponent implements OnInit {
     if (this.validateForm.valid) {
       const email = this.validateForm.value['email'];
       this.authorizationService.sendResetEmail(email)
-        .subscribe((resp:any) => {
-          //console.log(resp.map((item: { email: any; }) => item.email));
-          //check if email exist
-          if(resp.some((user:any) => user.email === email)){
-            // this.authorizationService.sendResetEmail(email)
-            // .subscribe(() => {})
-            this.router.navigate(['/', 'sign', 'reset-password'])
-          }
-          else{
-            console.log("email doesn't exist!");
+        .subscribe((resp: IMessage) => {
+          if (resp.message) {
+            this.message.success(resp.message);
+          } else if (resp.error) {
+            this.message.error(resp.error);
           }
         })
     } else {
