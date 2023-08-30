@@ -43,3 +43,10 @@
   border: 0 solid #003169;
   border-right-width: 1px;
 }
+
+.not-found {
+  nz-result-not-found {
+    display: flex;
+    justify-content: center;
+  }
+}
