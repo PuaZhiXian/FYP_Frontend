@@ -18,7 +18,8 @@
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your password!">
           <div>
-            <input class="rounded py-[10px] px-[12px] text-[#8898aa] shadow-md" placeholder="Password"
+            <input class="rounded py-[10px] px-[12px] text-[#8898aa] shadow-md" (keydown.enter)='submit()'
+                   placeholder="Password"
                    formControlName="password"
                    type="password"
                    nz-input/>
