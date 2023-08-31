@@ -18,4 +18,9 @@ export class ApiCollectionRestService {
   getAllApiCollection(): Observable<IApiCollectionDetail[]> {
     return this.httpClient.get<IApiCollectionDetail[]>(this.ProjectUrl + '/access-controls', {withCredentials: true});
   }
+
+  getApprovedApiCollection(){
+    return this.httpClient.get<IApiCollectionDetail[]>(this.ProjectUrl + '/api-collections', {withCredentials: true});
+  }
+
 }

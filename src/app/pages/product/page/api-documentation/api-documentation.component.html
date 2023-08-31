@@ -1,0 +1,150 @@
+<nz-layout>
+  <nz-sider nzCollapsible nzWidth="220px" [nzCollapsedWidth]="0">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li *ngFor="let general of general" nz-menu-item>
+        <span nz-icon nzType="pie-chart"></span>
+        <span>{{general}}</span>
+      </li>
+      <li *ngFor="let docs of documentation" nz-submenu [nzTitle]="heading" nzIcon="team">
+        <ng-template #heading>
+          <div class="whitespace-normal leading-none w-[120px] pl-[10px] text-[12px] font-semibold">
+            {{docs.name}}
+          </div>
+        </ng-template>
+        <ul>
+          <li *ngFor="let subdocs of docs.items" nz-submenu [nzTitle]="subdocsHeading">
+            <ng-template #subdocsHeading>
+              <div class="whitespace-normal leading-none w-[120px] text-[14px] font-medium">
+                {{subdocs.name}}
+              </div>
+            </ng-template>
+            <ul>
+              <li *ngFor="let anchor of subdocs.anchor" class="text-[14px] font-medium"
+                  nz-menu-item>{{anchor.name}}</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-content>
+      <div class="">
+        <!--Introduction-->
+        <div class="grid grid-cols-5 ">
+          <div class="col-span-3 mr-[68px]">
+            <div class="text-[24px] font-medium">API Reference</div>
+            <div class="text-[16px] mt-[20px] mb-[24px] text-justify">
+              The Stripe API is organized around REST. Our API has predictable resource-oriented URLs, accepts
+              form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes,
+              authentication, and verbs.
+            </div>
+
+            <div class="text-[14px] text-justify mt-[20px]">
+              You can use the Stripe API in test mode, which doesn't affect your live data or interact with the banking
+              networks. The API key you use to authenticate the request determines whether the request is live mode or
+              test mode.
+            </div>
+            <div class="text-[14px] text-justify mt-[20px]">
+              The Stripe API doesn't support bulk updates. You can work on only one object per request.
+            </div>
+            <div class="text-[14px] text-justify mt-[20px]">
+              The Stripe API differs for every account as we release new versions and tailor functionality. Log in to
+              see docs customized to your version of the API, with your test key and data.
+            </div>
+          </div>
+          <div class="col-span-2">
+            <div>
+              <div class="mb-[24px]">
+                <div class="text-[14px] font-semibold">JUST GETTING STARTED?</div>
+                <div class="mt-[12px] text-[16px] text-gray-500 text-justify">Check out our development quickstart
+                  guide.
+                </div>
+              </div>
+              <div class="mb-[24px]">
+                <div class="text-[14px] font-semibold">NOT A DEVELOPER?</div>
+                <div class="mt-[12px] text-[16px] text-gray-500 text-justify">Use Stripe’s no-code options or apps from
+                  our partners to get started with Stripe and to do more with your Stripe account—no code required.
+                </div>
+              </div>
+              <div>
+                <div class="flex">
+                  <!--Ruby-->
+                  <div (click)="switchLanguage('Ruby')"
+                       class="{{this.programmingLanguage === 'Ruby' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                    <div class="flex justify-center h-[24px]">
+                      <img height="24" width="24"
+                           src="https://e7.pngegg.com/pngimages/980/847/png-clipart-ruby-on-rails-logo-programming-language-rubygems-ruby-angle-design-thumbnail.png">
+                    </div>
+                    <div class="mt-[8px] text-center text-[12px] font-semibold">Ruby</div>
+                  </div>
+                  <!--Python-->
+                  <div (click)="switchLanguage('Python')"
+                       class="{{this.programmingLanguage === 'Python' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                    <div class="flex justify-center h-[24px]">
+                      <img height="24" width="24"
+                           src="https://thumbnail.imgbin.com/1/17/21/imgbin-python-javascript-logo-soloist-My4ZUgqAGSkQQ5qtiN1TUYzV5_t.jpg">
+                    </div>
+                    <div class="mt-[8px] text-center text-[12px] font-semibold">Python</div>
+                  </div>
+                  <!--PHP-->
+                  <div (click)="switchLanguage('PHP')"
+                       class="{{this.programmingLanguage === 'PHP' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                    <div class="flex justify-center h-[24px]">
+                      <img height="24" width="24"
+                           src="https://w7.pngwing.com/pngs/751/3/png-transparent-logo-php-html-others-text-trademark-logo-thumbnail.png">
+                    </div>
+                    <div class="mt-[8px] text-center text-[12px] font-semibold">PHP</div>
+                  </div>
+                  <!--Java-->
+                  <div (click)="switchLanguage('Java')"
+                       class="{{this.programmingLanguage === 'Java' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                    <div class="flex justify-center h-[24px]">
+                      <img height="24" width="24"
+                           src="https://e7.pngegg.com/pngimages/356/251/png-clipart-java-development-kit-java-architecture-for-xml-binding-java-runtime-environment-javafx-others-miscellaneous-text.png">
+                    </div>
+                    <div class="mt-[8px] text-center text-[12px] font-semibold">Java</div>
+                  </div>
+                  <!--Node.js-->
+                  <div (click)="switchLanguage('Node.js')"
+                       class="{{this.programmingLanguage === 'Node.js' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                    <div class="flex justify-center h-[24px]">
+                      <img height="24" width="24"
+                           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqmQvw0Jc4eiSQcQD_8qjjpiN1Lm1YugzX6A&usqp=CAU">
+                    </div>
+                    <div class="mt-[8px] text-center text-[12px] font-semibold">Node.js</div>
+                  </div>
+                  <!--Go-->
+                  <div (click)="switchLanguage('Go')"
+                       class="{{this.programmingLanguage === 'Go' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                    <div class="flex justify-center h-[24px]">
+                      <img height="24" width="24"
+                           src="https://go.dev/blog/go-brand/Go-Logo/PNG/Go-Logo_Blue.png">
+                    </div>
+                    <div class="mt-[8px] text-center text-[12px] font-semibold">Go</div>
+                  </div>
+                  <!--.NET-->
+                  <div (click)="switchLanguage('.NET')"
+                       class="{{this.programmingLanguage === '.NET' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                    <div class="flex justify-center h-[24px]">
+                      <img height="24" width="24"
+                           src="data:image/jpeg;base64,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">
+                    </div>
+                    <div class="mt-[8px] text-center text-[12px] font-semibold">.NET</div>
+                  </div>
+                </div>
+                <div *ngIf="!loadingCodeEditor">
+                  <nz-code-editor class="editor w-full h-[42px] py-[12px]" [ngModel]="code"
+                                  [nzEditorOption]="{ language: programmingLanguage }"></nz-code-editor>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+

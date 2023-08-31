@@ -12,15 +12,23 @@ import { LockScreenComponent } from './component/lock-screen/lock-screen.compone
 import {NzButtonModule} from "ng-zorro-antd/button";
 import { ResponseTableComponent } from './component/response-table/response-table.component';
 import {NzTableModule} from "ng-zorro-antd/table";
+import { ApiDocumentationComponent } from './page/api-documentation/api-documentation.component';
+import {NzLayoutModule} from "ng-zorro-antd/layout";
+import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzMenuModule} from "ng-zorro-antd/menu";
+import {NzTabsModule} from "ng-zorro-antd/tabs";
+import {NzCodeEditorModule} from "ng-zorro-antd/code-editor";
 
 
 @NgModule({
-    imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule, NzTableModule],
+  imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule, NzTableModule, NzLayoutModule, NzBreadCrumbModule, NzIconModule, NzMenuModule, NzTabsModule, NzCodeEditorModule],
   declarations: [
     AllProductComponent,
     SingleApiComponent,
     LockScreenComponent,
-    ResponseTableComponent
+    ResponseTableComponent,
+    ApiDocumentationComponent
   ],
   exports: [AllProductComponent]
 })
