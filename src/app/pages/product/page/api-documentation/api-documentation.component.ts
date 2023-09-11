@@ -11,13 +11,17 @@ import {NzConfigService} from "ng-zorro-antd/core/config";
 export class ApiDocumentationComponent implements OnInit {
 
 
-  general: string[] = ["Introduction", "Authentication", "Connected Accounts", "Errors", "Expanding Responses", "Idempotent Requests", "Metadata", "Pagination", "Request IDs", "Versioning"]
+  general: string[] = ["Introduction", "Authentication", "Errors"]
   documentation: IApiDocumentationV2[] = [];
   activatedHeading: string = '';
-  code = 'composer require stripe/stripe-php'
+  code = 'require \'stripe\'\n' +
+    'Stripe.api_key = \'sk_test_4eC39HqLyjWDarjtT1zdp7dc\'';
+  authorizationCode = 'require \'stripe\'\n' +
+    'Stripe.api_key = \'sk_test_4eC39HqLyjWDarjtT1zdp7dc\'';
 
-  programmingLanguage: string = 'Ruby';
+  programmingLanguage: string = 'ruby';
   loadingCodeEditor: boolean = true;
+  programmingLanguageOptions: string[] = ['ruby', 'python', 'php', 'java', 'javascript', 'go', 'net'];
 
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef) {
@@ -25,7 +29,7 @@ export class ApiDocumentationComponent implements OnInit {
 
   ngOnInit(): void {
     this.initDocumentation();
-    this.codeEditor();
+    // this.codeEditor();
   }
 
   initDocumentation() {
@@ -160,11 +164,14 @@ export class ApiDocumentationComponent implements OnInit {
           bottom: 10,
           top: 10
         },
+        scrollbar: {
+          vertical: "hidden",
+          handleMouseWheel: false,
+        },
+        overviewRulerLanes: 0,
+        overviewRulerBorder: false,
         minimap: {enabled: false},
       }
     });
-
-    this.loadingCodeEditor = false;
   }
-
 }

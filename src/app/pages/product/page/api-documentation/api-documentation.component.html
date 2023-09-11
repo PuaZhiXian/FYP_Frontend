@@ -30,8 +30,8 @@
   </nz-sider>
   <nz-layout>
     <nz-content>
-      <div class="">
-        <!--Introduction-->
+      <!--Introduction-->
+      <section #Introduction class="p-[68px] border-b">
         <div class="grid grid-cols-5 ">
           <div class="col-span-3 mr-[68px]">
             <div class="text-[24px] font-medium">API Reference</div>
@@ -69,10 +69,10 @@
                 </div>
               </div>
               <div>
-                <div class="flex">
+                <div class="flex mb-[4px]">
                   <!--Ruby-->
-                  <div (click)="switchLanguage('Ruby')"
-                       class="{{this.programmingLanguage === 'Ruby' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                  <div (click)="switchLanguage('ruby')"
+                       class="{{this.programmingLanguage === 'ruby' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
                     <div class="flex justify-center h-[24px]">
                       <img height="24" width="24"
                            src="https://e7.pngegg.com/pngimages/980/847/png-clipart-ruby-on-rails-logo-programming-language-rubygems-ruby-angle-design-thumbnail.png">
@@ -80,8 +80,8 @@
                     <div class="mt-[8px] text-center text-[12px] font-semibold">Ruby</div>
                   </div>
                   <!--Python-->
-                  <div (click)="switchLanguage('Python')"
-                       class="{{this.programmingLanguage === 'Python' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                  <div (click)="switchLanguage('python')"
+                       class="{{this.programmingLanguage === 'python' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
                     <div class="flex justify-center h-[24px]">
                       <img height="24" width="24"
                            src="https://thumbnail.imgbin.com/1/17/21/imgbin-python-javascript-logo-soloist-My4ZUgqAGSkQQ5qtiN1TUYzV5_t.jpg">
@@ -89,8 +89,8 @@
                     <div class="mt-[8px] text-center text-[12px] font-semibold">Python</div>
                   </div>
                   <!--PHP-->
-                  <div (click)="switchLanguage('PHP')"
-                       class="{{this.programmingLanguage === 'PHP' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                  <div (click)="switchLanguage('php')"
+                       class="{{this.programmingLanguage === 'php' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
                     <div class="flex justify-center h-[24px]">
                       <img height="24" width="24"
                            src="https://w7.pngwing.com/pngs/751/3/png-transparent-logo-php-html-others-text-trademark-logo-thumbnail.png">
@@ -98,8 +98,8 @@
                     <div class="mt-[8px] text-center text-[12px] font-semibold">PHP</div>
                   </div>
                   <!--Java-->
-                  <div (click)="switchLanguage('Java')"
-                       class="{{this.programmingLanguage === 'Java' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
+                  <div (click)="switchLanguage('java')"
+                       class="{{this.programmingLanguage === 'java' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
                     <div class="flex justify-center h-[24px]">
                       <img height="24" width="24"
                            src="https://e7.pngegg.com/pngimages/356/251/png-clipart-java-development-kit-java-architecture-for-xml-binding-java-runtime-environment-javafx-others-miscellaneous-text.png">
@@ -107,7 +107,7 @@
                     <div class="mt-[8px] text-center text-[12px] font-semibold">Java</div>
                   </div>
                   <!--Node.js-->
-                  <div (click)="switchLanguage('Node.js')"
+                  <div (click)="switchLanguage('javascript')"
                        class="{{this.programmingLanguage === 'Node.js' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
                     <div class="flex justify-center h-[24px]">
                       <img height="24" width="24"
@@ -116,7 +116,7 @@
                     <div class="mt-[8px] text-center text-[12px] font-semibold">Node.js</div>
                   </div>
                   <!--Go-->
-                  <div (click)="switchLanguage('Go')"
+                  <div (click)="switchLanguage('go')"
                        class="{{this.programmingLanguage === 'Go' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
                     <div class="flex justify-center h-[24px]">
                       <img height="24" width="24"
@@ -125,7 +125,7 @@
                     <div class="mt-[8px] text-center text-[12px] font-semibold">Go</div>
                   </div>
                   <!--.NET-->
-                  <div (click)="switchLanguage('.NET')"
+                  <div (click)="switchLanguage('net')"
                        class="{{this.programmingLanguage === '.NET' ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
                     <div class="flex justify-center h-[24px]">
                       <img height="24" width="24"
@@ -134,16 +134,224 @@
                     <div class="mt-[8px] text-center text-[12px] font-semibold">.NET</div>
                   </div>
                 </div>
-                <div *ngIf="!loadingCodeEditor">
-                  <nz-code-editor class="editor w-full h-[42px] py-[12px]" [ngModel]="code"
-                                  [nzEditorOption]="{ language: programmingLanguage }"></nz-code-editor>
-                </div>
+                <code-editor [programmingLanguageOptions]="programmingLanguageOptions"
+                             [programmingLanguage]="programmingLanguage" [code]="code"></code-editor>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-      </div>
+      <!--Authorization-->
+      <section #Authorization class="p-[68px] border-b">
+        <div class="grid grid-cols-5 ">
+          <div class="col-span-3 mr-[68px]">
+            <div class="text-[24px] font-medium">Authentication</div>
+            <div class="text-[14px] text-justify mt-[20px]">
+              The Stripe API uses API keys to authenticate requests. You can view and manage your API keys in the Stripe
+              Dashboard.
+            </div>
+            <div class="text-[14px] text-justify mt-[20px]">
+              Test mode secret keys have the prefix sk_test_ and live mode secret keys have the prefix sk_live_.
+              Alternatively, you can use restricted API keys for granular permissions.
+            </div>
+            <div class="text-[14px] text-justify mt-[20px]">
+              Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in
+              publicly accessible areas such as GitHub, client-side code, and so forth.
+            </div>
+            <div class="text-[14px] text-justify mt-[20px]">
+              Use your API key by assigning it to Stripe.api_key. The Ruby library will then automatically send this key
+              in each request.
+            </div>
+            <div class="text-[14px] text-justify mt-[20px]">
+              You can also set a per-request key with an option. This is often useful for Connect applications that use
+              multiple API keys during the lifetime of a process. Methods on the returned object reuse the same API key.
+            </div>
+            <div class="text-[14px] text-justify mt-[20px]">
+              All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without
+              authentication will also fail.
+            </div>
+
+          </div>
+          <div class="col-span-2">
+            <code-editor [programmingLanguageOptions]="programmingLanguageOptions" title="GLOBAL API KEY"
+                         [programmingLanguage]="programmingLanguage" [code]="authorizationCode"></code-editor>
+          </div>
+        </div>
+      </section>
+      <!--Errors-->
+      <section #Errors class="p-[68px] border-b">
+        <div class="grid grid-cols-5 ">
+          <div class="col-span-3 mr-[68px]">
+            <div>
+              <div class="text-[24px] font-medium">Errors</div>
+              <div class="text-[14px] text-justify mt-[20px]">
+                Stripe uses conventional HTTP response codes to indicate the success or failure of an API request. In
+                general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed
+                given
+                the information provided (e.g., a required parameter was omitted, a charge failed, etc.). Codes in the
+                5xx
+                range indicate an error with Stripe's servers (these are rare).
+              </div>
+              <div class="text-[14px] text-justify mt-[20px]">
+                Some 4xx errors that could be handled programmatically (e.g., a card is declined) include an error code
+                that
+                briefly explains the error reported.
+              </div>
+            </div>
+            <div class="mt-[20px]">
+              <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Attributes</div>
+              <div class="py-[16px] border-t border-gray-300">
+                <div class="flex items-center">
+                  <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">type</div>
+                  <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">string</div>
+                </div>
+                <div class="text-[14px] text-justify ">
+                  The type of error returned. One of api_error, card_error, idempotency_error, or invalid_request_error
+                </div>
+              </div>
+              <div class="py-[16px] border-t border-gray-300">
+                <div class="flex items-center">
+                  <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">code</div>
+                  <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">string</div>
+                </div>
+                <div class="text-[14px] text-justify ">
+                  For some errors that could be handled programmatically, a short string indicating the error code
+                  reported.
+                </div>
+              </div>
+              <div class="py-[16px] border-t border-gray-300">
+                <div class="flex items-center">
+                  <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">decline_code</div>
+                  <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">string</div>
+                </div>
+                <div class="text-[14px] text-justify ">
+                  For card errors resulting from a card issuer decline, a short string indicating the card issuer’s
+                  reason for the decline if they provide one.
+                </div>
+              </div>
+              <div class="py-[16px] border-t border-gray-300">
+                <div class="flex items-center">
+                  <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">payment_intent</div>
+                  <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">hash</div>
+                </div>
+                <div class="text-[14px] text-justify ">
+                  The PaymentIntent object for errors returned on a request involving a PaymentIntent.
+                </div>
+
+                <div class="mt-[8px]">
+                  <div class="border border-gray-400 rounded">
+                    <!--title-->
+                    <div class="flex items-center text-gray-500 font-medium py-[6px]
+                    px-[10px] border-b border-gray-300">
+                      <div class="text-[13px] material-icons-outlined">close</div>
+                      <div class="text-[13px] ml-[4px]">Hide child attributes</div>
+                    </div>
+                    <!--Attribute 1-->
+                    <div class="p-[12px] border-b border-gray-300">
+                      <div class="flex items-center">
+                        <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">payment_intent.id</div>
+                        <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">string</div>
+                      </div>
+                      <div class="text-[14px] text-justify ">
+                        Unique identifier for the object.
+                      </div>
+                    </div>
+
+                    <!--Attribute 2-->
+                    <div class="p-[12px] border-b border-gray-300">
+                      <div class="flex items-center">
+                        <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">payment_intent.amount</div>
+                        <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">integer</div>
+                      </div>
+                      <div class="text-[14px] text-justify ">
+                        Amount intended to be collected by this PaymentIntent. A positive integer representing how much
+                        to charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge ¥100,
+                        a zero-decimal currency). The minimum amount is $0.50 US or equivalent in charge currency. The
+                        amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of
+                        $999,999.99).
+                      </div>
+                    </div>
+
+                    <!--Attribute 3-->
+                    <div class="p-[12px] border-b border-gray-300">
+                      <div class="flex items-center">
+                        <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">payment_intent.capture_method
+                        </div>
+                        <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">enum</div>
+                      </div>
+                      <div class="text-[14px] text-justify ">
+                        Controls when the funds will be captured from the customer’s account.
+                      </div>
+
+                      <div class="mt-[8px]">
+                        <div class="border border-gray-400 rounded">
+                          <!--title-->
+                          <div
+                            class="flex items-center text-gray-500 font-medium py-[6px] px-[10px] border-b border-gray-300">
+                            <div class="text-[13px] ml-[4px]">Possible enum values</div>
+                          </div>
+                          <!--Enum 1-->
+                          <div class="p-[12px] border-b border-gray-300">
+                            <div class="flex items-center">
+                              <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">automatic (Default)</div>
+                            </div>
+                            <div class="text-[14px] text-justify ">
+                              Stripe automatically captures funds when the customer authorizes the payment.
+                            </div>
+                          </div>
+                          <!--Enum 2-->
+                          <div class="p-[12px] border-b border-gray-300">
+                            <div class="flex items-center">
+                              <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">automatic_async</div>
+                            </div>
+                            <div class="text-[14px] text-justify ">
+                              Stripe asynchronously captures funds when the customer authorizes the payment. Recommended
+                              over capture_method=automatic due to improved latency, but may require additional
+                              integration changes.
+                            </div>
+                          </div>
+                          <!--Enum 3-->
+                          <div class="p-[12px] border-b border-gray-300">
+                            <div class="flex items-center">
+                              <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">manual</div>
+                            </div>
+                            <div class="text-[14px] text-justify ">
+                              Place a hold on the funds when the customer authorizes the payment, but don’t capture the
+                              funds until later. (Not all payment methods support this.)
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <!--Attribute 4-->
+                    <div class="p-[12px] border-b border-gray-300">
+                      <div class="flex items-center">
+                        <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">payment_intent.client_secret</div>
+                        <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">string</div>
+                      </div>
+                      <div class="text-[14px] text-justify ">
+                        The client secret of this PaymentIntent. Used for client-side retrieval using a publishable key.
+                        The client secret can be used to complete a payment from your frontend. It should not be stored,
+                        logged, or exposed to anyone other than the customer. Make sure that you have TLS enabled on any
+                        page that includes the client secret.
+                        Refer to our docs to accept a payment and learn about how client_secret should be handled.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-span-2">
+            <div>
+
+            </div>
+          </div>
+        </div>
+      </section>
     </nz-content>
   </nz-layout>
 </nz-layout>

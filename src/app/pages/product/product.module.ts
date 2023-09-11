@@ -19,16 +19,21 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {NzCodeEditorModule} from "ng-zorro-antd/code-editor";
+import {NzDropDownModule} from "ng-zorro-antd/dropdown";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import { CodeEditorComponent } from './component/code-editor/code-editor.component';
+import {NzAnchorModule} from "ng-zorro-antd/anchor";
 
 
 @NgModule({
-  imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule, NzTableModule, NzLayoutModule, NzBreadCrumbModule, NzIconModule, NzMenuModule, NzTabsModule, NzCodeEditorModule],
+    imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule, NzTableModule, NzLayoutModule, NzBreadCrumbModule, NzIconModule, NzMenuModule, NzTabsModule, NzCodeEditorModule, NzDropDownModule, NzSelectModule, NzAnchorModule],
   declarations: [
     AllProductComponent,
     SingleApiComponent,
     LockScreenComponent,
     ResponseTableComponent,
-    ApiDocumentationComponent
+    ApiDocumentationComponent,
+    CodeEditorComponent
   ],
   exports: [AllProductComponent]
 })
