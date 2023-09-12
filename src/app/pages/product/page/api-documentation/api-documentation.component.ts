@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@an
 import {IApiDocumentationV2} from "../../../../interface/api-collection/i-api-documentation-v2";
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import {IApiDocumentationObject} from "../../../../interface/api-collection/i-api-documentation-object";
+import {IHttpStatusCodeSummary} from "../../../../interface/api-collection/i-http-status-code-summary";
 
 @Component({
   selector: 'app-api-documentation',
@@ -24,6 +25,8 @@ export class ApiDocumentationComponent implements OnInit {
   loadingCodeEditor: boolean = true;
   programmingLanguageOptions: string[] = ['ruby', 'python', 'php', 'java', 'javascript', 'go', 'net'];
   errorObject: IApiDocumentationObject[] = [];
+  httpStatusCodeSummaries: IHttpStatusCodeSummary[] = [];
+  errorTypes: IHttpStatusCodeSummary[] = [];
 
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef) {
@@ -31,7 +34,7 @@ export class ApiDocumentationComponent implements OnInit {
 
   ngOnInit(): void {
     this.initDocumentation();
-    // this.codeEditor();
+    this.initErrorSection();
   }
 
   initDocumentation() {
@@ -147,6 +150,9 @@ export class ApiDocumentationComponent implements OnInit {
         ]
       }
     ]
+  }
+
+  initErrorSection() {
     this.errorObject = [
 
       {
@@ -202,7 +208,7 @@ export class ApiDocumentationComponent implements OnInit {
             name: "payment_intent.user_detail",
             type: "integer",
             description: 'Testing User detail',
-            child:[
+            child: [
               {
                 name: "payment_intent.user_detail.name",
                 type: "string",
@@ -222,6 +228,62 @@ export class ApiDocumentationComponent implements OnInit {
 
           }
         ]
+      }
+    ]
+    this.httpStatusCodeSummaries = [
+      {
+        code: "200 - OK",
+        description: "Everything worked as expected."
+      },
+      {
+        code: "400 - Bad Request",
+        description: "The request was unacceptable, often due to missing a required parameter."
+      },
+      {
+        code: "401 - Unauthorized",
+        description: "No valid API key provided."
+      },
+      {
+        code: "402 - Request Failed",
+        description: "The parameters were valid but the request failed."
+      },
+      {
+        code: "403 - Forbidden",
+        description: "The API key doesn't have permissions to perform the request."
+      },
+      {
+        code: "404 - Not Found",
+        description: "The requested resource doesn't exist."
+      },
+      {
+        code: "409 - Conflict",
+        description: "The request conflicts with another request (perhaps due to using the same idempotent key)."
+      },
+      {
+        code: "429 - Too Many Requests",
+        description: "Too many requests hit the API too quickly. We recommend an exponential backoff of your requests."
+      },
+      {
+        code: "500, 502, 503, 504 - Server Errors",
+        description: "Something went wrong on Stripe's end. (These are rare.)"
+      }
+    ]
+    this.errorTypes = [
+      {
+        code: "api_error",
+        description: "API errors cover any other type of problem (e.g., a temporary problem with Stripe's servers), and are extremely uncommon."
+      },
+      {
+        code: "card_error",
+        description: "Card errors are the most common type of error you should expect to handle. They result when the user enters a card that can't be charged for some reason."
+      },
+      {
+        code: "idempotency_error",
+        description: "Idempotency errors occur when an Idempotency-Key is re-used on a request that does not match the first request's API endpoint and parameters."
+      },
+      {
+        code: "invalid_request_error",
+        description: "Invalid request errors arise when your request has invalid parameters."
       }
     ]
   }
