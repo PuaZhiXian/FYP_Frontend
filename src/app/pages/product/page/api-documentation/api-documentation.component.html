@@ -20,8 +20,13 @@
               </div>
             </ng-template>
             <ul>
-              <li *ngFor="let anchor of subdocs.anchor" class="text-[14px] font-medium"
-                  nz-menu-item>{{anchor.name}}</li>
+              <li class="text-[14px] font-medium" nz-menu-item>
+                <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">The {{subdocs.name}}
+                  objects</p>
+              </li>
+              <li *ngFor="let anchor of subdocs.apis" nz-menu-item>
+                <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">{{anchor.name}}</p>
+              </li>
             </ul>
           </li>
         </ul>
@@ -248,6 +253,17 @@
           </div>
         </div>
       </section>
+
+      <!--Specific API Component-->
+      <div *ngFor="let apiCategory of documentation">
+        <div *ngFor="let apiCollection of apiCategory.items">
+          <single-api-collection [singleAPICollection]="apiCollection"
+                                 [programmingLanguageOptions]="programmingLanguageOptions"
+                                 [programmingLanguage]="programmingLanguage"></single-api-collection>
+        </div>
+      </div>
+
+
     </nz-content>
   </nz-layout>
 </nz-layout>

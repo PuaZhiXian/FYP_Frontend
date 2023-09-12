@@ -15,6 +15,8 @@ export class CodeEditorComponent implements OnInit {
   @Input() programmingLanguage: string = 'javascript';
   @Input() title: string = '';
   loading: boolean = true;
+  editorConfig: any;
+
 
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef) {
@@ -32,25 +34,41 @@ export class CodeEditorComponent implements OnInit {
   }
 
   codeEditor() {
-    const defaultEditorOption = this.nzConfigService.getConfigForComponent('codeEditor')?.defaultEditorOption || {};
-    this.nzConfigService.set('codeEditor', {
-      defaultEditorOption: {
-        ...defaultEditorOption,
-        theme: 'vs-dark',
-        readOnly: true,
-        padding: {
-          bottom: 10,
-          top: 10
-        },
-        scrollbar: {
-          vertical: "hidden",
-          handleMouseWheel: false,
-        },
-        overviewRulerLanes: 0,
-        overviewRulerBorder: false,
-        minimap: {enabled: false},
-      }
-    });
+    // const defaultEditorOption = this.nzConfigService.getConfigForComponent('codeEditor')?.defaultEditorOption || {};
+    // this.nzConfigService.set('codeEditor', {
+    //   defaultEditorOption: {
+    //     ...defaultEditorOption,
+    //     theme: 'vs-dark',
+    //     readOnly: true,
+    //     padding: {
+    //       bottom: 10,
+    //       top: 10
+    //     },
+    //     scrollbar: {
+    //       vertical: "hidden",
+    //       handleMouseWheel: false,
+    //     },
+    //     overviewRulerLanes: 0,
+    //     overviewRulerBorder: false,
+    //     minimap: {enabled: false},
+    //   }
+    // });
+
+    this.editorConfig = {
+      language: 'json',
+      theme: 'vs-dark',
+      readOnly: true,
+      padding: {
+        bottom: 10,
+        top: 10
+      },
+      scrollbar: {
+        handleMouseWheel: true,
+      },
+      overviewRulerLanes: 0,
+      overviewRulerBorder: false,
+      minimap: {enabled: false},
+    }
     this.loading = false;
   }
 

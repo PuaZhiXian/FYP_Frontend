@@ -24,6 +24,7 @@ import {NzSelectModule} from "ng-zorro-antd/select";
 import { CodeEditorComponent } from './component/code-editor/code-editor.component';
 import {NzAnchorModule} from "ng-zorro-antd/anchor";
 import { ChildAttributeComponent } from './component/child-attribute/child-attribute.component';
+import { SingleApiCollectionComponent } from './component/single-api-collection/single-api-collection.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ChildAttributeComponent } from './component/child-attribute/child-attri
     ResponseTableComponent,
     ApiDocumentationComponent,
     CodeEditorComponent,
-    ChildAttributeComponent
+    ChildAttributeComponent,
+    SingleApiCollectionComponent
   ],
   exports: [AllProductComponent]
 })

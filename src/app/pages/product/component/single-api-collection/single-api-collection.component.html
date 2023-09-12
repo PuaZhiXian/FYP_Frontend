@@ -1,0 +1,123 @@
+<!--Main API Collection -->
+<section class="p-[68px] border-b">
+  <div class="text-[24px] font-medium">{{singleAPICollection.name}}</div>
+  <div class="grid grid-cols-5 mt-[20px]">
+    <div class="col-span-3 mr-[68px]">
+      <div class="text-[14px] text-justify">{{singleAPICollection.description}}</div>
+    </div>
+    <div class="col-span-2">
+      <div class="mb-[12px]">
+        <!--Header-->
+        <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
+              font-medium bg-gray-100 border rounded-t">ENDPOINTS
+        </div>
+        <!--Content-->
+        <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 px-[20px] py-[12px]"
+             *ngFor="let endpoint of singleAPICollection.apis">
+          <div class="grid grid-cols-12">
+            <div class="font-semibold text-[13px] col-span-2 text-right mr-3
+                    {{endpoint.method == 'GET' ? 'text-blue-500' : endpoint.method == 'POST' ? 'text-emerald-500':'text-rose-500'}}">{{endpoint.method}}</div>
+            <div class="font-semibold text-[13px] text-gray-600 col-span-10 text-justify">{{endpoint.endpoint}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--API Object-->
+<section class="p-[68px] border-b">
+  <div class="text-[24px] font-medium">The {{singleAPICollection.name}} object</div>
+  <div class="grid grid-cols-5 mt-[20px]">
+    <div class="col-span-3 mr-[68px]">
+      <!--Object attribute-->
+      <div class="mt-[20px]">
+        <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Attributes</div>
+        <div class="py-[16px] border-t border-gray-300" *ngFor="let attribute of singleAPICollection.object.attributes">
+          <!--name & variable type-->
+          <div class="flex items-center">
+            <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.name}}</div>
+            <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.type}}</div>
+          </div>
+          <!--description-->
+          <div class="text-[14px] text-justify ">{{attribute.description}}</div>
+          <div class="mt-[8px]" *ngIf="attribute.child">
+            <child-attribute title="child attribute" [childObject]="attribute.child"></child-attribute>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-2">
+      <!--Sample Json-->
+      <div class="mb-[12px]" *ngIf="!loading">
+        <!--Header-->
+        <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
+              font-medium bg-gray-100 border rounded-t">The {{singleAPICollection.name}} object
+        </div>
+        <!--Content-->
+        <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50">
+          <nz-code-editor class="editor w-full h-[210px]" [ngModel]="singleAPICollection.object.json"
+                          [nzEditorOption]="editorConfig"></nz-code-editor>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--API Endpoints-->
+<section class="p-[68px] border-b" *ngFor="let api of singleAPICollection.apis">
+  <div class="text-[24px] font-medium">{{api.name}}</div>
+  <div class="grid grid-cols-5 mt-[20px]">
+    <div class="col-span-3 mr-[68px]">
+      <!--Endpoint description-->
+      <div class="text-[14px] text-justify">{{api.description}}</div>
+      <!--parameter attribute-->
+      <div class="mt-[20px]">
+        <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Parameters</div>
+        <div class="py-[16px] border-t border-gray-300" *ngFor="let attribute of api.parameter">
+          <!--name & variable type-->
+          <div class="flex items-center">
+            <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.name}}</div>
+            <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.type}}</div>
+          </div>
+          <!--description-->
+          <div class="text-[14px] text-justify ">{{attribute.description}}</div>
+          <div class="mt-[8px]" *ngIf="attribute.child">
+            <child-attribute title="child attribute" [childObject]="attribute.child"></child-attribute>
+          </div>
+        </div>
+        <div class="py-[16px] text-[12px] text-gray-400 font-normal border-t border-gray-300" *ngIf="!api.parameter">
+          No parameters
+        </div>
+      </div>
+
+
+      <!--Return-->
+      <div class="mt-[20px]">
+        <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Return</div>
+        <div class="text-[14px] text-justify py-[16px] border-t border-gray-300">{{api.return}}</div>
+      </div>
+
+    </div>
+    <div class="col-span-2">
+      <!--Request Code-->
+      <div class="mb-[12px]">
+        <code-editor class="mb-[12px]" [programmingLanguageOptions]="programmingLanguageOptions"
+                     [title]="api.method + ' ' + api.endpoint "
+                     [programmingLanguage]="programmingLanguage" [code]="api.requestCode"></code-editor>
+      </div>
+      <!--Response Json-->
+      <div class="mb-[12px]" *ngIf="!loading">
+        <!--Header-->
+        <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
+              font-medium bg-gray-100 border rounded-t">ENDPOINTS
+        </div>
+        <!--Content-->
+        <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50">
+          <nz-code-editor class="editor w-full h-[210px]" [ngModel]="api.responseJson"
+                          [nzEditorOption]="editorConfig"></nz-code-editor>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
