@@ -1,5 +1,5 @@
-<nz-layout>
-  <nz-sider nzWidth="220px" class="top">
+<nz-layout class="bg-[#001529]">
+  <nz-sider nzWidth="220px" class="sticky top-0">
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li *ngFor="let general of general" nz-menu-item>
@@ -28,8 +28,8 @@
       </li>
     </ul>
   </nz-sider>
-  <nz-layout class="bg-[#001529]">
-    <nz-content class="ml-[220px]">
+  <nz-layout>
+    <nz-content>
       <!--Introduction-->
       <section #Introduction class="p-[68px] border-b">
         <div class="text-[24px] font-medium">API Reference</div>
