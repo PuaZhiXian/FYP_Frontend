@@ -23,6 +23,7 @@ import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import { CodeEditorComponent } from './component/code-editor/code-editor.component';
 import {NzAnchorModule} from "ng-zorro-antd/anchor";
+import { ChildAttributeComponent } from './component/child-attribute/child-attribute.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {NzAnchorModule} from "ng-zorro-antd/anchor";
     LockScreenComponent,
     ResponseTableComponent,
     ApiDocumentationComponent,
-    CodeEditorComponent
+    CodeEditorComponent,
+    ChildAttributeComponent
   ],
   exports: [AllProductComponent]
 })

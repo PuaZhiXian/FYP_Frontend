@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {IApiDocumentationV2} from "../../../../interface/api-collection/i-api-documentation-v2";
 import {NzConfigService} from "ng-zorro-antd/core/config";
+import {IApiDocumentationObject} from "../../../../interface/api-collection/i-api-documentation-object";
 
 @Component({
   selector: 'app-api-documentation',
@@ -22,6 +23,7 @@ export class ApiDocumentationComponent implements OnInit {
   programmingLanguage: string = 'ruby';
   loadingCodeEditor: boolean = true;
   programmingLanguageOptions: string[] = ['ruby', 'python', 'php', 'java', 'javascript', 'go', 'net'];
+  errorObject: IApiDocumentationObject[] = [];
 
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef) {
@@ -141,6 +143,83 @@ export class ApiDocumentationComponent implements OnInit {
               {name: "The balance object"},
               {name: "Retrieve balance"}
             ]
+          }
+        ]
+      }
+    ]
+    this.errorObject = [
+
+      {
+        name: "type",
+        type: "string",
+        description: "The type of error returned. One of api_error, card_error, idempotency_error, or invalid_request_error"
+      },
+      {
+        name: "code",
+        type: "string",
+        description: "For some errors that could be handled programmatically, a short string indicating the error code reported."
+      },
+      {
+        name: "decline_code",
+        type: "string",
+        description: "For card errors resulting from a card issuer decline, a short string indicating the card issuer’s reason for the decline if they provide one."
+      },
+      {
+        name: "payment_intent",
+        type: "hash",
+        description: "The PaymentIntent object for errors returned on a request involving a PaymentIntent.",
+        child: [
+          {
+            name: "payment_intent.id",
+            type: "string",
+            description: "Unique identifier for the object."
+          },
+          {
+            name: "payment_intent.amount",
+            type: "integer",
+            description: 'Amount intended to be collected by this PaymentIntent. A positive integer representing how much to charge in the smallest currency unit (e.g., 100 cents to charge $1.00 or 100 to charge ¥100, a zero-decimal currency). The minimum amount is $0.50 US or equivalent in charge currency. The amount value supports up to eight digits (e.g., a value of 99999999 for a USD charge of $999,999.99).'
+          },
+          {
+            name: "payment_intent.capture_method",
+            type: "enum",
+            description: "Controls when the funds will be captured from the customer’s account.",
+            enum: [
+              {
+                name: "automatic (Default)",
+                description: "Stripe automatically captures funds when the customer authorizes the payment."
+              },
+              {
+                name: "automatic_async",
+                description: "Stripe asynchronously captures funds when the customer authorizes the payment. Recommended over capture_method=automatic due to improved latency, but may require additional integration changes."
+              },
+              {
+                name: "manual",
+                description: "Place a hold on the funds when the customer authorizes the payment, but don’t capture the funds until later. (Not all payment methods support this.)"
+              }
+            ]
+          },
+          {
+            name: "payment_intent.user_detail",
+            type: "integer",
+            description: 'Testing User detail',
+            child:[
+              {
+                name: "payment_intent.user_detail.name",
+                type: "string",
+                description: 'User name',
+              },
+              {
+                name: "payment_intent.user_detail.age",
+                type: "integer",
+                description: 'User age',
+              },
+              {
+                name: "payment_intent.user_detail.gender",
+                type: "string",
+                description: 'User gender',
+              }
+            ]
+
           }
         ]
       }
