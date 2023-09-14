@@ -56,8 +56,8 @@
         </div>
         <!--Content-->
         <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50">
-          <nz-code-editor class="editor w-full h-[210px]" [ngModel]="singleAPICollection.object.json"
-                          [nzEditorOption]="editorConfig"></nz-code-editor>
+          <pre class="light"><code
+            class="language-json h-[210px] text-[13px]">{{singleAPICollection.object.json}}</code></pre>
         </div>
       </div>
     </div>
@@ -114,8 +114,7 @@
         </div>
         <!--Content-->
         <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50">
-          <nz-code-editor class="editor w-full h-[210px]" [ngModel]="api.responseJson"
-                          [nzEditorOption]="editorConfig"></nz-code-editor>
+          <pre class="light"><code class="language-json h-[210px] text-[13px]">{{api.responseJson}}</code></pre>
         </div>
       </div>
     </div>

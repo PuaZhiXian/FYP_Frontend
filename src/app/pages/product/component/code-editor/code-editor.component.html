@@ -1,5 +1,5 @@
 <div *ngIf="!loading">
-  <div class="border rounded-t flex items-center justify-between bg-[#3c4257]">
+  <div class="rounded-t flex items-center justify-between bg-[#3c4257]">
     <div class="text-[12px] font-medium pr-[12px] pl-[8px] py-[8px] text-white">{{title}}</div>
     <div class="flex items-center">
       <div class="content-center">
@@ -13,9 +13,8 @@
       </div>
     </div>
   </div>
-  <div class="rounded-b border">
-    <nz-code-editor class="editor w-full h-[52px]" [ngModel]="code"
-                    [nzEditorOption]="editorConfig"></nz-code-editor>
+  <div class="">
+    <pre class="dark"><code class="language-java text-[13px] rounded-b">{{code}}</code></pre>
   </div>
 </div>
 

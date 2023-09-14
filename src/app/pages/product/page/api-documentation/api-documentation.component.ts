@@ -1,8 +1,9 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {IApiCategory} from "../../../../interface/api-collection/i-api-category";
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import {IApiDocumentationObject} from "../../../../interface/api-collection/i-api-documentation-object";
 import {IHttpStatusCodeSummary} from "../../../../interface/api-collection/i-http-status-code-summary";
+import hljs from 'highlight.js';
 
 @Component({
   selector: 'app-api-documentation',
@@ -365,10 +366,7 @@ export class ApiDocumentationComponent implements OnInit {
                 return: 'Returns a balance object for the account that was authenticated in the request.',
                 method: 'GET',
                 endpoint: '/v1/balance',
-                requestCode: 'import stripe\n' +
-                  'stripe.api_key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"\n' +
-                  '\n' +
-                  'stripe.Balance.retrieve()',
+                requestCode: 'Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";',
                 responseJson: '{\n' +
                   '  "object": "balance",\n' +
                   '  "available": [\n' +
@@ -711,12 +709,7 @@ export class ApiDocumentationComponent implements OnInit {
                 name: "Retrieve a balance transaction",
                 description: 'Retrieves the balance transaction with the given ID. Note that this endpoint previously used the path /v1/balance/history/:id.',
                 return: 'Returns a balance transaction if a valid balance transaction ID was provided. Raises an error otherwise.',
-                requestCode: 'import stripe\n' +
-                  'stripe.api_key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"\n' +
-                  '\n' +
-                  'stripe.BalanceTransaction.retrieve(\n' +
-                  '  "txn_1032Rp2eZvKYlo2CpErRBj09",\n' +
-                  ')',
+                requestCode: 'Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";',
                 responseJson: '{\n' +
                   '  "id": "txn_1032Rp2eZvKYlo2CpErRBj09",\n' +
                   '  "object": "balance_transaction",\n' +
@@ -761,10 +754,7 @@ export class ApiDocumentationComponent implements OnInit {
                   },
                 ],
                 return: 'A dictionary with a data property that contains an array of up to limit transactions, starting after transaction starting_after. Each entry in the array is a separate transaction history object. If no more transactions are available, the resulting array will be empty.',
-                requestCode: 'import stripe\n' +
-                  'stripe.api_key = "sk_test_4eC39HqLyjWDarjtT1zdp7dc"\n' +
-                  '\n' +
-                  'stripe.BalanceTransaction.list(limit=3)',
+                requestCode: 'Stripe.apiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";',
                 responseJson: '{\n' +
                   '  "object": "list",\n' +
                   '  "url": "/v1/balance_transactions",\n' +
@@ -951,25 +941,4 @@ export class ApiDocumentationComponent implements OnInit {
     this.ref.markForCheck();
   }
 
-  codeEditor() {
-    const defaultEditorOption = this.nzConfigService.getConfigForComponent('codeEditor')?.defaultEditorOption || {};
-    this.nzConfigService.set('codeEditor', {
-      defaultEditorOption: {
-        ...defaultEditorOption,
-        theme: 'vs-dark',
-        readOnly: true,
-        padding: {
-          bottom: 10,
-          top: 10
-        },
-        scrollbar: {
-          vertical: "hidden",
-          handleMouseWheel: false,
-        },
-        overviewRulerLanes: 0,
-        overviewRulerBorder: false,
-        minimap: {enabled: false},
-      }
-    });
-  }
 }

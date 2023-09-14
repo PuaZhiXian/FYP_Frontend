@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {NzConfigService} from "ng-zorro-antd/core/config";
+import hljs from "highlight.js";
 
 @Component({
   selector: 'code-editor',
@@ -7,7 +8,7 @@ import {NzConfigService} from "ng-zorro-antd/core/config";
   styleUrls: ['./code-editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CodeEditorComponent implements OnInit {
+export class CodeEditorComponent implements OnInit, AfterViewInit {
 
 
   @Input() code: string = '';
@@ -24,6 +25,13 @@ export class CodeEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.codeEditor();
+  }
+
+  ngAfterViewInit(): void {
+    hljs.configure({
+      ignoreUnescapedHTML: true
+    });
+    hljs.highlightAll();
   }
 
 
@@ -55,8 +63,8 @@ export class CodeEditorComponent implements OnInit {
     // });
 
     this.editorConfig = {
-      language: 'json',
-      theme: 'vs-dark',
+      language: this.programmingLanguage,
+      // theme: 'vs-dark',
       readOnly: true,
       padding: {
         bottom: 10,

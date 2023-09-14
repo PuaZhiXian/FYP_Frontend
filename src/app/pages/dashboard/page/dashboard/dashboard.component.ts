@@ -16,46 +16,7 @@ export class DashboardComponent implements OnInit {
               private router: Router) {
   }
 
-  dark = true
-  programming_language = 'python'
-
-  options = {
-    'python': '',
-    'java': ''
-  }
-  code = ''
-
   ngOnInit(): void {
     HeaderComponent.logined = true;
   }
-
-  codeEditor() {
-    const defaultEditorOption = this.nzConfigService.getConfigForComponent('codeEditor')?.defaultEditorOption || {};
-    this.nzConfigService.set('codeEditor', {
-      defaultEditorOption: {
-        ...defaultEditorOption,
-        theme: this.dark ? 'vs-dark' : 'vs',
-        readOnly: true,
-        minimap: {enabled: false},
-      }
-    });
-    this.code = 'sd'
-  }
-
-  //Code Editor
-  toggleDarkMode() {
-    this.dark = !this.dark
-    const defaultEditorOption = this.nzConfigService.getConfigForComponent('codeEditor')?.defaultEditorOption || {};
-    this.nzConfigService.set('codeEditor', {
-      defaultEditorOption: {
-        ...defaultEditorOption,
-        theme: this.dark ? 'vs-dark' : 'vs',
-        readOnly: true,
-        minimap: {enabled: false},
-      }
-    });
-  }
-
-
-
 }

@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
+import hljs from 'highlight.js';
 
 
 @Component({
@@ -7,7 +8,7 @@ import {TranslateService} from "@ngx-translate/core";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   isCollapsed = false;
   title = 'testFileStructure';
   languages: string[] = ['en'];

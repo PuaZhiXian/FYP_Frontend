@@ -14,6 +14,7 @@ export class SingleApiCollectionComponent implements OnInit {
 
   loading: boolean = true;
   editorConfig: any;
+  editorConfigV2: any;
 
   constructor(private ref: ChangeDetectorRef) {
   }
@@ -25,7 +26,22 @@ export class SingleApiCollectionComponent implements OnInit {
   codeEditor() {
     this.editorConfig = {
       language: 'json',
-      theme: 'vs',
+      // theme: 'vs',
+      readOnly: true,
+      padding: {
+        bottom: 10,
+        top: 10
+      },
+      scrollbar: {
+        handleMouseWheel: true,
+      },
+      overviewRulerLanes: 0,
+      overviewRulerBorder: false,
+      minimap: {enabled: false},
+    }
+    this.editorConfigV2 = {
+      language: 'json',
+      // theme: 'vs',
       readOnly: true,
       padding: {
         bottom: 10,
