@@ -1,5 +1,5 @@
 <!--Main API Collection -->
-<section class="p-[68px] border-b">
+<section class="p-[68px] border-b" [id]="'api'+singleAPICollection.id">
   <div class="text-[24px] font-medium">{{singleAPICollection.name}}</div>
   <div class="grid grid-cols-5 mt-[20px]">
     <div class="col-span-3 mr-[68px]">
@@ -26,7 +26,7 @@
 </section>
 
 <!--API Object-->
-<section class="p-[68px] border-b">
+<section class="p-[68px] border-b" [id]="'api'+singleAPICollection.id+'object'">
   <div class="text-[24px] font-medium">The {{singleAPICollection.name}} object</div>
   <div class="grid grid-cols-5 mt-[20px]">
     <div class="col-span-3 mr-[68px]">
@@ -65,7 +65,8 @@
 </section>
 
 <!--API Endpoints-->
-<section class="p-[68px] border-b" *ngFor="let api of singleAPICollection.apis">
+<section class="p-[68px] border-b" *ngFor="let api of singleAPICollection.apis ; let i = index"
+         [id]="'api'+singleAPICollection.id+'endpoint'+ i">
   <div class="text-[24px] font-medium">{{api.name}}</div>
   <div class="grid grid-cols-5 mt-[20px]">
     <div class="col-span-3 mr-[68px]">

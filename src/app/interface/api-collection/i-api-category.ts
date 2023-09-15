@@ -6,6 +6,7 @@ export interface IApiCategory {
 }
 
 export interface ISingleApiCollection {
+  id: number
   name: string
   description: string
   object: apiObject

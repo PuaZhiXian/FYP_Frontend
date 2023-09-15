@@ -1,9 +1,8 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {IApiCategory} from "../../../../interface/api-collection/i-api-category";
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import {IApiDocumentationObject} from "../../../../interface/api-collection/i-api-documentation-object";
 import {IHttpStatusCodeSummary} from "../../../../interface/api-collection/i-http-status-code-summary";
-import hljs from 'highlight.js';
 
 @Component({
   selector: 'app-api-documentation',
@@ -29,6 +28,8 @@ export class ApiDocumentationComponent implements OnInit {
   httpStatusCodeSummaries: IHttpStatusCodeSummary[] = [];
   errorTypes: IHttpStatusCodeSummary[] = [];
 
+  @ViewChild('content') content!: ElementRef;
+
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef) {
   }
@@ -44,6 +45,7 @@ export class ApiDocumentationComponent implements OnInit {
         name: "CORE RESOURCE",
         items: [
           {
+            id: 1,
             name: "Balance",
             description: "This is an object representing your Stripe balance. You can retrieve it to see the balance currently on your Stripe account. You can also retrieve the balance history, which contains a list of transactions that contributed to the balance (charges, payouts, and so forth). The available and pending amounts for each currency are broken down further by payment source types.",
             object: {
@@ -601,6 +603,7 @@ export class ApiDocumentationComponent implements OnInit {
             ]
           },
           {
+            id: 2,
             name: "Balance Transactions",
             description: "Balance transactions represent funds moving through your Stripe account. They're created for every type of transaction that comes into or flows out of your Stripe account balance.",
             object: {
@@ -939,6 +942,13 @@ export class ApiDocumentationComponent implements OnInit {
     this.programmingLanguage = programmingLanguage;
     this.ref.detectChanges();
     this.ref.markForCheck();
+  }
+
+  scrollToSection(sectionId: string) {
+    const element = this.content.nativeElement.querySelector(`#${sectionId}`);
+    if (element) {
+      element.scrollIntoView({behavior: 'smooth'});
+    }
   }
 
 }
