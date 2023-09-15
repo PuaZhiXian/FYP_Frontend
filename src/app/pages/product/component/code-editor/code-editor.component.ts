@@ -1,6 +1,17 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import hljs from "highlight.js";
+import {NzSelectComponent} from 'ng-zorro-antd/select';
 
 @Component({
   selector: 'code-editor',
@@ -14,10 +25,11 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
   @Input() code: string = '';
   @Input() programmingLanguageOptions: string[] = [];
   @Input() programmingLanguage: string = 'javascript';
+  @Output() programmingLanguageChange = new EventEmitter<string>();
   @Input() title: string = '';
   loading: boolean = true;
-  editorConfig: any;
 
+  @ViewChild('mySelect', {read: NzSelectComponent}) mySelect!: NzSelectComponent;
 
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef) {
@@ -32,55 +44,28 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
       ignoreUnescapedHTML: true
     });
     hljs.highlightAll();
+    this._setWidth();
   }
 
 
   switchLanguage(programmingLanguage: string) {
     this.programmingLanguage = programmingLanguage;
+    this.programmingLanguageChange.emit(programmingLanguage);
     this.ref.detectChanges();
     this.ref.markForCheck();
   }
 
   codeEditor() {
-    // const defaultEditorOption = this.nzConfigService.getConfigForComponent('codeEditor')?.defaultEditorOption || {};
-    // this.nzConfigService.set('codeEditor', {
-    //   defaultEditorOption: {
-    //     ...defaultEditorOption,
-    //     theme: 'vs-dark',
-    //     readOnly: true,
-    //     padding: {
-    //       bottom: 10,
-    //       top: 10
-    //     },
-    //     scrollbar: {
-    //       vertical: "hidden",
-    //       handleMouseWheel: false,
-    //     },
-    //     overviewRulerLanes: 0,
-    //     overviewRulerBorder: false,
-    //     minimap: {enabled: false},
-    //   }
-    // });
-
-    this.editorConfig = {
-      language: this.programmingLanguage,
-      // theme: 'vs-dark',
-      readOnly: true,
-      padding: {
-        bottom: 10,
-        top: 10
-      },
-      scrollbar: {
-        handleMouseWheel: true,
-      },
-      overviewRulerLanes: 0,
-      overviewRulerBorder: false,
-      minimap: {enabled: false},
-    }
     this.loading = false;
   }
 
   copyToClipBoard() {
     navigator.clipboard.writeText(this.code);
   }
+
+  _setWidth(): void {
+    this.mySelect.cdkConnectedOverlay.width = 100;
+    this.mySelect.updateCdkConnectedOverlayStatus();
+  }
+
 }

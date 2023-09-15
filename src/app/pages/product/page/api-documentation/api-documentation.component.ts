@@ -23,7 +23,7 @@ export class ApiDocumentationComponent implements OnInit {
 
   programmingLanguage: string = 'ruby';
   loadingCodeEditor: boolean = true;
-  programmingLanguageOptions: string[] = ['ruby', 'python', 'php', 'java', 'javascript', 'go', 'net'];
+  programmingLanguageOptions: string[] = ['ruby', 'python', 'php', 'java', 'javascript', 'go', 'http'];
   errorObject: IApiDocumentationObject[] = [];
   httpStatusCodeSummaries: IHttpStatusCodeSummary[] = [];
   errorTypes: IHttpStatusCodeSummary[] = [];
