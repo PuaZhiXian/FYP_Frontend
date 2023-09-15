@@ -90,7 +90,7 @@
                       <div class="mt-[8px] text-center text-[12px] font-semibold">{{languageOptions.label}}</div>
                     </div>
                   </div>
-                  <code-editor [programmingLanguageOptions]="programmingLanguageOptions"
+                  <code-editor [programmingLanguageOptions]="programmingLanguageOptions" *ngIf="!updatingCodeEditor"
                                (programmingLanguageChange)="switchLanguage($event)"
                                [programmingLanguage]="programmingLanguage" [code]="code"></code-editor>
                 </div>

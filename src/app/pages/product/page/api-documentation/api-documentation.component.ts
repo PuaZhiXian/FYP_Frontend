@@ -4,6 +4,8 @@ import {NzConfigService} from "ng-zorro-antd/core/config";
 import {IApiDocumentationObject} from "../../../../interface/api-collection/i-api-documentation-object";
 import {IHttpStatusCodeSummary} from "../../../../interface/api-collection/i-http-status-code-summary";
 import {ISelect} from "../../../../interface/common/i-select";
+import {ClientConstant} from "../../../../constant/temp/temp-constant";
+import hljs from "highlight.js";
 
 @Component({
   selector: 'app-api-documentation',
@@ -17,10 +19,8 @@ export class ApiDocumentationComponent implements OnInit {
   general: string[] = ["Introduction", "Authentication", "Errors"]
   documentation: IApiCategory[] = [];
   activatedHeading: string = '';
-  code = 'require \'stripe\'\n' +
-    'Stripe.api_key = \'sk_test_4eC39HqLyjWDarjtT1zdp7dc\'';
-  authorizationCode = 'require \'stripe\'\n' +
-    'Stripe.api_key = \'sk_test_4eC39HqLyjWDarjtT1zdp7dc\'';
+  code: string = '';
+  authorizationCode: string = '';
 
   programmingLanguage: string = '';
   loadingCodeEditor: boolean = true;
@@ -28,6 +28,7 @@ export class ApiDocumentationComponent implements OnInit {
   errorObject: IApiDocumentationObject[] = [];
   httpStatusCodeSummaries: IHttpStatusCodeSummary[] = [];
   errorTypes: IHttpStatusCodeSummary[] = [];
+  updatingCodeEditor: boolean = true;
 
   @ViewChild('content') content!: ElementRef;
 
@@ -39,6 +40,41 @@ export class ApiDocumentationComponent implements OnInit {
     this.initProgrammingLanguageOptions();
     this.initDocumentation();
     this.initErrorSection();
+    this.initGeneralDocumentation();
+  }
+
+  initGeneralDocumentation() {
+    switch (this.programmingLanguage) {
+      case 'ruby':
+        this.code = ClientConstant.authorizationCode_RUBY;
+        this.authorizationCode = ClientConstant.authorizationCode_RUBY;
+        break;
+      case 'python':
+        this.code = ClientConstant.authorizationCode_PYTHON;
+        this.authorizationCode = ClientConstant.authorizationCode_PYTHON;
+        break;
+      case 'php':
+        this.code = ClientConstant.authorizationCode_PHP;
+        this.authorizationCode = ClientConstant.authorizationCode_PHP;
+        break;
+      case 'java':
+        this.code = ClientConstant.authorizationCode_JAVA;
+        this.authorizationCode = ClientConstant.authorizationCode_JAVA;
+        break;
+      case 'javascript':
+        this.code = ClientConstant.authorizationCode_NODE;
+        this.authorizationCode = ClientConstant.authorizationCode_NODE;
+        break;
+      case 'go':
+        this.code = ClientConstant.authorizationCode_GO;
+        this.authorizationCode = ClientConstant.authorizationCode_GO;
+        break;
+      case 'http':
+        this.code = ClientConstant.authorizationCode_HTTP;
+        this.authorizationCode = ClientConstant.authorizationCode_HTTP;
+        break;
+    }
+    this.updatingCodeEditor =  false;
   }
 
   initProgrammingLanguageOptions() {
@@ -982,7 +1018,11 @@ export class ApiDocumentationComponent implements OnInit {
   }
 
   switchLanguage(programmingLanguage: string) {
+    this.updatingCodeEditor = true;
+    this.ref.detectChanges();
+    this.ref.markForCheck();
     this.programmingLanguage = programmingLanguage;
+    this.initGeneralDocumentation();
     this.ref.detectChanges();
     this.ref.markForCheck();
   }
