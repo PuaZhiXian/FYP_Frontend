@@ -12,6 +12,7 @@ import {
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import hljs from "highlight.js";
 import {NzSelectComponent} from 'ng-zorro-antd/select';
+import {ISelect} from "../../../../interface/common/i-select";
 
 @Component({
   selector: 'code-editor',
@@ -23,8 +24,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
 
 
   @Input() code: string = '';
-  @Input() programmingLanguageOptions: string[] = [];
-  @Input() programmingLanguage: string = 'javascript';
+  @Input() programmingLanguageOptions: ISelect[] = [];
+  @Input() programmingLanguage: string = '';
   @Output() programmingLanguageChange = new EventEmitter<string>();
   @Input() title: string = '';
   loading: boolean = true;

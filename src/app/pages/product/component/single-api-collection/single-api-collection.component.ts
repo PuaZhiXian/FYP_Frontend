@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ISingleApiCollection} from "../../../../interface/api-collection/i-api-category";
+import {ISelect} from "../../../../interface/common/i-select";
 
 @Component({
   selector: 'single-api-collection',
@@ -9,8 +10,8 @@ import {ISingleApiCollection} from "../../../../interface/api-collection/i-api-c
 export class SingleApiCollectionComponent implements OnInit {
 
   @Input() singleAPICollection!: ISingleApiCollection;
-  @Input() programmingLanguageOptions: string[] = [];
-  @Input() programmingLanguage: string = 'javascript';
+  @Input() programmingLanguageOptions: ISelect[] = [];
+  @Input() programmingLanguage: string = '';
 
   loading: boolean = true;
 

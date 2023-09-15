@@ -5,8 +5,8 @@
       <div class="content-center">
         <nz-select #mySelect [ngModel]="programmingLanguage" (ngModelChange)="switchLanguage($event)" nzBorderless
                    class="text-white" (nzOpenChange)="_setWidth()">
-          <nz-option *ngFor="let language of programmingLanguageOptions" [nzValue]="language"
-                     [nzLabel]="language"></nz-option>
+          <nz-option *ngFor="let language of programmingLanguageOptions" [nzValue]="language.value"
+                     [nzLabel]="language.label"></nz-option>
         </nz-select>
       </div>
       <div class="px-[12px]">
