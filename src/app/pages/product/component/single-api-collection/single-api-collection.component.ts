@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ISingleApiCollection} from "../../../../interface/api-collection/i-api-category";
 
 @Component({
@@ -13,47 +13,20 @@ export class SingleApiCollectionComponent implements OnInit {
   @Input() programmingLanguage: string = 'javascript';
 
   loading: boolean = true;
-  editorConfig: any;
-  editorConfigV2: any;
+
+  @ViewChild('content') content!: ElementRef;
 
   constructor(private ref: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.codeEditor();
+    this.loading = false;
   }
 
-  codeEditor() {
-    this.editorConfig = {
-      language: 'json',
-      // theme: 'vs',
-      readOnly: true,
-      padding: {
-        bottom: 10,
-        top: 10
-      },
-      scrollbar: {
-        handleMouseWheel: true,
-      },
-      overviewRulerLanes: 0,
-      overviewRulerBorder: false,
-      minimap: {enabled: false},
+  scrollToSection(sectionId: string) {
+    const element = this.content.nativeElement.querySelector(`#${sectionId}`);
+    if (element) {
+      element.scrollIntoView({behavior: 'smooth'});
     }
-    this.editorConfigV2 = {
-      language: 'json',
-      // theme: 'vs',
-      readOnly: true,
-      padding: {
-        bottom: 10,
-        top: 10
-      },
-      scrollbar: {
-        handleMouseWheel: true,
-      },
-      overviewRulerLanes: 0,
-      overviewRulerBorder: false,
-      minimap: {enabled: false},
-    }
-    this.loading = false;
   }
 }
