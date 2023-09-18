@@ -7,16 +7,8 @@ import {ApiDocumentationComponent} from "./page/api-documentation/api-documentat
 const routes: Routes = [
   {
     path: '',
-    component: AllProductComponent,
-  },
-  {
-    path: 'single-api/:apiCollectionId',
-    component: SingleApiComponent,
-  },
-  {
-    path: 'documentation',
     component: ApiDocumentationComponent,
-  },
+  }
 ];
 
 @NgModule({

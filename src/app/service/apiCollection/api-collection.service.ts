@@ -12,7 +12,7 @@ export class ApiCollectionService {
   constructor(private apiCollectionRestService: ApiCollectionRestService,) {
   }
 
-  getGuides(): Observable<IApiCollectionDetail[]> {
+  getAllApiCollection(): Observable<IApiCollectionDetail[]> {
     return this.apiCollectionRestService.getAllApiCollection();
   }
 

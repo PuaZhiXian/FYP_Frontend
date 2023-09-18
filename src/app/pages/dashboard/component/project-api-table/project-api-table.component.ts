@@ -60,7 +60,7 @@ export class ProjectApiTableComponent implements OnInit {
   }
 
   initApiCollection() {
-    this.apiCollectionService.getGuides()
+    this.apiCollectionService.getAllApiCollection()
       .pipe((finalize(() => {
         this.loadingTable = false;
         this.ref.detectChanges();
