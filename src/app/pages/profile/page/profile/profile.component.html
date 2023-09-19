@@ -1,11 +1,11 @@
-<div class="mx-auto container">
+<div class="mx-auto container px-[10px] lg:px-0 ">
   <div class="flex justify-end">
-    <button nz-button class="bg-primary-900 text-white py-[10px] px-[20px] my-[24px] h-full rounded" (click)="logout()">
+    <button nz-button class="bg-primary-900 text-white py-[10px] px-[20px] mt-[24px] lg:mb-[24px] h-full rounded" (click)="logout()">
       Logout
     </button>
   </div>
-  <div class="mb-8 grid grid-cols-12">
-    <div class="col-span-2 button-focus">
+  <div class="mb-8 lg:grid lg:grid-cols-12">
+    <div class="flex lg:block col-span-2 button-focus w-1/2 lg:w-full">
       <div class="w-full">
         <button nz-button
                 class="text-xl w-full h-fit border border-black {{selectingTab == 'personal-information' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
