@@ -1,22 +1,23 @@
 <div class="container mx-auto">
-  <div class="font-bold text-[58px] py-[18px]">Guide</div>
+  <div class="font-bold text-[48px] py-[18px]">Guide</div>
   <div *ngIf="!loadingGuideQNA else loadingTpl" class="grid grid-cols-7">
     <div class="col-span-2 border">
       <div class="py-[18px] px-4 h-full">
         <div class="font-bold text-xl">Quick Start Guide</div>
         <div>
           <ul>
-            <li *ngFor="let guide of guideQNAList" class="cursor-pointer">{{guide.guide_name}}</li>
+            <li *ngFor="let guide of guideQNAList"  (click)="scrollToSection('guide_'+guide.id)"
+                class="cursor-pointer text-[16px] text-justify">{{guide.guide_name}}</li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="col-span-5 border">
+    <div class="col-span-5 border" #content>
       <div class="py-7 px-8">
-          <div *ngFor="let guide of guideQNAList">
-            <div class="text-xl font-bold mb-3.5">{{guide.guide_name}}</div>
-            <div class="text-sm mb-7 text-justify">{{guide.answer}}</div>
-          </div>
+        <div *ngFor="let guide of guideQNAList" [id]="'guide_'+ guide.id">
+          <div class="text-[16px] font-bold mb-3.5">{{guide.guide_name}}</div>
+          <div class="text-[12px] mb-7 text-justify">{{guide.answer}}</div>
+        </div>
       </div>
     </div>
   </div>

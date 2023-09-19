@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {GuideQna} from "../../../../interface/guide/guide-qna";
 import {GuideService} from "../../../../service/guide/guide.service";
 import {finalize} from "rxjs";
@@ -13,7 +13,7 @@ export class GuideComponent implements OnInit {
   guideQNAList: GuideQna[] = [];
 
   loadingGuideQNA: boolean = true;
-
+  @ViewChild('content') content!: ElementRef;
   constructor(private guideService: GuideService,
               private ref: ChangeDetectorRef) {
   }
@@ -34,6 +34,14 @@ export class GuideComponent implements OnInit {
       .subscribe((resp) => {
         this.guideQNAList = resp;
       })
+  }
+
+  scrollToSection(sectionId: string) {
+    console.log(sectionId)
+    const element = this.content.nativeElement.querySelector(`#${sectionId}`);
+    if (element) {
+      element.scrollIntoView({behavior: 'smooth'});
+    }
   }
 
 
