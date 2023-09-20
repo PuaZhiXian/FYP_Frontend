@@ -12,7 +12,7 @@ import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 
 
 @NgModule({
-    imports: [SubscriptionRoutingModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzCheckboxModule, NzButtonModule, CommonModule, FormsModule, NzSkeletonModule],
+  imports: [SubscriptionRoutingModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzCheckboxModule, NzButtonModule, CommonModule, FormsModule, NzSkeletonModule],
   declarations: [ CreateProjectComponent],
   exports: [CreateProjectComponent]
 })

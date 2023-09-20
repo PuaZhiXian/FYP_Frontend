@@ -45,7 +45,7 @@ export class CreateProjectComponent implements OnInit {
 
   initForm() {
     this.validateForm = this.fb.group({
-      name: [null, [Validators.required]],
+      project_name: [null, [Validators.required]],
       description: [null, [Validators.required]],
       apiCollection: [null, [Validators.required]]
     });
@@ -53,14 +53,16 @@ export class CreateProjectComponent implements OnInit {
 
   submit() {
     if (this.validateForm.valid) {
-      console.log(this.validateForm.value);
-      this.message.success('Project have successfully created');
       this.projectService.addProject(this.validateForm.value)
         .pipe(finalize(() => {
           this.router.navigate(['/', 'dashboard'])
         }))
         .subscribe((resp) => {
-
+          if (resp.message) {
+            this.message.success(resp.message);
+          } else if (resp.error) {
+            this.message.error(resp.error);
+          }
         })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -69,7 +71,6 @@ export class CreateProjectComponent implements OnInit {
           control.updateValueAndValidity({onlySelf: true});
         }
       });
-      console.log('not value')
     }
   }
 

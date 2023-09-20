@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ProjectOverview} from "../../interface/project/project-overview";
+import {IMessage} from 'src/app/interface/authorization/i-message';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,8 @@ export class ProjectRestService {
   constructor(private httpClient: HttpClient) {
   }
 
-  addProject(projectOverview: ProjectOverview): Observable<any> {
-    //TODO : integrate add Project API
-    //Support add and update project
-    // return this.httpClient.post(this.ProjectUrl + '/add', projectOverview);
-    return this.httpClient.get<any>("https://api.github.com/users/hadley/orgs");
+  addProject(projectOverview: ProjectOverview): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/create-project', projectOverview, {withCredentials: true});
   }
 
   deleteProject(projectId: string): Observable<any> {
