@@ -8,10 +8,10 @@
   <!--Attribute -->
   <div class="p-[12px] border-b border-gray-300 {{closeChild? 'hidden':''}}" *ngFor="let attribute of childObject">
     <div class="flex items-center">
-      <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.name}}</div>
-      <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.type}}</div>
+      <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
+      <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
     </div>
-    <div class="text-[14px] text-justify">{{attribute.description}}</div>
+    <div class="text-[14px] text-justify">{{attribute.attr_description}}</div>
 
     <!--enum-->
     <div class="mt-[8px]" *ngIf="attribute.enum">
@@ -33,8 +33,8 @@
       </div>
     </div>
 
-    <div class="mt-[8px]" *ngIf="attribute.child">
-      <child-attribute title="child attributes" [childObject]="attribute.child"></child-attribute>
+    <div class="mt-[8px]" *ngIf="attribute.child_attr_ids">
+      <child-attribute title="child attributes" [childObject]="attribute.child_attr_ids"></child-attribute>
     </div>
   </div>
 

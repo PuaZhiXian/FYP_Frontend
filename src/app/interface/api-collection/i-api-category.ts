@@ -1,30 +1,33 @@
 import {IApiDocumentationObject} from "./i-api-documentation-object";
 
 export interface IApiCategory {
-  name: string
-  items: ISingleApiCollection[]
+  id: number
+  category_name: string
+  api_collections: ISingleApiCollection[]
 }
 
 export interface ISingleApiCollection {
   id: number
-  name: string
+  api_collection_name: string
   description: string
-  object: apiObject
-  apis: ISingleApi[]
+  object_id: apiObject
+  api_ids: ISingleApi[]
 }
 
 interface ISingleApi {
-  name: string
-  description: string,
-  method: string,
-  endpoint: string,
-  requestCode: string,
+  id: number
+  api_name: string
+  api_description: string,
+  api_method: string,
+  api_endpoint: string,
+  api_req_code: string,
   parameter?: IApiDocumentationObject[],
-  return: string,
-  responseJson: string
+  api_return: string,
+  api_response_json: string
 }
 
 interface apiObject {
-  attributes: IApiDocumentationObject[],
-  json: string
+  id: number
+  attr_ids: IApiDocumentationObject[],
+  object: string
 }

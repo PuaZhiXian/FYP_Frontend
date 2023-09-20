@@ -26,10 +26,11 @@ import {NzAnchorModule} from "ng-zorro-antd/anchor";
 import { ChildAttributeComponent } from './component/child-attribute/child-attribute.component';
 import { SingleApiCollectionComponent } from './component/single-api-collection/single-api-collection.component';
 import {NzOverlayModule} from "ng-zorro-antd/core/overlay";
+import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 
 
 @NgModule({
-    imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule, NzTableModule, NzLayoutModule, NzBreadCrumbModule, NzIconModule, NzMenuModule, NzTabsModule, NzCodeEditorModule, NzDropDownModule, NzSelectModule, NzAnchorModule, NzOverlayModule],
+    imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule, NzTableModule, NzLayoutModule, NzBreadCrumbModule, NzIconModule, NzMenuModule, NzTabsModule, NzCodeEditorModule, NzDropDownModule, NzSelectModule, NzAnchorModule, NzOverlayModule, NzSkeletonModule],
   declarations: [
     AllProductComponent,
     SingleApiComponent,

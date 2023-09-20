@@ -1,41 +1,41 @@
-<nz-layout class="bg-[#001529]">
-  <nz-sider nzWidth="220px" class="sticky top-0" nzCollapsible [nzCollapsedWidth]="0">
-    <div class="logo"></div>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li *ngFor="let general of general" nz-menu-item (click)="scrollToSection(general)">
-        <span nz-icon nzType="pie-chart"></span>
-        <span>{{general}}</span>
-      </li>
-      <li *ngFor="let docs of documentation" nz-submenu [nzTitle]="heading" nzIcon="team">
-        <ng-template #heading>
-          <div class="whitespace-normal leading-none w-[120px] pl-[10px] text-[12px] font-semibold">
-            {{docs.name}}
-          </div>
-        </ng-template>
-        <ul>
-          <li *ngFor="let subdocs of docs.items" nz-submenu [nzTitle]="subdocsHeading">
-            <ng-template #subdocsHeading>
-              <div class="whitespace-normal leading-none w-[120px] text-[14px] font-medium"
-                   (click)="scrollToSection('api'+subdocs.id)">
-                {{subdocs.name}}
-              </div>
-            </ng-template>
-            <ul>
-              <li class="text-[14px] font-medium" nz-menu-item (click)="scrollToSection('api'+subdocs.id+'object')">
-                <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">The {{subdocs.name}}
-                  objects</p>
-              </li>
-              <li *ngFor="let anchor of subdocs.apis ; let i = index" nz-menu-item
-                  (click)="scrollToSection('api'+subdocs.id+'endpoint'+i)">
-                <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">{{anchor.name}}</p>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+<nz-layout *ngIf="!loadingDocumentation else loadingTpl" class="bg-[#001529]">
+  <nz-sider  nzWidth="220px" class="sticky top-0" nzCollapsible [nzCollapsedWidth]="0">
+      <div class="logo"></div>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li *ngFor="let general of general" nz-menu-item (click)="scrollToSection(general)">
+          <span nz-icon nzType="pie-chart"></span>
+          <span>{{general}}</span>
+        </li>
+        <li *ngFor="let docs of documentation" nz-submenu [nzTitle]="heading" nzIcon="team">
+          <ng-template #heading>
+            <div class="whitespace-normal leading-none w-[120px] pl-[10px] text-[12px] font-semibold">
+              {{docs.category_name}}
+            </div>
+          </ng-template>
+          <ul>
+            <li *ngFor="let subdocs of docs.api_collections" nz-submenu [nzTitle]="subdocsHeading">
+              <ng-template #subdocsHeading>
+                <div class="whitespace-normal leading-none w-[120px] text-[14px] font-medium"
+                     (click)="scrollToSection('api'+subdocs.id)">
+                  {{subdocs.api_collection_name}}
+                </div>
+              </ng-template>
+              <ul>
+                <li class="text-[14px] font-medium" nz-menu-item (click)="scrollToSection('api'+subdocs.id+'object')">
+                  <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">The {{subdocs.api_collection_name}}
+                    objects</p>
+                </li>
+                <li *ngFor="let anchor of subdocs.api_ids ; let i = index" nz-menu-item
+                    (click)="scrollToSection('api'+subdocs.id+'endpoint'+i)">
+                  <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">{{anchor.api_name}}</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
   </nz-sider>
-  <nz-layout>
+  <nz-layout >
     <nz-content>
       <div #content>
         <!--Introduction-->
@@ -166,13 +166,13 @@
                 <div class="py-[16px] border-t border-gray-300" *ngFor="let attribute of errorObject">
                   <!--name & variable type-->
                   <div class="flex items-center">
-                    <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.name}}</div>
-                    <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.type}}</div>
+                    <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
+                    <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
                   </div>
                   <!--description-->
-                  <div class="text-[14px] text-justify ">{{attribute.description}}</div>
-                  <div class="mt-[8px]" *ngIf="attribute.child">
-                    <child-attribute title="child attribute" [childObject]="attribute.child"></child-attribute>
+                  <div class="text-[14px] text-justify ">{{attribute.attr_description}}</div>
+                  <div class="mt-[8px]" *ngIf="attribute.child_attr_ids">
+                    <child-attribute title="child attribute" [childObject]="attribute.child_attr_ids"></child-attribute>
                   </div>
                 </div>
               </div>
@@ -213,7 +213,7 @@
         </section>
         <!--Specific API Component-->
         <div *ngFor="let apiCategory of documentation">
-          <div *ngFor="let apiCollection of apiCategory.items">
+          <div *ngFor="let apiCollection of apiCategory.api_collections">
             <single-api-collection [singleAPICollection]="apiCollection"
                                    [programmingLanguageOptions]="programmingLanguageOptions"
                                    [programmingLanguage]="programmingLanguage"></single-api-collection>
@@ -223,3 +223,7 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
+
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>

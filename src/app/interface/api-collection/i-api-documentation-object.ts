@@ -1,9 +1,9 @@
 export interface IApiDocumentationObject {
-  name: string,
-  type: string,
-  description: string,
+  attr_name: string,
+  attr_type: string,
+  attr_description: string,
   enum?: IEnum[],
-  child?: IApiDocumentationObject[];
+  child_attr_ids?: IApiDocumentationObject[];
 }
 
 interface IEnum {
