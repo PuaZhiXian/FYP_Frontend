@@ -39,10 +39,6 @@ export class AuthorizationService {
     return this.authorizationRestService.insertNewUser(username, email, organization, password);
   }
 
-  getPersonalInformation(): Observable<any> {
-    return this.authorizationRestService.getPersonalInformation();
-  }
-
   checkToken(verifyToken: string): Observable<boolean> {
     return this.authorizationRestService.checkToken(verifyToken);
   }

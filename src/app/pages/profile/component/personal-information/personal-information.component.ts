@@ -4,7 +4,8 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {IPersonalInformation} from "../../../../interface/user/i-personal-information";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 import {finalize} from "rxjs";
-import {VendorRestService} from "../../../../restService/vendor/vendor.rest.service";
+import {VendorService} from "../../../../service/vendor/vendor.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'personal-information',
@@ -18,7 +19,8 @@ export class PersonalInformationComponent implements OnInit {
               public activatedRoute: ActivatedRoute,
               private authorizationService: AuthorizationService,
               private ref: ChangeDetectorRef,
-              private vendorRestService: VendorRestService) {
+              private message: NzMessageService,
+              private vendorService: VendorService) {
   }
 
   validateForm!: UntypedFormGroup;
@@ -40,7 +42,7 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   initPersonalInformation() {
-    this.vendorRestService.getVendorProfile()
+    this.vendorService.getVendorProfile()
       .pipe((finalize(() => {
         this.loadingPersonalInformation = false;
         this.ref.markForCheck();
@@ -59,14 +61,30 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   savePersonalInformation() {
-    this.authorizationService.getPersonalInformation()
-      .pipe(finalize(() => {
-        this.editMode = false;
-        this.ref.detectChanges();
-        this.ref.markForCheck();
-      }))
-      .subscribe((resp) => {
+    if (this.validateForm.valid) {
+      this.vendorService.updateVendorProfile(this.validateForm.value)
+        .pipe(finalize(() => {
+          this.editMode = false;
+          this.loadingPersonalInformation = true;
+          this.initPersonalInformation();
+          this.ref.detectChanges();
+          this.ref.markForCheck();
+        }))
+        .subscribe((resp) => {
+          if (resp.message) {
+            this.message.success(resp.message);
+          } else if (resp.error) {
+            this.message.error(resp.error);
+          }
+        })
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({onlySelf: true});
+        }
+      });
+    }
 
-      })
   }
 }
