@@ -22,4 +22,10 @@ export class VendorRestService {
   updateVendorProfile(personalInformation: IPersonalInformation): Observable<IMessage> {
     return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/updateProfile', personalInformation, {withCredentials: true});
   }
+
+  changePassword(password: string, newPassword: string): Observable<IMessage> {
+    const body = {password, newPassword};
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/changePassword', body, {withCredentials: true});
+  }
+
 }

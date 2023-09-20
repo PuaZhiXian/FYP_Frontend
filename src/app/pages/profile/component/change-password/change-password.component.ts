@@ -2,6 +2,10 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {IPersonalInformation} from "../../../../interface/user/i-personal-information";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {VendorService} from "../../../../service/vendor/vendor.service";
+import {finalize} from "rxjs";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 
 @Component({
   selector: 'change-password',
@@ -13,12 +17,14 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
               public activatedRoute: ActivatedRoute,
-              private ref: ChangeDetectorRef) {
+              private ref: ChangeDetectorRef,
+              private message: NzMessageService,
+              private vendorService: VendorService,
+              private authorizationService: AuthorizationService) {
   }
 
   validateForm!: UntypedFormGroup;
   editMode: boolean = false;
-  updating: boolean = false;
 
   personalInformation!: IPersonalInformation;
 
@@ -48,7 +54,19 @@ export class ChangePasswordComponent implements OnInit {
 
   resetPassword() {
     if (this.validateForm.valid) {
-      this.router.navigate(['sign', 'sign-in']);
+      this.vendorService.changePassword(this.validateForm.value['password'], this.validateForm.value['newPassword'])
+        .pipe(finalize(() => {
+          this.ref.markForCheck();
+          this.ref.detectChanges();
+          this.logout();
+        }))
+        .subscribe((resp) => {
+          if (resp.message) {
+            this.message.success(resp.message);
+          } else if (resp.error) {
+            this.message.error(resp.error);
+          }
+        })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -57,6 +75,15 @@ export class ChangePasswordComponent implements OnInit {
         }
       });
     }
+  }
+
+  logout() {
+    this.authorizationService.logout()
+      .subscribe((resp) => {
+        if (resp.message) {
+          this.router.navigate(['sign', 'sign-in']);
+        }
+      })
   }
 
 }

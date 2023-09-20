@@ -17,7 +17,6 @@ export class PersonalInformationComponent implements OnInit {
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
               public activatedRoute: ActivatedRoute,
-              private authorizationService: AuthorizationService,
               private ref: ChangeDetectorRef,
               private message: NzMessageService,
               private vendorService: VendorService) {

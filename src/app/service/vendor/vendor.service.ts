@@ -21,4 +21,7 @@ export class VendorService {
     return this.vendorRestService.updateVendorProfile(personalInformation);
   }
 
+  changePassword(password: string, newPassword: string): Observable<IMessage> {
+    return this.vendorRestService.changePassword(password, newPassword);
+  }
 }
