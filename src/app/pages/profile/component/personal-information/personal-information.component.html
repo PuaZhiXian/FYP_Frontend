@@ -1,7 +1,5 @@
 <div>
-  <form [formGroup]="validateForm" nz-form>
-
-
+  <form [formGroup]="validateForm" nz-form *ngIf="!loadingPersonalInformation else loadingTpl">
     <!--Username-->
     <div class="font-bold text-[20px]">Username</div>
     <div class="">
@@ -16,7 +14,6 @@
       </nz-form-item>
     </div>
 
-
     <!--Email-->
     <div class="mt-11 font-bold text-[20px]">
       Email
@@ -26,7 +23,6 @@
         {{personalInformation.email}}
       </div>
     </div>
-
 
     <!--Organisation-->
     <div class="mt-11 font-bold text-[20px]">
@@ -56,3 +52,6 @@
     </div>
   </form>
 </div>
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>

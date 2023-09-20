@@ -4,6 +4,7 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {IPersonalInformation} from "../../../../interface/user/i-personal-information";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 import {finalize} from "rxjs";
+import {VendorRestService} from "../../../../restService/vendor/vendor.rest.service";
 
 @Component({
   selector: 'personal-information',
@@ -16,7 +17,8 @@ export class PersonalInformationComponent implements OnInit {
               private fb: UntypedFormBuilder,
               public activatedRoute: ActivatedRoute,
               private authorizationService: AuthorizationService,
-              private ref: ChangeDetectorRef) {
+              private ref: ChangeDetectorRef,
+              private vendorRestService: VendorRestService) {
   }
 
   validateForm!: UntypedFormGroup;
@@ -24,6 +26,7 @@ export class PersonalInformationComponent implements OnInit {
   updating: boolean = false;
 
   personalInformation!: IPersonalInformation;
+  loadingPersonalInformation: boolean = true;
 
   ngOnInit(): void {
     this.initPersonalInformation();
@@ -37,11 +40,15 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   initPersonalInformation() {
-    this.personalInformation = {
-      email: "xxx@domain.com",
-      organisation: "Company Meow",
-      username: "Meow meow"
-    }
+    this.vendorRestService.getVendorProfile()
+      .pipe((finalize(() => {
+        this.loadingPersonalInformation = false;
+        this.ref.markForCheck();
+        this.ref.detectChanges();
+      })))
+      .subscribe((resp) => {
+        this.personalInformation = resp
+      })
   }
 
   editProject() {
