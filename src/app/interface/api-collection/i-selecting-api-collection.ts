@@ -1,10 +1,11 @@
 export interface ISelectingApiCollection {
-  category: string,
-  collections: collectionsDetail[];
+  id: number,
+  category_name: string,
+  api_collections: collectionsDetail[];
 }
 
 interface collectionsDetail {
-  id: string,
-  name: string,
+  id: number,
+  api_collection_name: string,
   description: string
 }

@@ -23,18 +23,18 @@
       </div>
 
       <div class="my-10">
-        <nz-form-item class="grid w-3/4">
+        <nz-form-item class="grid w-3/4" *ngIf="!loadingForm else loadingTpl">
           <div class="text-base my-2">Select API Collection List</div>
           <nz-form-control>
             <nz-checkbox-wrapper class="w-full" (nzOnChange)="updateSelectedApiCollection($event)">
               <div *ngFor=" let api of apiCollection">
-                <div class="text-[16px]">{{api.category}}</div>
-                <div *ngFor="let singleApi of api.collections" class="my-4" >
-                  <div class="flex items-center big-checkbox" >
-                    <div nz-checkbox [nzValue]="singleApi.id" ></div>
+                <div class="text-[16px]">{{api.category_name}}</div>
+                <div *ngFor="let singleApi of api.api_collections" class="my-[10px]">
+                  <div class="flex items-center big-checkbox">
+                    <div nz-checkbox [nzValue]="singleApi.id"></div>
                     <div class="ml-[8px]">
-                      <div class="text-base text-[#616161]">{{singleApi.name}}</div>
-                      <div class="text-xs text-[#7B8794]">{{singleApi.description}}</div>
+                      <div class="text-base text-[#616161]">{{singleApi.api_collection_name}}</div>
+                      <div class="text-xs text-[#7B8794] text-justify">{{singleApi.description}}</div>
                     </div>
                   </div>
                 </div>
@@ -54,3 +54,6 @@
     </div>
   </div>
 </div>
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>

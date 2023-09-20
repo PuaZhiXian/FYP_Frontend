@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {ProjectService} from "../../../../service/project/project.service";
 import {finalize} from "rxjs";
 import {ISelectingApiCollection} from "../../../../interface/api-collection/i-selecting-api-collection";
+import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
 
 @Component({
   selector: 'app-create-project',
@@ -15,11 +16,14 @@ export class CreateProjectComponent implements OnInit {
   validateForm!: UntypedFormGroup;
 
   apiCollection: ISelectingApiCollection[] = [];
+  loadingForm: boolean = true;
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
               private message: NzMessageService,
-              private projectService: ProjectService) {
+              private projectService: ProjectService,
+              private apiCollectionService: ApiCollectionService,
+              private ref: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -28,73 +32,15 @@ export class CreateProjectComponent implements OnInit {
   }
 
   initApiCollection() {
-    this.apiCollection = [
-      {
-        category: "Product A",
-        collections: [
-          {
-            "id": "01",
-            "name": "WeatherNow API",
-            "description": "Provides real-time weather data for a given location."
-          },
-          {
-            "id": "02",
-            "name": "CryptoExchange API",
-            "description": "Retrieves cryptocurrency market prices and trading data."
-          },
-          {
-            "id": "03",
-            "name": "TranslationAPI",
-            "description": "Enables language translation services for text and documents."
-          }
-        ]
-      },
-      {
-        category: "Product B",
-        collections: [
-          {
-            "id": "04",
-            "name": "SocialMediaAnalytics API",
-            "description": "Tracks and analyzes social media activity and engagement."
-          },
-          {
-            "id": "05",
-            "name": "PaymentGatewayAPI",
-            "description": "Integrates various payment gateways for secure transactions."
-          }
-        ]
-      }, {
-        category: "Product C",
-        collections: [
-          {
-            "id": "06",
-            "name": "ImageRecognitionAPI",
-            "description": "Analyzes and classifies images based on their content."
-          },
-          {
-            "id": "07",
-            "name": "EmailVerificationAPI",
-            "description": "Verifies email addresses for validity and deliverability."
-          },
-          {
-            "id": "08",
-            "name": "GeolocationAPI",
-            "description": "Retrieves geolocation data based on IP addresses or addresses."
-          },
-          {
-            "id": "09",
-            "name": "NewsFeedAPI",
-            "description": "Retrieves real-time and curated news articles and headlines."
-          },
-          {
-            "id": "10",
-            "name": "LanguageProcessingAPI",
-            "description": "Performs natural language processing tasks on text data."
-          }
-        ]
-      }
-
-    ]
+    this.apiCollectionService.getSubscribedApiCollection()
+      .pipe(finalize(() => {
+        this.loadingForm = false;
+        this.ref.markForCheck();
+        this.ref.detectChanges();
+      }))
+      .subscribe((resp) => {
+        this.apiCollection = resp;
+      })
   }
 
   initForm() {
