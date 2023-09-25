@@ -1,11 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@tailwind base;
+//@tailwind base;
 @tailwind components;
 @tailwind utilities;
-.monaco-editor-overlaymessage {
-  display: none !important;
-}
-
 
 .big-checkbox .ant-checkbox-checked .ant-checkbox-inner {
   width: 24px;

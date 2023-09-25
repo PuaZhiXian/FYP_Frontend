@@ -1,0 +1,15 @@
+<div *ngIf="html">
+  <div class="grid grid-cols-8 py-[20px] px-[10px] bg-[#FED470]" *ngIf="!loadingAnnouncement ; else loadingTpl">
+    <div class="col-span-1 text-center">
+      <div class="material-icons-outlined text-danger text-[36px]">warning_amber</div>
+      <div class="font-bold text-[14px]">Announcement :</div>
+    </div>
+    <div class="col-span-7">
+      <div [innerHTML]="html"></div>
+    </div>
+  </div>
+</div>
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>
+
