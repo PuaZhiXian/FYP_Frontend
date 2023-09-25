@@ -21,7 +21,7 @@ interface ISingleApi {
   api_method: string,
   api_endpoint: string,
   api_req_code: string,
-  parameter?: IApiDocumentationObject[],
+  api_param_ids?: IApiDocumentationObject[],
   api_return: string,
   api_response_json: string
 }

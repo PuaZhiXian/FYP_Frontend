@@ -78,7 +78,7 @@
         <!--parameter attribute-->
         <div class="mt-[20px]">
           <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Parameters</div>
-          <div class="py-[16px] border-t border-gray-300" *ngFor="let attribute of api.parameter">
+          <div class="py-[16px] border-t border-gray-300" *ngFor="let attribute of api.api_param_ids">
             <!--name & variable type-->
             <div class="flex items-center">
               <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
@@ -90,7 +90,7 @@
               <child-attribute title="child attribute" [childObject]="attribute.child_attr_ids"></child-attribute>
             </div>
           </div>
-          <div class="py-[16px] text-[12px] text-gray-400 font-normal border-t border-gray-300" *ngIf="!api.parameter">
+          <div class="py-[16px] text-[12px] text-gray-400 font-normal border-t border-gray-300" *ngIf="!api.api_param_ids">
             No parameters
           </div>
         </div>
