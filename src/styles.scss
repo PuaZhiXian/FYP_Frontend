@@ -3,6 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+  *,
+  ::before,
+  ::after {
+    border-width: 0;
+    border-style: solid;
+    border-color: theme('borderColor.DEFAULT', currentColor);
+  }
+}
+
 .big-checkbox .ant-checkbox-checked .ant-checkbox-inner {
   width: 24px;
   height: 24px;
