@@ -1,48 +1,58 @@
 <nz-layout *ngIf="!loadingDocumentation else loadingTpl" class="bg-[#001529]">
-  <nz-sider  nzWidth="220px" class="sticky top-0" nzCollapsible [nzCollapsedWidth]="0">
-      <div class="logo"></div>
-      <ul nz-menu nzTheme="dark" nzMode="inline">
-        <li *ngFor="let general of general" nz-menu-item (click)="scrollToSection(general)">
-          <span nz-icon nzType="pie-chart"></span>
-          <span>{{general}}</span>
-        </li>
-        <li *ngFor="let docs of documentation" nz-submenu [nzTitle]="heading" nzIcon="team">
-          <ng-template #heading>
-            <div class="whitespace-normal leading-none w-[120px] pl-[10px] text-[12px] font-semibold">
-              {{docs.category_name}}
-            </div>
-          </ng-template>
-          <ul>
-            <li *ngFor="let subdocs of docs.api_collections" nz-submenu [nzTitle]="subdocsHeading">
-              <ng-template #subdocsHeading>
-                <div class="whitespace-normal leading-none w-[120px] text-[14px] font-medium"
-                     (click)="scrollToSection('api'+subdocs.id)">
-                  {{subdocs.api_collection_name}}
-                </div>
-              </ng-template>
-              <ul>
-                <li class="text-[14px] font-medium" nz-menu-item (click)="scrollToSection('api'+subdocs.id+'object')">
-                  <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">The {{subdocs.api_collection_name}}
-                    objects</p>
-                </li>
-                <li *ngFor="let anchor of subdocs.api_ids ; let i = index" nz-menu-item
-                    (click)="scrollToSection('api'+subdocs.id+'endpoint'+i)">
-                  <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">{{anchor.api_name}}</p>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
+  <nz-sider nzWidth="220px" class="sticky top-0 xl:block hidden" nzCollapsible [nzCollapsedWidth]="0">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li *ngFor="let general of general" nz-menu-item (click)="scrollToSection(general)">
+        <span nz-icon nzType="pie-chart"></span>
+        <span>{{general}}</span>
+      </li>
+      <li *ngFor="let docs of documentation" nz-submenu [nzTitle]="heading" nzIcon="team">
+        <ng-template #heading>
+          <div class="whitespace-normal leading-none w-[120px] pl-[10px] text-[12px] font-semibold">
+            {{docs.category_name}}
+          </div>
+        </ng-template>
+        <ul>
+          <li *ngFor="let subdocs of docs.api_collections" nz-submenu [nzTitle]="subdocsHeading">
+            <ng-template #subdocsHeading>
+              <div class="whitespace-normal leading-none w-[120px] text-[14px] font-medium"
+                   (click)="scrollToSection('api'+subdocs.id)">
+                {{subdocs.api_collection_name}}
+              </div>
+            </ng-template>
+            <ul>
+              <li class="text-[14px] font-medium" nz-menu-item (click)="scrollToSection('api'+subdocs.id+'object')">
+                <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">
+                  The {{subdocs.api_collection_name}}
+                  objects</p>
+              </li>
+              <li *ngFor="let anchor of subdocs.api_ids ; let i = index" nz-menu-item
+                  (click)="scrollToSection('api'+subdocs.id+'endpoint'+i)">
+                <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">{{anchor.api_name}}</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </nz-sider>
-  <nz-layout >
+  <nz-layout>
     <nz-content>
+      <nz-select #smallSelect class="pl-[68px] mt-[20px]" [ngModel]="general[0]"
+                 (ngModelChange)="scrollToSection($event)" (nzOpenChange)="_setWidth()">
+        <nz-option *ngFor="let general of general" [nzLabel]="general" [nzValue]="general">
+        </nz-option>
+        <nz-option-group *ngFor="let docs of documentation" [nzLabel]="docs.category_name">
+          <nz-option *ngFor="let subdocs of docs.api_collections" [nzValue]="'api'+subdocs.id"
+                     [nzLabel]="subdocs.api_collection_name"></nz-option>
+        </nz-option-group>
+      </nz-select>
       <div #content>
         <!--Introduction-->
         <section id="Introduction" class="p-[68px] border-b">
           <div class="text-[24px] font-medium">API Reference</div>
-          <div class="grid grid-cols-5 mt-[20px]">
-            <div class="col-span-3 mr-[68px]">
+          <div class="lg:grid grid-cols-5 mt-[20px]">
+            <div class="col-span-3 lg:mr-[68px]">
               <div class="text-[16px] mb-[24px] text-justify">
                 The Stripe API is organized around REST. Our API has predictable resource-oriented URLs, accepts
                 form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes,
@@ -63,7 +73,7 @@
                 see docs customized to your version of the API, with your test key and data.
               </div>
             </div>
-            <div class="col-span-2">
+            <div class="mt-[10px] lg:mt-0 col-span-2">
               <div>
                 <div class="mb-[24px]">
                   <div class="text-[14px] font-semibold">JUST GETTING STARTED?</div>
@@ -101,8 +111,8 @@
         <!--Authentication-->
         <section id="Authentication" class="p-[68px] border-b">
           <div class="text-[24px] font-medium">Authentication</div>
-          <div class="grid grid-cols-5 mt-[20px]">
-            <div class="col-span-3 mr-[68px]">
+          <div class="lg:grid grid-cols-5 mt-[20px]">
+            <div class="col-span-3 lg:mr-[68px]">
               <div class="text-[14px] text-justify">
                 The Stripe API uses API keys to authenticate requests. You can view and manage your API keys in the
                 Stripe
@@ -134,7 +144,7 @@
               </div>
 
             </div>
-            <div class="col-span-2">
+            <div class="mt-[10px] lg:mt-0  col-span-2">
               <code-editor [programmingLanguageOptions]="programmingLanguageOptions" title="GLOBAL API KEY"
                            [programmingLanguage]="programmingLanguage" [code]="authorizationCode"></code-editor>
             </div>
@@ -143,8 +153,8 @@
         <!--Errors-->
         <section id="Errors" class="p-[68px] border-b">
           <div class="text-[24px] font-medium">Errors</div>
-          <div class="grid grid-cols-5 mt-[20px]">
-            <div class="col-span-3 mr-[68px]">
+          <div class="lg:grid grid-cols-5 mt-[20px]">
+            <div class="col-span-3 lg:mr-[68px]">
               <div>
                 <div class="text-[14px] text-justify">
                   Stripe uses conventional HTTP response codes to indicate the success or failure of an API request. In
@@ -177,7 +187,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-span-2">
+            <div class="mt-[10px] lg:mt-0 col-span-2">
               <!--HTTP STATUS CODE SUMMARY-->
               <div class="mb-[12px]">
                 <!--Header-->

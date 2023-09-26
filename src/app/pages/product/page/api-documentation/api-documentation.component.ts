@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {IApiCategory} from "../../../../interface/api-collection/i-api-category";
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import {IApiDocumentationObject} from "../../../../interface/api-collection/i-api-documentation-object";
@@ -7,6 +15,7 @@ import {ISelect} from "../../../../interface/common/i-select";
 import {ClientConstant} from "../../../../constant/temp/temp-constant";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
 import {finalize} from "rxjs";
+import {NzSelectComponent} from "ng-zorro-antd/select";
 
 @Component({
   selector: 'app-api-documentation',
@@ -14,8 +23,8 @@ import {finalize} from "rxjs";
   styleUrls: ['./api-documentation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ApiDocumentationComponent implements OnInit {
-
+export class ApiDocumentationComponent implements OnInit, AfterViewInit {
+  @ViewChild('smallSelect', {read: NzSelectComponent}) mySelect!: NzSelectComponent;
 
   general: string[] = ["Introduction", "Authentication", "Errors"]
   documentation: IApiCategory[] = [];
@@ -45,6 +54,10 @@ export class ApiDocumentationComponent implements OnInit {
     this.initDocumentation();
     this.initErrorSection();
     this.initGeneralDocumentation();
+  }
+
+  ngAfterViewInit(): void {
+    this._setWidth();
   }
 
   initGeneralDocumentation() {
@@ -285,6 +298,11 @@ export class ApiDocumentationComponent implements OnInit {
     if (element) {
       element.scrollIntoView({behavior: 'smooth'});
     }
+  }
+
+  _setWidth(): void {
+    this.mySelect.cdkConnectedOverlay.width = 200;
+    this.mySelect.updateCdkConnectedOverlayStatus();
   }
 
 }

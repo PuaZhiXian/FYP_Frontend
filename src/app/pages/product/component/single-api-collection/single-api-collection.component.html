@@ -2,11 +2,11 @@
   <!--Main API Collection -->
   <section class="p-[68px] border-b" [id]="'api'+singleAPICollection.id">
     <div class="text-[24px] font-medium">{{singleAPICollection.api_collection_name}}</div>
-    <div class="grid grid-cols-5 mt-[20px]">
-      <div class="col-span-3 mr-[68px]">
+    <div class="lg:grid grid-cols-5 mt-[20px]">
+      <div class="col-span-3 lg:mr-[68px]">
         <div class="text-[14px] text-justify">{{singleAPICollection.description}}</div>
       </div>
-      <div class="col-span-2">
+      <div class="mt-[10px] lg:mt-0 col-span-2">
         <div class="mb-[12px]">
           <!--Header-->
           <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
@@ -30,8 +30,8 @@
   <!--API Object-->
   <section class="p-[68px] border-b" [id]="'api'+singleAPICollection.id+'object'">
     <div class="text-[24px] font-medium">The {{singleAPICollection.api_collection_name}} object</div>
-    <div class="grid grid-cols-5 mt-[20px]">
-      <div class="col-span-3 mr-[68px]">
+    <div class="lg:grid grid-cols-5 mt-[20px]">
+      <div class="col-span-3 lg:mr-[68px]">
         <!--Object attribute-->
         <div class="mt-[20px]">
           <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Attributes</div>
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-      <div class="col-span-2">
+      <div class="mt-[10px] lg:mt-0 col-span-2">
         <!--Sample Json-->
         <div class="mb-[12px]" *ngIf="!loading">
           <!--Header-->
@@ -71,8 +71,8 @@
   <section class="p-[68px] border-b" *ngFor="let api of singleAPICollection.api_ids ; let i = index"
            [id]="'api'+singleAPICollection.id+'endpoint'+ i">
     <div class="text-[24px] font-medium">{{api.api_name}}</div>
-    <div class="grid grid-cols-5 mt-[20px]">
-      <div class="col-span-3 mr-[68px]">
+    <div class="lg:grid grid-cols-5 mt-[20px]">
+      <div class="col-span-3 lg:mr-[68px]">
         <!--Endpoint description-->
         <div class="text-[14px] text-justify">{{api.api_description}}</div>
         <!--parameter attribute-->
@@ -103,7 +103,7 @@
         </div>
 
       </div>
-      <div class="col-span-2">
+      <div class="mt-[10px] lg:mt-0 col-span-2">
         <!--Request Code-->
         <div class="mb-[12px]">
           <code-editor class="mb-[12px]" [programmingLanguageOptions]="programmingLanguageOptions"
