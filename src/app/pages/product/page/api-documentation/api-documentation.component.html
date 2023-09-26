@@ -38,7 +38,7 @@
   </nz-sider>
   <nz-layout>
     <nz-content>
-      <nz-select #smallSelect class="pl-[68px] mt-[20px]" [ngModel]="general[0]"
+      <nz-select #smallSelect class="pl-[68px] mt-[20px] xl:hidden" [ngModel]="general[0]"
                  (ngModelChange)="scrollToSection($event)" (nzOpenChange)="_setWidth()">
         <nz-option *ngFor="let general of general" [nzLabel]="general" [nzValue]="general">
         </nz-option>

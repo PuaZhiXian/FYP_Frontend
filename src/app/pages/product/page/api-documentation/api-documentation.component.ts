@@ -14,8 +14,8 @@ import {IHttpStatusCodeSummary} from "../../../../interface/api-collection/i-htt
 import {ISelect} from "../../../../interface/common/i-select";
 import {ClientConstant} from "../../../../constant/temp/temp-constant";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
-import {finalize} from "rxjs";
 import {NzSelectComponent} from "ng-zorro-antd/select";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-api-documentation',
@@ -301,8 +301,10 @@ export class ApiDocumentationComponent implements OnInit, AfterViewInit {
   }
 
   _setWidth(): void {
-    this.mySelect.cdkConnectedOverlay.width = 200;
-    this.mySelect.updateCdkConnectedOverlayStatus();
+    if (this.mySelect) {
+      this.mySelect.cdkConnectedOverlay.width = 200;
+      this.mySelect.updateCdkConnectedOverlayStatus();
+    }
   }
 
 }

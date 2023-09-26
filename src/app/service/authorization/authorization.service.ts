@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AuthorizationRestService} from "../../restService/authorization/authorization.rest.service";
-import {Observable} from "rxjs";
+import {catchError, Observable, switchMap, throwError} from "rxjs";
 import {ILoginRequest} from "../../interface/authorization/i-login-request";
 import {IMessage} from "../../interface/authorization/i-message";
 
@@ -13,6 +13,8 @@ export class AuthorizationService {
     private authorizationRestService: AuthorizationRestService,) {
   }
 
+  refreshTokenInProgress: boolean = true;
+
   login(loginRequest: ILoginRequest): Observable<IMessage> {
     // loginRequest.password = AES.encrypt(loginRequest.password + "", environment.secretKey).toString();
     return this.authorizationRestService.login(loginRequest);
@@ -22,7 +24,7 @@ export class AuthorizationService {
     return this.authorizationRestService.logout();
   }
 
-  sendResetEmail(email: string):Observable<IMessage> {
+  sendResetEmail(email: string): Observable<IMessage> {
     return this.authorizationRestService.sendResetEmail(email);
   }
 
@@ -41,5 +43,27 @@ export class AuthorizationService {
 
   checkToken(verifyToken: string): Observable<boolean> {
     return this.authorizationRestService.checkToken(verifyToken);
+  }
+
+  refreshToken(): Observable<IMessage> {
+    return this.authorizationRestService.refreshToken();
+  }
+
+  handleApiError(observable: Observable<any>): Observable<any> {
+    return observable.pipe(
+      catchError(error => {
+        if (error.status === 401) {
+          return this.authorizationRestService.refreshToken().pipe(
+            switchMap((message) => {
+              return observable;
+            }),
+            catchError(e => {
+              return this.authorizationRestService.logout();
+            }));
+        } else {
+          return throwError(() => error);
+        }
+      })
+    );
   }
 }

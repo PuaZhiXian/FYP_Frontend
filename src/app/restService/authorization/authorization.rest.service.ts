@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {catchError, Observable, switchMap, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {ILoginRequest} from "../../interface/authorization/i-login-request";
 import {IMessage} from "../../interface/authorization/i-message";
@@ -45,5 +45,11 @@ export class AuthorizationRestService {
   checkToken(verifyToken: string): Observable<boolean> {
     return this.httpClient.post<boolean>(`${this.ProjectUrl}/custom/checkToken`, {verifyToken});
   }
+
+  refreshToken(): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(`${this.ProjectUrl}/custom/refresh-token`, {},{withCredentials: true} );
+  }
+
+
 
 }
