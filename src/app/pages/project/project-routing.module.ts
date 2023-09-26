@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {SingleProjectComponent} from "./page/single-project/single-project.component";
+import {AuthGuard} from "../../guard/auth.guard";
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
       {
         path: ':projectId',
         component: SingleProjectComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
