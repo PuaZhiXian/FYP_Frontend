@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UntypedFormBuilder} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
 import {finalize} from "rxjs";
+import {ProjectOverview} from "../../../../interface/project/project-overview";
 
 @Component({
   selector: 'app-single-project',
@@ -22,6 +23,7 @@ export class SingleProjectComponent implements OnInit {
   projectId!: string | null;
   loadingProject: boolean = true;
   selectingTab: string = 'statistics';
+  projectOverview!: ProjectOverview;
 
 
   ngOnInit(): void {
@@ -29,19 +31,18 @@ export class SingleProjectComponent implements OnInit {
       this.projectId = params.get('projectId');
     });
     this.initProject();
-    console.log(this.projectId);
   }
 
   initProject() {
-    if (this.projectId != null) {
-      this.projectService.getSingleProject()
-        .pipe(finalize(() => {
-          this.loadingProject = false;
-        }))
-        .subscribe((resp) => {
-
-        })
-    }
+    this.projectService.getSingleProject(this.projectId + "")
+      .pipe(finalize(() => {
+        this.loadingProject = false;
+        this.ref.markForCheck();
+        this.ref.detectChanges();
+      }))
+      .subscribe((resp) => {
+        this.projectOverview = resp;
+      })
   }
 
   changeTabs(tab: string) {

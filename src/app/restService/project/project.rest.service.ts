@@ -23,16 +23,15 @@ export class ProjectRestService {
   }
 
   deleteProject(projectId: string): Observable<any> {
-      return this.authorizationService.handleApiError(this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-project/' + projectId, {withCredentials: true}));
+    return this.authorizationService.handleApiError(this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-project/' + projectId, {withCredentials: true}));
   }
 
   getAllProject(): Observable<ProjectOverview[]> {
     return this.authorizationService.handleApiError(this.httpClient.get<ProjectOverview[]>(this.ProjectUrl + '/projects', {withCredentials: true}));
   }
 
-  getSingleProject(): Observable<any> {
-    //TODO: integrate get single project api
-    return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
+  getSingleProject(projectId: string): Observable<ProjectOverview> {
+    return this.authorizationService.handleApiError(this.httpClient.get<ProjectOverview[]>(this.ProjectUrl + '/custom/get-project-details/' + projectId, {withCredentials: true}));
   }
 
   getProjectStatistics(projectId: string): Observable<any> {

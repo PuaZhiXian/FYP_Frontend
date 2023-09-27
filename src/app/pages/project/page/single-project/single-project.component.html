@@ -1,5 +1,5 @@
-<div class="mx-auto container">
-  <div class="mt-[18px] text-[32px] font-bold">Project Name 1</div>
+<div class="mx-auto container" *ngIf="!loadingProject else loadingTpl">
+  <div class="mt-[18px] text-[32px] font-bold">{{projectOverview.project_name}}</div>
   <div class=" grid justify-items-end primary-button">
     <button nz-button class="bg-primary-900 h-full
                     font-bold text-[14px] py-2.5 text-white px-[32px]
@@ -32,8 +32,8 @@
       </div>
     </div>
     <div class="col-span-10 px-8 py-[18px] min-h-[540px] border border-black">
-      <settings *ngIf="selectingTab== 'settings'" [projectName]="'Project Name 1'" [projectId]="projectId"
-                [projectDescription]="'Project Description 1'"></settings>
+      <settings *ngIf="selectingTab== 'settings'" [projectName]="projectOverview.project_name" [projectId]="projectId"
+                [projectDescription]="projectOverview.description"></settings>
       <statistics *ngIf="selectingTab =='statistics'" [projectId]="projectId"></statistics>
       <credential *ngIf="selectingTab == 'credentials'" [projectId]="projectId"
                   [projectName]="'Project Name 1'"></credential>
@@ -41,3 +41,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>

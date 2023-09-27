@@ -25,8 +25,8 @@ export class ProjectService {
     return this.projectRestService.getAllProject();
   }
 
-  getSingleProject(): Observable<any> {
-    return this.projectRestService.getSingleProject();
+  getSingleProject(projectId: string): Observable<ProjectOverview> {
+    return this.projectRestService.getSingleProject(projectId);
   }
 
   getProjectStatistics(projectId: string): Observable<any> {
