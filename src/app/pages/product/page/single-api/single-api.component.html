@@ -2,7 +2,7 @@
   <lock-screen *ngIf="!apiCollectionAccess"></lock-screen>
 
   <div *ngIf="apiCollectionAccess">
-    <div class="font-bold text-[32px]">{{apiOverview.title}}</div>
+    <div class="font-bold text-[32px]">{{apiOverview.api_collection_name}}</div>
     <div class="text-sm mb-7">{{apiOverview.description}}</div>
     <div class="grid grid-cols-5">
       <div class="col-span-1 border border-black">

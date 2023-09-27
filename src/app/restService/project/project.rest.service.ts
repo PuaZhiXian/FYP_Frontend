@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {ProjectOverview} from "../../interface/project/project-overview";
 import {IMessage} from 'src/app/interface/authorization/i-message';
 import {AuthorizationService} from "../../service/authorization/authorization.service";
+import {IApi} from "../../interface/api-collection/i-api";
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,8 @@ export class ProjectRestService {
     return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
   }
 
-  getProjectAPICollection(projectId: string): Observable<any> {
-    //TODO: integrate get project's api collections
-    return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
+  getProjectAPICollection(projectId: string): Observable<IApi[]> {
+    return this.authorizationService.handleApiError(this.httpClient.get<IApi[]>(this.ProjectUrl + '/custom/get-project-api-collection/' + projectId, {withCredentials: true}));
   }
 
   getProjectToken(): Observable<any> {

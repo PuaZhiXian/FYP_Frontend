@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ProjectRestService} from "../../restService/project/project.rest.service";
 import {Observable} from "rxjs";
 import {ProjectOverview} from "../../interface/project/project-overview";
+import {IApi} from "../../interface/api-collection/i-api";
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class ProjectService {
     return this.projectRestService.getProjectStatistics(projectId);
   }
 
-  getProjectAPICollection(projectId: string): Observable<any> {
+  getProjectAPICollection(projectId: string): Observable<IApi[]> {
     return this.projectRestService.getProjectAPICollection(projectId);
   }
 

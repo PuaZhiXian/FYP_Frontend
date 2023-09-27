@@ -38,17 +38,17 @@ export class AllProductComponent implements OnInit {
         apis: [
           {
             id: 'AC01',
-            title: 'API Collection 1',
+            api_collection_name: 'API Collection 1',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           },
           {
             id: 'AC02',
-            title: 'API Collection 2',
+            api_collection_name: 'API Collection 2',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           },
           {
             id: 'AC03',
-            title: 'API Collection 3',
+            api_collection_name: 'API Collection 3',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           }
         ]
@@ -58,17 +58,17 @@ export class AllProductComponent implements OnInit {
         apis: [
           {
             id: 'AC04',
-            title: 'API Collection 1',
+            api_collection_name: 'API Collection 1',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           },
           {
             id: 'AC05',
-            title: 'API Collection 2',
+            api_collection_name: 'API Collection 2',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           },
           {
             id: 'AC06',
-            title: 'API Collection 3',
+            api_collection_name: 'API Collection 3',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           }
         ]
@@ -78,17 +78,17 @@ export class AllProductComponent implements OnInit {
         apis: [
           {
             id: 'AC07',
-            title: 'API Collection 1',
+            api_collection_name: 'API Collection 1',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           },
           {
             id: 'AC08',
-            title: 'API Collection 2',
+            api_collection_name: 'API Collection 2',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           },
           {
             id: 'AC09',
-            title: 'API Collection 3',
+            api_collection_name: 'API Collection 3',
             description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
           }
         ]

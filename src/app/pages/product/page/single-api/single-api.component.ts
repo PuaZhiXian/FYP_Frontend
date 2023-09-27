@@ -44,7 +44,7 @@ export class SingleApiComponent implements OnInit {
   initAPINameDescription() {
     this.apiOverview = {
       id: "API01",
-      title: "API Collection 1",
+      api_collection_name: "API Collection 1",
       description: "API Description niiijijijijijii ncnscwncnascn iwjdijqidjijiwqijq"
     }
   }

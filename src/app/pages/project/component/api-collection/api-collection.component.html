@@ -2,7 +2,7 @@
   <div class="font-bold text-[20px]">Api Collection</div>
   <div *ngIf="!loadingCollection else loadingTpl">
     <nz-card class="bg-[#F5F5F5] rounded my-2.5" *ngFor="let api of apiCollection">
-      <div class="text-[16px] mb-[18px]">{{api.title}}</div>
+      <div class="text-[16px] mb-[18px]">{{api.api_collection_name}}</div>
       <div class="flex items-center">
         <div class="text-[14px] grow">
           {{api.description}}

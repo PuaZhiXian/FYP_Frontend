@@ -1,5 +1,5 @@
 export interface IApi {
   id: string,
-  title: string,
+  api_collection_name: string,
   description: string
 }
