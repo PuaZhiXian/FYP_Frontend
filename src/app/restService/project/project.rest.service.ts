@@ -23,8 +23,7 @@ export class ProjectRestService {
   }
 
   deleteProject(projectId: string): Observable<any> {
-    //TODO: integrate delete project api
-    return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
+      return this.authorizationService.handleApiError(this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-project/' + projectId, {withCredentials: true}));
   }
 
   getAllProject(): Observable<ProjectOverview[]> {
