@@ -41,6 +41,8 @@ export class ApiDocumentationComponent implements OnInit, AfterViewInit {
   updatingCodeEditor: boolean = true;
 
   loadingDocumentation: boolean = true;
+  loadingProgrammingOption: boolean = true;
+  switchingLang: boolean = false;
 
   @ViewChild('content') content!: ElementRef;
 
@@ -51,9 +53,7 @@ export class ApiDocumentationComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.initProgrammingLanguageOptions();
-    this.initDocumentation();
     this.initErrorSection();
-    this.initGeneralDocumentation();
   }
 
   ngAfterViewInit(): void {
@@ -95,50 +95,25 @@ export class ApiDocumentationComponent implements OnInit, AfterViewInit {
   }
 
   initProgrammingLanguageOptions() {
-    this.programmingLanguageOptions = [
-      {
-        label: 'Ruby',
-        value: 'ruby',
-        options: "https://e7.pngegg.com/pngimages/980/847/png-clipart-ruby-on-rails-logo-programming-language-rubygems-ruby-angle-design-thumbnail.png"
-      },
-      {
-        label: 'Python',
-        value: 'python',
-        options: "https://thumbnail.imgbin.com/1/17/21/imgbin-python-javascript-logo-soloist-My4ZUgqAGSkQQ5qtiN1TUYzV5_t.jpg"
-      },
-      {
-        label: 'PHP',
-        value: 'php',
-        options: 'https://w7.pngwing.com/pngs/751/3/png-transparent-logo-php-html-others-text-trademark-logo-thumbnail.png'
-      },
-      {
-        label: 'Java',
-        value: 'java',
-        options: 'https://e7.pngegg.com/pngimages/356/251/png-clipart-java-development-kit-java-architecture-for-xml-binding-java-runtime-environment-javafx-others-miscellaneous-text.png'
-      },
-      {
-        label: 'Node.js',
-        value: 'javascript',
-        options: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqmQvw0Jc4eiSQcQD_8qjjpiN1Lm1YugzX6A&usqp=CAU'
-      },
-      {
-        label: 'Go',
-        value: 'go',
-        options: 'https://go.dev/blog/go-brand/Go-Logo/PNG/Go-Logo_Blue.png'
-      },
-      {
-        label: 'HTTP',
-        value: 'http',
-        options: 'data:image/png;base64,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'
-      }
-    ]
-    this.programmingLanguage = this.programmingLanguageOptions[0].value;
+    this.apiCollectionService.getLanguageOption()
+      .pipe((finalize(() => {
+        this.loadingProgrammingOption = false;
+        this.ref.markForCheck();
+        this.ref.detectChanges();
+        this.initDocumentation();
+        this.initGeneralDocumentation()
+      })))
+      .subscribe((resp) => {
+        this.programmingLanguageOptions = resp;
+        this.programmingLanguage = this.programmingLanguageOptions[0].value;
+      })
   }
 
   initDocumentation() {
-    this.apiCollectionService.getApiDocumentation()
+    this.apiCollectionService.getApiDocumentation(this.programmingLanguage)
       .pipe(finalize(() => {
         this.loadingDocumentation = false;
+        this.switchingLang = false;
         this.ref.detectChanges();
         this.ref.markForCheck();
       }))
@@ -284,10 +259,12 @@ export class ApiDocumentationComponent implements OnInit, AfterViewInit {
   }
 
   switchLanguage(programmingLanguage: string) {
+    this.switchingLang = true;
     this.updatingCodeEditor = true;
     this.ref.detectChanges();
     this.ref.markForCheck();
     this.programmingLanguage = programmingLanguage;
+    this.initDocumentation();
     this.initGeneralDocumentation();
     this.ref.detectChanges();
     this.ref.markForCheck();

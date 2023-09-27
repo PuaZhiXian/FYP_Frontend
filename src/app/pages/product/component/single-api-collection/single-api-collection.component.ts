@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ISingleApiCollection} from "../../../../interface/api-collection/i-api-category";
 import {ISelect} from "../../../../interface/common/i-select";
 
@@ -12,6 +12,8 @@ export class SingleApiCollectionComponent implements OnInit {
   @Input() singleAPICollection!: ISingleApiCollection;
   @Input() programmingLanguageOptions: ISelect[] = [];
   @Input() programmingLanguage: string = '';
+  @Input() switchingLang!: boolean;
+  @Output() switchLanguageEvent = new EventEmitter<string>();
 
   loading: boolean = true;
 

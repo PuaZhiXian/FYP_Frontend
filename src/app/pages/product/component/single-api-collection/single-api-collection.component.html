@@ -90,7 +90,8 @@
               <child-attribute title="child attribute" [childObject]="attribute.child_attr_ids"></child-attribute>
             </div>
           </div>
-          <div class="py-[16px] text-[12px] text-gray-400 font-normal border-t border-gray-300" *ngIf="!api.api_param_ids">
+          <div class="py-[16px] text-[12px] text-gray-400 font-normal border-t border-gray-300"
+               *ngIf="!api.api_param_ids">
             No parameters
           </div>
         </div>
@@ -107,7 +108,8 @@
         <!--Request Code-->
         <div class="mb-[12px]">
           <code-editor class="mb-[12px]" [programmingLanguageOptions]="programmingLanguageOptions"
-                       [title]="api.api_method + ' ' + api.api_endpoint "
+                       [title]="api.api_method + ' ' + api.api_endpoint " *ngIf="!switchingLang"
+                       (programmingLanguageChange)="switchLanguageEvent.emit($event)"
                        [programmingLanguage]="programmingLanguage" [code]="api.api_req_code"></code-editor>
         </div>
         <!--Response Json-->

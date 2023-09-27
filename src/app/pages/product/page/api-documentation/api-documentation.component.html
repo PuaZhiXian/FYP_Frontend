@@ -89,13 +89,14 @@
                   </div>
                 </div>
                 <div>
-                  <div class="flex mb-[4px]">
+                  <div class="flex mb-[4px]"
+                       *ngIf="!loadingProgrammingOption ; else loadingTpl">
                     <!--Programming Language Options-->
                     <div *ngFor="let languageOptions of programmingLanguageOptions"
                          (click)="switchLanguage(languageOptions.value)"
                          class="{{this.programmingLanguage === languageOptions.value ? ' border-blue-600 border-b-[2px] ' : ''}} cursor-pointer w-[40px] py-[8px] mx-[8px]">
                       <div class="flex justify-center h-[24px]">
-                        <img height="24" width="24" [src]="languageOptions.options">
+                        <img height="24" width="24" [src]="languageOptions.option">
                       </div>
                       <div class="mt-[8px] text-center text-[12px] font-semibold">{{languageOptions.label}}</div>
                     </div>
@@ -145,7 +146,8 @@
 
             </div>
             <div class="mt-[10px] lg:mt-0  col-span-2">
-              <code-editor [programmingLanguageOptions]="programmingLanguageOptions" title="GLOBAL API KEY"
+              <code-editor [programmingLanguageOptions]="programmingLanguageOptions" title="GLOBAL API KEY" *ngIf="!updatingCodeEditor"
+                           (programmingLanguageChange)="switchLanguage($event)"
                            [programmingLanguage]="programmingLanguage" [code]="authorizationCode"></code-editor>
             </div>
           </div>
@@ -224,7 +226,8 @@
         <!--Specific API Component-->
         <div *ngFor="let apiCategory of documentation">
           <div *ngFor="let apiCollection of apiCategory.api_collections">
-            <single-api-collection [singleAPICollection]="apiCollection"
+            <single-api-collection [singleAPICollection]="apiCollection" (switchLanguageEvent)="switchLanguage($event)"
+                                   [switchingLang]="switchingLang"
                                    [programmingLanguageOptions]="programmingLanguageOptions"
                                    [programmingLanguage]="programmingLanguage"></single-api-collection>
           </div>

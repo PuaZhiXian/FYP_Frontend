@@ -4,6 +4,7 @@ import {ApiCollectionRestService} from "../../restService/apiCollection/api-coll
 import {IApiCollectionDetail} from "../../interface/api-collection/i-api-collection-detail";
 import {IApiCategory} from "../../interface/api-collection/i-api-category";
 import {ISelectingApiCollection} from "../../interface/api-collection/i-selecting-api-collection";
+import {ISelect} from "../../interface/common/i-select";
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,16 @@ export class ApiCollectionService {
     return this.apiCollectionRestService.getAllApiCollection();
   }
 
-  getApiDocumentation(): Observable<IApiCategory[]> {
-    return this.apiCollectionRestService.getApiDocumentation();
+  getApiDocumentation(programmingLanguage: string): Observable<IApiCategory[]> {
+    return this.apiCollectionRestService.getApiDocumentation(programmingLanguage);
   }
 
   getSubscribedApiCollection(): Observable<ISelectingApiCollection[]> {
     return this.apiCollectionRestService.getSubscribedApiCollection();
+  }
+
+  getLanguageOption(): Observable<ISelect[]> {
+    return this.apiCollectionRestService.getLanguageOption();
   }
 
 }

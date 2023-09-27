@@ -5,6 +5,7 @@ import {IApiCollectionDetail} from "../../interface/api-collection/i-api-collect
 import {IApiCategory} from "../../interface/api-collection/i-api-category";
 import {ISelectingApiCollection} from "../../interface/api-collection/i-selecting-api-collection";
 import {AuthorizationService} from "../../service/authorization/authorization.service";
+import {ISelect} from "../../interface/common/i-select";
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +27,16 @@ export class ApiCollectionRestService {
     return this.authorizationService.handleApiError(this.httpClient.get<IApiCollectionDetail[]>(this.ProjectUrl + '/api-collections', {withCredentials: true}));
   }
 
-  getApiDocumentation(): Observable<IApiCategory[]> {
-    return this.authorizationService.handleApiError(this.httpClient.get<IApiCategory[]>(this.ProjectUrl + '/custom/api-collections', {withCredentials: true}));
+  getApiDocumentation(programmingLanguage: string): Observable<IApiCategory[]> {
+    return this.authorizationService.handleApiError(this.httpClient.get<IApiCategory[]>(this.ProjectUrl + '/custom/api-collections/'+programmingLanguage, {withCredentials: true}));
   }
 
   getSubscribedApiCollection(): Observable<ISelectingApiCollection[]> {
     return this.authorizationService.handleApiError(this.httpClient.get<ISelectingApiCollection[]>(this.ProjectUrl + '/custom/subscribed-api-collection', {withCredentials: true}));
   }
+
+  getLanguageOption(): Observable<ISelect[]> {
+    return this.authorizationService.handleApiError(this.httpClient.get<ISelect[]>(this.ProjectUrl + '/code-lang-options', {withCredentials: true}));
+  }
+
 }
