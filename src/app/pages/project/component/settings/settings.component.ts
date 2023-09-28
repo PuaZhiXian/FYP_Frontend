@@ -43,8 +43,12 @@ export class SettingsComponent implements OnInit {
   deleteProject() {
     this.projectService.deleteProject(this.projectId + '')
       .subscribe((resp) => {
-        this.message.success('Project have successfully deleted');
-        this.router.navigate(['/', 'dashboard']);
+        if (resp.message) {
+          this.message.success(resp.message);
+          this.router.navigate(['/', 'dashboard']);
+        } else if (resp.error) {
+          this.message.error(resp.error);
+        }
       })
   }
 

@@ -3,6 +3,7 @@ import {ProjectRestService} from "../../restService/project/project.rest.service
 import {Observable} from "rxjs";
 import {ProjectOverview} from "../../interface/project/project-overview";
 import {IApi} from "../../interface/api-collection/i-api";
+import {IMessage} from "../../interface/authorization/i-message";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ProjectService {
     return this.projectRestService.addProject(projectOverview);
   }
 
-  deleteProject(projectId: string): Observable<any> {
+  deleteProject(projectId: string): Observable<IMessage> {
     return this.projectRestService.deleteProject(projectId);
   }
 

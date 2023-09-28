@@ -22,7 +22,7 @@ export class ProjectRestService {
     return this.authorizationService.handleApiError(this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/create-project', projectOverview, {withCredentials: true}));
   }
 
-  deleteProject(projectId: string): Observable<any> {
+  deleteProject(projectId: string): Observable<IMessage> {
     return this.authorizationService.handleApiError(this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-project/' + projectId, {withCredentials: true}));
   }
 
