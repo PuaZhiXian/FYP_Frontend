@@ -37,7 +37,6 @@ export class GuideComponent implements OnInit {
   }
 
   scrollToSection(sectionId: string) {
-    console.log(sectionId)
     const element = this.content.nativeElement.querySelector(`#${sectionId}`);
     if (element) {
       element.scrollIntoView({behavior: 'smooth'});

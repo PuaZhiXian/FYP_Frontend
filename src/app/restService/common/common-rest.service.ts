@@ -3,14 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IAnnouncement} from "../../interface/common/i-announcement";
 import {AuthorizationService} from "../../service/authorization/authorization.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonRestService {
 
-  private baseUrl = 'http://localhost:1337';
-  private ProjectUrl: string = this.baseUrl + '/api';
+  private ProjectUrl: string = environment.apiUrl + '/api';
 
   constructor(private httpClient: HttpClient,
               private authorizationService: AuthorizationService) {

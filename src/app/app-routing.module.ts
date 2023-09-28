@@ -6,7 +6,6 @@ const routes: Routes = [
   {path: 'sign', loadChildren: () => import('./pages/sign-in-up/sign-in-up.module').then(m => m.SignInUpModule)},
   {path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule)},
   {path: 'profile', loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)},
-  {path: 'dev', loadChildren: () => import('./pages/dev/dev.module').then(m => m.DevModule)},
   {path: 'subscription', loadChildren: () => import('./pages/subscription/subscription.module').then(m => m.SubscriptionModule)},
   {path: 'product', loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule)},
   {path: 'project', loadChildren: () => import('./pages/project/project.module').then(m => m.ProjectModule)},

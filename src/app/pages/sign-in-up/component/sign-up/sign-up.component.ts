@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'sign-up',
@@ -16,7 +17,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
-              private authorizationService: AuthorizationService) {
+              private authorizationService: AuthorizationService,
+              private message: NzMessageService) {
   }
 
   initForm() {
@@ -41,9 +43,9 @@ export class SignUpComponent implements OnInit {
       this.authorizationService.signup(this.validateForm.value)
         .subscribe((resp) => {
           if (resp.message) {
-            console.log(resp.message)
+            this.message.success(resp.message);
           } else if (resp.error) {
-            console.log(resp.error)
+            this.message.error(resp.error);
           }
         })
     } else {

@@ -6,14 +6,14 @@ import {IMessage} from 'src/app/interface/authorization/i-message';
 import {AuthorizationService} from "../../service/authorization/authorization.service";
 import {IApi} from "../../interface/api-collection/i-api";
 import {IProjectTokenLog} from "../../interface/project/i-project-token-log";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectRestService {
 
-  private baseUrl = 'http://localhost:1337';
-  private ProjectUrl: string = this.baseUrl + '/api';
+  private ProjectUrl: string = environment.apiUrl + '/api';
 
   constructor(private httpClient: HttpClient,
               private authorizationService: AuthorizationService) {
@@ -36,7 +36,7 @@ export class ProjectRestService {
   }
 
   getProjectStatistics(projectId: string): Observable<any> {
-    //TODO: integrate get project's statistics api
+    //TODO: wait jia hong
     return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
   }
 
@@ -45,7 +45,7 @@ export class ProjectRestService {
   }
 
   getProjectToken(): Observable<any> {
-    //TODO: integrate get new project token
+    //TODO: wait jia hong
     return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
   }
 

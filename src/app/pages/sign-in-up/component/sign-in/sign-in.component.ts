@@ -4,8 +4,6 @@ import {Router} from "@angular/router";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 
-//import {DataService} from '../../../../data.service';
-
 @Component({
   selector: 'sign-in',
   templateUrl: './sign-in.component.html',

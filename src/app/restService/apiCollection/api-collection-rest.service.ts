@@ -6,14 +6,14 @@ import {IApiCategory} from "../../interface/api-collection/i-api-category";
 import {ISelectingApiCollection} from "../../interface/api-collection/i-selecting-api-collection";
 import {AuthorizationService} from "../../service/authorization/authorization.service";
 import {ISelect} from "../../interface/common/i-select";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCollectionRestService {
 
-  private baseUrl = 'http://localhost:1337';
-  private ProjectUrl: string = this.baseUrl + '/api';
+  private ProjectUrl: string = environment.apiUrl + '/api';
 
   constructor(private httpClient: HttpClient,
               private authorizationService: AuthorizationService) {
@@ -21,10 +21,6 @@ export class ApiCollectionRestService {
 
   getAllApiCollection(): Observable<IApiCollectionDetail[]> {
     return this.authorizationService.handleApiError(this.httpClient.get<IApiCollectionDetail[]>(this.ProjectUrl + '/access-controls', {withCredentials: true}));
-  }
-
-  getApprovedApiCollection() {
-    return this.authorizationService.handleApiError(this.httpClient.get<IApiCollectionDetail[]>(this.ProjectUrl + '/api-collections', {withCredentials: true}));
   }
 
   getApiDocumentation(programmingLanguage: string): Observable<IApiCategory[]> {

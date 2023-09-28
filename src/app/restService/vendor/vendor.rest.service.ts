@@ -4,14 +4,14 @@ import {Observable} from "rxjs";
 import {IPersonalInformation} from "../../interface/user/i-personal-information";
 import {IMessage} from "../../interface/authorization/i-message";
 import {AuthorizationService} from "../../service/authorization/authorization.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VendorRestService {
 
-  private baseUrl = 'http://localhost:1337';
-  private ProjectUrl: string = this.baseUrl + '/api';
+  private ProjectUrl: string = environment.apiUrl + '/api';
 
   constructor(private httpClient: HttpClient,
               private authorizationService: AuthorizationService) {

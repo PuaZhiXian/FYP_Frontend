@@ -10,8 +10,7 @@ import {IMessage} from "../../interface/authorization/i-message";
 })
 export class AuthorizationRestService {
 
-  private baseUrl = environment.apiUrl;
-  private ProjectUrl: string = this.baseUrl + '/api';
+  private ProjectUrl: string = environment.apiUrl + '/api';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -29,7 +28,6 @@ export class AuthorizationRestService {
   }
 
   resetPassword(token: string, password: string): Observable<IMessage> {
-    //TODO: integrate reset password API
     return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/setPassword', {token: token, password: password});
   }
 

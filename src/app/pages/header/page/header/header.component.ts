@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {IHeaderList} from "../../../../interface/header/i-header-list";
-import {AppComponent} from "../../../../app.component";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +9,6 @@ import {AppComponent} from "../../../../app.component";
 })
 export class HeaderComponent {
 
-  // https://jscrambler.com/blog/working-with-angular-local-storage
   static logined: boolean = true;
   headerList!: IHeaderList[];
 
@@ -40,7 +38,7 @@ export class HeaderComponent {
     ]
   }
 
-  redirect(url:string){
+  redirect(url: string) {
     this.router.navigate(['/', url]);
   }
 
