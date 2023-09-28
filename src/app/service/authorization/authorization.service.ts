@@ -3,14 +3,15 @@ import {AuthorizationRestService} from "../../restService/authorization/authoriz
 import {catchError, Observable, switchMap, throwError} from "rxjs";
 import {ILoginRequest} from "../../interface/authorization/i-login-request";
 import {IMessage} from "../../interface/authorization/i-message";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
 
-  constructor(
-    private authorizationRestService: AuthorizationRestService,) {
+  constructor(private router: Router,
+              private authorizationRestService: AuthorizationRestService,) {
   }
 
   refreshTokenInProgress: boolean = true;
@@ -60,6 +61,8 @@ export class AuthorizationService {
             catchError(e => {
               return this.authorizationRestService.logout();
             }));
+        } else if (error.status === 403) {
+          return this.router.navigate(['/', 'dashboard'])
         } else {
           return throwError(() => error);
         }
