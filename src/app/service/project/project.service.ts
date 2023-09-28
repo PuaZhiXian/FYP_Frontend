@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {ProjectOverview} from "../../interface/project/project-overview";
 import {IApi} from "../../interface/api-collection/i-api";
 import {IMessage} from "../../interface/authorization/i-message";
+import {IProjectTokenLog} from "../../interface/project/i-project-token-log";
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +43,8 @@ export class ProjectService {
     return this.projectRestService.getProjectToken();
   }
 
-  getTokenHistory(): Observable<any> {
-    return this.projectRestService.getTokenHistory();
+  getTokenHistory(projectId: string): Observable<IProjectTokenLog[]> {
+    return this.projectRestService.getTokenHistory(projectId);
   }
 
 }

@@ -5,6 +5,7 @@ import {ProjectOverview} from "../../interface/project/project-overview";
 import {IMessage} from 'src/app/interface/authorization/i-message';
 import {AuthorizationService} from "../../service/authorization/authorization.service";
 import {IApi} from "../../interface/api-collection/i-api";
+import {IProjectTokenLog} from "../../interface/project/i-project-token-log";
 
 @Injectable({
   providedIn: 'root'
@@ -48,9 +49,8 @@ export class ProjectRestService {
     return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
   }
 
-  getTokenHistory(): Observable<any> {
-    //TODO: integrate get all project token history
-    return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
+  getTokenHistory(projectId: string): Observable<IProjectTokenLog[]> {
+    return this.authorizationService.handleApiError(this.httpClient.get<IProjectTokenLog[]>(this.ProjectUrl + '/custom/get-all-project-tokens/' + projectId, {withCredentials: true}));
   }
 
 

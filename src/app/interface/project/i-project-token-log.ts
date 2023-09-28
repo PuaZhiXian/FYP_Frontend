@@ -1,5 +1,6 @@
 export interface IProjectTokenLog {
-  created: Date;
-  expiration: Date;
-  lastUsed: Date;
+  created_date: Date;
+  expiration_date: Date;
+  token: string;
+  last_used_date: Date;
 }

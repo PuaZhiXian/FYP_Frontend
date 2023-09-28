@@ -27,6 +27,7 @@ export class CredentialComponent implements OnInit {
   currentSessionToken!: string;
   tokenLog: IProjectTokenLog[] = [];
   listOfColumns !: ColumnItem[];
+  loadingToken: boolean = true;
 
   ngOnInit(): void {
     this.initTable()
@@ -45,19 +46,14 @@ export class CredentialComponent implements OnInit {
   }
 
   getTokenHistory() {
-    this.projectService.getTokenHistory()
+    this.projectService.getTokenHistory(this.projectId + "")
       .pipe(finalize(() => {
+        this.loadingToken = false;
         this.ref.detectChanges();
         this.ref.markForCheck();
       }))
       .subscribe((resp) => {
-        this.tokenLog = [
-          {
-            created: new Date("2023-05-10T11:23:00.000Z"),
-            expiration: new Date("2023-05-18T11:23:00.000Z"),
-            lastUsed: new Date("2023-05-17T14:23:00.000Z"),
-          }
-        ]
+        this.tokenLog = resp
       })
   }
 
@@ -67,6 +63,16 @@ export class CredentialComponent implements OnInit {
 
   initTable() {
     this.listOfColumns = [
+      {
+        name: 'Token',
+        sortOrder: null,
+        sortFn: null,
+        sortDirections: [],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: null
+      },
       {
         name: 'Created',
         sortOrder: null,
@@ -88,7 +94,7 @@ export class CredentialComponent implements OnInit {
         width: null
       },
       {
-        name: 'Last Used',
+        name: 'Last Used Date',
         sortOrder: null,
         sortFn: null,
         sortDirections: [],
