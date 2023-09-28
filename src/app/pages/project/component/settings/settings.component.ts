@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {Router} from "@angular/router";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
@@ -24,6 +32,8 @@ export class SettingsComponent implements OnInit {
   @Input() projectDescription!: string;
   @Input() projectId!: string | null;
 
+  @Output() callInitProject = new EventEmitter<boolean>();
+
   validateForm!: UntypedFormGroup;
   editMode: boolean = false;
   updating: boolean = false;
@@ -35,7 +45,7 @@ export class SettingsComponent implements OnInit {
   initForm() {
     this.validateForm = this.fb.group({
       id: [null, [Validators.required]],
-      name: [null, [Validators.required]],
+      project_name: [null, [Validators.required]],
       description: [null, [Validators.required]]
     });
   }
@@ -55,7 +65,7 @@ export class SettingsComponent implements OnInit {
   editProject() {
     this.validateForm.patchValue({
       id: this.projectId,
-      name: this.projectName,
+      project_name: this.projectName,
       description: this.projectDescription
     })
     this.editMode = true;
@@ -64,7 +74,7 @@ export class SettingsComponent implements OnInit {
   reset() {
     this.validateForm.patchValue({
       id: this.projectId,
-      name: this.projectName,
+      project_name: this.projectName,
       description: this.projectDescription
     })
   }
@@ -74,15 +84,20 @@ export class SettingsComponent implements OnInit {
     this.ref.detectChanges();
     this.ref.markForCheck();
 
-    this.projectService.addProject(this.validateForm.value)
+    this.projectService.saveProjectChange(this.validateForm.value, this.projectId + "")
       .pipe(finalize(() => {
         this.updating = false;
         this.ref.detectChanges();
         this.ref.markForCheck();
       }))
       .subscribe((resp) => {
-        this.editMode = false;
-        this.message.success('Project have successfully saved');
+        if (resp.message) {
+          this.callInitProject.emit(true)
+          this.editMode = false;
+          this.message.success(resp.message);
+        } else if (resp.error) {
+          this.message.error(resp.error);
+        }
       })
   }
 }

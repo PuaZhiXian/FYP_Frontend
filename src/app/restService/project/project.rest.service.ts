@@ -53,5 +53,8 @@ export class ProjectRestService {
     return this.authorizationService.handleApiError(this.httpClient.get<IProjectTokenLog[]>(this.ProjectUrl + '/custom/get-all-project-tokens/' + projectId, {withCredentials: true}));
   }
 
+  saveProjectChange(projectOverview: ProjectOverview, projectId: string): Observable<IMessage> {
+    return this.authorizationService.handleApiError(this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/update-project/' + projectId, projectOverview, {withCredentials: true}));
+  }
 
 }

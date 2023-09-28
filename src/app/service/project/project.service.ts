@@ -47,4 +47,8 @@ export class ProjectService {
     return this.projectRestService.getTokenHistory(projectId);
   }
 
+  saveProjectChange(projectOverview: ProjectOverview, projectId: string): Observable<IMessage> {
+    return this.projectRestService.saveProjectChange(projectOverview, projectId);
+  }
+
 }

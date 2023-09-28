@@ -33,7 +33,7 @@
     </div>
     <div class="col-span-10 px-8 py-[18px] min-h-[540px] border border-black">
       <settings *ngIf="selectingTab== 'settings'" [projectName]="projectOverview.project_name" [projectId]="projectId"
-                [projectDescription]="projectOverview.description"></settings>
+                (callInitProject)="initProject()" [projectDescription]="projectOverview.description"></settings>
       <statistics *ngIf="selectingTab =='statistics'" [projectId]="projectId"></statistics>
       <credential *ngIf="selectingTab == 'credentials'" [projectId]="projectId"
                   [projectName]="'Project Name 1'"></credential>
