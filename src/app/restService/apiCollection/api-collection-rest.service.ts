@@ -46,6 +46,6 @@ export class ApiCollectionRestService {
   }
 
   getErrorType(): Observable<IHttpStatusCodeSummary[]> {
-    return this.authorizationService.handleApiError(this.httpClient.get<IHttpStatusCodeSummary[]>(this.ProjectUrl + '/http-error-types', {withCredentials: true}));
+    return this.authorizationService.handleApiError(this.httpClient.get<IHttpStatusCodeSummary[]>(this.ProjectUrl + '/error-types', {withCredentials: true}));
   }
 }
