@@ -5,6 +5,7 @@ import {IApiCollectionDetail} from "../../interface/api-collection/i-api-collect
 import {IApiCategory} from "../../interface/api-collection/i-api-category";
 import {ISelectingApiCollection} from "../../interface/api-collection/i-selecting-api-collection";
 import {ISelect} from "../../interface/common/i-select";
+import { IHttpStatusCodeSummary } from 'src/app/interface/api-collection/i-http-status-code-summary';
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +31,7 @@ export class ApiCollectionService {
     return this.apiCollectionRestService.getLanguageOption();
   }
 
+  getHttpStatusCode(): Observable<IHttpStatusCodeSummary[]> {
+    return this.apiCollectionRestService.getHttpStatusCode();
+  }
 }
