@@ -6,6 +6,7 @@ import {IApiCategory} from "../../interface/api-collection/i-api-category";
 import {ISelectingApiCollection} from "../../interface/api-collection/i-selecting-api-collection";
 import {ISelect} from "../../interface/common/i-select";
 import { IHttpStatusCodeSummary } from 'src/app/interface/api-collection/i-http-status-code-summary';
+import { IApiDocumentationObject } from 'src/app/interface/api-collection/i-api-documentation-object';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,13 @@ export class ApiCollectionService {
 
   getHttpStatusCode(): Observable<IHttpStatusCodeSummary[]> {
     return this.apiCollectionRestService.getHttpStatusCode();
+  }
+
+  getErrorObject(): Observable<IApiDocumentationObject[]> {
+    return this.apiCollectionRestService.getErrorObject();
+  }
+
+  getErrorType(): Observable<IHttpStatusCodeSummary[]> {
+    return this.apiCollectionRestService.getErrorType();
   }
 }
