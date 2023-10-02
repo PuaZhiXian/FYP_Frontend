@@ -7,6 +7,8 @@ import {ISelectingApiCollection} from "../../interface/api-collection/i-selectin
 import {AuthorizationService} from "../../service/authorization/authorization.service";
 import {ISelect} from "../../interface/common/i-select";
 import {environment} from "../../../environments/environment";
+import { IHttpStatusCodeSummary } from 'src/app/interface/api-collection/i-http-status-code-summary';
+import { IApiDocumentationObject } from 'src/app/interface/api-collection/i-api-documentation-object';
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +37,15 @@ export class ApiCollectionRestService {
     return this.authorizationService.handleApiError(this.httpClient.get<ISelect[]>(this.ProjectUrl + '/code-lang-options', {withCredentials: true}));
   }
 
+  getHttpStatusCode(): Observable<IHttpStatusCodeSummary[]> {
+    return this.authorizationService.handleApiError(this.httpClient.get<IHttpStatusCodeSummary[]>(this.ProjectUrl + '/http-status-codes', {withCredentials: true}));
+  }
+
+  getErrorObject(): Observable<IApiDocumentationObject[]>{
+    return this.authorizationService.handleApiError(this.httpClient.get<IApiDocumentationObject[]>(this.ProjectUrl + '/error-objs', {withCredentials: true}))
+  }
+
+  getErrorType(): Observable<IHttpStatusCodeSummary[]> {
+    return this.authorizationService.handleApiError(this.httpClient.get<IHttpStatusCodeSummary[]>(this.ProjectUrl + '/error-types', {withCredentials: true}));
+  }
 }
