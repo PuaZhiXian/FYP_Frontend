@@ -14,7 +14,6 @@ import {NzBreadCrumbModule} from "ng-zorro-antd/breadcrumb";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {NzTabsModule} from "ng-zorro-antd/tabs";
-import {NzCodeEditorModule} from "ng-zorro-antd/code-editor";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {CodeEditorComponent} from './component/code-editor/code-editor.component';
@@ -26,7 +25,7 @@ import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 
 
 @NgModule({
-  imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule, NzTableModule, NzLayoutModule, NzBreadCrumbModule, NzIconModule, NzMenuModule, NzTabsModule, NzCodeEditorModule, NzDropDownModule, NzSelectModule, NzAnchorModule, NzOverlayModule, NzSkeletonModule],
+  imports: [ProductRoutingModule, ReactiveFormsModule, NzFormModule, NzCheckboxModule, FormsModule, CommonModule, NzCardModule, NzButtonModule, NzTableModule, NzLayoutModule, NzBreadCrumbModule, NzIconModule, NzMenuModule, NzTabsModule, NzDropDownModule, NzSelectModule, NzAnchorModule, NzOverlayModule, NzSkeletonModule],
   declarations: [
     ApiDocumentationComponent,
     CodeEditorComponent,

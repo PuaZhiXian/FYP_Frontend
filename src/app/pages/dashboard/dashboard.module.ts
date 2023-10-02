@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {DashboardComponent} from './page/dashboard/dashboard.component';
 import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NzCodeEditorModule} from "ng-zorro-antd/code-editor";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzAutocompleteModule} from "ng-zorro-antd/auto-complete";
@@ -24,7 +23,6 @@ import { AnnouncementComponent } from './component/announcement/announcement.com
     DashboardRoutingModule,
     CommonModule,
     FormsModule,
-    NzCodeEditorModule,
     NzButtonModule,
     NzInputModule,
     NzAutocompleteModule,
