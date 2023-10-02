@@ -58,11 +58,11 @@ export class ChangePasswordComponent implements OnInit {
         .pipe(finalize(() => {
           this.ref.markForCheck();
           this.ref.detectChanges();
-          this.logout();
         }))
         .subscribe((resp) => {
           if (resp.message) {
             this.message.success(resp.message);
+            this.logout();
           } else if (resp.error) {
             this.message.error(resp.error);
           }
