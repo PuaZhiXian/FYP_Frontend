@@ -71,6 +71,9 @@ export class CreateProjectComponent implements OnInit {
           control.updateValueAndValidity({onlySelf: true});
         }
       });
+      if (!this.validateForm.value['apiCollection'] || this.validateForm.value['apiCollection'].length === 0) {
+        this.message.error('No API Collection is selected')
+      }
     }
   }
 
