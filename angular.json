@@ -32,21 +32,25 @@
                 "glob": "**/*",
                 "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
                 "output": "/assets/"
-              },
-              {
-                "glob": "**/*",
-                "input": "./node_modules/monaco-editor/min/vs",
-                "output": "/assets/vs/"
               }
             ],
             "styles": [
               "src/theme.less",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "showdown"
+            ]
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -77,19 +81,17 @@
           "configurations": {
             "production": {
               "browserTarget": "testFileStructure:build:production",
-              "proxyConfig": "src/proxy.conf.json"
+              "proxyConfig": "src/proxy.conf.json",
+              "host": "localhost",
+              "port": 4200,
+              "disableHostCheck": true
             },
             "development": {
               "browserTarget": "testFileStructure:build:development",
               "proxyConfig": "src/proxy.conf.json"
             }
           },
-          "defaultConfiguration": "development",
-          "options": {
-            "host": "192.168.102.118",
-            "port": 4200,
-            "disableHostCheck": true
-          }
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
