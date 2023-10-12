@@ -7,6 +7,7 @@ import {ProjectService} from "../../../../service/project/project.service";
 import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {IApiCollectionDetail} from "../../../../interface/api-collection/i-api-collection-detail";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
+import {CommonService} from "../../../../service/common/common.service";
 
 @Component({
   selector: 'project-api-table',
@@ -20,7 +21,8 @@ export class ProjectApiTableComponent implements OnInit {
               private fb: UntypedFormBuilder,
               private projectService: ProjectService,
               private apiCollectionService: ApiCollectionService,
-              private ref: ChangeDetectorRef) {
+              private ref: ChangeDetectorRef,
+              private commonService: CommonService) {
   }
 
   @Input() isProject: boolean = true;
@@ -201,6 +203,6 @@ export class ProjectApiTableComponent implements OnInit {
   }
 
   copyToClipBoard(token: string) {
-    navigator.clipboard.writeText(token);
+    this.commonService.copyToClipboard(token);
   }
 }

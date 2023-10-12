@@ -6,6 +6,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {finalize} from "rxjs";
 import {ColumnItem} from "../../../../interface/table/column-item";
 import {IProjectTokenLog} from "../../../../interface/project/i-project-token-log";
+import {CommonService} from "../../../../service/common/common.service";
 
 @Component({
   selector: 'credential',
@@ -18,7 +19,8 @@ export class CredentialComponent implements OnInit {
               private fb: UntypedFormBuilder,
               private projectService: ProjectService,
               private message: NzMessageService,
-              private ref: ChangeDetectorRef) {
+              private ref: ChangeDetectorRef,
+              private commonService: CommonService) {
   }
 
   @Input() projectName!: string;
@@ -58,7 +60,7 @@ export class CredentialComponent implements OnInit {
   }
 
   copyToClipBoard() {
-    navigator.clipboard.writeText(this.currentSessionToken);
+    this.commonService.copyToClipboard(this.currentSessionToken);
   }
 
   initTable() {

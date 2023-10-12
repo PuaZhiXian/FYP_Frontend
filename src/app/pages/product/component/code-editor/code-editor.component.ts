@@ -13,6 +13,7 @@ import {NzConfigService} from "ng-zorro-antd/core/config";
 import hljs from "highlight.js";
 import {NzSelectComponent} from 'ng-zorro-antd/select';
 import {ISelect} from "../../../../interface/common/i-select";
+import {CommonService} from "../../../../service/common/common.service";
 
 @Component({
   selector: 'code-editor',
@@ -33,7 +34,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
   @ViewChild('mySelect', {read: NzSelectComponent}) mySelect!: NzSelectComponent;
 
   constructor(private nzConfigService: NzConfigService,
-              private ref: ChangeDetectorRef) {
+              private ref: ChangeDetectorRef,
+              private commonService: CommonService) {
   }
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit {
   }
 
   copyToClipBoard() {
-    navigator.clipboard.writeText(this.code);
+    this.commonService.copyToClipboard(this.code);
   }
 
   _setWidth(): void {
