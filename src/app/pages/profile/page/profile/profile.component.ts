@@ -1,16 +1,17 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UntypedFormBuilder} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
 import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {HeaderComponent} from "../../../header/page/header/header.component";
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -23,7 +24,12 @@ export class ProfileComponent implements OnInit {
 
   selectingTab: string = 'personal-information';
 
+  ngOnDestroy(): void {
+    HeaderComponent.headerIndicator = '';
+  }
+
   ngOnInit(): void {
+    HeaderComponent.headerIndicator = 'profile';
   }
 
   changeTabs(tab: string) {

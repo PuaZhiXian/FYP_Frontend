@@ -11,12 +11,17 @@ export class HeaderComponent {
 
   static logined: boolean = true;
   headerList!: IHeaderList[];
+  static headerIndicator: string = '';
 
   constructor(private router: Router,) {
   }
 
   get staticLogined() {
     return HeaderComponent.logined;
+  }
+
+  get headerIndicator() {
+    return HeaderComponent.headerIndicator;
   }
 
   ngOnInit() {

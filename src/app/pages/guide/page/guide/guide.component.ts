@@ -1,27 +1,32 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {GuideQna} from "../../../../interface/guide/guide-qna";
 import {GuideService} from "../../../../service/guide/guide.service";
 import {finalize} from "rxjs";
+import {HeaderComponent} from "../../../header/page/header/header.component";
 
 @Component({
   selector: 'app-guide',
   templateUrl: './guide.component.html',
   styleUrls: ['./guide.component.scss']
 })
-export class GuideComponent implements OnInit {
+export class GuideComponent implements OnInit, OnDestroy {
 
   guideQNAList: GuideQna[] = [];
 
   loadingGuideQNA: boolean = true;
   @ViewChild('content') content!: ElementRef;
+
   constructor(private guideService: GuideService,
               private ref: ChangeDetectorRef) {
   }
 
+  ngOnDestroy(): void {
+    HeaderComponent.headerIndicator = '';
+  }
 
   ngOnInit(): void {
+    HeaderComponent.headerIndicator = 'guide';
     this.initQNA();
-
   }
 
   initQNA() {
@@ -42,6 +47,4 @@ export class GuideComponent implements OnInit {
       element.scrollIntoView({behavior: 'smooth'});
     }
   }
-
-
 }

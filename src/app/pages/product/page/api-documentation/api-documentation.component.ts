@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
+  ElementRef, OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -16,6 +16,7 @@ import {ClientConstant} from "../../../../constant/temp/temp-constant";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
 import {NzSelectComponent} from "ng-zorro-antd/select";
 import {finalize} from "rxjs";
+import {HeaderComponent} from "../../../header/page/header/header.component";
 
 @Component({
   selector: 'app-api-documentation',
@@ -23,7 +24,7 @@ import {finalize} from "rxjs";
   styleUrls: ['./api-documentation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ApiDocumentationComponent implements OnInit, AfterViewInit {
+export class ApiDocumentationComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('smallSelect', {read: NzSelectComponent}) mySelect!: NzSelectComponent;
 
   general: string[] = ["Introduction", "Authentication", "Errors"]
@@ -51,7 +52,12 @@ export class ApiDocumentationComponent implements OnInit, AfterViewInit {
               private apiCollectionService: ApiCollectionService) {
   }
 
+  ngOnDestroy(): void {
+    HeaderComponent.headerIndicator = '';
+  }
+
   ngOnInit(): void {
+    HeaderComponent.headerIndicator = 'product';
     this.initProgrammingLanguageOptions();
     this.initErrorSection();
   }
@@ -129,7 +135,7 @@ export class ApiDocumentationComponent implements OnInit, AfterViewInit {
       .subscribe((resp) => {
         this.errorObject = resp;
       })
-    
+
     this.apiCollectionService.getHttpStatusCode()
       .pipe(finalize(() => {
       }))
