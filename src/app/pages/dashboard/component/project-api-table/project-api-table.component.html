@@ -1,6 +1,5 @@
 <div class="my-11">
   <div class="flex items-center">
-    <div class="lg:text-[32px] text-[20px] font-bold ">{{isProject ? 'My Projects' : 'Assigned/ Subscribed API Collections'}}</div>
     <div>
       <button nz-button nzType="text" (click)="isProject?  createNewProject(): subscribeNewProduct()"
               class="flex items-center">
@@ -43,16 +42,29 @@
       <tbody>
       <tr *ngFor="let data of filterTable.data; let i = index" class="bg-[#CAE5FF] hover:bg-[#10064D]">
         <td class="cursor-pointer lg:text-[20px] text-[12px]" (click)="openProjectDetailPage(data.id)">{{ i + 1}}</td>
-        <td class="cursor-pointer lg:text-[20px] text-[12px]" (click)="openProjectDetailPage(data.id)">{{ data.project_name }}</td>
-        <td class="cursor-pointer lg:text-[20px] text-[12px]" (click)="openProjectDetailPage(data.id)">{{ data.description }}</td>
+        <td (click)="openProjectDetailPage(data.id)"
+            class="cursor-pointer lg:text-[20px] text-[12px]">{{ data.project_name }}</td>
+        <td (click)="openProjectDetailPage(data.id)"
+            class="cursor-pointer lg:text-[20px] text-[12px]">{{ data.description }}</td>
         <td class="cursor-pointer lg:text-[20px] text-[12px]"
             (click)="openProjectDetailPage(data.id)">{{ data.createdAt |date : 'd MMMM y' }}</td>
         <td class="lg:text-[20px] text-[12px] group">
           <div class="flex items-center justify-between">
-            <div class="cursor-default">**************</div>
-            <div class="material-icons-outlined cursor-pointer invisible group-hover:visible lg:text-[20px] text-[12px]"
-                 (click)="copyToClipBoard(data.token)">content_copy
+            <div
+              class="cursor-default lg:text-[20px] text-[12px] truncate ">{{ data.view ? data.token : '**************'}}</div>
+            <div class="flex gap-1">
+              <div (click)="data.view = data.view ? !data.view : true"
+                   class="material-icons-outlined cursor-pointer invisible
+                          group-hover:visible lg:text-[20px] text-[12px]">{{data.view ? 'visibility_off' : 'visibility'}}
+              </div>
+              <div
+                (click)="copyToClipBoard(data.token)"
+                class="material-icons-outlined cursor-pointer invisible group-hover:visible lg:text-[20px] text-[12px]">
+                content_copy
+              </div>
             </div>
+
+
           </div>
         </td>
       </tr>

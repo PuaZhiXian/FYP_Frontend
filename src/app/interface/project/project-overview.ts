@@ -4,5 +4,6 @@ export interface ProjectOverview {
   id: string,
   createdAt: Date,
   token: string,
-  apiCollection: number[]
+  apiCollection: number[],
+  view: boolean
 }
