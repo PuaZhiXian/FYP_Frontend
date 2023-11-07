@@ -14,8 +14,13 @@ module.exports = {
       'table-row': '16px',
       'table-header': '18px',
       'xs': '12px',
-      'sm': '16px'
-
+      'sm': '16px',
+      'button': '16px',
+      'input': '16px',
+      'label': '16px',
+      'title': '38px',
+      'subtitle': '18px',
+      'header': '20px',
     },
     extend: {
       colors: {

@@ -1,5 +1,5 @@
 <div>
-  <div class="text-[12px] w-full text-[#8898aa] mb-4 text-center">Sign In</div>
+  <div class="text-label w-full text-[#8898aa] mb-4 text-center">Sign In</div>
   <!--Form-->
   <form nz-form [formGroup]="validateForm">
     <!--Email-->
@@ -7,7 +7,7 @@
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your email address!">
           <div>
-            <input class="rounded py-[10px] px-[12px] text-[#8898aa] shadow-md"
+            <input class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
                    formControlName="email" placeholder="Email" nz-input/>
           </div>
         </nz-form-control>
@@ -18,7 +18,7 @@
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your password!">
           <div>
-            <input class="rounded py-[10px] px-[12px] text-[#8898aa] shadow-md" (keydown.enter)='submit()'
+            <input (keydown.enter)='submit()' class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
                    placeholder="Password"
                    formControlName="password"
                    type="password"
@@ -31,18 +31,18 @@
 
   <!--Sign in -->
   <div class="text-center">
-    <button class="bg-primary-900 text-white py-[10px] px-[20px] my-[24px] h-full rounded w-3/4" nz-button
+    <button class="bg-primary-900 text-white py-[10px] px-[20px] my-[24px] h-full rounded w-3/4 text-button" nz-button
             (click)="submit()">
       Sign In
     </button>
   </div>
   <!--Forget Password-->
-  <div class="text-danger flex justify-center cursor-pointer text-[12px] "
+  <div class="text-danger flex justify-center cursor-pointer text-xs "
        (click)="redirect('forget-password')">
     Forget Password ?
   </div>
   <!--Join-->
-  <div class="flex justify-center text-[12px]">
+  <div class="flex justify-center text-xs">
     <div>New to API Developer Portal?</div>
     <div class="text-danger cursor-pointer ml-1" (click)="redirect('sign-up')"> Join Now</div>
   </div>

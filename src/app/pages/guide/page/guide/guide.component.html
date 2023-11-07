@@ -3,15 +3,15 @@
     <app-header></app-header>
   </div>
   <div class="container mx-auto xl:px-0 px-[10px] ">
-    <div class="font-bold text-[38px] py-[18px]">Guide</div>
+    <div class="font-bold text-title py-[18px]">Guide</div>
     <div *ngIf="!loadingGuideQNA else loadingTpl" class="xl:grid grid-cols-7 hidden ">
       <div class="col-span-2 border">
         <div class="py-[18px] px-4 h-full">
-          <div class="font-bold text-xl">Quick Start Guide</div>
+          <div class="font-bold text-subtitle">Quick Start Guide</div>
           <div>
             <ul>
               <li (click)="scrollToSection('guide_'+guide.id)" *ngFor="let guide of guideQNAList"
-                  class="cursor-pointer text-[16px] text-justify">{{guide.guide_name}}</li>
+                  class="cursor-pointer text-label text-justify">{{guide.guide_name}}</li>
             </ul>
           </div>
         </div>
@@ -19,8 +19,8 @@
       <div #content class="col-span-5 border">
         <div class="py-7 px-8">
           <div *ngFor="let guide of guideQNAList" [id]="'guide_'+ guide.id">
-            <div class="text-[16px] font-bold mb-3.5">{{guide.guide_name}}</div>
-            <div class="text-[12px] mb-7 text-justify">{{guide.answer}}</div>
+            <div class="text-label font-bold mb-3.5">{{guide.guide_name}}</div>
+            <div class="text-xs mb-7 text-justify">{{guide.answer}}</div>
           </div>
         </div>
       </div>
@@ -31,9 +31,9 @@
       <nz-collapse [nzBordered]="false" nzGhost>
         <nz-collapse-panel *ngFor="let guide of guideQNAList" [nzHeader]="header">
           <ng-template #header>
-            <div class=" font-bold m-0 p-0">{{guide.guide_name}}</div>
+            <div class="text-label font-bold m-0 p-0">{{guide.guide_name}}</div>
           </ng-template>
-          <div class="text-[12px] mb-7 text-justify">{{ guide.answer }}content</div>
+          <div class="text-xs mb-7 text-justify">{{ guide.answer }}content</div>
         </nz-collapse-panel>
       </nz-collapse>
     </div>

@@ -4,22 +4,21 @@
   </div>
   <div class="mx-auto container px-[10px] lg:px-0 ">
     <div class="flex justify-end">
-      <button (click)="logout()"
-              class="bg-primary-900 text-white py-[10px] px-[20px] mt-[24px] lg:mb-[24px] h-full rounded" nz-button>
-        Logout
+      <button (click)="logout()" class="bg-primary-900 text-white py-[10px] px-[20px]
+                      mt-[24px] lg:mb-[24px] h-full rounded text-button" nz-button>Logout
       </button>
     </div>
     <div class="mb-8 lg:grid lg:grid-cols-12">
       <div class="flex lg:block col-span-2 button-focus w-1/2 lg:w-full">
         <div class="w-full">
           <button (click)="changeTabs('personal-information')"
-                  class="text-xl w-full h-fit border border-black {{selectingTab == 'personal-information' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                  class="w-full h-fit border border-black text-button {{selectingTab == 'personal-information' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
                   nz-button>Personal Information
           </button>
         </div>
         <div class="w-full">
           <button (click)="changeTabs('password')"
-                  class="text-xl w-full h-fit border border-black {{selectingTab == 'password' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                  class="w-full h-fit border border-black text-button {{selectingTab == 'password' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
                   nz-button>
             Change Password
           </button>

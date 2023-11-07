@@ -3,8 +3,8 @@
     <div>
       <button (click)="createNewProject()" nz-button nzType="text"
               class="flex items-center">
-        <div class="material-icons-outlined ">add</div>
-        <div class="lg:text-[16px] text-[14px]">Create New Project</div>
+        <div class="material-icons-outlined lg:text-button text-xs">add</div>
+        <div class="lg:text-button text-xs">Create New Project</div>
       </button>
     </div>
     <div class="ml-6 w-1/2">
@@ -13,7 +13,7 @@
           <nz-form-control>
             <nz-input-group nzSearch nzSize="large" class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl "
                             [nzPrefix]="prefixIcon">
-              <input class="bg-[#F5F5F5] text-[#52606D]" formControlName="searchKey"
+              <input class="bg-[#F5F5F5] text-[#52606D] text-input" formControlName="searchKey"
                      placeholder="Search Project" nz-input/>
             </nz-input-group>
           </nz-form-control>
@@ -54,11 +54,11 @@
             <div class="flex gap-1">
               <div (click)="data.view = !data.view"
                    class="material-icons-outlined cursor-pointer invisible
-                          group-hover:visible lg:text-[20px] text-[12px]">visibility
+                          group-hover:visible lg:text-table-row text-xs">visibility
               </div>
               <div
                 (click)="copyToClipBoard(data.token)"
-                class="material-icons-outlined cursor-pointer invisible group-hover:visible lg:text-[20px] text-[12px]">
+                class="material-icons-outlined cursor-pointer invisible group-hover:visible lg:text-table-row text-xs">
                 content_copy
               </div>
             </div>
@@ -67,24 +67,29 @@
             <div *nzModalContent>
               <div>
                 <form *ngIf="!showToken" [formGroup]="validateForm" nz-form>
-                  <div class="text-[18px] font-bold mb-1">Password :</div>
+                  <div class="text-label font-bold mb-1">Password :</div>
                   <nz-form-item class="mb-0">
                     <nz-form-control>
                       <nz-input-group class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl" nzSearch
                                       nzSize="large">
                         <input (keydown.enter)='retrieveToken(data)'
-                               class="rounded py-[10px] px-[12px] text-[#8898aa] shadow-md" formControlName="password"
+                               class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
+                               formControlName="password"
                                nz-input placeholder="Password" type="password"/>
                       </nz-input-group>
                     </nz-form-control>
                   </nz-form-item>
                 </form>
-                <div *ngIf="showToken" class="text-[14px]">{{data.token}}</div>
+                <div *ngIf="showToken" class="text-xs">{{data.token}}</div>
               </div>
             </div>
             <div *nzModalFooter>
-              <button (click)="retrieveToken(data)" *ngIf="!showToken" nz-button nzType="primary">Submit</button>
-              <button (click)="handleCloseModel(data)" *ngIf="showToken" nz-button nzType="primary">Close</button>
+              <button (click)="retrieveToken(data)" *ngIf="!showToken" class="text-button" nz-button nzType="primary">
+                Submit
+              </button>
+              <button (click)="handleCloseModel(data)" *ngIf="showToken" class="text-button" nz-button nzType="primary">
+                Close
+              </button>
             </div>
           </nz-modal>
         </td>
@@ -99,5 +104,5 @@
 </ng-template>
 
 <ng-template #prefixIcon>
-  <span class=" text-[#52606D] material-icons-outlined">search</span>
+  <span class=" text-[#52606D] material-icons-outlined text-input">search</span>
 </ng-template>

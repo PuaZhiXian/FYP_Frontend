@@ -1,51 +1,51 @@
 <div>
   <form [formGroup]="validateForm" nz-form *ngIf="!loadingPersonalInformation else loadingTpl">
     <!--Username-->
-    <div class="font-bold text-[20px]">Username</div>
+    <div class="font-bold text-label">Username</div>
     <div class="">
-      <div *ngIf="!editMode" class="text-[16px]">
+      <div *ngIf="!editMode" class="text-input">
         {{personalInformation.username}}
       </div>
       <nz-form-item *ngIf="editMode" class="grid w-1/4">
         <nz-form-control nzErrorTip="Please input your project name!">
-          <input class="rounded bg-[#D9D9D9]" formControlName="username" placeholder="Enter Project Name"
+          <input class="rounded bg-[#D9D9D9] text-input" formControlName="username" placeholder="Enter Project Name"
                  nz-input/>
         </nz-form-control>
       </nz-form-item>
     </div>
 
     <!--Email-->
-    <div class="mt-11 font-bold text-[20px]">
+    <div class="mt-4 font-bold text-label">
       Email
     </div>
     <div class="">
-      <div class="text-[16px]">
+      <div class="text-input">
         {{personalInformation.email}}
       </div>
     </div>
 
     <!--Organisation-->
-    <div class="mt-11 font-bold text-[20px]">
+    <div class="mt-4 font-bold text-label">
       Organisation
     </div>
     <div class="">
-      <div class="text-[16px]">
+      <div class="text-input">
         {{personalInformation.organisation}}
       </div>
     </div>
 
-    <div *ngIf="!editMode" class="mt-11 primary-button">
-      <button nz-button class="bg-primary-900 h-full
-                    font-bold text-[14px] text-white
-                    text-center rounded-lg" (click)="editProject()">
+    <div *ngIf="!editMode" class="mt-4 primary-button">
+      <button (click)="editProject()" class="bg-primary-900 h-full
+                    font-bold text-white
+                    text-center rounded-lg text-button" nz-button>
         Update Profile
       </button>
     </div>
-    <div *ngIf="editMode" class="mt-20 flex">
+    <div *ngIf="editMode" class="mt-4 flex">
       <div class="primary-button">
-        <button nz-button class="bg-primary-900 h-full w-full
-                        font-bold text-[14px] text-white px-[32px]
-                        text-center rounded-lg" (click)="savePersonalInformation()">
+        <button (click)="savePersonalInformation()" class="bg-primary-900 h-full w-full
+                        font-bold text-white px-[32px]
+                        text-center rounded-lg text-button" nz-button>
           Save
         </button>
       </div>
