@@ -1,25 +1,25 @@
 <div #content *ngIf="!loading">
   <!--Main API Collection -->
   <section class="p-[68px] border-b" [id]="'api'+singleAPICollection.id">
-    <div class="text-[24px] font-medium">{{singleAPICollection.api_collection_name}}</div>
+    <div class="text-doc-title font-medium">{{singleAPICollection.api_collection_name}}</div>
     <div class="lg:grid grid-cols-5 mt-[20px]">
       <div class="col-span-3 lg:mr-[68px]">
-        <div class="text-[14px] text-justify">{{singleAPICollection.description}}</div>
+        <div class="text-doc-text text-justify">{{singleAPICollection.description}}</div>
       </div>
       <div class="mt-[10px] lg:mt-0 col-span-2">
         <div class="mb-[12px]">
           <!--Header-->
-          <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
+          <div class="px-[12px] py-[10px] text-gray-500 text-xs
               font-medium bg-gray-100 border rounded-t">ENDPOINTS
           </div>
           <!--Content-->
           <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 px-[20px] py-[12px]"
                *ngFor="let endpoint of singleAPICollection.api_ids ; let i = index">
             <div class="grid grid-cols-12">
-              <div class="font-semibold text-[13px] col-span-2 text-right mr-3
+              <div class="font-semibold text-xs col-span-2 text-right mr-3
                     {{endpoint.api_method == 'GET' ? 'text-blue-500' : endpoint.api_method == 'POST' ? 'text-emerald-500':'text-rose-500'}}">{{endpoint.api_method}}</div>
               <div (click)="scrollToSection('api'+singleAPICollection.id+'endpoint'+i)"
-                   class="font-semibold text-[13px] text-gray-600 col-span-10 text-justify">{{endpoint.api_endpoint}}</div>
+                   class="font-semibold text-xs text-gray-600 col-span-10 text-justify cursor-pointer">{{endpoint.api_endpoint}}</div>
             </div>
           </div>
         </div>
@@ -29,21 +29,21 @@
 
   <!--API Object-->
   <section class="p-[68px] border-b" [id]="'api'+singleAPICollection.id+'object'">
-    <div class="text-[24px] font-medium">The {{singleAPICollection.api_collection_name}} object</div>
+    <div class="text-doc-title font-medium">The {{singleAPICollection.api_collection_name}} object</div>
     <div class="lg:grid grid-cols-5 mt-[20px]">
       <div class="col-span-3 lg:mr-[68px]">
         <!--Object attribute-->
         <div class="mt-[20px]">
-          <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Attributes</div>
+          <div class="text-label text-gray-800 font-medium pb-[12px]">Attributes</div>
           <div class="py-[16px] border-t border-gray-300"
                *ngFor="let attribute of singleAPICollection.object_id.attr_ids">
             <!--name & variable type-->
             <div class="flex items-center">
-              <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
-              <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
+              <div class="text-doc-text font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
+              <div class="text-xs font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
             </div>
             <!--description-->
-            <div class="text-[14px] text-justify ">{{attribute.attr_description}}</div>
+            <div class="text-doc-text text-justify ">{{attribute.attr_description}}</div>
             <div class="mt-[8px]" *ngIf="attribute.child_attr_ids">
               <child-attribute title="child attribute" [childObject]="attribute.child_attr_ids"></child-attribute>
             </div>
@@ -54,13 +54,13 @@
         <!--Sample Json-->
         <div class="mb-[12px] sticky top-0">
           <!--Header-->
-          <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
+          <div class="px-[12px] py-[10px] text-gray-500 text-xs
               font-medium bg-gray-100 border rounded-t">The {{singleAPICollection.api_collection_name}} object
           </div>
           <!--Content-->
           <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 max-h-[400px]">
           <pre class="light"><code
-            class="language-json h-[210px] text-[13px]">{{singleAPICollection.object_id.object}}</code></pre>
+            class="language-json h-[210px] text-xs">{{singleAPICollection.object_id.object}}</code></pre>
           </div>
         </div>
       </div>
@@ -70,27 +70,27 @@
   <!--API Endpoints-->
   <section class="p-[68px] border-b" *ngFor="let api of singleAPICollection.api_ids ; let i = index"
            [id]="'api'+singleAPICollection.id+'endpoint'+ i">
-    <div class="text-[24px] font-medium">{{api.api_name}}</div>
+    <div class="text-doc-title font-medium">{{api.api_name}}</div>
     <div class="lg:grid grid-cols-5 mt-[20px]">
       <div class="col-span-3 lg:mr-[68px]">
         <!--Endpoint description-->
-        <div class="text-[14px] text-justify">{{api.api_description}}</div>
+        <div class="text-doc-text text-justify">{{api.api_description}}</div>
         <!--parameter attribute-->
         <div class="mt-[20px]">
-          <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Parameters</div>
+          <div class="text-label text-gray-800 font-medium pb-[12px]">Parameters</div>
           <div class="py-[16px] border-t border-gray-300" *ngFor="let attribute of api.api_param_ids">
             <!--name & variable type-->
             <div class="flex items-center">
-              <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
-              <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
+              <div class="text-doc-text font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
+              <div class="text-xs font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
             </div>
             <!--description-->
-            <div class="text-[14px] text-justify ">{{attribute.attr_description}}</div>
+            <div class="text-doc-text text-justify ">{{attribute.attr_description}}</div>
             <div class="mt-[8px]" *ngIf="attribute.child_attr_ids">
               <child-attribute title="child attribute" [childObject]="attribute.child_attr_ids"></child-attribute>
             </div>
           </div>
-          <div class="py-[16px] text-[12px] text-gray-400 font-normal border-t border-gray-300"
+          <div class="py-[16px] text-xs text-gray-400 font-normal border-t border-gray-300"
                *ngIf="!api.api_param_ids">
             No parameters
           </div>
@@ -99,8 +99,8 @@
 
         <!--Return-->
         <div class="mt-[20px]">
-          <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Return</div>
-          <div class="text-[14px] text-justify py-[16px] border-t border-gray-300">{{api.api_return}}</div>
+          <div class="text-label text-gray-800 font-medium pb-[12px]">Return</div>
+          <div class="text-doc-text text-justify py-[16px] border-t border-gray-300">{{api.api_return}}</div>
         </div>
 
       </div>
@@ -116,13 +116,13 @@
           <!--Response Json-->
           <div class="mb-[12px]">
             <!--Header-->
-            <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
+            <div class="px-[12px] py-[10px] text-gray-500 text-xs
               font-medium bg-gray-100 border rounded-t">Response
             </div>
             <!--Content-->
             <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 max-h-[400px]">
               <pre class="light"><code
-                class="language-json h-[210px] text-[13px]">{{api.api_response_json}}</code></pre>
+                class="language-json h-[210px] text-xs">{{api.api_response_json}}</code></pre>
             </div>
           </div>
         </div>

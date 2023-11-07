@@ -1,6 +1,6 @@
 <div *ngIf="!loading">
   <div class="rounded-t flex items-center justify-between bg-[#3c4257]">
-    <div class="text-[12px] font-medium pr-[12px] pl-[8px] py-[8px] text-white">{{title}}</div>
+    <div class="text-xs font-medium pr-[12px] pl-[8px] py-[8px] text-white">{{title}}</div>
     <div class="flex items-center">
       <div class="content-center">
         <nz-select #mySelect [ngModel]="programmingLanguage" (ngModelChange)="switchLanguage($event)" nzBorderless
@@ -10,12 +10,12 @@
         </nz-select>
       </div>
       <div class="px-[12px]">
-        <span class=" text-white material-icons-outlined text-[18px] cursor-pointer" (click)="copyToClipBoard()">content_copy</span>
+        <span (click)="copyToClipBoard()" class=" text-white material-icons-outlined text-label cursor-pointer">content_copy</span>
       </div>
     </div>
   </div>
   <div class="max-h-[200px]">
-    <pre class="dark"><code class="language-{{programmingLanguage}} text-[13px] rounded-b">{{code}}</code></pre>
+    <pre class="dark"><code class="language-{{programmingLanguage}} text-xs rounded-b">{{code}}</code></pre>
   </div>
 </div>
 

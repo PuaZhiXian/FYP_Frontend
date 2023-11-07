@@ -6,20 +6,20 @@
     <div class="my-10">
       <form [formGroup]="validateForm" nz-form>
         <div>
-          <div class="text-base my-2">Project Name</div>
+          <div class="text-label my-2">Project Name</div>
           <nz-form-item class="grid w-3/4 ">
             <nz-form-control nzErrorTip="Please input your project name!">
-              <input class="rounded bg-[#D9D9D9]" formControlName="project_name" nz-input
+              <input class="rounded bg-[#D9D9D9] text-input" formControlName="project_name" nz-input
                      placeholder="Enter Project Name"/>
             </nz-form-control>
           </nz-form-item>
         </div>
         <div class="my-10">
           <nz-form-item class="grid w-3/4">
-            <div class="text-base my-2">Project Description</div>
+            <div class="text-label my-2">Project Description</div>
             <nz-form-control nzErrorTip="Please input your project description!">
               <div class="">
-              <textarea rows="4" nz-input class="rounded bg-[#D9D9D9]" formControlName="description"
+              <textarea class="rounded bg-[#D9D9D9] text-input" formControlName="description" nz-input rows="4"
                         placeholder="Enter Project Description"></textarea>
               </div>
             </nz-form-control>
@@ -28,16 +28,16 @@
 
         <div class="my-10">
           <nz-form-item *ngIf="!loadingForm else loadingTpl" class="grid w-3/4">
-            <div class="text-base my-2">Select API Collection List</div>
+            <div class="text-subtitle my-2">Select API Collection List</div>
             <nz-form-control>
               <nz-checkbox-wrapper (nzOnChange)="updateSelectedApiCollection($event)" class="w-full">
                 <div *ngFor=" let api of apiCollection">
-                  <div class="text-[16px]">{{api.category_name}}</div>
+                  <div class="text-label">{{api.category_name}}</div>
                   <div *ngFor="let singleApi of api.api_collections" class="my-[10px]">
                     <div class="flex items-center big-checkbox">
                       <div [nzValue]="singleApi.id" nz-checkbox></div>
                       <div class="ml-[8px]">
-                        <div class="text-base text-[#616161]">{{singleApi.api_collection_name}}</div>
+                        <div class="text-sm text-[#616161]">{{singleApi.api_collection_name}}</div>
                         <div class="text-xs text-[#7B8794] text-justify">{{singleApi.description}}</div>
                       </div>
                     </div>
@@ -49,9 +49,9 @@
         </div>
       </form>
 
-      <div class="">
+      <div class="my-4">
         <button (click)="submit()" class="bg-primary-900 h-full
-                    font-bold text-[14px] py-2.5 text-white px-[32px]
+                    font-bold text-button text-white px-[32px]
                     text-center rounded-lg" nz-button>
           Submit
         </button>

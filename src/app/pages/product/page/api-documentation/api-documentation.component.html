@@ -7,11 +7,11 @@
       <ul nz-menu nzMode="inline" nzTheme="dark">
         <li (click)="scrollToSection(general)" *ngFor="let general of general" nz-menu-item>
           <span nz-icon nzType="pie-chart"></span>
-          <span>{{general}}</span>
+          <span class="text-side-header">{{general}}</span>
         </li>
         <li *ngFor="let docs of documentation" [nzTitle]="heading" nz-submenu nzIcon="team">
           <ng-template #heading>
-            <div class="whitespace-normal leading-none w-[120px] pl-[10px] text-[12px] font-semibold">
+            <div class="whitespace-normal leading-none w-[120px] pl-[10px] text-side-sub font-semibold">
               {{docs.category_name}}
             </div>
           </ng-template>
@@ -19,20 +19,20 @@
             <li *ngFor="let subdocs of docs.api_collections" [nzTitle]="subdocsHeading" nz-submenu>
               <ng-template #subdocsHeading>
                 <div (click)="scrollToSection('api'+subdocs.id)"
-                     class="whitespace-normal leading-none w-[120px] text-[14px] font-medium">
+                     class="whitespace-normal leading-none w-[120px] text-side-sub font-medium">
                   {{subdocs.api_collection_name}}
                 </div>
               </ng-template>
               <ul>
-                <li (click)="scrollToSection('api'+subdocs.id+'object')" class="text-[14px] font-medium" nz-menu-item>
-                  <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">
+                <li (click)="scrollToSection('api'+subdocs.id+'object')" class="text-side-sub font-medium" nz-menu-item>
+                  <p class="text-side-sub font-medium whitespace-normal leading-[15px] w-full">
                     The {{subdocs.api_collection_name}}
                     objects</p>
                 </li>
                 <li (click)="scrollToSection('api'+subdocs.id+'endpoint'+i)"
                     *ngFor="let anchor of subdocs.api_ids ; let i = index"
                     nz-menu-item>
-                  <p class="text-[14px] font-medium whitespace-normal leading-[15px] w-full">{{anchor.api_name}}</p>
+                  <p class="text-side-sub font-medium whitespace-normal leading-[15px] w-full">{{anchor.api_name}}</p>
                 </li>
               </ul>
             </li>
@@ -54,26 +54,26 @@
         <div #content>
           <!--Introduction-->
           <section class="p-[68px] border-b" id="Introduction">
-            <div class="text-[24px] font-medium">API Reference</div>
+            <div class="text-doc-title font-medium">API Reference</div>
             <div class="lg:grid grid-cols-5 mt-[20px]">
               <div class="col-span-3 lg:mr-[68px]">
-                <div class="text-[16px] mb-[24px] text-justify">
+                <div class="text-doc-text mb-[24px] text-justify">
                   The Stripe API is organized around REST. Our API has predictable resource-oriented URLs, accepts
                   form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes,
                   authentication, and verbs.
                 </div>
 
-                <div class="text-[14px] text-justify mt-[20px]">
+                <div class="text-doc-text text-justify mt-[20px]">
                   You can use the Stripe API in test mode, which doesn't affect your live data or interact with the
                   banking
                   networks. The API key you use to authenticate the request determines whether the request is live mode
                   or
                   test mode.
                 </div>
-                <div class="text-[14px] text-justify mt-[20px]">
+                <div class="text-doc-text text-justify mt-[20px]">
                   The Stripe API doesn't support bulk updates. You can work on only one object per request.
                 </div>
-                <div class="text-[14px] text-justify mt-[20px]">
+                <div class="text-doc-text text-justify mt-[20px]">
                   The Stripe API differs for every account as we release new versions and tailor functionality. Log in
                   to
                   see docs customized to your version of the API, with your test key and data.
@@ -82,14 +82,14 @@
               <div class="mt-[10px] lg:mt-0 col-span-2">
                 <div>
                   <div class="mb-[24px]">
-                    <div class="text-[14px] font-semibold">JUST GETTING STARTED?</div>
-                    <div class="mt-[12px] text-[16px] text-gray-500 text-justify">Check out our development quickstart
+                    <div class="text-label font-semibold">JUST GETTING STARTED?</div>
+                    <div class="mt-doc-text text-[16px] text-gray-500 text-justify">Check out our development quickstart
                       guide.
                     </div>
                   </div>
                   <div class="mb-[24px]">
-                    <div class="text-[14px] font-semibold">NOT A DEVELOPER?</div>
-                    <div class="mt-[12px] text-[16px] text-gray-500 text-justify">Use Stripe’s no-code options or apps
+                    <div class="text-label font-semibold">NOT A DEVELOPER?</div>
+                    <div class="mt-[12px] text-doc-text text-gray-500 text-justify">Use Stripe’s no-code options or apps
                       from
                       our partners to get started with Stripe and to do more with your Stripe account—no code required.
                     </div>
@@ -104,7 +104,7 @@
                         <div class="flex justify-center h-[24px]">
                           <img [src]="languageOptions.option" height="24" width="24">
                         </div>
-                        <div class="mt-[8px] text-center text-[12px] font-semibold">{{languageOptions.label}}</div>
+                        <div class="mt-[8px] text-center text-xs font-semibold">{{languageOptions.label}}</div>
                       </div>
                     </div>
                     <code-editor (programmingLanguageChange)="switchLanguage($event)" *ngIf="!updatingCodeEditor"
@@ -118,35 +118,35 @@
           </section>
           <!--Authentication-->
           <section class="p-[68px] border-b" id="Authentication">
-            <div class="text-[24px] font-medium">Authentication</div>
+            <div class="text-doc-title font-medium">Authentication</div>
             <div class="lg:grid grid-cols-5 mt-[20px]">
               <div class="col-span-3 lg:mr-[68px]">
-                <div class="text-[14px] text-justify">
+                <div class="text-doc-text text-justify">
                   The Stripe API uses API keys to authenticate requests. You can view and manage your API keys in the
                   Stripe
                   Dashboard.
                 </div>
-                <div class="text-[14px] text-justify mt-[20px]">
+                <div class="text-doc-text text-justify mt-[20px]">
                   Test mode secret keys have the prefix sk_test_ and live mode secret keys have the prefix sk_live_.
                   Alternatively, you can use restricted API keys for granular permissions.
                 </div>
-                <div class="text-[14px] text-justify mt-[20px]">
+                <div class="text-doc-text text-justify mt-[20px]">
                   Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys
                   in
                   publicly accessible areas such as GitHub, client-side code, and so forth.
                 </div>
-                <div class="text-[14px] text-justify mt-[20px]">
+                <div class="text-doc-text text-justify mt-[20px]">
                   Use your API key by assigning it to Stripe.api_key. The Ruby library will then automatically send this
                   key
                   in each request.
                 </div>
-                <div class="text-[14px] text-justify mt-[20px]">
+                <div class="text-doc-text text-justify mt-[20px]">
                   You can also set a per-request key with an option. This is often useful for Connect applications that
                   use
                   multiple API keys during the lifetime of a process. Methods on the returned object reuse the same API
                   key.
                 </div>
-                <div class="text-[14px] text-justify mt-[20px]">
+                <div class="text-doc-text text-justify mt-[20px]">
                   All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without
                   authentication will also fail.
                 </div>
@@ -162,11 +162,11 @@
           </section>
           <!--Errors-->
           <section class="p-[68px] border-b" id="Errors">
-            <div class="text-[24px] font-medium">Errors</div>
+            <div class="text-doc-title font-medium">Errors</div>
             <div class="lg:grid grid-cols-5 mt-[20px]">
               <div class="col-span-3 lg:mr-[68px]">
                 <div>
-                  <div class="text-[14px] text-justify">
+                  <div class="text-doc-text text-justify">
                     Stripe uses conventional HTTP response codes to indicate the success or failure of an API request.
                     In
                     general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that
@@ -177,7 +177,7 @@
                     5xx
                     range indicate an error with Stripe's servers (these are rare).
                   </div>
-                  <div class="text-[14px] text-justify mt-[20px]">
+                  <div class="text-doc-text text-justify mt-[20px]">
                     Some 4xx errors that could be handled programmatically (e.g., a card is declined) include an error
                     code
                     that
@@ -185,15 +185,15 @@
                   </div>
                 </div>
                 <div class="mt-[20px]">
-                  <div class="text-[16px] text-gray-800 font-medium pb-[12px]">Attributes</div>
+                  <div class="text-label text-gray-800 font-medium pb-[12px]">Attributes</div>
                   <div *ngFor="let attribute of errorObject" class="py-[16px] border-t border-gray-300">
                     <!--name & variable type-->
                     <div class="flex items-center">
-                      <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
-                      <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
+                      <div class="text-doc-text font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
+                      <div class="text-xs font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
                     </div>
                     <!--description-->
-                    <div class="text-[14px] text-justify ">{{attribute.attr_description}}</div>
+                    <div class="text-doc-text text-justify ">{{attribute.attr_description}}</div>
                     <div *ngIf="attribute.child_attr_ids" class="mt-[8px]">
                       <child-attribute [childObject]="attribute.child_attr_ids"
                                        title="child attribute"></child-attribute>
@@ -205,32 +205,32 @@
                 <!--HTTP STATUS CODE SUMMARY-->
                 <div class="mb-[12px]">
                   <!--Header-->
-                  <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
+                  <div class="px-[12px] py-[10px] text-gray-500 text-xs
               font-medium bg-gray-100 border rounded-t"> HTTP STATUS CODE SUMMARY
                   </div>
                   <!--Content-->
                   <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 px-[15px] py-[16px]">
                     <div *ngFor="let errorCode of httpStatusCodeSummaries" class="grid grid-cols-3 gap-[40px]">
                       <div
-                        class="font-semibold text-[13px] text-gray-600 col-span-1 text-right">{{errorCode.code}}</div>
+                        class="font-semibold text-xs text-gray-600 col-span-1 text-right">{{errorCode.code}}</div>
                       <div
-                        class="font-semibold text-[13px] text-gray-600 col-span-2 text-justify">{{errorCode.description}}</div>
+                        class="font-semibold text-xs text-gray-600 col-span-2 text-justify">{{errorCode.description}}</div>
                     </div>
                   </div>
                 </div>
                 <!--ERROR TYPES-->
                 <div class="mb-[12px]">
                   <!--Header-->
-                  <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
+                  <div class="px-[12px] py-[10px] text-gray-500 text-xs
               font-medium bg-gray-100 border rounded-t">ERROR TYPES
                   </div>
                   <!--Content-->
                   <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 px-[15px] py-[16px]">
                     <div *ngFor="let errorType of errorTypes" class="grid grid-cols-3 gap-[40px]">
                       <div
-                        class="font-semibold text-[13px] text-gray-600 col-span-1 text-right">{{errorType.code}}</div>
+                        class="font-semibold text-xs text-gray-600 col-span-1 text-right">{{errorType.code}}</div>
                       <div
-                        class="font-semibold text-[13px] text-gray-600 col-span-2 text-justify">{{errorType.description}}</div>
+                        class="font-semibold text-xs text-gray-600 col-span-2 text-justify">{{errorType.description}}</div>
                     </div>
                   </div>
                 </div>

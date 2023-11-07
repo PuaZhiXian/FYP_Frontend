@@ -21,6 +21,10 @@ module.exports = {
       'title': '38px',
       'subtitle': '18px',
       'header': '20px',
+      'side-header': '14px',
+      'side-sub': '12px',
+      'doc-title': '24px',
+      'doc-text': '14px'
     },
     extend: {
       colors: {
