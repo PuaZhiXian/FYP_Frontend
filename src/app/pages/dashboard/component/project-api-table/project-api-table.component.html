@@ -51,11 +51,12 @@
         <td class="lg:text-[20px] text-[12px] group">
           <div class="flex items-center justify-between">
             <div
-              class="cursor-default lg:text-[20px] text-[12px] truncate ">{{ data.view ? data.token : '**************'}}</div>
+              class="cursor-default lg:text-[20px] text-[12px] truncate ">**************
+            </div>
             <div class="flex gap-1">
-              <div (click)="data.view = data.view ? !data.view : true"
+              <div (click)="tokenModelVisibility = !tokenModelVisibility"
                    class="material-icons-outlined cursor-pointer invisible
-                          group-hover:visible lg:text-[20px] text-[12px]">{{data.view ? 'visibility_off' : 'visibility'}}
+                          group-hover:visible lg:text-[20px] text-[12px]">visibility
               </div>
               <div
                 (click)="copyToClipBoard(data.token)"
@@ -63,9 +64,31 @@
                 content_copy
               </div>
             </div>
-
-
           </div>
+          <nz-modal (nzOnCancel)="handleCloseModel()" [nzVisible]="tokenModelVisibility" nzTitle="Project Token">
+            <div *nzModalContent>
+              <div>
+                <form *ngIf="!showToken" [formGroup]="validateForm" nz-form>
+                  <div class="text-[18px] font-bold mb-1">Password :</div>
+                  <nz-form-item class="mb-0">
+                    <nz-form-control>
+                      <nz-input-group class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl" nzSearch
+                                      nzSize="large">
+                        <input (keydown.enter)='retrieveToken()'
+                               class="rounded py-[10px] px-[12px] text-[#8898aa] shadow-md" formControlName="password"
+                               nz-input placeholder="Password" type="password"/>
+                      </nz-input-group>
+                    </nz-form-control>
+                  </nz-form-item>
+                </form>
+                <div *ngIf="showToken" class="text-[14px]">{{data.token}}</div>
+              </div>
+            </div>
+            <div *nzModalFooter>
+              <button (click)="retrieveToken()" *ngIf="!showToken" nz-button nzType="primary">Submit</button>
+              <button (click)="handleCloseModel()" *ngIf="showToken" nz-button nzType="primary">Close</button>
+            </div>
+          </nz-modal>
         </td>
       </tr>
       </tbody>

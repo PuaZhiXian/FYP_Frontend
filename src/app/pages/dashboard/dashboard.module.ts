@@ -12,6 +12,7 @@ import {ProjectApiTableComponent} from './component/project-api-table/project-ap
 import {NzFormModule} from "ng-zorro-antd/form";
 import {AnnouncementComponent} from './component/announcement/announcement.component';
 import {HeaderModule} from "../header/header.module";
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {HeaderModule} from "../header/header.module";
     NzSkeletonModule,
     NzFormModule,
     ReactiveFormsModule,
-    HeaderModule
+    HeaderModule,
+    NzModalModule
   ],
   exports: [
     DashboardComponent

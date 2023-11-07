@@ -8,6 +8,9 @@ import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {IApiCollectionDetail} from "../../../../interface/api-collection/i-api-collection-detail";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
 import {CommonService} from "../../../../service/common/common.service";
+import {VendorService} from "../../../../service/vendor/vendor.service";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 
 @Component({
   selector: 'project-api-table',
@@ -17,13 +20,7 @@ import {CommonService} from "../../../../service/common/common.service";
 })
 export class ProjectApiTableComponent implements OnInit {
 
-  constructor(private router: Router,
-              private fb: UntypedFormBuilder,
-              private projectService: ProjectService,
-              private apiCollectionService: ApiCollectionService,
-              private ref: ChangeDetectorRef,
-              private commonService: CommonService) {
-  }
+  tokenModelVisibility: boolean = false;
 
   @Input() isProject: boolean = true;
 
@@ -36,6 +33,18 @@ export class ProjectApiTableComponent implements OnInit {
   filteredApiCollectionData: IApiCollectionDetail[] = [];
 
   validateForm!: UntypedFormGroup;
+  showToken: boolean = false;
+
+  constructor(private router: Router,
+              private fb: UntypedFormBuilder,
+              private projectService: ProjectService,
+              private apiCollectionService: ApiCollectionService,
+              private ref: ChangeDetectorRef,
+              private commonService: CommonService,
+              private vendorService: VendorService,
+              private message: NzMessageService,
+              private authorizationService: AuthorizationService) {
+  }
 
   ngOnInit(): void {
     this.initTable();
@@ -166,7 +175,8 @@ export class ProjectApiTableComponent implements OnInit {
 
   initForm() {
     this.validateForm = this.fb.group({
-      searchKey: [null, []]
+      searchKey: [null, []],
+      password: [null, []]
     });
   }
 
@@ -204,5 +214,45 @@ export class ProjectApiTableComponent implements OnInit {
 
   copyToClipBoard(token: string) {
     this.commonService.copyToClipboard(token);
+  }
+
+  retrieveToken() {
+    if (this.validateForm.value.password) {
+      this.vendorService.getVendorProfile()
+        .pipe((finalize(() => {
+          this.validateForm.reset();
+          this.ref.markForCheck();
+          this.ref.detectChanges();
+        })))
+        .subscribe((resp) => {
+          let email = resp.email;
+          this.authorizationService.login({
+            email: email,
+            password: this.validateForm.value.password,
+            organisation: ''
+          }).subscribe((resp) => {
+            if (resp.message) {
+              this.showToken = true;
+              this.ref.markForCheck();
+              this.ref.detectChanges();
+            } else if (resp.error) {
+              this.message.error(resp.error)
+              this.showToken = false;
+            }
+          })
+        })
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({onlySelf: true});
+        }
+      });
+    }
+  }
+
+  handleCloseModel() {
+    this.tokenModelVisibility = false;
+    this.showToken = false;
   }
 }
