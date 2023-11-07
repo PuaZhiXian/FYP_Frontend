@@ -1,4 +1,4 @@
-<div #content>
+<div #content *ngIf="!loading">
   <!--Main API Collection -->
   <section class="p-[68px] border-b" [id]="'api'+singleAPICollection.id">
     <div class="text-[24px] font-medium">{{singleAPICollection.api_collection_name}}</div>
@@ -52,7 +52,7 @@
       </div>
       <div class="mt-[10px] lg:mt-0 col-span-2">
         <!--Sample Json-->
-        <div class="mb-[12px]" *ngIf="!loading">
+        <div class="mb-[12px]">
           <!--Header-->
           <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
               font-medium bg-gray-100 border rounded-t">The {{singleAPICollection.api_collection_name}} object
@@ -113,10 +113,10 @@
                        [programmingLanguage]="programmingLanguage" [code]="api.api_req_code"></code-editor>
         </div>
         <!--Response Json-->
-        <div class="mb-[12px]" *ngIf="!loading">
+        <div class="mb-[12px]">
           <!--Header-->
           <div class="px-[12px] py-[10px] text-gray-500 text-[12px]
-              font-medium bg-gray-100 border rounded-t">ENDPOINTS
+              font-medium bg-gray-100 border rounded-t">Response
           </div>
           <!--Content-->
           <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 max-h-[400px]">
