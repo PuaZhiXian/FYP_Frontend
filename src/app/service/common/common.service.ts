@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {CommonRestService} from "../../restService/common/common-rest.service";
 import {IAnnouncement} from "../../interface/common/i-announcement";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
-  constructor(private commonRestService: CommonRestService,) {
+  constructor(private commonRestService: CommonRestService,
+              private message: NzMessageService,) {
   }
 
   getAnnouncement(): Observable<IAnnouncement> {
@@ -38,6 +40,7 @@ export class CommonService {
         textArea.remove();
       }
     }
+    this.message.success('Copied to Clipboard')
   }
 
 
