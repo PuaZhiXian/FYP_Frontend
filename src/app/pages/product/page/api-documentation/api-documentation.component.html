@@ -4,7 +4,6 @@
   </div>
   <nz-layout *ngIf="!loadingDocumentation else loadingTpl" class="bg-[#001529]">
     <nz-sider [nzCollapsedWidth]="0" class="sticky top-0 xl:block hidden" nzCollapsible nzWidth="220px">
-      <div class="logo"></div>
       <ul nz-menu nzMode="inline" nzTheme="dark">
         <li (click)="scrollToSection(general)" *ngFor="let general of general" nz-menu-item>
           <span nz-icon nzType="pie-chart"></span>
