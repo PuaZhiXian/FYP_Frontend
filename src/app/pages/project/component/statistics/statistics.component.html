@@ -1,12 +1,11 @@
 <div>
   <div class="font-bold text-[20px]">Api Log Access</div>
   <div class="my-6" *ngIf="!loadingTable; else loadingTpl">
-    <nz-table nzBordered #filterTable [nzData]="tableData" class="border-r-003169"
+    <nz-table #filterTable [nzData]="tableData"
               nzTableLayout="fixed">
       <thead>
       <tr class="trid">
         <th *ngFor="let column of listOfColumns"
-            nzAlign='center'
             [nzShowSort]="!(column.sortFn === null)"
             [nzSortOrder]="column.sortOrder"
             [nzSortFn]="column.sortFn"

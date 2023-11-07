@@ -23,12 +23,11 @@
   </div>
 
   <div class="my-6" *ngIf="!loadingTable; else loadingTpl">
-    <nz-table *ngIf="isProject" nzBordered #filterTable [nzData]="filteredProjectData"
+    <nz-table #filterTable *ngIf="isProject" [nzData]="filteredProjectData"
               nzTableLayout="fixed">
       <thead>
       <tr class="trid">
         <th *ngFor="let column of listOfColumns"
-            nzAlign='center'
             [nzShowSort]="!(column.sortFn === null)"
             [nzSortOrder]="column.sortOrder"
             [nzSortFn]="column.sortFn"
@@ -40,7 +39,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let data of filterTable.data; let i = index" class="bg-[#CAE5FF] hover:bg-[#10064D]">
+      <tr *ngFor="let data of filterTable.data; let i = index" class=" hover:bg-[#F5F5F5]">
         <td class="cursor-pointer lg:text-[20px] text-[12px]" (click)="openProjectDetailPage(data.id)">{{ i + 1}}</td>
         <td (click)="openProjectDetailPage(data.id)"
             class="cursor-pointer lg:text-[20px] text-[12px]">{{ data.project_name }}</td>
