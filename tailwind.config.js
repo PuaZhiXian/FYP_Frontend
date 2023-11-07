@@ -8,10 +8,14 @@ module.exports = {
   ],
   theme: {
     fontSize: {
-      sm: '16px',
       base: '20px',
-      md:'32px',
-      lg:'58px'
+      md: '32px',
+      lg: '58px',
+      'table-row': '16px',
+      'table-header': '18px',
+      'xs': '12px',
+      'sm': '16px'
+
     },
     extend: {
       colors: {

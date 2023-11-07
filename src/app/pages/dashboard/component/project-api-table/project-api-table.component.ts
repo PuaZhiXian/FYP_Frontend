@@ -22,8 +22,6 @@ export class ProjectApiTableComponent implements OnInit {
 
   tokenModelVisibility: boolean = false;
 
-  @Input() isProject: boolean = true;
-
   projectData: ProjectOverview[] = [];
   filteredProjectData: ProjectOverview[] = [];
   listOfColumns !: ColumnItem[];
@@ -48,13 +46,9 @@ export class ProjectApiTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.initTable();
-    if (this.isProject) {
-      this.initProject();
-      this.initForm();
-      this.changeHandler();
-    } else {
-      this.initApiCollection();
-    }
+    this.initProject();
+    this.initForm();
+    this.changeHandler();
   }
 
   initProject() {
@@ -84,93 +78,58 @@ export class ProjectApiTableComponent implements OnInit {
   }
 
   initTable() {
-    if (this.isProject) {
-      this.listOfColumns = [
-        {
-          name: 'Id',
-          sortOrder: null,
-          sortFn: (a: ProjectOverview, b: ProjectOverview) => a.id.localeCompare(b.id),
-          sortDirections: [],
-          filterMultiple: false,
-          listOfFilter: [],
-          filterFn: null,
-          width: '80px',
-        },
-        {
-          name: 'Project Name',
-          sortOrder: null,
-          sortFn: (a: ProjectOverview, b: ProjectOverview) => a.project_name.localeCompare(b.project_name),
-          sortDirections: ['ascend', 'descend', null],
-          filterMultiple: false,
-          listOfFilter: [],
-          filterFn: null,
-          width: null
-        },
-        {
-          name: 'Project Description',
-          sortOrder: null,
-          sortFn: null,
-          sortDirections: [],
-          filterMultiple: false,
-          listOfFilter: [],
-          filterFn: null,
-          width: null
-        },
-        {
-          name: 'Project Creation Date',
-          sortOrder: null,
-          sortFn: (a: ProjectOverview, b: ProjectOverview) => a.createdAt.toISOString().localeCompare(b.createdAt.toISOString()),
-          sortDirections: ['ascend', 'descend', null],
-          filterMultiple: false,
-          listOfFilter: [],
-          filterFn: null,
-          width: null
-        },
-        {
-          name: 'Token',
-          sortOrder: null,
-          sortFn: null,
-          sortDirections: [],
-          filterMultiple: false,
-          listOfFilter: [],
-          filterFn: null,
-          width: null
-        }
-      ];
-    } else {
-      this.listOfColumns = [
-        {
-          name: 'No',
-          sortOrder: null,
-          sortFn: (a: IApiCollectionDetail, b: IApiCollectionDetail) => (a.id - b.id),
-          sortDirections: [],
-          filterMultiple: false,
-          listOfFilter: [],
-          filterFn: null,
-          width: '80px',
-        },
-        {
-          name: 'API Collection Name',
-          sortOrder: null,
-          sortFn: (a: IApiCollectionDetail, b: IApiCollectionDetail) => a.api_collection_name.localeCompare(b.api_collection_name),
-          sortDirections: ['ascend', 'descend', null],
-          filterMultiple: false,
-          listOfFilter: [],
-          filterFn: null,
-          width: '800px'
-        },
-        {
-          name: 'Status',
-          sortOrder: null,
-          sortFn: null,
-          sortDirections: [],
-          filterMultiple: false,
-          listOfFilter: [],
-          filterFn: null,
-          width: null
-        }
-      ]
-    }
+    this.listOfColumns = [
+      {
+        name: 'Id',
+        sortOrder: null,
+        sortFn: (a: ProjectOverview, b: ProjectOverview) => a.id.localeCompare(b.id),
+        sortDirections: [],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: '80px',
+      },
+      {
+        name: 'Project Name',
+        sortOrder: null,
+        sortFn: (a: ProjectOverview, b: ProjectOverview) => a.project_name.localeCompare(b.project_name),
+        sortDirections: ['ascend', 'descend', null],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: null
+      },
+      {
+        name: 'Project Description',
+        sortOrder: null,
+        sortFn: null,
+        sortDirections: [],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: null
+      },
+      {
+        name: 'Project Creation Date',
+        sortOrder: null,
+        sortFn: (a: ProjectOverview, b: ProjectOverview) => a.createdAt.toISOString().localeCompare(b.createdAt.toISOString()),
+        sortDirections: ['ascend', 'descend', null],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: null
+      },
+      {
+        name: 'Token',
+        sortOrder: null,
+        sortFn: null,
+        sortDirections: [],
+        filterMultiple: false,
+        listOfFilter: [],
+        filterFn: null,
+        width: null
+      }
+    ];
   }
 
   initForm() {
@@ -208,15 +167,11 @@ export class ProjectApiTableComponent implements OnInit {
     this.router.navigate(['/', 'project', projectId])
   }
 
-  subscribeNewProduct() {
-
-  }
-
   copyToClipBoard(token: string) {
     this.commonService.copyToClipboard(token);
   }
 
-  retrieveToken() {
+  retrieveToken(projectOverview: ProjectOverview) {
     if (this.validateForm.value.password) {
       this.vendorService.getVendorProfile()
         .pipe((finalize(() => {
@@ -232,6 +187,7 @@ export class ProjectApiTableComponent implements OnInit {
             organisation: ''
           }).subscribe((resp) => {
             if (resp.message) {
+              projectOverview.view = true;
               this.showToken = true;
               this.ref.markForCheck();
               this.ref.detectChanges();
@@ -251,8 +207,9 @@ export class ProjectApiTableComponent implements OnInit {
     }
   }
 
-  handleCloseModel() {
+  handleCloseModel(projectOverview: ProjectOverview) {
     this.tokenModelVisibility = false;
+    projectOverview.view = false;
     this.showToken = false;
   }
 }

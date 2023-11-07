@@ -1,13 +1,13 @@
 <div class="my-11">
   <div class="flex items-center">
     <div>
-      <button nz-button nzType="text" (click)="isProject?  createNewProject(): subscribeNewProduct()"
+      <button (click)="createNewProject()" nz-button nzType="text"
               class="flex items-center">
         <div class="material-icons-outlined ">add</div>
-        <div class="lg:text-[16px] text-[14px]">{{isProject ? 'Create New Project' : 'Subscribe new products'}}</div>
+        <div class="lg:text-[16px] text-[14px]">Create New Project</div>
       </button>
     </div>
-    <div class="ml-6 w-1/2" *ngIf="isProject">
+    <div class="ml-6 w-1/2">
       <form nz-form [formGroup]="validateForm">
         <nz-form-item class="mb-0">
           <nz-form-control>
@@ -21,9 +21,8 @@
       </form>
     </div>
   </div>
-
   <div class="my-6" *ngIf="!loadingTable; else loadingTpl">
-    <nz-table #filterTable *ngIf="isProject" [nzData]="filteredProjectData"
+    <nz-table #filterTable [nzData]="filteredProjectData"
               nzTableLayout="fixed">
       <thead>
       <tr class="trid">
@@ -32,7 +31,7 @@
             [nzSortOrder]="column.sortOrder"
             [nzSortFn]="column.sortFn"
             [nzWidth]="column.width"
-            class="lg:text-[20px] text-[12px]"
+            class="lg:text-table-header text-xs"
             [nzSortDirections]="column.sortDirections">
           {{column.name}}
         </th>
@@ -40,20 +39,20 @@
       </thead>
       <tbody>
       <tr *ngFor="let data of filterTable.data; let i = index" class=" hover:bg-[#F5F5F5]">
-        <td class="cursor-pointer lg:text-[20px] text-[12px]" (click)="openProjectDetailPage(data.id)">{{ i + 1}}</td>
+        <td (click)="openProjectDetailPage(data.id)" class="cursor-pointer lg:text-table-row text-xs">{{ i + 1}}</td>
         <td (click)="openProjectDetailPage(data.id)"
-            class="cursor-pointer lg:text-[20px] text-[12px]">{{ data.project_name }}</td>
+            class="cursor-pointer lg:text-table-row text-xs">{{ data.project_name }}</td>
         <td (click)="openProjectDetailPage(data.id)"
-            class="cursor-pointer lg:text-[20px] text-[12px]">{{ data.description }}</td>
-        <td class="cursor-pointer lg:text-[20px] text-[12px]"
+            class="cursor-pointer lg:text-table-row text-xs">{{ data.description }}</td>
+        <td class="cursor-pointer lg:text-table-row text-xs"
             (click)="openProjectDetailPage(data.id)">{{ data.createdAt |date : 'd MMMM y' }}</td>
-        <td class="lg:text-[20px] text-[12px] group">
+        <td class="lg:text-table-row text-xs group">
           <div class="flex items-center justify-between">
             <div
               class="cursor-default lg:text-[20px] text-[12px] truncate ">**************
             </div>
             <div class="flex gap-1">
-              <div (click)="tokenModelVisibility = !tokenModelVisibility"
+              <div (click)="data.view = !data.view"
                    class="material-icons-outlined cursor-pointer invisible
                           group-hover:visible lg:text-[20px] text-[12px]">visibility
               </div>
@@ -64,7 +63,7 @@
               </div>
             </div>
           </div>
-          <nz-modal (nzOnCancel)="handleCloseModel()" [nzVisible]="tokenModelVisibility" nzTitle="Project Token">
+          <nz-modal (nzOnCancel)="handleCloseModel(data)" [nzVisible]="data.view" nzTitle="Project Token">
             <div *nzModalContent>
               <div>
                 <form *ngIf="!showToken" [formGroup]="validateForm" nz-form>
@@ -73,7 +72,7 @@
                     <nz-form-control>
                       <nz-input-group class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl" nzSearch
                                       nzSize="large">
-                        <input (keydown.enter)='retrieveToken()'
+                        <input (keydown.enter)='retrieveToken(data)'
                                class="rounded py-[10px] px-[12px] text-[#8898aa] shadow-md" formControlName="password"
                                nz-input placeholder="Password" type="password"/>
                       </nz-input-group>
@@ -84,34 +83,11 @@
               </div>
             </div>
             <div *nzModalFooter>
-              <button (click)="retrieveToken()" *ngIf="!showToken" nz-button nzType="primary">Submit</button>
-              <button (click)="handleCloseModel()" *ngIf="showToken" nz-button nzType="primary">Close</button>
+              <button (click)="retrieveToken(data)" *ngIf="!showToken" nz-button nzType="primary">Submit</button>
+              <button (click)="handleCloseModel(data)" *ngIf="showToken" nz-button nzType="primary">Close</button>
             </div>
           </nz-modal>
         </td>
-      </tr>
-      </tbody>
-    </nz-table>
-    <nz-table *ngIf="!isProject" nzBordered #filterTable [nzData]="filteredApiCollectionData"
-              nzTableLayout="fixed">
-      <thead>
-      <tr class="trid">
-        <th *ngFor="let column of listOfColumns"
-            nzAlign='center'
-            [nzShowSort]="!(column.sortFn === null)"
-            [nzSortOrder]="column.sortOrder"
-            [nzSortFn]="column.sortFn"
-            [nzWidth]="column.width"
-            [nzSortDirections]="column.sortDirections">
-          {{column.name}}
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let data of filterTable.data; let i = index" class="bg-[#CAE5FF] hover:bg-[#10064D] cursor-pointer">
-        <td class="text-base">{{ i + 1 }}</td>
-        <td class="text-base">{{ data.api_collection_name }}</td>
-        <td class="text-base">{{ data.status }}</td>
       </tr>
       </tbody>
     </nz-table>
