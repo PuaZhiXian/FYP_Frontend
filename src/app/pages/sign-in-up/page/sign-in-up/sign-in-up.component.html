@@ -1,18 +1,23 @@
-<div class="bg-primary-900 h-screen py-16">
-  <div class="container mx-auto">
-    <div class="flex justify-center text-white lg:text-lg ">
-      SKYWORLD API DEVELOPER PORTAL
-    </div>
-    <div class="mt-9 grid grid-cols-12 ">
-      <div class="lg:col-span-4 col-span-3 "></div>
-      <div class="lg:col-span-4 col-span-6 bg-[#F7FAFC] p-[48px] rounded">
-        <sign-in *ngIf="type === 'sign-in'"></sign-in>
-        <sign-up *ngIf="type === 'sign-up'"></sign-up>
-        <forget-password *ngIf="type === 'forget-password'"></forget-password>
-        <set-up-password *ngIf="type === 'set-up-password'"></set-up-password>
-        <reset-password *ngIf="type === 'reset-password'"></reset-password>
+<div class="h-screen bg-primary-900">
+  <div class="bg-primary-900">
+    <app-header></app-header>
+  </div>
+  <div class=" bg-primary-900">
+    <div class="container mx-auto">
+      <div class="flex justify-center text-white lg:text-md ">
+        SKYWORLD API DEVELOPER PORTAL
       </div>
-      <div class="lg:col-span-4 col-span-3 "></div>
+      <div class="mt-9 grid grid-cols-12 ">
+        <div class="lg:col-span-4 col-span-3 "></div>
+        <div class="lg:col-span-4 col-span-6 bg-[#F7FAFC] p-[48px] rounded">
+          <sign-in *ngIf="type === 'sign-in'"></sign-in>
+          <sign-up *ngIf="type === 'sign-up'"></sign-up>
+          <forget-password *ngIf="type === 'forget-password'"></forget-password>
+          <set-up-password *ngIf="type === 'set-up-password'"></set-up-password>
+          <reset-password *ngIf="type === 'reset-password'"></reset-password>
+        </div>
+        <div class="lg:col-span-4 col-span-3 "></div>
+      </div>
     </div>
   </div>
 </div>

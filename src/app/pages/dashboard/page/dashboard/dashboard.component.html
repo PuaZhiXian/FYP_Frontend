@@ -1,12 +1,17 @@
-<announcement></announcement>
-<div class="container md:mx-auto min-h-screen md:px-0 px-[20px]">
-  <div class="lg:text-[40px] text-[24px] font-bold ">Dashboard</div>
-  <div class="lg:text-[40px] text-[24px] ">Welcome to your Dashboard!</div>
+<div class="h-screen">
+  <div class="bg-primary-900">
+    <app-header></app-header>
+  </div>
+  <announcement></announcement>
+  <div class="container md:mx-auto min-h-screen md:px-0 px-[20px]">
+    <div class="lg:text-[40px] text-[24px] font-bold ">Dashboard</div>
+    <div class="lg:text-[40px] text-[24px] ">Welcome to your Dashboard!</div>
 
-<!--  <project-api-table [isProject]="false"></project-api-table>-->
+    <!--  <project-api-table [isProject]="false"></project-api-table>-->
 
-  <project-api-table [isProject]="true"></project-api-table>
+    <project-api-table [isProject]="true"></project-api-table>
 
+  </div>
 </div>
 <ng-template #prefixIcon>
   <span class=" text-[#52606D] material-icons-outlined">search</span>

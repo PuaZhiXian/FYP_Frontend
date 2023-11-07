@@ -1,5 +1,10 @@
-<nz-result class="not-found" nzStatus="404" nzTitle="404" nzSubTitle="Sorry, the page you visited does not exist.">
-  <div nz-result-extra>
-    <button nz-button nzType="primary" (click)="goHomePage()">Back Home</button>
+<div class="h-screen">
+  <div class="bg-primary-900">
+    <app-header></app-header>
   </div>
-</nz-result>
+  <nz-result class="not-found" nzStatus="404" nzSubTitle="Sorry, the page you visited does not exist." nzTitle="404">
+    <div nz-result-extra>
+      <button (click)="goHomePage()" nz-button nzType="primary">Back Home</button>
+    </div>
+  </nz-result>
+</div>

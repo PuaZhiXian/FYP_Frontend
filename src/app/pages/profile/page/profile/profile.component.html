@@ -1,28 +1,34 @@
-<div class="mx-auto container px-[10px] lg:px-0 ">
-  <div class="flex justify-end">
-    <button nz-button class="bg-primary-900 text-white py-[10px] px-[20px] mt-[24px] lg:mb-[24px] h-full rounded" (click)="logout()">
-      Logout
-    </button>
+<div class="h-screen">
+  <div class="bg-primary-900">
+    <app-header></app-header>
   </div>
-  <div class="mb-8 lg:grid lg:grid-cols-12">
-    <div class="flex lg:block col-span-2 button-focus w-1/2 lg:w-full">
-      <div class="w-full">
-        <button nz-button
-                class="text-xl w-full h-fit border border-black {{selectingTab == 'personal-information' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
-                (click)="changeTabs('personal-information')">Personal Information
-        </button>
-      </div>
-      <div class="w-full">
-        <button nz-button
-                class="text-xl w-full h-fit border border-black {{selectingTab == 'password' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
-                (click)="changeTabs('password')">
-          Change Password
-        </button>
-      </div>
+  <div class="mx-auto container px-[10px] lg:px-0 ">
+    <div class="flex justify-end">
+      <button (click)="logout()"
+              class="bg-primary-900 text-white py-[10px] px-[20px] mt-[24px] lg:mb-[24px] h-full rounded" nz-button>
+        Logout
+      </button>
     </div>
-    <div class="col-span-10 px-8 py-[18px] min-h-[540px] border border-solid border-black">
-      <personal-information *ngIf="selectingTab == 'personal-information'"></personal-information>
-      <change-password *ngIf="selectingTab == 'password'"></change-password>
+    <div class="mb-8 lg:grid lg:grid-cols-12">
+      <div class="flex lg:block col-span-2 button-focus w-1/2 lg:w-full">
+        <div class="w-full">
+          <button (click)="changeTabs('personal-information')"
+                  class="text-xl w-full h-fit border border-black {{selectingTab == 'personal-information' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                  nz-button>Personal Information
+          </button>
+        </div>
+        <div class="w-full">
+          <button (click)="changeTabs('password')"
+                  class="text-xl w-full h-fit border border-black {{selectingTab == 'password' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                  nz-button>
+            Change Password
+          </button>
+        </div>
+      </div>
+      <div class="col-span-10 px-8 py-[18px] min-h-[540px] border border-solid border-black">
+        <personal-information *ngIf="selectingTab == 'personal-information'"></personal-information>
+        <change-password *ngIf="selectingTab == 'password'"></change-password>
+      </div>
     </div>
   </div>
 </div>

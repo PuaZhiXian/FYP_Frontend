@@ -8,9 +8,10 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzAutocompleteModule} from "ng-zorro-antd/auto-complete";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
-import { ProjectApiTableComponent } from './component/project-api-table/project-api-table.component';
+import {ProjectApiTableComponent} from './component/project-api-table/project-api-table.component';
 import {NzFormModule} from "ng-zorro-antd/form";
-import { AnnouncementComponent } from './component/announcement/announcement.component';
+import {AnnouncementComponent} from './component/announcement/announcement.component';
+import {HeaderModule} from "../header/header.module";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AnnouncementComponent } from './component/announcement/announcement.com
     NzTableModule,
     NzSkeletonModule,
     NzFormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HeaderModule
   ],
   exports: [
     DashboardComponent

@@ -8,10 +8,11 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputModule} from "ng-zorro-antd/input";
 import { NotFoundPageComponent } from './page/not-found-page/not-found-page.component';
 import {NzResultModule} from "ng-zorro-antd/result";
+import {HeaderModule} from "../header/header.module";
 
 
 @NgModule({
-  imports: [ErrorHandlerPageRoutingModule, CommonModule, NzFormModule, ReactiveFormsModule, NzButtonModule, NzInputModule, NzResultModule],
+  imports: [ErrorHandlerPageRoutingModule, CommonModule, NzFormModule, ReactiveFormsModule, NzButtonModule, NzInputModule, NzResultModule, HeaderModule],
   declarations: [
     NotFoundPageComponent
   ],

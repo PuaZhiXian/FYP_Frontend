@@ -1,43 +1,49 @@
-<div class="mx-auto container" *ngIf="!loadingProject else loadingTpl">
-  <div class="mt-[18px] text-[32px] font-bold">{{projectOverview.project_name}}</div>
-  <div class=" grid justify-items-end primary-button">
-    <button nz-button class="bg-primary-900 h-full
-                    font-bold text-[14px] py-2.5 text-white px-[32px]
-                    text-center rounded-lg" (click)="changeTabs('settings')">
-      Settings
-    </button>
+<div class="h-screen">
+  <div class="bg-primary-900">
+    <app-header></app-header>
   </div>
-
-  <div class="my-8 grid grid-cols-12">
-    <div class="col-span-2 button-focus">
-      <div class="w-full">
-        <button nz-button
-                class="text-xl w-full h-fit border border-black {{selectingTab == 'statistics' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
-                (click)="changeTabs('statistics')">Statistics
-        </button>
-      </div>
-      <div class="w-full">
-        <button nz-button
-                class="text-xl w-full h-fit border border-black {{selectingTab == 'credentials' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
-                (click)="changeTabs('credentials')">
-          Credentials
-        </button>
-      </div>
-      <div class="w-full">
-        <button nz-button
-                class="text-xl w-full h-fit border border-black {{selectingTab == 'api' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
-                (click)="changeTabs('api')">API
-          Collections
-        </button>
-      </div>
+  <div *ngIf="!loadingProject else loadingTpl" class="mx-auto container">
+    <div class="mt-[18px] text-[32px] font-bold">{{projectOverview.project_name}}</div>
+    <div class=" grid justify-items-end primary-button">
+      <button (click)="changeTabs('settings')" class="bg-primary-900 h-full
+                    font-bold text-[14px] py-2.5 text-white px-[32px]
+                    text-center rounded-lg" nz-button>
+        Settings
+      </button>
     </div>
-    <div class="col-span-10 px-8 py-[18px] min-h-[540px] border border-black">
-      <settings *ngIf="selectingTab== 'settings'" [projectName]="projectOverview.project_name" [projectId]="projectId"
-                (callInitProject)="initProject()" [projectDescription]="projectOverview.description"></settings>
-      <statistics *ngIf="selectingTab =='statistics'" [projectId]="projectId"></statistics>
-      <credential *ngIf="selectingTab == 'credentials'" [projectId]="projectId"
-                  [projectName]="'Project Name 1'"></credential>
-      <api-collection *ngIf="selectingTab == 'api'" [projectId]="projectId"></api-collection>
+
+    <div class="my-8 grid grid-cols-12">
+      <div class="col-span-2 button-focus">
+        <div class="w-full">
+          <button (click)="changeTabs('statistics')"
+                  class="text-xl w-full h-fit border border-black {{selectingTab == 'statistics' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                  nz-button>Statistics
+          </button>
+        </div>
+        <div class="w-full">
+          <button (click)="changeTabs('credentials')"
+                  class="text-xl w-full h-fit border border-black {{selectingTab == 'credentials' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                  nz-button>
+            Credentials
+          </button>
+        </div>
+        <div class="w-full">
+          <button (click)="changeTabs('api')"
+                  class="text-xl w-full h-fit border border-black {{selectingTab == 'api' ? 'bg-[#59C3FF]' :'bg-[#CAE5FF]'}} py-2.5"
+                  nz-button>API
+            Collections
+          </button>
+        </div>
+      </div>
+      <div class="col-span-10 px-8 py-[18px] min-h-[540px] border border-black">
+        <settings (callInitProject)="initProject()" *ngIf="selectingTab== 'settings'"
+                  [projectDescription]="projectOverview.description"
+                  [projectId]="projectId" [projectName]="projectOverview.project_name"></settings>
+        <statistics *ngIf="selectingTab =='statistics'" [projectId]="projectId"></statistics>
+        <credential *ngIf="selectingTab == 'credentials'" [projectId]="projectId"
+                    [projectName]="'Project Name 1'"></credential>
+        <api-collection *ngIf="selectingTab == 'api'" [projectId]="projectId"></api-collection>
+      </div>
     </div>
   </div>
 </div>

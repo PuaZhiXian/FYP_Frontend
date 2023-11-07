@@ -1,56 +1,61 @@
-<div class="mx-auto container">
-  <div class="my-10">
-    <form nz-form [formGroup]="validateForm">
-      <div>
-        <div class="text-base my-2">Project Name</div>
-        <nz-form-item class="grid w-3/4 ">
-          <nz-form-control nzErrorTip="Please input your project name!">
-            <input class="rounded bg-[#D9D9D9]" formControlName="project_name" placeholder="Enter Project Name"
-                   nz-input/>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div class="my-10">
-        <nz-form-item class="grid w-3/4">
-          <div class="text-base my-2">Project Description</div>
-          <nz-form-control nzErrorTip="Please input your project description!">
-            <div class="">
+<div class="h-screen">
+  <div class="bg-primary-900">
+    <app-header></app-header>
+  </div>
+  <div class="mx-auto container">
+    <div class="my-10">
+      <form [formGroup]="validateForm" nz-form>
+        <div>
+          <div class="text-base my-2">Project Name</div>
+          <nz-form-item class="grid w-3/4 ">
+            <nz-form-control nzErrorTip="Please input your project name!">
+              <input class="rounded bg-[#D9D9D9]" formControlName="project_name" nz-input
+                     placeholder="Enter Project Name"/>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="my-10">
+          <nz-form-item class="grid w-3/4">
+            <div class="text-base my-2">Project Description</div>
+            <nz-form-control nzErrorTip="Please input your project description!">
+              <div class="">
               <textarea rows="4" nz-input class="rounded bg-[#D9D9D9]" formControlName="description"
                         placeholder="Enter Project Description"></textarea>
-            </div>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
 
-      <div class="my-10">
-        <nz-form-item class="grid w-3/4" *ngIf="!loadingForm else loadingTpl">
-          <div class="text-base my-2">Select API Collection List</div>
-          <nz-form-control>
-            <nz-checkbox-wrapper class="w-full" (nzOnChange)="updateSelectedApiCollection($event)">
-              <div *ngFor=" let api of apiCollection">
-                <div class="text-[16px]">{{api.category_name}}</div>
-                <div *ngFor="let singleApi of api.api_collections" class="my-[10px]">
-                  <div class="flex items-center big-checkbox">
-                    <div nz-checkbox [nzValue]="singleApi.id"></div>
-                    <div class="ml-[8px]">
-                      <div class="text-base text-[#616161]">{{singleApi.api_collection_name}}</div>
-                      <div class="text-xs text-[#7B8794] text-justify">{{singleApi.description}}</div>
+        <div class="my-10">
+          <nz-form-item *ngIf="!loadingForm else loadingTpl" class="grid w-3/4">
+            <div class="text-base my-2">Select API Collection List</div>
+            <nz-form-control>
+              <nz-checkbox-wrapper (nzOnChange)="updateSelectedApiCollection($event)" class="w-full">
+                <div *ngFor=" let api of apiCollection">
+                  <div class="text-[16px]">{{api.category_name}}</div>
+                  <div *ngFor="let singleApi of api.api_collections" class="my-[10px]">
+                    <div class="flex items-center big-checkbox">
+                      <div [nzValue]="singleApi.id" nz-checkbox></div>
+                      <div class="ml-[8px]">
+                        <div class="text-base text-[#616161]">{{singleApi.api_collection_name}}</div>
+                        <div class="text-xs text-[#7B8794] text-justify">{{singleApi.description}}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </nz-checkbox-wrapper>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </form>
+              </nz-checkbox-wrapper>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </form>
 
-    <div class="">
-      <button nz-button class="bg-primary-900 h-full
+      <div class="">
+        <button (click)="submit()" class="bg-primary-900 h-full
                     font-bold text-[14px] py-2.5 text-white px-[32px]
-                    text-center rounded-lg" (click)="submit()">
-        Submit
-      </button>
+                    text-center rounded-lg" nz-button>
+          Submit
+        </button>
+      </div>
     </div>
   </div>
 </div>
