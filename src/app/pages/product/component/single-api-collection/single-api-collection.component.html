@@ -59,7 +59,7 @@
           </div>
           <!--Content-->
           <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 max-h-[400px]">
-          <pre class="light"><code
+          <pre class="light mb-0"><code
             class="language-json h-[210px] text-xs">{{singleAPICollection.object_id.object}}</code></pre>
           </div>
         </div>
@@ -91,18 +91,15 @@
             </div>
           </div>
           <div class="py-[16px] text-xs text-gray-400 font-normal border-t border-gray-300"
-               *ngIf="!api.api_param_ids">
+               *ngIf="api.api_param_ids?.length == 0">
             No parameters
           </div>
         </div>
-
-
         <!--Return-->
         <div class="mt-[20px]">
           <div class="text-label text-gray-800 font-medium pb-[12px]">Return</div>
           <div class="text-doc-text text-justify py-[16px] border-t border-gray-300">{{api.api_return}}</div>
         </div>
-
       </div>
       <div class="mt-[10px] lg:mt-0 col-span-2">
         <div class="sticky top-0">
@@ -116,14 +113,15 @@
           <!--Response Json-->
           <div class="mb-[12px]">
             <!--Header-->
-            <div class="px-[12px] py-[10px] text-gray-500 text-xs
-              font-medium bg-gray-100 border rounded-t">Response
+            <div (click)="init()" class="px-[12px] py-[10px] text-gray-500 text-xs
+              font-medium bg-gray-100 border rounded-t cursor-pointer">Response
             </div>
             <!--Content-->
-            <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 max-h-[400px]">
-              <pre class="light"><code
-                class="language-json h-[210px] text-xs">{{api.api_response_json}}</code></pre>
-            </div>
+            <highlightjs [code]="api.api_response_json"></highlightjs>
+            <!--            <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 max-h-[400px]">-->
+            <!--              <pre class="light"><code-->
+            <!--                class="language-json h-[210px] text-xs">{{api.api_response_json}}</code></pre>-->
+            <!--            </div>-->
           </div>
         </div>
       </div>

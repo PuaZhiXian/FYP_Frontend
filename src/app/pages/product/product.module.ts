@@ -23,6 +23,7 @@ import {SingleApiCollectionComponent} from './component/single-api-collection/si
 import {NzOverlayModule} from "ng-zorro-antd/core/overlay";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import {HeaderModule} from "../header/header.module";
+import {HighlightjsComponent} from './component/highlightjs/highlightjs.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {HeaderModule} from "../header/header.module";
     ApiDocumentationComponent,
     CodeEditorComponent,
     ChildAttributeComponent,
-    SingleApiCollectionComponent
+    SingleApiCollectionComponent,
+    HighlightjsComponent
   ],
   exports: [ApiDocumentationComponent]
 })

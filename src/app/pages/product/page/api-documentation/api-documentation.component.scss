@@ -9,7 +9,10 @@ nz-content {
   background: #fff;
 }
 
-nz-sider {
-  height: 100%;
-  //position: fixed;
+.right-layout {
+  margin-left: 200px;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
 }

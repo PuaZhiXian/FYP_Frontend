@@ -3,7 +3,8 @@
     <app-header></app-header>
   </div>
   <nz-layout *ngIf="!loadingDocumentation else loadingTpl" class="bg-[#001529]">
-    <nz-sider [nzCollapsedWidth]="0" class="sticky top-0 xl:block hidden" nzCollapsible nzWidth="220px">
+    <nz-sider [nzCollapsedWidth]="0" class="sticky top-0 xl:block hidden overflow-y-auto overflow-x-hidden h-screen"
+              nzCollapsible nzWidth="220px">
       <ul nz-menu nzMode="inline" nzTheme="dark">
         <li (click)="scrollToSection(general)" *ngFor="let general of general" nz-menu-item>
           <span nz-icon nzType="pie-chart"></span>
@@ -40,7 +41,7 @@
         </li>
       </ul>
     </nz-sider>
-    <nz-layout>
+    <nz-layout class="">
       <nz-content>
         <nz-select #smallSelect (ngModelChange)="scrollToSection($event)" (nzOpenChange)="_setWidth()"
                    [ngModel]="general[0]" class="pl-[68px] mt-[20px] xl:hidden">

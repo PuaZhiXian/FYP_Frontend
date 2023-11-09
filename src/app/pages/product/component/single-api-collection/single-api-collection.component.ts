@@ -1,11 +1,24 @@
-import {ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {ISingleApiCollection} from "../../../../interface/api-collection/i-api-category";
 import {ISelect} from "../../../../interface/common/i-select";
+import hljs from "highlight.js";
 
 @Component({
   selector: 'single-api-collection',
   templateUrl: './single-api-collection.component.html',
-  styleUrls: ['./single-api-collection.component.scss']
+  styleUrls: ['./single-api-collection.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SingleApiCollectionComponent implements OnInit {
 
@@ -22,6 +35,7 @@ export class SingleApiCollectionComponent implements OnInit {
   constructor(private ref: ChangeDetectorRef) {
   }
 
+
   ngOnInit(): void {
     this.loading = false;
   }
@@ -31,5 +45,12 @@ export class SingleApiCollectionComponent implements OnInit {
     if (element) {
       element.scrollIntoView({behavior: 'smooth'});
     }
+  }
+
+  init() {
+    this.loading = true;
+    hljs.highlightAll();
+    this.loading = false;
+    console.log('highlight')
   }
 }
