@@ -4,6 +4,10 @@
       <img class="h-[60px] w-auto cursor-pointer" src="assets/images/header/skyworldLogo.png" (click)="redirect('dashboard')"/>
     </div>
     <div class="grow ml-5 flex justify-end items-center" *ngIf="staticLogined">
+      <div (click)="redirect('dashboard')"
+           class="px-10 cursor-pointer text-header {{headerIndicator ==='dashboard'? 'text-[#59C3FF]':'text-white'}}">
+        Dashboard
+      </div>
       <div (click)="redirect('product')"
            class="px-10 cursor-pointer text-header {{headerIndicator ==='product'? 'text-[#59C3FF]':'text-white'}}">
         Product
