@@ -80,9 +80,9 @@ export class ProjectApiTableComponent implements OnInit {
   initTable() {
     this.listOfColumns = [
       {
-        name: 'Id',
+        name: 'No',
         sortOrder: null,
-        sortFn: (a: ProjectOverview, b: ProjectOverview) => a.id.localeCompare(b.id),
+        sortFn: null,
         sortDirections: [],
         filterMultiple: false,
         listOfFilter: [],
@@ -112,7 +112,7 @@ export class ProjectApiTableComponent implements OnInit {
       {
         name: 'Project Creation Date',
         sortOrder: null,
-        sortFn: (a: ProjectOverview, b: ProjectOverview) => a.createdAt.toISOString().localeCompare(b.createdAt.toISOString()),
+        sortFn: (a: ProjectOverview, b: ProjectOverview) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
         sortDirections: ['ascend', 'descend', null],
         filterMultiple: false,
         listOfFilter: [],
