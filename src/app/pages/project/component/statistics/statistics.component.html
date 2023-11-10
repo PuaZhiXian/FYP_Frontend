@@ -10,6 +10,7 @@
             [nzSortOrder]="column.sortOrder"
             [nzSortFn]="column.sortFn"
             [nzWidth]="column.width"
+            class="lg:text-table-header text-xs"
             [nzSortDirections]="column.sortDirections">
           {{column.name}}
         </th>
@@ -17,12 +18,12 @@
       </thead>
       <tbody>
       <tr *ngFor="let data of filterTable.data" class="trid">
-        <td class="text-[16px]">{{ data.timestamp  |date : 'dd/MM/y hh:mm'}}</td>
-        <td class="text-[16px]">{{ data.api }}</td>
-        <td class="text-[16px]">{{ data.method }}</td>
-        <td class="text-[16px]">{{ data.responseSize}}</td>
-        <td class="text-[16px]">{{ data.responseTime }}</td>
-        <td class="text-[16px]">{{ data.status }}</td>
+        <td class="lg:text-table-row text-xs">{{ data.timestamp  |date : 'dd/MM/y hh:mm'}}</td>
+        <td class="lg:text-table-row text-xs">{{ data.api }}</td>
+        <td class="lg:text-table-row text-xs">{{ data.method }}</td>
+        <td class="lg:text-table-row text-xs">{{ data.responseSize}}</td>
+        <td class="lg:text-table-row text-xs">{{ data.responseTime }}</td>
+        <td class="lg:text-table-row text-xs">{{ data.status }}</td>
       </tr>
       </tbody>
     </nz-table>

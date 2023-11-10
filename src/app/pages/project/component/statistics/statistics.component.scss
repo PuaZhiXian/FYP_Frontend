@@ -2,6 +2,9 @@
   background-color: #CAE5FF;
   color: black;
   font-weight: 700;
-  font-size: 16px;
-  padding: 10px;
+  padding: 5px 10px;
+}
+
+.ant-table-tbody > tr.ant-table-row > td {
+  padding: 5px 16px;
 }
