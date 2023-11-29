@@ -12,6 +12,7 @@ import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProjectService} from "../../../../service/project/project.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {finalize} from "rxjs";
+import {NzModalService} from "ng-zorro-antd/modal";
 
 @Component({
   selector: 'settings',
@@ -25,7 +26,8 @@ export class SettingsComponent implements OnInit {
               private fb: UntypedFormBuilder,
               private projectService: ProjectService,
               private message: NzMessageService,
-              private ref: ChangeDetectorRef) {
+              private ref: ChangeDetectorRef,
+              private modal: NzModalService) {
   }
 
   @Input() projectName!: string;
@@ -60,6 +62,17 @@ export class SettingsComponent implements OnInit {
           this.message.error(resp.error);
         }
       })
+  }
+
+  showDeleteConfirm(): void {
+    this.modal.confirm({
+      nzTitle: 'Are you sure delete this project?',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => this.deleteProject(),
+      nzCancelText: 'No'
+    });
   }
 
   editProject() {

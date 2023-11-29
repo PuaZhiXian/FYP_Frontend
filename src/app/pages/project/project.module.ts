@@ -16,10 +16,11 @@ import { CredentialComponent } from './component/credential/credential.component
 import { ApiCollectionComponent } from './component/api-collection/api-collection.component';
 import {NzCardModule} from "ng-zorro-antd/card";
 import {HeaderModule} from "../header/header.module";
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 
 @NgModule({
-  imports: [ProjectRoutingModule, NzButtonModule, CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzTableModule, NzSkeletonModule, NzCardModule, FormsModule, HeaderModule],
+  imports: [ProjectRoutingModule, NzButtonModule, CommonModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzTableModule, NzSkeletonModule, NzCardModule, FormsModule, HeaderModule, NzModalModule],
   declarations: [
     SingleProjectComponent,
     SettingsComponent,
