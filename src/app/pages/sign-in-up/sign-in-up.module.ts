@@ -14,10 +14,11 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {HeaderModule} from "../header/header.module";
+import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 
 
 @NgModule({
-  imports: [SignInUpRoutingModule, ReactiveFormsModule, NzFormModule, NzInputModule, FormsModule, CommonModule, NzButtonModule, NzModalModule, HeaderModule],
+  imports: [SignInUpRoutingModule, ReactiveFormsModule, NzFormModule, NzInputModule, FormsModule, CommonModule, NzButtonModule, NzModalModule, HeaderModule, NzToolTipModule],
   declarations: [SignInUpComponent, SignInComponent, SignUpComponent, ForgetPasswordComponent, SetUpPasswordComponent, ResetPasswordComponent],
   exports: [SignInUpComponent]
 })

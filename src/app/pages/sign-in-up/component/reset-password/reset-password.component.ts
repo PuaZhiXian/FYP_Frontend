@@ -15,6 +15,14 @@ export class ResetPasswordComponent implements OnInit {
   repasswordClass: string = '';
   passwordClass: string = '';
   token!: string | null
+  passwordStrength = new Map<string, boolean>([
+    ['Have at least one letter', false],
+    ['Have at least one capital letter', false],
+    ['Have at least one small letter', false],
+    ['Have at least one number', false],
+    ['Be at least 8 characters', false],
+    ['Have at least one special character', false],
+  ]);
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
@@ -35,6 +43,7 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.changeHandler();
   }
 
   submit() {
@@ -68,5 +77,16 @@ export class ResetPasswordComponent implements OnInit {
         return passwordConfirmationInput.setErrors(null);
       }
     }
+  }
+
+  changeHandler() {
+    this.validateForm.get('password')?.valueChanges.subscribe((value => {
+      this.passwordStrength.set('Have at least one letter', /[a-zA-Z]/.test(value))
+      this.passwordStrength.set('Have at least one capital letter', /[A-Z]/.test(value))
+      this.passwordStrength.set('Have at least one small letter', /[a-z]/.test(value))
+      this.passwordStrength.set('Have at least one number', /\d/.test(value))
+      this.passwordStrength.set('Be at least 8 characters', /.{8,}/.test(value))
+      this.passwordStrength.set('Have at least one special character', /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value))
+    }));
   }
 }

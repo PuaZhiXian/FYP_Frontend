@@ -27,9 +27,18 @@ export class ChangePasswordComponent implements OnInit {
   editMode: boolean = false;
 
   personalInformation!: IPersonalInformation;
+  passwordStrength = new Map<string, boolean>([
+    ['Have at least one letter', false],
+    ['Have at least one capital letter', false],
+    ['Have at least one small letter', false],
+    ['Have at least one number', false],
+    ['Be at least 8 characters', false],
+    ['Have at least one special character', false],
+  ]);
 
   ngOnInit(): void {
     this.initForm();
+    this.changeHandler();
   }
 
   initForm() {
@@ -38,6 +47,17 @@ export class ChangePasswordComponent implements OnInit {
       newPassword: [null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       rePassword: [null, [Validators.required]],
     }, {validators: this.checkIfMatchingPasswords('newPassword', 'rePassword')});
+  }
+
+  changeHandler() {
+    this.validateForm.get('newPassword')?.valueChanges.subscribe((value => {
+      this.passwordStrength.set('Have at least one letter', /[a-zA-Z]/.test(value))
+      this.passwordStrength.set('Have at least one capital letter', /[A-Z]/.test(value))
+      this.passwordStrength.set('Have at least one small letter', /[a-z]/.test(value))
+      this.passwordStrength.set('Have at least one number', /\d/.test(value))
+      this.passwordStrength.set('Be at least 8 characters', /.{8,}/.test(value))
+      this.passwordStrength.set('Have at least one special character', /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(value))
+    }));
   }
 
   checkIfMatchingPasswords(passwordKey: string, rePassword: string) {
