@@ -7,8 +7,12 @@ import {ISelectingApiCollection} from "../../interface/api-collection/i-selectin
 import {AuthorizationService} from "../../service/authorization/authorization.service";
 import {ISelect} from "../../interface/common/i-select";
 import {environment} from "../../../environments/environment";
-import { IHttpStatusCodeSummary } from 'src/app/interface/api-collection/i-http-status-code-summary';
-import { IApiDocumentationObject } from 'src/app/interface/api-collection/i-api-documentation-object';
+import {IHttpStatusCodeSummary} from 'src/app/interface/api-collection/i-http-status-code-summary';
+import {IApiDocumentationObject} from 'src/app/interface/api-collection/i-api-documentation-object';
+import {IAdminApiCategory} from "../../interface/api-collection/i-admin-api-category";
+import {IAdminSetAccessControl} from "../../interface/api-collection/i-admin-set-access-control";
+import {IMessage} from "../../interface/authorization/i-message";
+import {IAdminApiCollection} from "../../interface/api-collection/i-admin-api-collection";
 
 @Injectable({
   providedIn: 'root'
@@ -41,11 +45,36 @@ export class ApiCollectionRestService {
     return this.authorizationService.handleApiError(this.httpClient.get<IHttpStatusCodeSummary[]>(this.ProjectUrl + '/http-status-codes', {withCredentials: true}));
   }
 
-  getErrorObject(): Observable<IApiDocumentationObject[]>{
+  getErrorObject(): Observable<IApiDocumentationObject[]> {
     return this.authorizationService.handleApiError(this.httpClient.get<IApiDocumentationObject[]>(this.ProjectUrl + '/error-objs', {withCredentials: true}))
   }
 
   getErrorType(): Observable<IHttpStatusCodeSummary[]> {
     return this.authorizationService.handleApiError(this.httpClient.get<IHttpStatusCodeSummary[]>(this.ProjectUrl + '/error-types', {withCredentials: true}));
+  }
+
+  //ADMIN
+  getAPICategoryList(character: string): Observable<IAdminApiCategory[]> {
+    return this.httpClient.get<IAdminApiCategory[]>(this.ProjectUrl + '/custom/get-all-api-category/' + character, {withCredentials: true});
+  }
+
+  getAccessControl(vendorId: string, character: string): Observable<IAdminApiCategory[]> {
+    return this.httpClient.post<IAdminApiCategory[]>(this.ProjectUrl + '/custom/get-one-user-access-control/' + character, {id: vendorId}, {withCredentials: true});
+  }
+
+  createNewApiCategory(apiCategoryDetail: IAdminApiCategory): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/create-api-category', apiCategoryDetail, {withCredentials: true});
+  }
+
+  createNewApiCollection(apiCollectionDetail: IAdminApiCollection): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/create-api-collection', apiCollectionDetail, {withCredentials: true});
+  }
+
+  setAccessControl(setAccessControl: IAdminSetAccessControl): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/set-one-user-access-control', setAccessControl, {withCredentials: true});
+  }
+
+  deleteCollection(apiCollectionId: number): Observable<IMessage> {
+    return this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-api-collection/' + apiCollectionId, {withCredentials: true});
   }
 }

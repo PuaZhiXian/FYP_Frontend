@@ -7,6 +7,7 @@ import {AuthorizationService} from "../../service/authorization/authorization.se
 import {IApi} from "../../interface/api-collection/i-api";
 import {IProjectTokenLog} from "../../interface/project/i-project-token-log";
 import {environment} from "../../../environments/environment";
+import {IAdminProjectDetail} from "../../interface/project/i-admin-project-detail";
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,19 @@ export class ProjectRestService {
 
   saveProjectChange(projectOverview: ProjectOverview, projectId: string): Observable<IMessage> {
     return this.authorizationService.handleApiError(this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/update-project/' + projectId, projectOverview, {withCredentials: true}));
+  }
+
+  //ADMIN
+  getProjectList(vendorId: string): Observable<IAdminProjectDetail[]> {
+    return this.httpClient.get<IAdminProjectDetail[]>(this.ProjectUrl + '/custom/get-user-project-table/' + vendorId, {withCredentials: true});
+  }
+
+  blockProject(projectId: number): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/block-user-project', {project_id: projectId}, {withCredentials: true});
+  }
+
+  unblockProject(projectId: number): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/unblock-user-project', {project_id: projectId}, {withCredentials: true});
   }
 
 }
