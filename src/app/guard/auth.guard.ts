@@ -26,12 +26,12 @@ export class AuthGuard implements CanActivate {
             if (route.component === SignInUpComponent) {
               //Vendor already login and go to sign in page
               (role.role?.includes('ROLE_VENDOR')) ?
-                this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'notification']);
+                this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'dashboard']);
               return of(false);
             }
             return of(true);
           } else {
-            role.role === 'ROLE_VENDOR' ? this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'notification']);
+            role.role === 'ROLE_VENDOR' ? this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'dashboard']);
             return of(false);
           }
         } else {
