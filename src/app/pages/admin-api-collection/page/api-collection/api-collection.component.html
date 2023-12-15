@@ -1,0 +1,258 @@
+<div class="min-h-screen bg-gray-100 pb-32">
+  <div class="bg-primary-900">
+    <app-header></app-header>
+  </div>
+
+  <div class="container md:mx-auto md:px-0 px-[20px]">
+    <div class="my-4">
+      <search-bar (filter)="searching($event)" placeholder="Search Collection"></search-bar>
+    </div>
+    <!--alphabet filter -->
+    <div class="flex gap-2 mb-4">
+      <button (click)="changeByAlphabet(alphabet)" *ngFor="let alphabet of alphabetArray"
+              class="inline-flex cursor-pointer items-center justify-center text-white w-8 h-8 mr-2 transition-colors duration-150 rounded-full focus:shadow-outline border-0
+              {{selectedAlphabet === alphabet ? 'bg-sky-400  hover:bg-sky-500' :'bg-gray-400  hover:bg-gray-500' }}">
+        {{alphabet}}
+      </button>
+    </div>
+    <div class="mb-4">
+      <div class="flex gap-2 items-center justify-between">
+        <!--Filter by category-->
+        <div class="flex gap-2 items-center">
+          <div class="text-docs-title">
+            Filter By
+          </div>
+          <div class="grid grid-cols-6 gap-1">
+            <div *ngFor="let category of apiCategoryList"
+                 class="flex gap-1 w-full {{category.api_collections.length > 0 ? '': 'hidden'}}">
+              <button (click)="removeFilter(category.id)"
+                      *ngIf="filterCategory.indexOf(category.id) !== -1 && category.api_collections.length > 0"
+                      class="w-full" nz-button
+                      nzShape="round" nzType="primary">
+                <div class="flex items-center justify-center gap-1">
+                  <div class="text-sm material-icons-outlined">close</div>
+                  <div class="text-sm">{{category.category_name}}</div>
+                </div>
+              </button>
+              <button (click)="addFilter(category.id)"
+                      *ngIf="filterCategory.indexOf(category.id) === -1 && category.api_collections.length > 0"
+                      class="text-sm w-full"
+                      nz-button nzShape="round">{{category.category_name}}</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button (click)="openCreateNewCategoryModal()" class="rounded" nz-button nzType="primary">
+            <div class="flex items-center gap-1">
+              <div class="text-sm">Create New Category</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!loading else loadingCollectionTpl">
+      <div *ngFor="let category of filteredApiCategoryList; let j = index">
+        <div *ngIf="category.api_collections.length > 0 "
+             class="border-t border-b-0 border-solid border-x-0 pb-[24px] border-gray-600">
+          <div class="flex items-center my-[14px] gap-4">
+            <div>
+              <nz-avatar class="border border-solid border-gray-900" nzIcon="user"
+                         nzSrc="{{category.image_url || emptyIconUrl}}"></nz-avatar>
+            </div>
+            <div class="text-doc-title">{{category.category_name}}</div>
+            <div class="grow flex justify-end">
+              <span (click)="confirmDeleteCategory(category.id, category.category_name)"
+                    [nzTooltipMouseEnterDelay]="0.75"
+                    class="text-danger material-icons-outlined cursor-pointer text-title" nz-tooltip
+                    nzTooltipPlacement="left"
+                    nzTooltipTitle="Delete">delete_outline</span>
+            </div>
+
+          </div>
+          <div class="grid grid-cols-3 gap-4">
+            <nz-card (click)="openCreateNewCollectionModal(category.id)"
+                     class="flex rounded-3xl items-center justify-center border-dotted border-2 border-[#59C3FF] cursor-pointer">
+              <div class="flex items-center">
+                <div class="material-icons-outlined text-[#59C3FF]">
+                  add
+                </div>
+                <div class="text-[#59C3FF]">Add New Collection</div>
+              </div>
+            </nz-card>
+            <div *ngFor="let apiCollection of category.api_collections ; let i = index "
+                 class="rounded-3xl pl-4 {{ randomColorsArray[i % 10]}}">
+              <nz-card class="rounded-r-[1.3rem] border-2">
+                <div class="flex justify-between">
+                  <div class="flex gap-x-4">
+                    <div class="font-bold text-subtitle">{{apiCollection.api_collection_name}}</div>
+                  </div>
+                  <div class="justify-end">
+                    <!--<button nz-tooltip
+                            nzTooltipTitle="open" nzTooltipPlacement="left" [nzTooltipMouseEnterDelay]="0.75"
+                            class="bg-blue-600 p-2 border-0 text-white rounded text-button material-icons-outlined cursor-pointer">
+                      edit
+                    </button>-->
+                    <!--<span nz-tooltip
+                          (click)="confirmDeleteCollection(apiCollection.id, apiCollection.api_collection_name)"
+                          nzTooltipTitle="Delete" nzTooltipPlacement="left" [nzTooltipMouseEnterDelay]="0.75"
+                          class="text-danger material-icons-outlined cursor-pointer text-[24px]">delete_outline</span>-->
+                    <span [nzTooltipMouseEnterDelay]="0.75"
+                          class="text-blue-600  material-icons-outlined cursor-pointer" nz-tooltip
+                          nzTooltipPlacement="left"
+                          nzTooltipTitle="Open In New Tab">open_in_new</span>
+                  </div>
+                </div>
+                <div class="text-sm  min-h-[75px]">{{apiCollection.short_description}}</div>
+                <nz-divider></nz-divider>
+                <div class="flex justify-between">
+                  <div>
+                    <span>Created </span>
+                    <span class="font-bold">{{apiCollection.createdAt | date: 'MMM d, y'}}</span>
+                  </div>
+                  <div class="justify-end">{{apiCollection.count}} Endpoints</div>
+                </div>
+              </nz-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="filteredApiCategoryList.length == 0">
+        <nz-empty
+          [nzNotFoundContent]="contentTpl"
+          [nzNotFoundFooter]="footerTpl"
+          nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg">
+          <ng-template #contentTpl>
+            <span>Empty</span>
+          </ng-template>
+          <ng-template #footerTpl>
+            <button (click)="openCreateNewCategoryModal()" nz-button nzType="primary">Create Now</button>
+          </ng-template>
+        </nz-empty>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>
+
+<nz-modal (nzOnCancel)="closeCreateNewCategoryModal()" [(nzVisible)]="createNewCategoryModalVisibility">
+  <div *nzModalTitle>
+    <div>Create New Category</div>
+  </div>
+  <div *nzModalContent>
+    <div>
+      <form [formGroup]="createNewCategoryForm" nz-form>
+
+        <!--Category Name-->
+        <div class="font-bold text-label">Category Name</div>
+        <div class="">
+          <nz-form-item class="grid">
+            <nz-form-control nzErrorTip="Please input category Name!">
+              <input class="rounded bg-[#D9D9D9] text-input" formControlName="category_name"
+                     nz-input/>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <!--Img Url-->
+        <div class="mt-4 font-bold text-label">Img Url</div>
+        <div class="">
+          <nz-form-item class="grid">
+            <nz-form-control nzErrorTip="Please input Image Url!">
+              <input class="rounded bg-[#D9D9D9] text-input" formControlName="image_url"
+                     nz-input/>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <div *nzModalFooter>
+    <div>
+      <button (click)="createNewApiCategory()"
+              class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Create
+      </button>
+      <button (click)="closeCreateNewCategoryModal()"
+              class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Cancel
+      </button>
+    </div>
+  </div>
+</nz-modal>
+
+<nz-modal (nzOnCancel)="closeCreateNewCollectionModal()" [(nzVisible)]="createNewCollectionModalVisibility">
+  <div *nzModalTitle>
+    <div>Create New Collection</div>
+  </div>
+  <div *nzModalContent>
+    <div>
+      <form [formGroup]="createNewCollectionForm" nz-form>
+
+        <!--collection Name-->
+        <div class="font-bold text-label">API Collection Name</div>
+        <div class="">
+          <nz-form-item class="grid">
+            <nz-form-control nzErrorTip="Please input API Collection!">
+              <input class="rounded bg-[#D9D9D9] text-input" formControlName="api_collection_name"
+                     nz-input/>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <!--Short description-->
+        <div class="mt-4 font-bold text-label">Short Description</div>
+        <div class="">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input short description!">
+              <div class="">
+                <textarea class="rounded bg-[#D9D9D9]" formControlName="short_description" nz-input rows="4"></textarea>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <!--Long description-->
+        <div class="mt-4 font-bold text-label">Long Description</div>
+        <div class="">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input long description!">
+              <div class="">
+                <textarea class="rounded bg-[#D9D9D9]" formControlName="long_description" nz-input rows="4"></textarea>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <div *nzModalFooter>
+    <div>
+      <button (click)="createNewCollection()"
+              class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Create
+      </button>
+      <button (click)="closeCreateNewCollectionModal()"
+              class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Cancel
+      </button>
+    </div>
+  </div>
+</nz-modal>
+
+<ng-template #loadingCollectionTpl>
+  <div *ngFor="let index of [1,2,3]">
+    <div class="border-t border-b-0 border-solid border-x-0 pb-[24px] border-gray-600">
+      <div class="flex items-center my-[24px] gap-4">
+        <nz-skeleton-element [nzActive]="true" nzType="button"></nz-skeleton-element>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div *ngFor="let j of [1,2,3]"
+             class="rounded-3xl pl-4 {{ randomColorsArray[j % 10]}}">
+          <nz-card class="rounded-r-[1.3rem] border-2">
+            <nz-skeleton></nz-skeleton>
+          </nz-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

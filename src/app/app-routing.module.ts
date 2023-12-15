@@ -70,6 +70,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'admin/api-collection',
+    loadChildren: () => import('./pages/admin-api-collection/api-collection.module').then(m => m.ApiCollectionModule),
+    data: {
+      role: 'ROLE_ADMIN'
+    }
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/error-handler-page/error-handler-page.module').then(m => m.ErrorHandlerPageModule)
   },
