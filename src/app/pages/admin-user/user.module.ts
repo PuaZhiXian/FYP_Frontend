@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {UserRoutingModule} from "./user-routing.module";
 import {UserComponent} from './page/user/user.component';
-import {HeaderModule} from "../header/header.module";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {NzProgressModule} from "ng-zorro-antd/progress";
 import {CommonModule} from "@angular/common";
@@ -25,6 +24,7 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {UIModule} from "../UI/UI.module";
 import {DashboardModule} from "../admin-dashboard/dashboard.module";
+import {HeaderModule} from "../admin-header/header.module";
 
 
 @NgModule({
@@ -62,6 +62,7 @@ import {DashboardModule} from "../admin-dashboard/dashboard.module";
     NzToolTipModule,
     UIModule,
     DashboardModule,
+    HeaderModule,
   ]
 })
 export class UserModule {

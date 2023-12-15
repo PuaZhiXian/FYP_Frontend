@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {NotificationRoutingModule} from "./notification-routing.module";
-import {HeaderModule} from "../header/header.module";
 import {NotificationComponent} from './page/notification/notification.component';
 import {AngularEditorModule} from "@kolkov/angular-editor";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -17,6 +16,7 @@ import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {NzMessageModule} from "ng-zorro-antd/message";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import {NotificationAlertComponent} from './component/notification-alert/notification-alert.component';
+import {HeaderModule} from "../admin-header/header.module";
 
 
 @NgModule({
@@ -45,6 +45,7 @@ import {NotificationAlertComponent} from './component/notification-alert/notific
     NzDatePickerModule,
     NzMessageModule,
     NzSkeletonModule,
+    HeaderModule,
   ]
 })
 export class NotificationModule {

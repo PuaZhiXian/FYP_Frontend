@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {DashboardRoutingModule} from './dashboard-routing.module';
 import {DashboardComponent} from './page/dashboard/dashboard.component';
 import {UserTableComponent} from './component/user-table/user-table.component';
-import {HeaderModule} from "../header/header.module";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -17,9 +16,10 @@ import {NotificationTableComponent} from './component/notification-table/notific
 import {NzMessageModule} from 'ng-zorro-antd/message';
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {UIModule} from "../UI/UI.module";
+import {HeaderModule} from "../admin-header/header.module";
 
 @NgModule({
-  imports: [DashboardRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, UIModule],
+  imports: [DashboardRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, UIModule, HeaderModule],
   declarations: [DashboardComponent, UserTableComponent, NotificationTableComponent],
   exports: [DashboardComponent, UserTableComponent, UserTableComponent]
 })
