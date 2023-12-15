@@ -21,36 +21,37 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.isAuthenticated().pipe(
       switchMap((isAuthenticated) => {
-        if (route.component === SignInUpComponent) {
-          if (route.params['type'] === 'reset-password' || route.params['type'] === 'set-up-password') {
-            let token = route.queryParams['token'];
-            if (isAuthenticated) {
-              this.router.navigate(['dashboard']);
+        let userRole = 'ROLE_VENDOR';
+        if (isAuthenticated) {
+          if (route.data['role'] && route.data['role'] === userRole) {
+            if (route.component === SignInUpComponent) {
+              (route.data['role'] && route.data['role'] === 'ROLE_VENDOR') ?
+                this.router.navigate(['dashboard']) : this.router.navigate(['dashboard']);
               return of(false);
-            } else {
-              return this.authorizationService.checkToken(token).pipe(
-                map((validToken) => {
-                  if (validToken) {
-                    return true;
-                  } else {
-                    this.router.navigate(['error', 'not-found']);
-                    return false;
-                  }
-                })
-              );
             }
-          } else {
-            if (isAuthenticated) {
-              this.router.navigate(['dashboard']);
-              return of(false);
-            } else {
-              return of(true);
-            }
-          }
-        } else {
-          if (isAuthenticated) {
             return of(true);
           } else {
+            (route.data['role'] && route.data['role'] === 'ROLE_VENDOR') ?
+              this.router.navigate(['dashboard']) : this.router.navigate(['dashboard']);
+            return of(false);
+          }
+        } else {
+          // UnAuthorize & in reset password/ set up password page
+          if (route.component === SignInUpComponent && (route.params['type'] === 'reset-password' || route.params['type'] === 'set-up-password')) {
+            let token = route.queryParams['token'];
+            // check token append at the end of url
+            return this.authorizationService.checkToken(token).pipe(
+              map((validToken) => {
+                if (validToken) {
+                  return true;
+                } else {
+                  this.router.navigate(['error', 'not-found']);
+                  return false;
+                }
+              })
+            );
+          } else {
+            //UnAuthorize
             this.router.navigate(['sign', 'sign-in']);
             return of(false);
           }
