@@ -5,8 +5,12 @@ import {IApiCollectionDetail} from "../../interface/api-collection/i-api-collect
 import {IApiCategory} from "../../interface/api-collection/i-api-category";
 import {ISelectingApiCollection} from "../../interface/api-collection/i-selecting-api-collection";
 import {ISelect} from "../../interface/common/i-select";
-import { IHttpStatusCodeSummary } from 'src/app/interface/api-collection/i-http-status-code-summary';
-import { IApiDocumentationObject } from 'src/app/interface/api-collection/i-api-documentation-object';
+import {IHttpStatusCodeSummary} from 'src/app/interface/api-collection/i-http-status-code-summary';
+import {IApiDocumentationObject} from 'src/app/interface/api-collection/i-api-documentation-object';
+import {IAdminApiCollection} from "../../interface/api-collection/i-admin-api-collection";
+import {IAdminSetAccessControl} from "../../interface/api-collection/i-admin-set-access-control";
+import {IMessage} from "../../interface/authorization/i-message";
+import {IAdminApiCategory} from "../../interface/api-collection/i-admin-api-category";
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +46,34 @@ export class ApiCollectionService {
 
   getErrorType(): Observable<IHttpStatusCodeSummary[]> {
     return this.apiCollectionRestService.getErrorType();
+  }
+
+  //ADMIN
+  getAPICategoryList(character: string): Observable<IAdminApiCategory[]> {
+    return this.apiCollectionRestService.getAPICategoryList(character);
+  }
+
+  getAccessControl(vendorId: string, character: string): Observable<IAdminApiCategory[]> {
+    return this.apiCollectionRestService.getAccessControl(vendorId, character);
+  }
+
+  createNewApiCategory(apiCategoryDetail: IAdminApiCategory): Observable<IMessage> {
+    return this.apiCollectionRestService.createNewApiCategory(apiCategoryDetail);
+  }
+
+  createNewApiCollection(apiCollectionDetail: IAdminApiCollection): Observable<IMessage> {
+    return this.apiCollectionRestService.createNewApiCollection(apiCollectionDetail);
+  }
+
+  setAccessControl(setAccessControl: IAdminSetAccessControl): Observable<IMessage> {
+    return this.apiCollectionRestService.setAccessControl(setAccessControl);
+  }
+
+  deleteCollection(apiCollectionId: number): Observable<IMessage> {
+    return this.apiCollectionRestService.deleteCollection(apiCollectionId);
+  }
+
+  deleteCategory(categoryId: number): Observable<IMessage> {
+    return this.apiCollectionRestService.deleteCategory(categoryId);
   }
 }

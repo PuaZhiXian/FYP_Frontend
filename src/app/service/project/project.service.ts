@@ -5,6 +5,7 @@ import {ProjectOverview} from "../../interface/project/project-overview";
 import {IApi} from "../../interface/api-collection/i-api";
 import {IMessage} from "../../interface/authorization/i-message";
 import {IProjectTokenLog} from "../../interface/project/i-project-token-log";
+import {IAdminProjectDetail} from "../../interface/project/i-admin-project-detail";
 
 @Injectable({
   providedIn: 'root'
@@ -51,4 +52,16 @@ export class ProjectService {
     return this.projectRestService.saveProjectChange(projectOverview, projectId);
   }
 
+  //ADMIN
+  getProjectList(vendorId: string): Observable<IAdminProjectDetail[]> {
+    return this.projectRestService.getProjectList(vendorId);
+  }
+
+  blockProject(projectId: number): Observable<IMessage> {
+    return this.projectRestService.blockProject(projectId);
+  }
+
+  unblockProject(projectId: number): Observable<IMessage> {
+    return this.projectRestService.unblockProject(projectId);
+  }
 }

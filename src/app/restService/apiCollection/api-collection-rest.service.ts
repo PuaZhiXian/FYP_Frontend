@@ -77,4 +77,8 @@ export class ApiCollectionRestService {
   deleteCollection(apiCollectionId: number): Observable<IMessage> {
     return this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-api-collection/' + apiCollectionId, {withCredentials: true});
   }
+
+  deleteCategory(categoryId: number): Observable<IMessage> {
+    return this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-api-category/' + categoryId, {withCredentials: true});
+  }
 }
