@@ -50,14 +50,14 @@ const routes: Routes = [
   },
   {
     path: 'admin/notification',
-    loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationModule),
+    loadChildren: () => import('./pages/admin-notification/notification.module').then(m => m.NotificationModule),
     data: {
       role: 'ROLE_ADMIN'
     }
   },
   {
     path: 'admin/user',
-    loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
+    loadChildren: () => import('./pages/admin-user/user.module').then(m => m.UserModule),
     data: {
       role: 'ROLE_ADMIN'
     }
