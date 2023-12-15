@@ -4,7 +4,7 @@
       <nz-input-group [nzPrefix]="prefixIcon" class="rounded bg-gray-50 focus:shadow-xl active:shadow-xl " nzSearch
                       nzSize="large">
         <input class="bg-gray-50 text-[#52606D] text-input" formControlName="searchKey"
-               nz-input placeholder="Search User"/>
+               [placeholder]="placeholder" nz-input/>
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
