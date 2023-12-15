@@ -55,6 +55,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'admin/user',
+    loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
+    data: {
+      role: 'ROLE_ADMIN'
+    }
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/error-handler-page/error-handler-page.module').then(m => m.ErrorHandlerPageModule)
   },

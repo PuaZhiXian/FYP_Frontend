@@ -1,0 +1,69 @@
+<nz-card>
+  <div class="flex items-center">
+    <div class="w-1/2">
+      <search-bar (filter)="searching($event)" placeholder="Search Project"></search-bar>
+    </div>
+  </div>
+  <div *ngIf="!loadingTable; else loadingTpl" class="my-6">
+    <nz-table #filterTable [nzData]="filterProjectList"
+              nzTableLayout="fixed">
+      <thead>
+      <tr class="trid">
+        <th *ngFor="let column of listOfColumns"
+            [nzShowSort]="!(column.sortFn === null)"
+            [nzSortDirections]="column.sortDirections"
+            [nzSortFn]="column.sortFn"
+            [nzSortOrder]="column.sortOrder"
+            [nzWidth]="column.width"
+            class="lg:text-table-header text-xs">
+          {{column.name}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of filterTable.data; let i = index" class=" hover:bg-[#F5F5F5]">
+        <td class="cursor-pointer lg:text-table-row text-xs">{{ data.project_name}}</td>
+        <td class="cursor-pointer lg:text-table-row text-xs">{{ data.description }}</td>
+        <td class="cursor-pointer lg:text-table-row text-xs">{{ data.createdAt | date :'dd MMM yyyy' }}</td>
+        <td class="cursor-pointer lg:text-table-row text-xs">
+          <div *ngIf="data.status === 'Approved'"
+               class="justify-center text-xs inline-flex font-bold px-3 py-1 bg-green-200 text-green-700 rounded-full min-w-[80px]">
+            APPROVED
+          </div>
+          <div *ngIf="data.status === 'Pending'"
+               class="justify-center text-xs inline-flex font-bold px-3 py-1 bg-orange-200 text-orange-700 rounded-full min-w-[80px]">
+            PENDING
+          </div>
+          <div *ngIf="data.status === 'Rejected'"
+               class="justify-center text-xs inline-flex font-bold px-3 py-1 bg-red-200 text-red-700 rounded-full min-w-[80px]">
+            REJECTED
+          </div>
+        </td>
+        <td class="cursor-pointer lg:text-table-row text-xs">
+          <div class="flex gap-2 justify-end">
+            <button (click)="conformingBlockProject(data.id, data.project_name)" *ngIf="data.status !== 'Rejected'"
+                    [nzTooltipMouseEnterDelay]="0.75"
+                    class="bg-red-600 p-2 border-0 text-white rounded text-button material-icons-outlined cursor-pointer"
+                    nz-tooltip nzTooltipPlacement="left"
+                    nzTooltipTitle="block">
+              lock
+            </button>
+            <button (click)="unblockProject(data.id)" *ngIf="data.status ==='Rejected'"
+                    [nzTooltipMouseEnterDelay]="0.75"
+                    class="bg-green-600 p-2 border-0 text-white rounded text-button material-icons-outlined cursor-pointer"
+                    nz-tooltip nzTooltipPlacement="left"
+                    nzTooltipTitle="unblock">
+              lock_open
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</nz-card>
+
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>
+

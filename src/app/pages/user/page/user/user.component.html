@@ -1,0 +1,55 @@
+<div class="h-screen bg-gray-100">
+  <div class="bg-primary-900">
+    <app-header></app-header>
+  </div>
+
+  <div class="container md:mx-auto md:px-0 px-[20px]">
+    <div class="grid grid-cols-3 gap-6 my-4 ">
+      <!--Total User-->
+      <nz-card class="rounded-3xl	">
+        <div class="flex justify-between items-center">
+          <div>Total User</div>
+          <div class="">
+            <nz-select (ngModelChange)="getTotalUser()" [(ngModel)]="selectedTotalUserDayOption">
+              <nz-option *ngFor="let option of totalUserDayOption" [nzValue]="option"
+                         nzLabel="{{option + ' Days'}}"></nz-option>
+              <nz-option [nzValue]="0" nzLabel="All Days"></nz-option>
+            </nz-select>
+          </div>
+        </div>
+        <div class="my-2 text-title flex gap-2 items-center">
+          <div class="material-icons-outlined text-title">analytics</div>
+          <div *ngIf="!loadingTotalUser; else singleLoadingTpl">{{totalUser}}</div>
+        </div>
+      </nz-card>
+      <!--New User-->
+      <nz-card class="rounded-3xl	">
+        <div class="flex justify-between">
+          <div>New User</div>
+          <div>{{ currentDate| date: 'MMM y'}}</div>
+        </div>
+        <div *ngIf="!loadingNewUser; else singleLoadingTpl" class="mt-2 text-title">{{totalNewUser.numberOfUser}}</div>
+        <div>
+          <nz-progress [nzPercent]="80" [nzShowInfo]="false"></nz-progress>
+        </div>
+      </nz-card>
+      <!--Active-->
+      <nz-card class="rounded-3xl	">
+        <div class="flex justify-between">
+          <div>Non Active</div>
+          <div>Till Today</div>
+        </div>
+        <div *ngIf="!loadingNonActiveUser; else singleLoadingTpl" class="mt-2 text-title">{{totalNonActiveUser}}%</div>
+        <div>
+          <nz-progress [nzPercent]="80" [nzShowInfo]="false"></nz-progress>
+        </div>
+      </nz-card>
+    </div>
+
+    <user-table></user-table>
+  </div>
+</div>
+
+<ng-template #singleLoadingTpl>
+  <nz-skeleton-element [nzActive]="true" nzType="button"></nz-skeleton-element>
+</ng-template>
