@@ -190,6 +190,6 @@ export class UserTableComponent implements OnInit {
   }
 
   openUserDetailPage(vendorId: number) {
-    this.router.navigate(['user', 'detail', vendorId])
+    this.router.navigate(['admin', 'user', 'detail', vendorId])
   }
 }

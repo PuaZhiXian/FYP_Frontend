@@ -49,7 +49,7 @@ export class HeaderComponent {
   }
 
   redirect(url: string) {
-    this.router.navigate(['/', url]);
+    this.router.navigate(['/', 'admin', url]);
   }
 
   initProfileModalForm() {
