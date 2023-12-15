@@ -20,19 +20,18 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.isAuthenticated().pipe(
-      switchMap((isAuthenticated) => {
-        let userRole = 'ROLE_ADMIN';
-        if (isAuthenticated) {
-          if (route.data['role'] && route.data['role'] === userRole) {
+      switchMap((role) => {
+        if (role.isAuthenticated) {
+          if (route.data['role'] && route.data['role'].includes(role.role)) {
             if (route.component === SignInUpComponent) {
               //Vendor already login and go to sign in page
-              (userRole === 'ROLE_VENDOR') ?
+              (role.role?.includes('ROLE_VENDOR')) ?
                 this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'notification']);
               return of(false);
             }
             return of(true);
           } else {
-            userRole === 'ROLE_VENDOR' ? this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'notification']);
+            role.role === 'ROLE_VENDOR' ? this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'notification']);
             return of(false);
           }
         } else {
@@ -52,9 +51,12 @@ export class AuthGuard implements CanActivate {
             );
           } else {
             //UnAuthorize
-            console.log('cccxds')
-            this.router.navigate(['sign', 'sign-in']);
-            return of(false);
+            if (route.component === SignInUpComponent) {
+              return of(true);
+            } else {
+              this.router.navigate(['sign', 'sign-in']);
+              return of(false);
+            }
           }
         }
       })
