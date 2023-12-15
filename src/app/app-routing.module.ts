@@ -48,6 +48,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'admin/notification',
+    loadChildren: () => import('./pages/notification/notification.module').then(m => m.NotificationModule),
+    data: {
+      role: 'ROLE_ADMIN'
+    }
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/error-handler-page/error-handler-page.module').then(m => m.ErrorHandlerPageModule)
   },

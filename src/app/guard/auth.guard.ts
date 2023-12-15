@@ -21,18 +21,18 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.isAuthenticated().pipe(
       switchMap((isAuthenticated) => {
-        let userRole = 'ROLE_VENDOR';
+        let userRole = 'ROLE_ADMIN';
         if (isAuthenticated) {
           if (route.data['role'] && route.data['role'] === userRole) {
             if (route.component === SignInUpComponent) {
-              (route.data['role'] && route.data['role'] === 'ROLE_VENDOR') ?
-                this.router.navigate(['dashboard']) : this.router.navigate(['dashboard']);
+              //Vendor already login and go to sign in page
+              (userRole === 'ROLE_VENDOR') ?
+                this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'notification']);
               return of(false);
             }
             return of(true);
           } else {
-            (route.data['role'] && route.data['role'] === 'ROLE_VENDOR') ?
-              this.router.navigate(['dashboard']) : this.router.navigate(['dashboard']);
+            userRole === 'ROLE_VENDOR' ? this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'notification']);
             return of(false);
           }
         } else {
@@ -52,6 +52,7 @@ export class AuthGuard implements CanActivate {
             );
           } else {
             //UnAuthorize
+            console.log('cccxds')
             this.router.navigate(['sign', 'sign-in']);
             return of(false);
           }

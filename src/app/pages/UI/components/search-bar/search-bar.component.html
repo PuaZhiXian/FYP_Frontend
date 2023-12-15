@@ -1,0 +1,16 @@
+<form [formGroup]="validateForm" nz-form>
+  <nz-form-item class="mb-0">
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixIcon" class="rounded bg-gray-50 focus:shadow-xl active:shadow-xl " nzSearch
+                      nzSize="large">
+        <input class="bg-gray-50 text-[#52606D] text-input" formControlName="searchKey"
+               nz-input placeholder="Search User"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+
+<ng-template #prefixIcon>
+  <span class=" text-[#52606D] material-icons-outlined text-input">search</span>
+</ng-template>
