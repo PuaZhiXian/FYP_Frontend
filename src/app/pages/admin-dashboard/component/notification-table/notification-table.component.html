@@ -1,0 +1,57 @@
+<div class="my-2">
+  <nz-card>
+    <div class="flex justify-between items-center">
+      <div class="w-1/2">
+        <search-bar (filter)="searching($event)" placeholder="Search Notification"></search-bar>
+      </div>
+      <div class="">
+        <button class="bg-primary-900 text-white px-[32px]rounded text-button font-bold"
+                nz-button>Add Notification
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!loadingTable; else loadingTpl" class="my-6">
+      <nz-table #filterTable [nzData]="filterNotificationList"
+                nzTableLayout="fixed">
+        <thead>
+        <tr class="trid">
+          <th *ngFor="let column of listOfColumns"
+              [nzShowSort]="!(column.sortFn === null)"
+              [nzSortDirections]="column.sortDirections"
+              [nzSortFn]="column.sortFn"
+              [nzSortOrder]="column.sortOrder"
+              [nzWidth]="column.width"
+              class="lg:text-table-header text-xs">
+            {{column.name}}
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of filterTable.data; let i = index" class=" hover:bg-[#F5F5F5]">
+          <td class="cursor-pointer lg:text-table-row text-xs">{{ data.title}}</td>
+          <td class="cursor-pointer lg:text-table-row text-xs">{{ data.description }}</td>
+          <td class="cursor-pointer lg:text-table-row text-xs">{{ data.startDate| date }}</td>
+          <td class="cursor-pointer lg:text-table-row text-xs">{{ data.endDate| date }}</td>
+          <td class="cursor-pointer lg:text-table-row text-xs">
+            <div class="flex gap-2 justify-end">
+              <button
+                (click)="openDeleteNotificationModal(data.id)"
+                class="bg-red-600 p-2 border-0 text-white rounded text-button material-icons-outlined cursor-pointer">
+                block
+              </button>
+              <button
+                class="bg-blue-600 p-2 border-0 text-white rounded text-button material-icons-outlined cursor-pointer">
+                open_in_new
+              </button>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </nz-card>
+</div>
+
+<ng-template #loadingTpl>
+  <nz-skeleton></nz-skeleton>
+</ng-template>

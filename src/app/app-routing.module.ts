@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {DashboardModule} from "./pages/admin-dashboard/dashboard.module";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/sign/sign-in'},
@@ -57,6 +58,13 @@ const routes: Routes = [
   {
     path: 'admin/user',
     loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
+    data: {
+      role: 'ROLE_ADMIN'
+    }
+  },
+  {
+    path: 'admin/dashboard',
+    loadChildren: () => import('./pages/admin-dashboard/dashboard.module').then(m => m.DashboardModule),
     data: {
       role: 'ROLE_ADMIN'
     }

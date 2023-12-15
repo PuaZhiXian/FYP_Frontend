@@ -8,7 +8,6 @@ import {CommonModule} from "@angular/common";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NzMessageModule} from "ng-zorro-antd/message";
-import {DashboardModule} from "../dashboard/dashboard.module";
 import {UserDetailComponent} from './page/user-detail/user-detail.component';
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzTabsModule} from "ng-zorro-antd/tabs";
@@ -25,6 +24,7 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {UIModule} from "../UI/UI.module";
+import {DashboardModule} from "../admin-dashboard/dashboard.module";
 
 
 @NgModule({
@@ -61,6 +61,7 @@ import {UIModule} from "../UI/UI.module";
     NzInputModule,
     NzToolTipModule,
     UIModule,
+    DashboardModule,
   ]
 })
 export class UserModule {
