@@ -20,40 +20,6 @@ export class NotificationComponent implements OnInit {
 
 
   eventList: IAdminCalendarEvent[][][] = []
-  temp: IAdminCalendarEvent[][][] = [
-    [],
-    [
-      [
-        {clickResponse: 'Event A', title: 'Event A', isStart: true, color: 'bg-sky-400', level: 0},
-        {clickResponse: 'Event B', title: 'Event B', isStart: true, isEnd: true, level: 1, color: 'bg-amber-400'}
-      ],
-      [
-        {clickResponse: 'Event A', isEnd: true, color: 'bg-sky-400', level: 0},
-        {clickResponse: 'Event C', title: 'Event C', isStart: true, color: 'bg-green-400', level: 1}
-      ],
-      [
-        {clickResponse: 'Event D', title: 'Event D', isStart: true, isEnd: true, color: 'bg-yellow-400', level: 0},
-        {clickResponse: 'Event C', isEnd: true, color: 'bg-green-400', level: 1},
-        {clickResponse: 'Event E', title: 'Event E', isStart: true, color: 'bg-rose-400', level: 2}
-      ],
-      [
-        {clickResponse: 'Event E', isEnd: true, color: 'bg-rose-400', level: 2}
-      ],
-      [],
-      [],
-      [
-        {clickResponse: 'Event F', title: 'Event F', isStart: true, isEnd: true, color: 'bg-emerald-400', level: 0}
-      ]
-    ],
-    [
-      [
-        {clickResponse: 'Event F', title: 'Event F', isStart: true, isEnd: true, color: 'bg-emerald-400', level: 0}
-      ]
-    ],
-    [],
-    [],
-    [],
-  ]
   loadingEditNotificationDrawer: boolean = true;
 
   constructor(private notificationService: NotificationService,
