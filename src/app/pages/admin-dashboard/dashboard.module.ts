@@ -17,9 +17,12 @@ import {NzMessageModule} from 'ng-zorro-antd/message';
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {UIModule} from "../UI/UI.module";
 import {HeaderModule} from "../admin-header/header.module";
+import {NzDrawerModule} from "ng-zorro-antd/drawer";
+import {NotificationModule} from "../admin-notification/notification.module";
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 
 @NgModule({
-  imports: [DashboardRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, UIModule, HeaderModule],
+  imports: [DashboardRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, UIModule, HeaderModule, NzDrawerModule, NotificationModule, NzDatePickerModule],
   declarations: [DashboardComponent, UserTableComponent, NotificationTableComponent],
   exports: [DashboardComponent, UserTableComponent, UserTableComponent]
 })

@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ColumnItem} from "../../../../interface/table/column-item";
-import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {IAdminNotification} from "../../../../interface/notification/i-admin-notification";
 import {NotificationService} from "../../../../service/notification/notification.service";
@@ -23,6 +23,12 @@ export class NotificationTableComponent implements OnInit {
 
   deleteNotificationModalVisibility: boolean = false;
 
+  htmlContent: string = '';
+  createNotificationDrawerVisibility: boolean = false;
+  validateForm!: UntypedFormGroup;
+  notificationColor: string = 'green';
+  loadingEditNotificationDrawer: boolean = true;
+
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
               private ref: ChangeDetectorRef,
@@ -34,9 +40,11 @@ export class NotificationTableComponent implements OnInit {
   ngOnInit(): void {
     this.initNotification();
     this.initTable();
+    this.initForm();
   }
 
   initNotification() {
+    this.loadingTable = true;
     this.notificationService.getNotificationList()
       .pipe(finalize(() => {
         this.loadingTable = false;
@@ -146,5 +154,72 @@ export class NotificationTableComponent implements OnInit {
     });
   }
 
+  initForm() {
+    this.validateForm = this.fb.group({
+      id: [null, []],
+      title: [null, [Validators.required]],
+      description: [null, []],
+      announcement_text: [null, [Validators.required]],
+      rangeDate: [null, []],
+      startDate: [null, [Validators.required]],
+      endDate: [null, [Validators.required]],
+      color: [null, [Validators.required]],
+    });
+  }
+
+  createSaveNotification() {
+    this.validateForm.patchValue({
+      startDate: this.validateForm.value.rangeDate[0],
+      endDate: this.validateForm.value.rangeDate[1],
+      color: this.notificationColor,
+      announcement_text: this.htmlContent
+    })
+    if (this.validateForm.valid) {
+      this.notificationService.createSaveNotification(this.validateForm.value)
+        .subscribe((resp) => {
+          if (resp.message) {
+            this.message.success(resp.message);
+            this.createNotificationDrawerVisibility = false;
+            this.loadingEditNotificationDrawer = true;
+            this.initNotification();
+          } else {
+            this.message.error(resp.error || '')
+          }
+        })
+    } else {
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({onlySelf: true});
+        }
+      });
+      let announcementTextControl = this.validateForm.controls['announcement_text']
+      if (announcementTextControl.invalid) {
+        announcementTextControl.markAsDirty()
+        announcementTextControl.updateValueAndValidity({onlySelf: true})
+        this.message.error('Cannot empty announcement text')
+      }
+    }
+  }
+
+  openNotificationDrawerCreate() {
+    this.initForm()
+    this.createNotificationDrawerVisibility = true;
+    let currentDate = new Date();
+    let startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
+    let endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 23, 59, 59)
+    this.validateForm.patchValue(
+      {rangeDate: [startDate, endDate]}
+    )
+    this.loadingEditNotificationDrawer = false;
+  }
+
+  closeNotificationDrawer() {
+    this.createNotificationDrawerVisibility = false;
+  }
+
+  changeColor(color: string) {
+    this.notificationColor = color;
+  }
 
 }

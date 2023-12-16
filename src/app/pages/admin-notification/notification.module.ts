@@ -26,9 +26,10 @@ import {HeaderModule} from "../admin-header/header.module";
     RichTextEditorComponent,
     NotificationAlertComponent
   ],
-  exports: [
-    NotificationComponent
-  ],
+    exports: [
+        NotificationComponent,
+        RichTextEditorComponent
+    ],
   imports: [
     NotificationRoutingModule,
     HeaderModule,
