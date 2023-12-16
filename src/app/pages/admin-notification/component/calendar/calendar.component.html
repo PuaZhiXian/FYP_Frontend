@@ -40,8 +40,8 @@
     <div class=" grid grid-cols-7 h-[120px]  h-min-[120px] pt-[30px]">
       <div *ngFor="let eventRow of eventList[i]" class="relative text-gray-400 items-end">
         <div (click)="clickEventOnEvent(eventDate.clickResponse || '')" *ngFor="let eventDate of eventRow"
-             class="absolute inset-x-0 z-30 cursor-pointer pl-[5px] text-black h-[22px]
-                     {{ eventDate.level === 1 ? 'mt-[26px]' : eventDate.level === 2 ? 'mt-[52px]': ''}} {{eventDate.color =='red' ? 'bg-red-400': eventDate.color == 'yellow'? 'bg-yellow-400' : 'bg-green-400'}}
+             class="absolute inset-x-0 z-30 cursor-pointer pl-[5px] text-black h-[22px] text-[15px]
+                     {{ eventDate.level === 1 ? 'mt-[32px]' : eventDate.level === 2 ? 'mt-[58px]': 'mt-[6px]'}} {{eventDate.color =='red' ? 'bg-red-400': eventDate.color == 'yellow'? 'bg-yellow-400' : 'bg-green-400'}}
                      {{eventDate.isEnd ? 'rounded-r-md mr-[10px]':''}} {{eventDate.isStart ? 'rounded-l-md':''}}">{{eventDate.title || ' '}}
         </div>
       </div>
