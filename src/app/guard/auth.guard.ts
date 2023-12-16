@@ -22,10 +22,10 @@ export class AuthGuard implements CanActivate {
     return this.authService.isAuthenticated().pipe(
       switchMap((role) => {
         if (role.isAuthenticated) {
-          if (route.data['role'] && route.data['role'].includes(role.role)) {
+          if (route.data['role'] && route.data['role'].indexOf(role.role) !== -1) {
             if (route.component === SignInUpComponent) {
               //Vendor already login and go to sign in page
-              (role.role?.includes('ROLE_VENDOR')) ?
+              (role.role?.indexOf('ROLE_VENDOR') !== -1) ?
                 this.router.navigate(['dashboard']) : this.router.navigate(['admin', 'dashboard']);
               return of(false);
             }

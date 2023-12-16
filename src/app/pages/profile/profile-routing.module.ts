@@ -10,7 +10,6 @@ const routes: Routes = [
       {
         path: '',
         component: ProfileComponent,
-        canActivate: [AuthGuard]
       }
     ]
   },

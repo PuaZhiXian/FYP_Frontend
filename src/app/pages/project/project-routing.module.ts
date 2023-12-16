@@ -10,7 +10,6 @@ const routes: Routes = [
       {
         path: ':projectId',
         component: SingleProjectComponent,
-        canActivate: [AuthGuard]
       }
     ]
   },
