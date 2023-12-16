@@ -8,10 +8,7 @@ const routes: Routes = [
   {
     path: 'sign',
     loadChildren: () => import('./pages/sign-in-up/sign-in-up.module').then(m => m.SignInUpModule),
-    canActivate: [AuthGuard],
-    data: {
-      role: 'ROLE_VENDOR, ROLE_ADMIN'
-    }
+
   },
   {
     path: 'dashboard',

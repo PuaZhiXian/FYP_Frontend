@@ -10,6 +10,7 @@ const routes: Routes = [
       {
         path: ':type',
         component: SignInUpComponent,
+        canActivate: [AuthGuard],
       }
     ]
   },
