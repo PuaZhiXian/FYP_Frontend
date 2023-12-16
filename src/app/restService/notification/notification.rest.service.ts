@@ -29,14 +29,12 @@ export class NotificationRestService {
     return this.httpClient.get<IAdminCalendarEvent[][][]>(this.ProjectUrl + '/custom/get-announcement-event-list', {withCredentials: true});
   }
 
-  createNotification(notification: IAdminNotification): Observable<IMessage> {
-    //TODO : api save and create use same endpoint, do if chcking
-    return this.httpClient.post<IMessage>(this.ProjectUrl + '/announcements', notification, {withCredentials: true});
+  createSaveNotification(notification: IAdminNotification): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/create-announcement', notification, {withCredentials: true});
   }
 
   getSingleNotification(eventId: string): Observable<IAdminNotification> {
-    //TODO : api
-    return this.httpClient.get<IAdminNotification>(this.ProjectUrl + '/TODO' + eventId, {withCredentials: true});
+    return this.httpClient.get<IAdminNotification>(this.ProjectUrl + '/announcements/' + eventId, {withCredentials: true});
   }
 
   getNotificationAlertList(): Observable<IAdminNotificationAlert[]> {

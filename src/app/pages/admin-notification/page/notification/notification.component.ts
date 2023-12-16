@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {HeaderComponent} from "../../../header/page/header/header.component";
 import {IAdminCalendarEvent} from "../../../../interface/calendar/i-admin-calendar-event";
 import {NotificationService} from "../../../../service/notification/notification.service";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {finalize} from 'rxjs';
 
 @Component({
   selector: 'app-notification',
@@ -24,7 +25,8 @@ export class NotificationComponent implements OnInit {
 
   constructor(private notificationService: NotificationService,
               private fb: UntypedFormBuilder,
-              private message: NzMessageService) {
+              private message: NzMessageService,
+              private ref: ChangeDetectorRef,) {
   }
 
   ngOnInit(): void {
@@ -61,11 +63,17 @@ export class NotificationComponent implements OnInit {
       announcement_text: this.htmlContent
     })
     if (this.validateForm.valid) {
-      console.log('call api')
-      /*this.notificationService.createNotification(this.validateForm.value)
+      this.notificationService.createSaveNotification(this.validateForm.value)
         .subscribe((resp) => {
-          console.log(resp)
-        })*/
+          if (resp.message) {
+            this.message.success(resp.message);
+            this.createNotificationDrawerVisibility = false;
+            this.loadingEditNotificationDrawer = true;
+            this.initNotificationEvent();
+          } else {
+            this.message.error(resp.error || '')
+          }
+        })
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -90,44 +98,32 @@ export class NotificationComponent implements OnInit {
     this.validateForm.patchValue(
       {rangeDate: [startDate, endDate]}
     )
+    this.loadingEditNotificationDrawer = false;
   }
 
   openNotificationDrawerEdit(eventId: string) {
     this.initForm()
     this.editNotification = true;
     this.createNotificationDrawerVisibility = true;
-    /*    this.notificationService.getSingleNotification(eventId)
-    .pipe(finalize(() => {
+    this.notificationService.getSingleNotification(eventId)
+      .pipe(finalize(() => {
         this.loadingEditNotificationDrawer = false;
         this.ref.detectChanges();
         this.ref.markForCheck();
       }))
-          .subscribe((resp) => {
-            this.validateForm.patchValue({
-              id: resp.id,
-              title: resp.title,
-              description: resp.description,
-              announcement_text: resp.announcement_text,
-              rangeDate: [resp.startDate, resp.endDate],
-              startDate: resp.startDate,
-              endDate: resp.endDate,
-            });
-            this.notificationColor = resp.color;
-            this.htmlContent = 'announcement_text'
-          })*/
-
-    this.validateForm.patchValue({
-      id: 1,
-      title: 'Event',
-      description: 'description',
-      announcement_text: 'announcement_text',
-      startDate: new Date(),
-      endDate: new Date(2023, 12, 16),
-      rangeDate: [new Date(), new Date(2023, 12, 16)],
-      color: 'string',
-    });
-    this.notificationColor = 'yellow';
-    this.htmlContent = 'announcement_text'
+      .subscribe((resp) => {
+        this.validateForm.patchValue({
+          id: resp.id,
+          title: resp.title,
+          description: resp.description,
+          announcement_text: resp.announcement_text,
+          rangeDate: [resp.startDate, resp.endDate],
+          startDate: resp.startDate,
+          endDate: resp.endDate,
+        });
+        this.notificationColor = resp.color;
+        this.htmlContent = 'announcement_text'
+      })
   }
 
   closeNotificationDrawer() {

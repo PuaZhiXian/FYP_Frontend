@@ -27,8 +27,8 @@ export class NotificationService {
     return this.notificationRestService.getNotificationEventList();
   }
 
-  createNotification(notification: IAdminNotification): Observable<IMessage> {
-    return this.notificationRestService.createNotification(notification);
+  createSaveNotification(notification: IAdminNotification): Observable<IMessage> {
+    return this.notificationRestService.createSaveNotification(notification);
   }
 
   getSingleNotification(eventId: string): Observable<IAdminNotification> {
