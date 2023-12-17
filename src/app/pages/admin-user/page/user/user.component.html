@@ -6,20 +6,24 @@
   <div class="container md:mx-auto md:px-0 px-[20px]">
     <div class="grid grid-cols-3 gap-6 my-4 ">
       <!--Total User-->
-      <nz-card class="rounded-3xl	">
-        <div class="flex justify-between items-center">
-          <div>Total User</div>
-          <div class="">
-            <nz-select (ngModelChange)="getTotalUser()" [(ngModel)]="selectedTotalUserDayOption">
-              <nz-option *ngFor="let option of totalUserDayOption" [nzValue]="option"
-                         nzLabel="{{option + ' Days'}}"></nz-option>
-              <nz-option [nzValue]="0" nzLabel="All Days"></nz-option>
-            </nz-select>
+      <nz-card class="rounded-3xl div-full">
+        <div class="flex flex-col h-full">
+          <div class="flex justify-between items-center">
+            <div>Total User</div>
+            <div class="">
+              <nz-select (ngModelChange)="getTotalUser()" [(ngModel)]="selectedTotalUserDayOption">
+                <nz-option *ngFor="let option of totalUserDayOption" [nzValue]="option"
+                           nzLabel="{{option + ' Days'}}"></nz-option>
+                <nz-option [nzValue]="0" nzLabel="All Days"></nz-option>
+              </nz-select>
+            </div>
           </div>
-        </div>
-        <div class="my-2 text-title flex gap-2 items-center">
-          <div class="material-icons-outlined text-title">analytics</div>
-          <div *ngIf="!loadingTotalUser; else singleLoadingTpl">{{totalUser}}</div>
+          <div class="my-2 text-title flex grow gap-2 items-center">
+            <div *ngIf="!loadingTotalUser; else singleLoadingTpl" class="text-[48px]">{{totalUser}}</div>
+            <div>
+              <img height="50" src="https://media-public.canva.com/9a-iI/MAB1WI9a-iI/2/tl.png">
+            </div>
+          </div>
         </div>
       </nz-card>
       <!--New User-->
