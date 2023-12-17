@@ -126,8 +126,11 @@ export class NotificationTableComponent implements OnInit {
     return sentence.toLocaleLowerCase().includes(word.toLowerCase());
   }
 
-  redirectToNotificationDetail() {
-
+  redirectToNotificationDetail(notificationId: number) {
+    this.router.navigate(
+      ['admin', 'notification'],
+      {queryParams: {notificationId: notificationId}}
+    );
   }
 
   deleteNotification(notificationId: number) {

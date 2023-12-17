@@ -5,6 +5,7 @@ import {NotificationService} from "../../../../service/notification/notification
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {finalize} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-notification',
@@ -19,6 +20,7 @@ export class NotificationComponent implements OnInit {
   validateForm!: UntypedFormGroup;
   notificationColor: string = 'green';
 
+  redirectNotificationId?: number;
 
   eventList: IAdminCalendarEvent[][][] = []
   loadingEditNotificationDrawer: boolean = true;
@@ -26,13 +28,22 @@ export class NotificationComponent implements OnInit {
   constructor(private notificationService: NotificationService,
               private fb: UntypedFormBuilder,
               private message: NzMessageService,
-              private ref: ChangeDetectorRef,) {
+              private ref: ChangeDetectorRef,
+              private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     HeaderComponent.headerIndicator = 'notification';
     this.initForm();
     this.initNotificationEvent();
+    this.activeRoute.queryParams
+      .subscribe((resp) => {
+        this.redirectNotificationId = resp['notificationId'];
+
+        if (this.redirectNotificationId !== undefined) {
+          this.openNotificationDrawerEdit(this.redirectNotificationId + "");
+        }
+      })
   }
 
   initForm() {
