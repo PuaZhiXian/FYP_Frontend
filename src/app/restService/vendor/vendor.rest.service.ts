@@ -8,6 +8,7 @@ import {environment} from "../../../environments/environment";
 import {IAdminNewUser} from "../../interface/user/i-admin-new-user";
 import {IAdminUserDetails} from "../../interface/user/i-admin-user-details";
 import {IAdminUser} from "../../interface/user/i-admin-user";
+import {IAdminUserStatistic} from "../../interface/user/i-admin-user-statistic";
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +73,10 @@ export class VendorRestService {
 
   getOneUser(vendorId: string): Observable<IAdminUserDetails> {
     return this.httpClient.get<IAdminUserDetails>(this.ProjectUrl + '/custom/get-one-user/' + vendorId, {withCredentials: true});
+  }
+
+  getUserStatistic(): Observable<IAdminUserStatistic> {
+    return this.httpClient.get<IAdminUserStatistic>(this.ProjectUrl + '/custom/get-user-data/', {withCredentials: true});
   }
 
 }

@@ -25,6 +25,7 @@ import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {UIModule} from "../UI/UI.module";
 import {DashboardModule} from "../admin-dashboard/dashboard.module";
 import {HeaderModule} from "../admin-header/header.module";
+import {CanvasJSAngularChartsModule} from "@canvasjs/angular-charts";
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import {HeaderModule} from "../admin-header/header.module";
     UIModule,
     DashboardModule,
     HeaderModule,
+    CanvasJSAngularChartsModule,
   ]
 })
 export class UserModule {

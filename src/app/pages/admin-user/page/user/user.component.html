@@ -23,18 +23,11 @@
         </div>
       </nz-card>
       <!--New User-->
-      <nz-card class="rounded-3xl	">
-        <div class="flex justify-between">
-          <div>New User</div>
-          <div>{{ currentDate| date: 'MMM y'}}</div>
-        </div>
-        <div *ngIf="!loadingNewUser; else singleLoadingTpl" class="mt-2 text-title">{{totalNewUser.numberOfUser}}</div>
-        <div>
-          <nz-progress [nzPercent]="80" [nzShowInfo]="false"></nz-progress>
-        </div>
+      <nz-card class="col-span-2 rounded-3xl	">
+        <canvasjs-chart [options]="chartOptions" class="flex h-[150px]"></canvasjs-chart>
       </nz-card>
       <!--Active-->
-      <nz-card class="rounded-3xl	">
+      <!--<nz-card class="rounded-3xl	">
         <div class="flex justify-between">
           <div>Non Active</div>
           <div>Till Today</div>
@@ -43,7 +36,7 @@
         <div>
           <nz-progress [nzPercent]="80" [nzShowInfo]="false"></nz-progress>
         </div>
-      </nz-card>
+      </nz-card>-->
     </div>
 
     <user-table></user-table>

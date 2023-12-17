@@ -11,7 +11,7 @@ import {IAdminNewUser} from "../../../../interface/user/i-admin-new-user";
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-
+  chartOptions: any = {};
   currentDate: Date = new Date();
   totalUserDayOption: number[] = [30, 60, 90]
   selectedTotalUserDayOption !: number
@@ -32,9 +32,28 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     HeaderComponent.headerIndicator = 'user';
     this.selectedTotalUserDayOption = this.totalUserDayOption[0];
-    this.getNewUser();
     this.getTotalUser();
-    this.getNonActiveUser();
+    this.getUserStatistic();
+  }
+
+  getUserStatistic() {
+    this.vendorService.getUserStatistic()
+      .subscribe((resp) => {
+        this.chartOptions = {
+          height: 150,
+          animationEnabled: true,
+          data: [{
+            type: "pie", //change type to column, line, area, doughnut, etc
+            indexLabel: "{name}: {y}%",
+            dataPoints: [
+              {name: "Active User", y: resp.activeUserPercentage},
+              {name: "New User", y: resp.newUserPercentage},
+              {name: "Non-actived User", y: resp.nonActivatedUserPercentage},
+              {name: "Non-active User", y: resp.nonActiveUserPercentage},
+            ]
+          }]
+        }
+      })
   }
 
   getTotalUser() {

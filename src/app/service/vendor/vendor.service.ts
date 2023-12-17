@@ -6,6 +6,7 @@ import {IMessage} from "../../interface/authorization/i-message";
 import {IAdminNewUser} from "../../interface/user/i-admin-new-user";
 import {IAdminUserDetails} from "../../interface/user/i-admin-user-details";
 import {IAdminUser} from "../../interface/user/i-admin-user";
+import {IAdminUserStatistic} from "../../interface/user/i-admin-user-statistic";
 
 @Injectable({
   providedIn: 'root'
@@ -63,5 +64,9 @@ export class VendorService {
 
   getOneUser(vendorId: string): Observable<IAdminUserDetails> {
     return this.vendorRestService.getOneUser(vendorId);
+  }
+
+  getUserStatistic(): Observable<IAdminUserStatistic> {
+    return this.vendorRestService.getUserStatistic();
   }
 }
