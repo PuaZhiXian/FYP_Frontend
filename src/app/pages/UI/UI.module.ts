@@ -7,6 +7,7 @@ import {TemplateComponent} from './components/field-tester-template/template.com
 import {CommonModule} from "@angular/common";
 import {TextInputComponent} from './components/text-input/text-input.component';
 import {EmailInputComponent} from "./components/email-input/email-input.component";
+import {AbstractNgModelComponent} from "./abstractFieldInput";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {EmailInputComponent} from "./components/email-input/email-input.componen
     SearchBarComponent,
     TemplateComponent,
     TextInputComponent,
-    EmailInputComponent
+    EmailInputComponent,
+    AbstractNgModelComponent
   ],
   exports: [
     SearchBarComponent,
