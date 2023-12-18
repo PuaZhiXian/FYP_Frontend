@@ -17,23 +17,23 @@ export interface ProfileFormValues {
 }
 
 @Component({
-  selector: 'email-input',
-  templateUrl: './email-input.component.html',
-  styleUrls: ['./email-input.component.scss'],
+  selector: 'template-field',
+  templateUrl: './template-input.component.html',
+  styleUrls: ['./template.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => EmailInputComponent),
+      useExisting: forwardRef(() => TemplateComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => EmailInputComponent),
+      useExisting: forwardRef(() => TemplateComponent),
       multi: true
     }
   ]
 })
-export class EmailInputComponent implements ControlValueAccessor, OnDestroy {
+export class TemplateComponent implements ControlValueAccessor, OnDestroy {
 
   form: FormGroup;
 

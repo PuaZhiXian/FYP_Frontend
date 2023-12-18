@@ -95,19 +95,8 @@
   </div>
   <div *nzModalContent>
     <form [formGroup]="addUserModalValidateForm" nz-form>
-      <div class="grid grid-cols-12">
-        <div class="col-span-3 text-label my-2">Email</div>
-        <div class="col-span-9 w-full">
-          <nz-form-item class="my-0">
-            <nz-form-control nzErrorTip="Please input your email address!">
-              <div>
-                <input class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
-                       formControlName="email" nz-input placeholder="Email"/>
-              </div>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-      </div>
+
+      <email-input [email]="true" [fieldRequired]="true" fieldTitle="Email" formControlName="email"></email-input>
       <app-text-input [fieldRequired]="true" formControlName="organisation"></app-text-input>
     </form>
 
