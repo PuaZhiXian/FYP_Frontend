@@ -8,6 +8,7 @@ import {CommonModule} from "@angular/common";
 import {TextInputComponent} from './components/text-input/text-input.component';
 import {EmailInputComponent} from "./components/email-input/email-input.component";
 import {AbstractNgModelComponent} from "./abstractFieldInput";
+import {TextareaInputComponent} from './components/textarea-input/textarea-input.component';
 
 
 @NgModule({
@@ -16,13 +17,15 @@ import {AbstractNgModelComponent} from "./abstractFieldInput";
     TemplateComponent,
     TextInputComponent,
     EmailInputComponent,
-    AbstractNgModelComponent
+    AbstractNgModelComponent,
+    TextareaInputComponent
   ],
   exports: [
     SearchBarComponent,
     TemplateComponent,
     TextInputComponent,
-    EmailInputComponent
+    EmailInputComponent,
+    TextareaInputComponent
   ],
   imports: [
     NzFormModule,

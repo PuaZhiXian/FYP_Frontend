@@ -32,18 +32,15 @@
           </nz-form-item>
         </div>
         <!--Project Description-->
-        <div>
-          <nz-form-item class="flex items-center">
-            <nz-form-label nzFor="description">Description</nz-form-label>
-            <nz-form-control nzErrorTip="Please input your project description!">
-              <div class="">
-              <textarea class="rounded  text-input" formControlName="description" nz-input
-                        placeholder="Enter Project Description"
-                        rows="4"></textarea>
-              </div>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+        <textarea-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                        errorMessage="Please input your project description!"
+                        fieldTitle="Description" formControlName="description"
+                        placeholder="Enter Project Description"></textarea-input>
+
+        <!--<email-input [fieldRequired]="true" errorMessage="Please input your project description!"
+                     [submittedTry]="submittedTry"
+                     fieldTitle="Description" formControlName="description"
+                     placeholder="Enter Project Description"></email-input>-->
         <!--Select Date-->
         <div>
           <nz-form-item class="flex items-center">

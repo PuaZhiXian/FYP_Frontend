@@ -3,7 +3,9 @@ import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, Validators} f
 import {Subscription} from "rxjs";
 import {ProfileFormValues} from "./components/field-tester-template/template.component";
 
-@Component({template: ''})
+@Component({
+  template: ''
+})
 export class AbstractNgModelComponent<T = any> implements ControlValueAccessor {
 
   minLength?: number;

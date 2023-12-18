@@ -17,6 +17,7 @@ import {NzMessageModule} from "ng-zorro-antd/message";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import {NotificationAlertComponent} from './component/notification-alert/notification-alert.component';
 import {HeaderModule} from "../admin-header/header.module";
+import {UIModule} from "../UI/UI.module";
 
 
 @NgModule({
@@ -26,10 +27,10 @@ import {HeaderModule} from "../admin-header/header.module";
     RichTextEditorComponent,
     NotificationAlertComponent
   ],
-    exports: [
-        NotificationComponent,
-        RichTextEditorComponent
-    ],
+  exports: [
+    NotificationComponent,
+    RichTextEditorComponent
+  ],
   imports: [
     NotificationRoutingModule,
     HeaderModule,
@@ -47,6 +48,7 @@ import {HeaderModule} from "../admin-header/header.module";
     NzMessageModule,
     NzSkeletonModule,
     HeaderModule,
+    UIModule,
   ]
 })
 export class NotificationModule {

@@ -24,6 +24,7 @@ export class NotificationComponent implements OnInit {
 
   eventList: IAdminCalendarEvent[][][] = []
   loadingEditNotificationDrawer: boolean = true;
+  submittedTry: boolean = false;
 
   constructor(private notificationService: NotificationService,
               private fb: UntypedFormBuilder,
@@ -67,6 +68,9 @@ export class NotificationComponent implements OnInit {
   }
 
   createSaveNotification() {
+    this.submittedTry = true;
+    this.ref.markForCheck();
+    this.ref.detectChanges();
     this.validateForm.patchValue({
       startDate: this.validateForm.value.rangeDate[0],
       endDate: this.validateForm.value.rangeDate[1],
@@ -103,6 +107,8 @@ export class NotificationComponent implements OnInit {
 
   openNotificationDrawerCreate(date: Date) {
     this.initForm()
+    this.ref.markForCheck();
+    this.ref.detectChanges();
     this.createNotificationDrawerVisibility = true;
     let startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0)
     let endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59)
