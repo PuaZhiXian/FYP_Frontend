@@ -26,6 +26,7 @@ export class UserTableComponent implements OnInit {
   filterUserList: IAdminUser[] = [];
 
   addUserModalVisibility: boolean = false;
+  submittedTry: boolean = false;
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -129,9 +130,12 @@ export class UserTableComponent implements OnInit {
   }
 
   addUserSendEmail() {
+    this.submittedTry = true;
+    this.ref.markForCheck();
+    this.ref.detectChanges();
     if (this.addUserModalValidateForm.valid) {
-      console.log('success')
-      this.vendorService.addUserSendEmail(this.addUserModalValidateForm.value)
+      console.log('success call api')
+      /*this.vendorService.addUserSendEmail(this.addUserModalValidateForm.value)
         .subscribe((resp) => {
           if (resp.message) {
             this.message.success(resp.message);
@@ -140,9 +144,9 @@ export class UserTableComponent implements OnInit {
           } else if (resp.error) {
             this.message.error(resp.error);
           }
-        })
+        })*/
     } else {
-      console.log('error')
+      console.log('error call api')
       Object.values(this.addUserModalValidateForm.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();

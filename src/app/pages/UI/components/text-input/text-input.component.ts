@@ -43,6 +43,7 @@ export class TextInputComponent implements ControlValueAccessor, OnDestroy, OnIn
   @Input() fieldTitle!: string
   @Input() placeholder?: string = '';
   @Input() errorMessage?: string = '';
+  @Input() submittedTry: boolean = false;
 
 
   form!: FormGroup;
@@ -123,9 +124,16 @@ export class TextInputComponent implements ControlValueAccessor, OnDestroy, OnIn
       return null
     } else {
       Object.values(this.form.controls).forEach(control => {
-        if (control.invalid && control.touched) {
-          control.markAsDirty();
-          control.updateValueAndValidity({onlySelf: true});
+        if (this.submittedTry) {
+          if (control.invalid) {
+            control.markAsDirty();
+            control.updateValueAndValidity({onlySelf: true});
+          }
+        } else {
+          if (control.invalid && control.dirty) {
+            control.markAsDirty();
+            control.updateValueAndValidity({onlySelf: true});
+          }
         }
       });
       return {text: {valid: false}};

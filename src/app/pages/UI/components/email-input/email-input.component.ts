@@ -37,6 +37,7 @@ export class EmailInputComponent implements ControlValueAccessor, OnDestroy, OnI
   @Input() fieldTitle!: string;
   @Input() placeholder?: string = '';
   @Input() errorMessage?: string = '';
+  @Input() submittedTry: boolean = false;
 
 
   form!: FormGroup;
@@ -89,15 +90,19 @@ export class EmailInputComponent implements ControlValueAccessor, OnDestroy, OnI
   }
 
   onChange: any = () => {
+    console.log('in function onChange')
   };
   onTouched: any = () => {
+    console.log('in function onTouched')
   };
 
   registerOnChange(fn: any) {
+    console.log('in function registerOnChange')
     this.onChange = fn;
   }
 
   writeValue(value: any) {
+    console.log('in function writeValue')
     if (value) {
       this.value = value;
     }
@@ -108,18 +113,29 @@ export class EmailInputComponent implements ControlValueAccessor, OnDestroy, OnI
   }
 
   registerOnTouched(fn: any) {
+    console.log('in function registerOnTouched')
     this.onTouched = fn;
   }
 
   // communicate the inner form validation to the parent form
   validate(_: FormControl) {
     if (this.form.valid) {
+      console.log('in success validate')
       return null
     } else {
+      console.log('in failed validate')
+      console.log(this.submittedTry)
       Object.values(this.form.controls).forEach(control => {
-        if (control.invalid && control.touched) {
-          control.markAsDirty();
-          control.updateValueAndValidity({onlySelf: true});
+        if (this.submittedTry) {
+          if (control.invalid) {
+            control.markAsDirty();
+            control.updateValueAndValidity({onlySelf: true});
+          }
+        } else {
+          if (control.invalid && control.dirty) {
+            control.markAsDirty();
+            control.updateValueAndValidity({onlySelf: true});
+          }
         }
       });
       return {text: {valid: false}};

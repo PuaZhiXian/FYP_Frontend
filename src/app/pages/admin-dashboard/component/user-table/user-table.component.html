@@ -96,10 +96,11 @@
   <div *nzModalContent>
     <form [formGroup]="addUserModalValidateForm" nz-form>
 
-      <email-input [email]="true" [fieldRequired]="true"
+      <email-input [email]="true" [fieldRequired]="true" [submittedTry]="submittedTry"
                    errorMessage="Please input your email" fieldTitle="Email"
                    formControlName="email" placeholder="email"></email-input>
       <app-text-input [fieldRequired]="true" errorMessage="Please input your organisation!"
+                      [submittedTry]="submittedTry"
                       fieldTitle="Organisation" formControlName="organisation"
                       placeholder="organisation"></app-text-input>
     </form>
