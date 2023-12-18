@@ -28,6 +28,7 @@ export class NotificationTableComponent implements OnInit {
   validateForm!: UntypedFormGroup;
   notificationColor: string = 'green';
   loadingEditNotificationDrawer: boolean = true;
+  submittedTry: boolean = false;
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -171,6 +172,7 @@ export class NotificationTableComponent implements OnInit {
   }
 
   createSaveNotification() {
+    this.submittedTry = true;
     this.validateForm.patchValue({
       startDate: this.validateForm.value.rangeDate[0],
       endDate: this.validateForm.value.rangeDate[1],

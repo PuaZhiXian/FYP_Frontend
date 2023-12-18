@@ -5,7 +5,8 @@
         <search-bar (filter)="searching($event)" placeholder="Search Notification"></search-bar>
       </div>
       <div class="">
-        <button class="bg-primary-900 text-white px-[32px]rounded text-button font-bold" (click)="openNotificationDrawerCreate()"
+        <button (click)="openNotificationDrawerCreate()"
+                class="bg-primary-900 text-white px-[32px]rounded text-button font-bold"
                 nz-button>Add Notification
         </button>
       </div>
@@ -65,28 +66,16 @@
     <div *ngIf="!loadingEditNotificationDrawer ; else loadingTpl">
       <form [formGroup]="validateForm" nz-form>
         <!--Title-->
-        <div>
-          <nz-form-item class="flex items-center">
-            <nz-form-label nzFor="title" nzRequired>Title</nz-form-label>
-            <nz-form-control nzErrorTip="Please input title">
-              <input class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md" formControlName="title"
-                     id="title" nz-input placeholder="Email"/>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+        <text-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                    errorMessage="Please input title"
+                    fieldTitle="Title" formControlName="title"
+                    placeholder="Title"></text-input>
+
         <!--Project Description-->
-        <div>
-          <nz-form-item class="flex items-center">
-            <nz-form-label nzFor="description">Description</nz-form-label>
-            <nz-form-control nzErrorTip="Please input your project description!">
-              <div class="">
-              <textarea class="rounded  text-input" formControlName="description" nz-input
-                        placeholder="Enter Project Description"
-                        rows="4"></textarea>
-              </div>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+        <textarea-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                        errorMessage="Please input your project description!"
+                        fieldTitle="Description" formControlName="description"
+                        placeholder="Enter Project Description"></textarea-input>
         <!--Select Date-->
         <div>
           <nz-form-item class="flex items-center">
@@ -126,6 +115,7 @@
   <div class="flex justify-end">
     <button (click)="createSaveNotification()"
             class="bg-primary-900 text-white px-[32px] rounded text-button font-bold"
-            nz-button>Create</button>
+            nz-button>Create
+    </button>
   </div>
 </ng-template>

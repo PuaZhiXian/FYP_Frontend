@@ -63,7 +63,6 @@ export class AbstractNgModelComponent<T = any> implements ControlValueAccessor {
     if (this.form.valid) {
       return null
     } else {
-      console.log(this.submittedTry)
       Object.values(this.form.controls).forEach(control => {
         if (this.submittedTry) {
           if (control.invalid) {
