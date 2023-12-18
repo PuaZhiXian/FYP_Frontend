@@ -40,6 +40,10 @@ export class TextInputComponent implements ControlValueAccessor, OnDestroy, OnIn
   @Input() maxLength?: number;
   @Input() regex?: RegExp;
   @Input() fieldRequired?: boolean = false;
+  @Input() fieldTitle!: string
+  @Input() placeholder?: string = '';
+  @Input() errorMessage?: string = '';
+
 
   form!: FormGroup;
   subscriptions: Subscription[] = [];

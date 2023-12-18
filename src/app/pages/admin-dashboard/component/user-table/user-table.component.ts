@@ -131,7 +131,7 @@ export class UserTableComponent implements OnInit {
   addUserSendEmail() {
     if (this.addUserModalValidateForm.valid) {
       console.log('success')
-      /*this.vendorService.addUserSendEmail(this.addUserModalValidateForm.value)
+      this.vendorService.addUserSendEmail(this.addUserModalValidateForm.value)
         .subscribe((resp) => {
           if (resp.message) {
             this.message.success(resp.message);
@@ -140,7 +140,7 @@ export class UserTableComponent implements OnInit {
           } else if (resp.error) {
             this.message.error(resp.error);
           }
-        })*/
+        })
     } else {
       console.log('error')
       Object.values(this.addUserModalValidateForm.controls).forEach(control => {

@@ -3,10 +3,10 @@
     <div class="col-span-3 text-label my-2">{{fieldTitle}}</div>
     <div class="col-span-9 w-full">
       <nz-form-item class="my-0">
-        <nz-form-control nzErrorTip="Please input your organisation!">
+        <nz-form-control [nzErrorTip]="errorMessage">
           <div>
             <input class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
-                   formControlName="text" nz-input placeholder="Organisation"/>
+                   [placeholder]="placeholder" formControlName="text" nz-input/>
           </div>
         </nz-form-control>
       </nz-form-item>
