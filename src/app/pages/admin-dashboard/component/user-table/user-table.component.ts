@@ -11,7 +11,7 @@ import {NzModalService} from "ng-zorro-antd/modal";
 @Component({
   selector: 'user-table',
   templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss']
+  styleUrls: ['./user-table.component.scss'],
 })
 export class UserTableComponent implements OnInit {
 
@@ -101,7 +101,7 @@ export class UserTableComponent implements OnInit {
   initAddUserModalForm() {
     this.addUserModalValidateForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
-      organisation: [null, [Validators.required]]
+      organisation: [null, [Validators.required]],
     });
   }
 
@@ -129,16 +129,25 @@ export class UserTableComponent implements OnInit {
   }
 
   addUserSendEmail() {
-    this.vendorService.addUserSendEmail(this.addUserModalValidateForm.value)
-      .subscribe((resp) => {
-        if (resp.message) {
-          this.message.success(resp.message);
-          this.addUserModalCancel()
-          this.initUserList();
-        } else if (resp.error) {
-          this.message.error(resp.error);
+    if (this.addUserModalValidateForm.valid) {
+      this.vendorService.addUserSendEmail(this.addUserModalValidateForm.value)
+        .subscribe((resp) => {
+          if (resp.message) {
+            this.message.success(resp.message);
+            this.addUserModalCancel()
+            this.initUserList();
+          } else if (resp.error) {
+            this.message.error(resp.error);
+          }
+        })
+    } else {
+      Object.values(this.addUserModalValidateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({onlySelf: true});
         }
-      })
+      });
+    }
   }
 
   sendActivationEmail(email: string) {

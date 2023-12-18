@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+  <div class="grid grid-cols-12 my-2">
+    <div class="col-span-3 text-label my-2">Organisation</div>
+    <div class="col-span-9 w-full">
+      <nz-form-item class="my-0">
+        <nz-form-control nzErrorTip="Please input your organisation!">
+          <div>
+            <input class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
+                   formControlName="text" nz-input placeholder="Organisation"/>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</div>
+
