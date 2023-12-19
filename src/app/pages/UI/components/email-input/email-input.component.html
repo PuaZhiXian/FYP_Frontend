@@ -1,15 +1,13 @@
-<div [formGroup]="form">
-  <div class="grid grid-cols-12 my-2">
-    <div class="col-span-3 text-label my-2">{{fieldTitle}}</div>
-    <div class="col-span-9 w-full">
-      <nz-form-item class="my-0">
-        <nz-form-control [nzErrorTip]="errorMessage">
-          <div>
-            <input class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
-                   [placeholder]="placeholder" formControlName="formValue" nz-input/>
-          </div>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-  </div>
+<div [formGroup]="form" class="{{isError ? 'pb-[6px]' : 'pb-[30px]'}}">
+  <nz-form-item class="my-0">
+    <nz-form-control [nzErrorTip]="errorMessage">
+      <div>
+        <div class="text-sm text-gray-500">{{fieldTitle}}</div>
+        <input [placeholder]="placeholder"
+               class="appearance-none py-2.5 px-0 w-full text-input text-gray-900 bg-transparent
+                   border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0  {{isError? 'border-red-400':'focus:border-blue-600'}}"
+               formControlName="formValue"/>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
 </div>

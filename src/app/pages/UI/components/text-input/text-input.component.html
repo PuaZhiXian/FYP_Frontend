@@ -3,15 +3,12 @@
   <div class="w-full">
     <nz-form-item class="my-0">
       <nz-form-control [nzErrorTip]="errorMessage">
-        <div class="">
+        <div>
           <div class="text-sm text-gray-500">{{fieldTitle}}</div>
           <input [placeholder]="placeholder"
                  class="appearance-none py-2.5 px-0 w-full text-input text-gray-900 bg-transparent
                    border-0 border-b-2 border-gray-300 focus:outline-none focus:ring-0  {{isError? 'border-red-400':'focus:border-blue-600'}}"
                  formControlName="formValue"/>
-          <!--<input
-            class="py-[10px] px-[12px] text-[#8898aa] text-input border-solid border-x-0 border-t-0 border-black hover:border-0"
-            [placeholder]="placeholder" formControlName="formValue" nz-input/>-->
         </div>
       </nz-form-control>
     </nz-form-item>
