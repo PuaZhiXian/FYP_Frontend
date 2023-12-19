@@ -26,21 +26,10 @@
           </div>
         </div>
       </nz-card>
-      <!--New User-->
+      <!--User Statistic-->
       <nz-card class="col-span-2 rounded-3xl	">
         <canvasjs-chart [options]="chartOptions" class="flex h-[150px]"></canvasjs-chart>
       </nz-card>
-      <!--Active-->
-      <!--<nz-card class="rounded-3xl	">
-        <div class="flex justify-between">
-          <div>Non Active</div>
-          <div>Till Today</div>
-        </div>
-        <div *ngIf="!loadingNonActiveUser; else singleLoadingTpl" class="mt-2 text-title">{{totalNonActiveUser}}%</div>
-        <div>
-          <nz-progress [nzPercent]="80" [nzShowInfo]="false"></nz-progress>
-        </div>
-      </nz-card>-->
     </div>
 
     <user-table></user-table>

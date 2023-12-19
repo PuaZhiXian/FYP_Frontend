@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {IHeaderList} from "../../../../interface/header/i-header-list";
 import {FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
+import {AuthorizationService} from "../../../../service/authorization/authorization.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'admin-header',
@@ -18,7 +20,9 @@ export class HeaderComponent {
   editingProfile: boolean = false;
 
   constructor(private router: Router,
-              private fb: UntypedFormBuilder,) {
+              private fb: UntypedFormBuilder,
+              private authorizationService: AuthorizationService,
+              private message: NzMessageService) {
   }
 
   get staticLogined() {
@@ -88,6 +92,18 @@ export class HeaderComponent {
 
   editMode(onOff: boolean) {
     this.editingProfile = onOff;
+  }
+
+  logout() {
+    this.authorizationService.logout()
+      .subscribe((resp) => {
+        if (resp.message) {
+          this.message.success(resp.message + "");
+          this.router.navigate(['sign', 'sign-in']);
+        } else if (resp.error) {
+          this.message.error(resp.error);
+        }
+      })
   }
 
 }

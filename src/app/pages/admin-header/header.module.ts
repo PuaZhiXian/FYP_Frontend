@@ -10,6 +10,7 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {NzMessageModule} from "ng-zorro-antd/message";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {NzInputModule} from "ng-zorro-antd/input";
     ReactiveFormsModule,
     NzFormModule,
     NzButtonModule,
-    NzInputModule
+    NzInputModule,
+    NzMessageModule
   ]
 })
 export class HeaderModule {
