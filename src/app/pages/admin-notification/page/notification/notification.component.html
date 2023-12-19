@@ -22,34 +22,19 @@
     <div *ngIf="!loadingEditNotificationDrawer ; else loadingTpl">
       <form [formGroup]="validateForm" nz-form>
         <!--Title-->
-        <div>
-          <nz-form-item class="flex items-center">
-            <nz-form-label nzFor="title" nzRequired>Title</nz-form-label>
-            <nz-form-control nzErrorTip="Please input title">
-              <input class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md" formControlName="title"
-                     id="title" nz-input placeholder="Email"/>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+        <text-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                    errorMessage="Please input title"
+                    fieldTitle="Title" formControlName="title"
+                    placeholder="title"></text-input>
         <!--Project Description-->
         <textarea-input [fieldRequired]="true" [submittedTry]="submittedTry"
                         errorMessage="Please input your project description!"
                         fieldTitle="Description" formControlName="description"
                         placeholder="Enter Project Description"></textarea-input>
-
-        <!--<email-input [fieldRequired]="true" errorMessage="Please input your project description!"
-                     [submittedTry]="submittedTry"
-                     fieldTitle="Description" formControlName="description"
-                     placeholder="Enter Project Description"></email-input>-->
         <!--Select Date-->
-        <div>
-          <nz-form-item class="flex items-center">
-            <nz-form-label nzRequired>Period</nz-form-label>
-            <nz-form-control>
-              <nz-range-picker formControlName="rangeDate" nzShowTime></nz-range-picker>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+        <range-date-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                          errorMessage="Please input date"
+                          fieldTitle="Period" formControlName="rangeDate"></range-date-input>
         <!--Color-->
         <div class="mb-[10px]">
           <div class="font-bold text-doc-title">Color</div>

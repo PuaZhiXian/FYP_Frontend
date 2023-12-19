@@ -106,6 +106,7 @@ export class NotificationComponent implements OnInit {
   }
 
   openNotificationDrawerCreate(date: Date) {
+    this.editNotification = false;
     this.initForm()
     this.ref.markForCheck();
     this.ref.detectChanges();
