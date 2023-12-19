@@ -3,7 +3,7 @@
   <div class="flex items-center text-gray-500 font-medium py-[6px]
                     px-[10px] border-b border-gray-300" (click)="toggleCloseChild()">
     <div class="text-[13px] material-icons-outlined">{{ closeChild ? 'add' : 'close'}}</div>
-    <div class="text-[13px] ml-[4px] cursor-pointer">{{ closeChild ? "Hide " : "Show " }}{{title}}</div>
+    <div class="text-[13px] ml-[4px] cursor-pointer">{{ closeChild ? "Show " : "Hide " }}{{title}}</div>
   </div>
   <!--Attribute -->
   <div class="p-[12px] border-b border-gray-300 {{closeChild? 'hidden':''}}" *ngFor="let attribute of childObject">
@@ -14,13 +14,13 @@
     <div class="text-[14px] text-justify">{{attribute.attr_description}}</div>
 
     <!--enum_ids-->
-    <div class="mt-[8px]" *ngIf="attribute.enum_ids">
+    <div class="mt-[8px]" *ngIf="attribute.enum_ids">  <!-- *ngIf="attribute.attr_type === 'enum'"-->
       <div class="border border-gray-400 rounded">
         <!--title-->
         <div (click)="toggleCloseEnum()"
              class="flex items-center text-gray-500 font-medium py-[6px] px-[10px] border-b border-gray-300">
           <div class="text-[13px] material-icons-outlined">{{ closeEnum ? 'add' : 'close'}}</div>
-          <div class="text-[13px] ml-[4px] cursor-pointer">{{ closeEnum ? "Hide " : "Show " }}Possible Enum</div>
+          <div class="text-[13px] ml-[4px] cursor-pointer">{{ closeEnum ? "Show " : "Hide " }}Possible Enum</div>
         </div>
         <!--Enum 1-->
         <div class="p-[12px] border-b border-gray-300 {{closeEnum? 'hidden' : ''}}" *ngFor="let enum of attribute.enum_ids">
