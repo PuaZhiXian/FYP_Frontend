@@ -9,6 +9,7 @@ import {AngularEditorConfig} from "@kolkov/angular-editor";
 export class RichTextEditorComponent {
 
   @Input() htmlContent: string = '';
+  @Input() fieldTitle: string = '';
   @Output() htmlContentChange = new EventEmitter<string>();
 
   editorConfig: AngularEditorConfig = {
