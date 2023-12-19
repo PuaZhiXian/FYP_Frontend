@@ -13,6 +13,7 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {AnnouncementComponent} from './component/announcement/announcement.component';
 import {HeaderModule} from "../header/header.module";
 import {NzModalModule} from "ng-zorro-antd/modal";
+import {UIModule} from "../UI/UI.module";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {NzModalModule} from "ng-zorro-antd/modal";
     NzFormModule,
     ReactiveFormsModule,
     HeaderModule,
-    NzModalModule
+    NzModalModule,
+    UIModule
   ],
   exports: [
     DashboardComponent

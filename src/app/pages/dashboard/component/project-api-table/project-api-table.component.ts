@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ProjectOverview} from "../../../../interface/project/project-overview";
 import {ColumnItem} from "../../../../interface/table/column-item";
 import {finalize} from "rxjs";
@@ -47,8 +47,6 @@ export class ProjectApiTableComponent implements OnInit {
   ngOnInit(): void {
     this.initTable();
     this.initProject();
-    this.initForm();
-    this.changeHandler();
   }
 
   initProject() {
@@ -132,31 +130,18 @@ export class ProjectApiTableComponent implements OnInit {
     ];
   }
 
-  initForm() {
-    this.validateForm = this.fb.group({
-      searchKey: [null, []],
-      password: [null, []]
-    });
-  }
-
-  changeHandler() {
-    this.validateForm.valueChanges.subscribe((value => {
-      this.searching();
-    }));
-  }
-
-  searching() {
-    if (!this.validateForm.value.searchKey || this.validateForm.value.searchKey.length == 0) {
+  searching(searchKey: string) {
+    if (!searchKey || searchKey.length == 0) {
       this.filteredProjectData = this.projectData;
     } else {
       this.filteredProjectData = this.projectData.filter((items) => {
-        return this.isMatch(items.project_name);
+        return this.isMatch(items.project_name, searchKey);
       });
     }
   }
 
-  isMatch(str: string): boolean {
-    return str.toLocaleLowerCase().includes(this.validateForm.value.searchKey.toLowerCase());
+  isMatch(sentence: string, word: string): boolean {
+    return sentence.toLocaleLowerCase().includes(word.toLowerCase());
   }
 
   createNewProject() {
