@@ -18,6 +18,7 @@ export class AbstractNgModelComponent<T = any> implements ControlValueAccessor {
   submittedTry: boolean = false;
   isEmail: boolean = false;
 
+  isError: boolean = false;
 
   form!: FormGroup;
   subscriptions: Subscription[] = [];
@@ -62,16 +63,19 @@ export class AbstractNgModelComponent<T = any> implements ControlValueAccessor {
   // communicate the inner form validation to the parent form
   validate(_: FormControl) {
     if (this.form.valid) {
+      this.isError = false
       return null
     } else {
       Object.values(this.form.controls).forEach(control => {
         if (this.submittedTry) {
           if (control.invalid) {
+            this.isError = true;
             control.markAsDirty();
             control.updateValueAndValidity({onlySelf: true});
           }
         } else {
           if (control.invalid && control.dirty) {
+            this.isError = true
             control.markAsDirty();
             control.updateValueAndValidity({onlySelf: true});
           }

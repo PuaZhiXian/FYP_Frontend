@@ -29,10 +29,7 @@ const routes: Routes = [
   {
     path: 'subscription',
     loadChildren: () => import('./pages/subscription/subscription.module').then(m => m.SubscriptionModule),
-    canActivate: [AuthGuard],
-    data: {
-      role: 'ROLE_VENDOR'
-    }
+
   },
   {
     path: 'product',
