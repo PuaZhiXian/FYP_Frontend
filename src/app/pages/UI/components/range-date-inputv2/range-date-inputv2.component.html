@@ -1,8 +1,10 @@
-<div [formGroup]="form">
-  <nz-form-item class="flex items-center">
-    <nz-form-label nzRequired>{{fieldTitle}}</nz-form-label>
+<div [formGroup]="form" class="{{isError ? 'pb-[6px]' : 'pb-[30px]'}}">
+  <nz-form-item class="my-0">
     <nz-form-control [nzErrorTip]="errorMessage">
-      <nz-range-picker formControlName="formValue" nzShowTime></nz-range-picker>
+      <div>
+        <div class="text-sm text-gray-500 mb-[10px]">{{fieldTitle}}</div>
+        <nz-range-picker formControlName="formValue" nzShowTime></nz-range-picker>
+      </div>
     </nz-form-control>
   </nz-form-item>
 </div>
