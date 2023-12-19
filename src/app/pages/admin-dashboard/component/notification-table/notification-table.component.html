@@ -77,14 +77,9 @@
                         fieldTitle="Description" formControlName="description"
                         placeholder="Enter Project Description"></textarea-input>
         <!--Select Date-->
-        <div>
-          <nz-form-item class="flex items-center">
-            <nz-form-label nzRequired>Period</nz-form-label>
-            <nz-form-control>
-              <nz-range-picker formControlName="rangeDate" nzShowTime></nz-range-picker>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
+        <range-date-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                          errorMessage="Please input date"
+                          fieldTitle="Period" formControlName="rangeDate"></range-date-input>
         <!--Color-->
         <div class="mb-[10px]">
           <div class="font-bold text-doc-title">Color</div>

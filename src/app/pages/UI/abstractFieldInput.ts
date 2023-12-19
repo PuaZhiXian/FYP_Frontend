@@ -46,7 +46,8 @@ export class AbstractNgModelComponent<T = any> implements ControlValueAccessor {
 
   writeValue(value: any) {
     if (value) {
-      this.value = value;
+      this.form.patchValue({formValue: value})
+      console.log(this.form.value)
     }
 
     if (value === null) {

@@ -9,6 +9,8 @@ import {TextInputComponent} from './components/text-input/text-input.component';
 import {EmailInputComponent} from "./components/email-input/email-input.component";
 import {AbstractNgModelComponent} from "./abstractFieldInput";
 import {TextareaInputComponent} from './components/textarea-input/textarea-input.component';
+import {RangeDateInputv2Component} from './components/range-date-inputv2/range-date-inputv2.component';
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 
 
 @NgModule({
@@ -18,20 +20,23 @@ import {TextareaInputComponent} from './components/textarea-input/textarea-input
     TextInputComponent,
     EmailInputComponent,
     AbstractNgModelComponent,
-    TextareaInputComponent
+    TextareaInputComponent,
+    RangeDateInputv2Component
   ],
   exports: [
     SearchBarComponent,
     TemplateComponent,
     TextInputComponent,
     EmailInputComponent,
-    TextareaInputComponent
+    TextareaInputComponent,
+    RangeDateInputv2Component
   ],
   imports: [
     NzFormModule,
     NzInputModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    NzDatePickerModule
   ]
 })
 export class UIModule {
