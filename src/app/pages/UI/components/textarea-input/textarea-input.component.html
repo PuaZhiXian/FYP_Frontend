@@ -1,12 +1,12 @@
 <div [formGroup]="form">
   <nz-form-item class="flex items-center">
-    <nz-form-label nzFor="description">{{fieldTitle}}</nz-form-label>
     <nz-form-control [nzErrorTip]="errorMessage">
-      <div class="">
-              <textarea [placeholder]="placeholder" class="rounded text-input" formControlName="formValue"
-                        nz-input
-                        rows="4"></textarea>
-      </div>
+      <div class="mb-[10px] text-sm text-gray-500 ">{{fieldTitle}}</div>
+      <textarea [placeholder]="placeholder"
+                class="rounded text-input block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                formControlName="formValue"
+                nz-input
+                rows="4"></textarea>
     </nz-form-control>
   </nz-form-item>
 </div>
