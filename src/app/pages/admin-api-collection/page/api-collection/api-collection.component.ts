@@ -47,6 +47,8 @@ export class ApiCollectionComponent implements OnInit {
 
   selectedAlphabet: string = 'A';
   searchKey: string = '';
+  createCategorySubmittedTry: boolean = false;
+  createCollectionSubmittedTry: boolean = false;
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -151,6 +153,7 @@ export class ApiCollectionComponent implements OnInit {
   }
 
   createNewApiCategory() {
+    this.createCategorySubmittedTry = true;
     if (this.createNewCategoryForm.valid) {
       this.apiCollectionService.createNewApiCategory(this.createNewCategoryForm.value)
         .subscribe((resp) => {
@@ -182,6 +185,7 @@ export class ApiCollectionComponent implements OnInit {
   }
 
   createNewCollection() {
+    this.createCollectionSubmittedTry = true;
     if (this.createNewCollectionForm.valid) {
       this.apiCollectionService.createNewApiCollection(this.createNewCollectionForm.value)
         .subscribe((resp) => {
