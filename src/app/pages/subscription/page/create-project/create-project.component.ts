@@ -17,6 +17,7 @@ export class CreateProjectComponent implements OnInit {
 
   apiCollection: ISelectingApiCollection[] = [];
   loadingForm: boolean = true;
+  submittedTry: boolean = false;
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
@@ -52,6 +53,9 @@ export class CreateProjectComponent implements OnInit {
   }
 
   submit() {
+    this.submittedTry = true;
+    this.ref.markForCheck();
+    this.ref.detectChanges();
     if (this.validateForm.valid) {
       this.projectService.addProject(this.validateForm.value)
         .pipe(finalize(() => {

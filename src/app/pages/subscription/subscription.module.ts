@@ -10,10 +10,11 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {CommonModule} from "@angular/common";
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import {HeaderModule} from "../header/header.module";
+import {UIModule} from "../UI/UI.module";
 
 
 @NgModule({
-  imports: [SubscriptionRoutingModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzCheckboxModule, NzButtonModule, CommonModule, FormsModule, NzSkeletonModule, HeaderModule],
+  imports: [SubscriptionRoutingModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzCheckboxModule, NzButtonModule, CommonModule, FormsModule, NzSkeletonModule, HeaderModule, UIModule],
   declarations: [CreateProjectComponent],
   exports: [CreateProjectComponent]
 })

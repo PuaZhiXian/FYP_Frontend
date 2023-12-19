@@ -5,27 +5,16 @@
   <div class="mx-auto container">
     <div class="my-10">
       <form [formGroup]="validateForm" nz-form>
-        <div>
-          <div class="text-label my-2">Project Name</div>
-          <nz-form-item class="grid w-3/4 ">
-            <nz-form-control nzErrorTip="Please input your project name!">
-              <input class="rounded bg-[#D9D9D9] text-input" formControlName="project_name" nz-input
-                     placeholder="Enter Project Name"/>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-        <div class="my-10">
-          <nz-form-item class="grid w-3/4">
-            <div class="text-label my-2">Project Description</div>
-            <nz-form-control nzErrorTip="Please input your project description!">
-              <div class="">
-              <textarea class="rounded bg-[#D9D9D9] text-input" formControlName="description" nz-input rows="4"
-                        placeholder="Enter Project Description"></textarea>
-              </div>
-            </nz-form-control>
-          </nz-form-item>
-        </div>
-
+        <!--Project Name-->
+        <text-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                    errorMessage="Please input your project name!"
+                    fieldTitle="Project Name" formControlName="project_name"
+                    placeholder="Enter Project Name"></text-input>
+        <!--Project Description-->
+        <textarea-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                        errorMessage="Please input your project description!"
+                        fieldTitle="Project Description" formControlName="description"
+                        placeholder="Enter Project Description"></textarea-input>
         <div class="my-10">
           <nz-form-item *ngIf="!loadingForm else loadingTpl" class="grid w-3/4">
             <div class="text-subtitle my-2">Select API Collection List</div>
