@@ -49,4 +49,19 @@ export class UserDetailComponent implements OnInit {
         this.userDetail = resp;
       })
   }
+
+  get getAbbreviation() {
+    const words = this.userDetail.username.split(' ');
+    let abbreviation = '';
+
+    for (const word of words) {
+      if (word.length > 0) {
+        abbreviation += word[0].toUpperCase();
+      }
+      if (abbreviation.length > 1) {
+        break;
+      }
+    }
+    return abbreviation;
+  }
 }

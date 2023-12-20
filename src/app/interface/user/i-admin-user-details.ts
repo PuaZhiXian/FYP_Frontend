@@ -9,4 +9,5 @@ export interface IAdminUserDetails {
   lastLoginTime: Date,
   projectLength: number,
   numberAccessControl: number;
+  imgUrl?: string
 }
