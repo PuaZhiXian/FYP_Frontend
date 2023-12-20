@@ -24,7 +24,7 @@ export class NotificationService {
   }
 
   getNotificationEventList(year: number, month: number): Observable<IAdminCalendarEvent[][][]> {
-    return this.notificationRestService.getNotificationEventList(year, month);
+    return this.notificationRestService.getNotificationEventList(year, month + 1);
   }
 
   createSaveNotification(notification: IAdminNotification): Observable<IMessage> {
