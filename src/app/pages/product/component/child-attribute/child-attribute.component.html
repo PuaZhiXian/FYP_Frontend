@@ -14,14 +14,9 @@
     </div>
     <div class="text-[14px] text-justify">{{attribute.attr_description}}</div>
 
-    <!--enum-->
-    <div *ngIf="attribute.attr_type === 'enum'" class="mt-[8px]">  <!-- *ngIf="attribute.attr_type === 'enum'"-->
-      <child-attribute [childObject]="attribute.child_attr_ids || []" [isEnum]="true"
-                       title="child attributes"></child-attribute>
-    </div>
-
     <div class="mt-[8px]" *ngIf="attribute.child_attr_ids">
-      <child-attribute title="child attributes" [childObject]="attribute.child_attr_ids"></child-attribute>
+      <child-attribute [childObject]="attribute.child_attr_ids" [isEnum]="attribute.attr_type === 'enum'"
+                       title="child attributes"></child-attribute>
     </div>
   </div>
 
