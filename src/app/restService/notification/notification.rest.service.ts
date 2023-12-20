@@ -25,8 +25,11 @@ export class NotificationRestService {
     return this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-announcement/' + notificationId, {withCredentials: true});
   }
 
-  getNotificationEventList(): Observable<IAdminCalendarEvent[][][]> {
-    return this.httpClient.get<IAdminCalendarEvent[][][]>(this.ProjectUrl + '/custom/get-announcement-event-list', {withCredentials: true});
+  getNotificationEventList(year: number, month: number): Observable<IAdminCalendarEvent[][][]> {
+    return this.httpClient.post<IAdminCalendarEvent[][][]>(this.ProjectUrl + '/custom/get-announcement-event-list', {
+      year,
+      month
+    }, {withCredentials: true});
   }
 
   createSaveNotification(notification: IAdminNotification): Observable<IMessage> {

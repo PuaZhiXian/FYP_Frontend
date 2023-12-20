@@ -25,6 +25,9 @@ export class NotificationComponent implements OnInit {
   eventList: IAdminCalendarEvent[][][] = []
   loadingEditNotificationDrawer: boolean = true;
   submittedTry: boolean = false;
+  date = new Date();
+  currYear: number = this.date.getFullYear();
+  currMonth: number = this.date.getMonth();
 
   constructor(private notificationService: NotificationService,
               private fb: UntypedFormBuilder,
@@ -61,10 +64,13 @@ export class NotificationComponent implements OnInit {
   }
 
   initNotificationEvent() {
-    this.notificationService.getNotificationEventList()
-      .subscribe((resp) => {
-        this.eventList = resp
-      })
+    console.log(this.currMonth)
+    if (this.currYear !== undefined && this.currMonth !== undefined) {
+      this.notificationService.getNotificationEventList(this.currYear, this.currMonth)
+        .subscribe((resp) => {
+          this.eventList = resp
+        })
+    }
   }
 
   createSaveNotification() {

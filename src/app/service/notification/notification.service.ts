@@ -23,8 +23,8 @@ export class NotificationService {
     return this.notificationRestService.deleteNotification(notificationId);
   }
 
-  getNotificationEventList(): Observable<IAdminCalendarEvent[][][]> {
-    return this.notificationRestService.getNotificationEventList();
+  getNotificationEventList(year: number, month: number): Observable<IAdminCalendarEvent[][][]> {
+    return this.notificationRestService.getNotificationEventList(year, month);
   }
 
   createSaveNotification(notification: IAdminNotification): Observable<IMessage> {

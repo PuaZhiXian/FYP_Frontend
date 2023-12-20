@@ -8,17 +8,19 @@ import {IAdminCalendarEvent} from "../../../../interface/calendar/i-admin-calend
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-
+  @Input() date!: Date;
   @Input() eventList: IAdminCalendarEvent[][][] = [];
   @Output() callClickEventOnDateRequest = new EventEmitter<Date>();
   @Output() callClickEventOnEventRequest = new EventEmitter<string>();
+  @Input() currYear!: number;
+  @Input() currMonth!: number;
+  @Output() dateChange = new EventEmitter<Date>();
+  @Output() currYearChange = new EventEmitter<any>();
+  @Output() currMonthChange = new EventEmitter<any>();
+  @Output() triggerChangeDateEvent = new EventEmitter<any>();
 
   readonly months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   readonly daysOfTheWeek = ["Su", "Mo", 'Tu', "We", 'Th', 'Fr', 'Sa'];
-
-  date = new Date();
-  currYear = this.date.getFullYear();
-  currMonth = this.date.getMonth();
 
   calendarDate: IAdminCalendarFormat[][] = [];
 
@@ -27,6 +29,9 @@ export class CalendarComponent implements OnInit {
   }
 
   renderCalendar() {
+    this.currMonthChange.emit(this.currMonth)
+    this.currYearChange.emit(this.currYear)
+    this.triggerChangeDateEvent.emit();
     let firstDayofMonth = new Date(this.currYear, this.currMonth, 1).getDay()
     let lastDateofMonth = new Date(this.currYear, this.currMonth + 1, 0).getDate()
     let lastDayofMonth = new Date(this.currYear, this.currMonth, lastDateofMonth).getDay()

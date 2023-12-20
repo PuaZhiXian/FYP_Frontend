@@ -8,6 +8,8 @@
 
     <calendar (callClickEventOnDateRequest)="openNotificationDrawerCreate($event)"
               (callClickEventOnEventRequest)="openNotificationDrawerEdit($event)"
+              (triggerChangeDateEvent)="initNotificationEvent()"
+              [(currMonth)]="currMonth" [(currYear)]="currYear" [(date)]="date"
               [eventList]="eventList"></calendar>
 
   </div>
