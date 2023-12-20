@@ -1,35 +1,32 @@
 <div>
   <form [formGroup]="validateForm" nz-form *ngIf="!loadingPersonalInformation else loadingTpl">
-    <!--Username-->
-    <div class="font-bold text-label">Username</div>
-    <div class="">
-      <div *ngIf="!editMode" class="text-input">
+    <!--Username readonly-->
+    <div *ngIf="!editMode" class="pb-[30px]">
+      <div class="text-sm text-gray-500">Username</div>
+      <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
         {{personalInformation.username}}
       </div>
-      <nz-form-item *ngIf="editMode" class="grid w-1/4">
-        <nz-form-control nzErrorTip="Please input your project name!">
-          <input class="rounded bg-[#D9D9D9] text-input" formControlName="username" placeholder="Enter Project Name"
-                 nz-input/>
-        </nz-form-control>
-      </nz-form-item>
+    </div>
+    <!--Username edit-->
+    <div *ngIf="editMode" class="w-1/2">
+      <text-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                  errorMessage="Please input your username!"
+                  fieldTitle="Username" formControlName="username"
+                  placeholder="Enter username"></text-input>
     </div>
 
     <!--Email-->
-    <div class="mt-4 font-bold text-label">
-      Email
-    </div>
-    <div class="">
-      <div class="text-input">
+    <div class="pb-[30px]">
+      <div class="text-sm text-gray-500">Email</div>
+      <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
         {{personalInformation.email}}
       </div>
     </div>
 
     <!--Organisation-->
-    <div class="mt-4 font-bold text-label">
-      Organisation
-    </div>
-    <div class="">
-      <div class="text-input">
+    <div class="pb-[30px]">
+      <div class="text-sm text-gray-500">Organisation</div>
+      <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
         {{personalInformation.organisation}}
       </div>
     </div>

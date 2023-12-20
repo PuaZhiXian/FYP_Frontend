@@ -2,7 +2,6 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {IPersonalInformation} from "../../../../interface/user/i-personal-information";
-import {AuthorizationService} from "../../../../service/authorization/authorization.service";
 import {finalize} from "rxjs";
 import {VendorService} from "../../../../service/vendor/vendor.service";
 import {NzMessageService} from "ng-zorro-antd/message";
@@ -28,6 +27,7 @@ export class PersonalInformationComponent implements OnInit {
 
   personalInformation!: IPersonalInformation;
   loadingPersonalInformation: boolean = true;
+  submittedTry: boolean = false;
 
   ngOnInit(): void {
     this.initPersonalInformation();
@@ -60,6 +60,7 @@ export class PersonalInformationComponent implements OnInit {
   }
 
   savePersonalInformation() {
+    this.submittedTry = true;
     if (this.validateForm.valid) {
       this.vendorService.updateVendorProfile(this.validateForm.value)
         .pipe(finalize(() => {
@@ -71,6 +72,7 @@ export class PersonalInformationComponent implements OnInit {
         }))
         .subscribe((resp) => {
           if (resp.message) {
+            this.submittedTry = false;
             this.message.success(resp.message);
           } else if (resp.error) {
             this.message.error(resp.error);

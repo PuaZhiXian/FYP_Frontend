@@ -12,10 +12,11 @@ import { ChangePasswordComponent } from './component/change-password/change-pass
 import {NzSkeletonModule} from "ng-zorro-antd/skeleton";
 import {HeaderModule} from "../header/header.module";
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
+import {UIModule} from "../UI/UI.module";
 
 
 @NgModule({
-  imports: [ProfileRoutingModule, CommonModule, NzFormModule, ReactiveFormsModule, NzButtonModule, NzInputModule, NzSkeletonModule, HeaderModule, NzToolTipModule],
+  imports: [ProfileRoutingModule, CommonModule, NzFormModule, ReactiveFormsModule, NzButtonModule, NzInputModule, NzSkeletonModule, HeaderModule, NzToolTipModule, UIModule],
   declarations: [
     ProfileComponent,
     PersonalInformationComponent,
