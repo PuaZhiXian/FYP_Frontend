@@ -3,34 +3,21 @@
   <div class="flex items-center text-gray-500 font-medium py-[6px]
                     px-[10px] border-b border-gray-300" (click)="toggleCloseChild()">
     <div class="text-[13px] material-icons-outlined">{{ closeChild ? 'add' : 'close'}}</div>
-    <div class="text-[13px] ml-[4px] cursor-pointer">{{ closeChild ? "Show " : "Hide " }}{{title}}</div>
+    <div
+      class="text-[13px] ml-[4px] cursor-pointer">{{ closeChild ? "Show " : "Hide " }}{{isEnum ? 'Possible Enum' : title}}</div>
   </div>
   <!--Attribute -->
   <div class="p-[12px] border-b border-gray-300 {{closeChild? 'hidden':''}}" *ngFor="let attribute of childObject">
     <div class="flex items-center">
       <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
-      <div class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
+      <div *ngIf="!isEnum" class="text-[12px] font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
     </div>
     <div class="text-[14px] text-justify">{{attribute.attr_description}}</div>
 
-    <!--enum_ids-->
-    <div class="mt-[8px]" *ngIf="attribute.enum_ids">  <!-- *ngIf="attribute.attr_type === 'enum'"-->
-      <div class="border border-gray-400 rounded">
-        <!--title-->
-        <div (click)="toggleCloseEnum()"
-             class="flex items-center text-gray-500 font-medium py-[6px] px-[10px] border-b border-gray-300">
-          <div class="text-[13px] material-icons-outlined">{{ closeEnum ? 'add' : 'close'}}</div>
-          <div class="text-[13px] ml-[4px] cursor-pointer">{{ closeEnum ? "Show " : "Hide " }}Possible Enum</div>
-        </div>
-        <!--Enum 1-->
-        <div class="p-[12px] border-b border-gray-300 {{closeEnum? 'hidden' : ''}}" *ngFor="let enum of attribute.enum_ids">
-          <div class="flex items-center">
-            <div class="text-[13px] font-semibold text-gray-700 mr-[4px]">{{enum.enum_name}}</div>
-          </div>
-          <div class="text-[14px] text-justify ">{{enum.enum_description}}</div>
-        </div>
-
-      </div>
+    <!--enum-->
+    <div *ngIf="attribute.attr_type === 'enum'" class="mt-[8px]">  <!-- *ngIf="attribute.attr_type === 'enum'"-->
+      <child-attribute [childObject]="attribute.child_attr_ids || []" [isEnum]="true"
+                       title="child attributes"></child-attribute>
     </div>
 
     <div class="mt-[8px]" *ngIf="attribute.child_attr_ids">

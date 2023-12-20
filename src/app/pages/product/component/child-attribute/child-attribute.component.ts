@@ -9,9 +9,9 @@ import {IApiDocumentationObject} from "../../../../interface/api-collection/i-ap
 export class ChildAttributeComponent implements OnInit {
 
   @Input() title: string = '';
-  closeChild: boolean = true;
-  closeEnum: boolean = true;
   @Input() childObject: IApiDocumentationObject[] = [];
+  @Input() isEnum: boolean = false;
+  closeChild: boolean = true;
 
 
   constructor() {
@@ -22,9 +22,5 @@ export class ChildAttributeComponent implements OnInit {
 
   toggleCloseChild() {
     this.closeChild = !this.closeChild;
-  }
-
-  toggleCloseEnum() {
-    this.closeEnum = !this.closeEnum;
   }
 }
