@@ -20,6 +20,8 @@ import {AuthorizationService} from "../../../../service/authorization/authorizat
 })
 export class ProjectApiTableComponent implements OnInit {
 
+  isShowPassword: boolean = false;
+
   tokenModelVisibility: boolean = false;
 
   projectData: ProjectOverview[] = [];
@@ -32,6 +34,10 @@ export class ProjectApiTableComponent implements OnInit {
 
   validateForm!: UntypedFormGroup;
   showToken: boolean = false;
+
+  get passwordValidation() {
+    return this.validateForm.controls['password'].invalid && this.validateForm.controls['password'].dirty;
+  }
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -47,6 +53,13 @@ export class ProjectApiTableComponent implements OnInit {
   ngOnInit(): void {
     this.initTable();
     this.initProject();
+    this.initForm();
+  }
+
+  initForm() {
+    this.validateForm = this.fb.group({
+      password: [null, []]
+    })
   }
 
   initProject() {
@@ -196,5 +209,7 @@ export class ProjectApiTableComponent implements OnInit {
     this.tokenModelVisibility = false;
     projectOverview.view = false;
     this.showToken = false;
+    this.isShowPassword = false;
+    this.initForm();
   }
 }

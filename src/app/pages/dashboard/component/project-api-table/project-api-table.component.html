@@ -57,16 +57,23 @@
             <div *nzModalContent>
               <div>
                 <form *ngIf="!showToken" [formGroup]="validateForm" nz-form>
-                  <div class="text-label font-bold mb-1">Password :</div>
-                  <nz-form-item class="mb-0">
+                  <!--                  <div class="text-label font-bold mb-1">Password :</div>-->
+                  <nz-form-item>
                     <nz-form-control>
-                      <nz-input-group class="rounded bg-[#F5F5F5] focus:shadow-xl active:shadow-xl" nzSearch
-                                      nzSize="large">
-                        <input (keydown.enter)='retrieveToken(data)'
-                               class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
-                               formControlName="password"
-                               nz-input placeholder="Password" type="password"/>
-                      </nz-input-group>
+                      <div>
+                        <div class="text-sm text-gray-500">Password</div>
+                        <div class="flex items-end group">
+                          <input (keydown.enter)='retrieveToken(data)' [type]="isShowPassword ? 'text': 'password'"
+                                 class="peer appearance-none p-0 w-full text-input text-gray-900 bg-transparent border-0 border-b-2
+                                 border-gray-300 focus:outline-none focus:ring-0  {{passwordValidation? 'border-red-400':'focus:border-blue-600'}}"
+                                 formControlName="password"/>
+                          <span (click)="isShowPassword = !isShowPassword"
+                                class="material-icons-outlined cursor-pointer border-0 border-b-2 border-gray-300 text-gray-600 px-2
+                                {{passwordValidation? 'peer-focus:border-red-400 border-red-400':'peer-focus:border-blue-600 focus:border-blue-600'}}">
+                                {{isShowPassword ? 'visibility_off' : 'visibility' }}
+                          </span>
+                        </div>
+                      </div>
                     </nz-form-control>
                   </nz-form-item>
                 </form>
