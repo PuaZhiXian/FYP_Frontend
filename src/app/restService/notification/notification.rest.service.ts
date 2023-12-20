@@ -42,7 +42,7 @@ export class NotificationRestService {
 
   getNotificationAlertList(): Observable<IAdminNotificationAlert[]> {
     //TODO : api
-    return this.httpClient.get<IAdminNotificationAlert[]>(this.ProjectUrl + '/custom/get-announcement-list', {withCredentials: true});
+    return this.httpClient.get<IAdminNotificationAlert[]>(this.ProjectUrl + '/custom/get-announcement-alert', {withCredentials: true});
   }
 
 }
