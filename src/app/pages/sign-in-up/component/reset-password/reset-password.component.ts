@@ -23,6 +23,8 @@ export class ResetPasswordComponent implements OnInit {
     ['Be at least 8 characters', false],
     ['Have at least one special character', false],
   ]);
+  isShowPassword: boolean = false;
+  isShowConfirmPassword: boolean = false;
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,

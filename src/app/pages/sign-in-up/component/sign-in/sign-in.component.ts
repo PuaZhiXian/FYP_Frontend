@@ -14,6 +14,7 @@ export class SignInComponent implements OnInit {
   temp: string = "";
   emailClass: string = '';
   passwordClass: string = '';
+  isShowPassword: boolean = false;
 
   constructor(private fb: UntypedFormBuilder,
               private message: NzMessageService,

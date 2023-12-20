@@ -14,6 +14,10 @@ import {AuthorizationService} from "../../../../service/authorization/authorizat
 })
 export class ChangePasswordComponent implements OnInit {
 
+  isShowPassword: boolean = false;
+  isShowNewPassword: boolean = false;
+  isShowConfirmPassword: boolean = false;
+
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
               public activatedRoute: ActivatedRoute,
@@ -35,6 +39,18 @@ export class ChangePasswordComponent implements OnInit {
     ['Be at least 8 characters', false],
     ['Have at least one special character', false],
   ]);
+
+  get passwordValidation() {
+    return this.validateForm.controls['password'].invalid && this.validateForm.controls['password'].dirty;
+  }
+
+  get newPasswordValidation() {
+    return this.validateForm.controls['newPassword'].invalid && this.validateForm.controls['newPassword'].dirty;
+  }
+
+  get rePasswordValidation() {
+    return this.validateForm.controls['rePassword'].invalid && this.validateForm.controls['rePassword'].dirty;
+  }
 
   ngOnInit(): void {
     this.initForm();

@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
+@layer base {
   *,
   ::before,
   ::after {
@@ -45,7 +45,7 @@
   border: 1px solid black;
 }
 
-.border-r-003169 .ant-table-content{
+.border-r-003169 .ant-table-content {
   border: 0 solid #003169;
   border-right-width: 1px;
 }

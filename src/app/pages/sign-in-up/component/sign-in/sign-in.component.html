@@ -17,13 +17,11 @@
     <div>
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your password!">
-          <div>
-            <input (keydown.enter)='submit()' class="rounded py-[10px] px-[12px] text-[#8898aa] text-input shadow-md"
-                   placeholder="Password"
-                   formControlName="password"
-                   type="password"
-                   nz-input/>
-          </div>
+          <nz-input-group [nzSuffix]="suffixTemplate" class="rounded py-[10px] px-[12px] ">
+            <input (keydown.enter)='submit()' [type]="isShowPassword ? 'text' : 'password'"
+                   class="text-[#8898aa] p-0 text-input" formControlName="password"
+                   nz-input placeholder="Password"/>
+          </nz-input-group>
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -48,3 +46,7 @@
   </div>
 </div>
 
+<ng-template #suffixTemplate>
+    <span (click)="isShowPassword = !isShowPassword"
+          class="material-icons-outlined cursor-pointer text-gray-600">{{isShowPassword ? 'visibility_off' : 'visibility'}}</span>
+</ng-template>
