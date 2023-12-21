@@ -306,7 +306,45 @@
 
 <!--API Object-->
 <ng-template #collectionObject>
-  234234
+  <nz-card class="rounded-lg">
+    <section>
+      <!--Object attribute-->
+      <div>
+        <div class="text-doc-title font-medium">Object Attributes</div>
+        <div class="mt-[20px]">
+          <div class="text-label text-gray-800 font-medium pb-[12px]">Attributes</div>
+          <div *ngFor="let attribute of apiCollectionObject.attr_ids"
+               class="py-[16px] border-t border-gray-300">
+            <!--name & variable type-->
+            <div class="flex items-center">
+              <div class="text-doc-text font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
+              <div class="text-xs font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
+            </div>
+            <!--description-->
+            <div class="text-doc-text text-justify ">{{attribute.attr_description}}</div>
+            <div *ngIf="attribute.child_attr_ids" class="mt-[8px]">
+              <child-attribute [childObject]="attribute.child_attr_ids" title="child attribute"></child-attribute>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Sample Json-->
+      <div class="mt-[20px]">
+        <div class="text-doc-title font-medium">Sample Json</div>
+        <div class="mb-[12px] sticky top-0">
+          <!--Header-->
+          <div class="px-[12px] py-[10px] text-gray-500 text-xs
+              font-medium bg-gray-100 border rounded-t">The object
+          </div>
+          <!--Content-->
+          <div class="flex flex-col gap-[9px] border rounded-b bg-gray-50 max-h-[400px]">
+          <pre class="light mb-0"><code
+            class="language-json h-[210px] text-xs">{{apiCollectionObject.object}}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </nz-card>
 </ng-template>
 
 <!--API Endpoints-->

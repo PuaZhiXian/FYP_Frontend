@@ -53,6 +53,139 @@ export class ApiCollectionComponent implements OnInit {
   previewModalVisibility: boolean = true;
   pageNumber: number = 0;
 
+  apiCollectionObject = {
+    "id": 4,
+    "object": "{\n  \"id\": \"cus_9s6XKzkNRiz8i3\",\n  \"object\": \"customer\",\n  \"address\": null,\n  \"balance\": 0,\n  \"created\": 1483565364,\n  \"currency\": \"usd\",\n  \"default_source\": \"card_1NZex82eZvKYlo2CZR21ocY1\",\n  \"delinquent\": false,\n  \"description\": \"test\",\n  \"discount\": null,\n  \"email\": \"test@gmail.com\",\n  \"invoice_prefix\": \"28278FC\",\n  \"invoice_settings\": {\n    \"custom_fields\": null,\n    \"default_payment_method\": \"pm_1O4iJ12eZvKYlo2CZXSZb9Z2\",\n    \"footer\": null,\n    \"rendering_options\": null\n  },\n  \"livemode\": false,\n  \"metadata\": {\n    \"order_id\": \"6735\"\n  },\n  \"name\": \"test\",\n  \"next_invoice_sequence\": 394,\n  \"phone\": null,\n  \"preferred_locales\": [\n    \"de-DE\"\n  ],\n  \"shipping\": null,\n  \"tax_exempt\": \"none\",\n  \"test_clock\": null\n}",
+    "attr_ids": [
+      {
+        "id": 30,
+        "attr_name": "id",
+        "attr_type": "string",
+        "attr_description": "Unique identifier for the object."
+      },
+      {
+        "id": 31,
+        "attr_name": "address",
+        "attr_type": "hash",
+        "attr_description": "The customer’s address.",
+        "child_attr_ids": [
+          {
+            "id": 32,
+            "attr_name": "address.city",
+            "attr_type": "string",
+            "attr_description": "City, district, suburb, town, or village."
+          },
+          {
+            "id": 33,
+            "attr_name": "address.country",
+            "attr_type": "string",
+            "attr_description": "Two-letter country code (ISO 3166-1 alpha-2)."
+          },
+          {
+            "id": 34,
+            "attr_name": "address.line1",
+            "attr_type": "string",
+            "attr_description": "Address line 1 (e.g., street, PO Box, or company name)."
+          },
+          {
+            "id": 35,
+            "attr_name": "address.line2",
+            "attr_type": "string",
+            "attr_description": "Address line 2 (e.g., apartment, suite, unit, or building)."
+          },
+          {
+            "id": 36,
+            "attr_name": "address.postal_code",
+            "attr_type": "string",
+            "attr_description": "ZIP or postal code."
+          },
+          {
+            "id": 37,
+            "attr_name": "address.state",
+            "attr_type": "string",
+            "attr_description": "State, county, province, or region."
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "attr_name": "description",
+        "attr_type": "string",
+        "attr_description": "An arbitrary string attached to the object. Often useful for displaying to users."
+      },
+      {
+        "id": 39,
+        "attr_name": "email",
+        "attr_type": "string",
+        "attr_description": "The customer’s email address."
+      },
+      {
+        "id": 40,
+        "attr_name": "metadata",
+        "attr_type": "hash",
+        "attr_description": "Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format."
+      },
+      {
+        "id": 41,
+        "attr_name": "name",
+        "attr_type": "string",
+        "attr_description": "The customer’s full name or business name."
+      },
+      {
+        "id": 42,
+        "attr_name": "phone",
+        "attr_type": "string",
+        "attr_description": "The customer’s phone number."
+      },
+      {
+        "id": 43,
+        "attr_name": "shipping",
+        "attr_type": "hash",
+        "attr_description": "Mailing and shipping address for the customer. Appears on invoices emailed to this customer.",
+        "child_attr_ids": [
+          {
+            "id": 44,
+            "attr_name": "shipping.address",
+            "attr_type": "hash",
+            "attr_description": "Customer shipping address.",
+            "child_attr_ids": [
+              {
+                "id": 45,
+                "attr_name": "shipping.address.city",
+                "attr_type": "string",
+                "attr_description": "City, district, suburb, town, or village."
+              },
+              {
+                "id": 46,
+                "attr_name": "shipping.address.country",
+                "attr_type": "country",
+                "attr_description": "Two-letter country code (ISO 3166-1 alpha-2)."
+              },
+              {
+                "id": 47,
+                "attr_name": "shipping.address.line1",
+                "attr_type": "string",
+                "attr_description": "Address line 1 (e.g., street, PO Box, or company name)."
+              }
+            ]
+          },
+          {
+            "id": 48,
+            "attr_name": "shipping.name",
+            "attr_type": "string",
+            "attr_description": "Customer name."
+          },
+          {
+            "id": 49,
+            "attr_name": "shipping.phone",
+            "attr_type": "string",
+            "attr_description": "Customer phone (including extension).\n\n"
+          }
+        ]
+      }
+    ]
+  }
+
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
               private ref: ChangeDetectorRef,

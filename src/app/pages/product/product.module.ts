@@ -35,7 +35,7 @@ import {HighlightjsComponent} from './component/highlightjs/highlightjs.componen
     SingleApiCollectionComponent,
     HighlightjsComponent
   ],
-  exports: [ApiDocumentationComponent]
+    exports: [ApiDocumentationComponent, ChildAttributeComponent]
 })
 export class ProductModule {
 }
