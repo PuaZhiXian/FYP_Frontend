@@ -10,6 +10,7 @@ export interface ISingleApiCollection {
   id: number
   api_collection_name: string
   description: string
+  short_description?: string
   object_id: apiObject
   api_ids: ISingleApi[]
 }

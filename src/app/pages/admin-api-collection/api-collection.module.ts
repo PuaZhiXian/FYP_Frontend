@@ -22,14 +22,14 @@ import {NzEmptyModule} from "ng-zorro-antd/empty";
 import {UIModule} from "../UI/UI.module";
 import {HeaderModule} from "../admin-header/header.module";
 import {NzIconModule} from "ng-zorro-antd/icon";
-import {PreviewCreateCollectionComponent} from './page/preview-create-collection/preview-create-collection.component';
 import {NzStepsModule} from "ng-zorro-antd/steps";
 import {ProductModule} from "../product/product.module";
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
+import {PreviewApiCollectionComponent} from './components/preview-api-collection/preview-api-collection.component';
 
 @NgModule({
   imports: [ApiCollectionRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, NzTagModule, NzDividerModule, NzUploadModule, NzAvatarModule, NzCheckboxModule, FormsModule, NzEmptyModule, UIModule, HeaderModule, NzIconModule, NzStepsModule, ProductModule, NzCollapseModule],
-  declarations: [ApiCollectionComponent, PreviewCreateCollectionComponent],
+  declarations: [ApiCollectionComponent, PreviewApiCollectionComponent],
   exports: [ApiCollectionComponent]
 })
 export class ApiCollectionModule {
