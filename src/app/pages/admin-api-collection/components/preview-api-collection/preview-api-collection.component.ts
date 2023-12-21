@@ -6,6 +6,7 @@ import {Temp} from "./temp";
 import {finalize} from "rxjs";
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
+import {NzModalService} from "ng-zorro-antd/modal";
 
 @Component({
   selector: 'preview-api-collection',
@@ -29,7 +30,8 @@ export class PreviewApiCollectionComponent implements OnInit {
 
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef,
-              private apiCollectionService: ApiCollectionService) {
+              private apiCollectionService: ApiCollectionService,
+              private modal: NzModalService) {
   }
 
   ngOnInit(): void {
@@ -57,8 +59,19 @@ export class PreviewApiCollectionComponent implements OnInit {
   }
 
   closePreviewModal() {
-    this.previewModalVisibility = false;
-    this.previewModalVisibilityChange.emit(false);
+
+    this.modal.confirm({
+      nzTitle: 'Are you sure quit create api collection ?',
+      nzContent: '<b style="color: red;">This action is make all collection deleted</b>',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => {
+        this.previewModalVisibility = false;
+        this.previewModalVisibilityChange.emit(false);
+      },
+      nzCancelText: 'No'
+    });
   }
 
   openPreviewModal() {
