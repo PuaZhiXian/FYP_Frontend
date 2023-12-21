@@ -201,6 +201,52 @@
   </div>
 </nz-modal>
 
+<nz-modal (nzOnCancel)="closePreviewModal()" [(nzVisible)]="previewModalVisibility" [nzClassName]="'zero-padding-body'"
+          [nzWidth]="1040">
+  <div *nzModalTitle>
+    <div>Preview New Collection</div>
+  </div>
+  <div *nzModalContent class="p-0">
+    <div class="grid grid-cols-5">
+      <div class="col-span-1  py-[24px] pl-[24px]">
+        <nz-steps [nzCurrent]="pageNumber" nzDirection="vertical" nzSize="small">
+          <nz-step nzTitle="Collection overview"></nz-step>
+          <nz-step nzTitle="Collection object"></nz-step>
+          <nz-step nzTitle="API Endpoint"></nz-step>
+        </nz-steps>
+      </div>
+      <div class="col-span-4 bg-gray-300 p-[24px]">
+        <div [ngSwitch]="pageNumber" class="h-min-[300px]">
+          <div *ngSwitchCase="0">
+            <ng-container *ngTemplateOutlet="collectionOverview"></ng-container>
+          </div>
+          <div *ngSwitchCase="1">
+            <ng-container *ngTemplateOutlet="collectionObject"></ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *nzModalFooter>
+    <div *ngIf="pageNumber === 2">
+      <button (click)="pageNumber = pageNumber - 1"
+              class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Back
+      </button>
+      <button (click)="confirmCreateCollection()"
+              class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Confirm
+      </button>
+    </div>
+    <div *ngIf="pageNumber !== 2">
+      <button (click)="pageNumber = pageNumber - 1" [disabled]="pageNumber === 0"
+              class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Back
+      </button>
+      <button (click)="pageNumber = pageNumber + 1"
+              class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Next
+      </button>
+    </div>
+  </div>
+</nz-modal>
+
 <ng-template #loadingCollectionTpl>
   <div *ngFor="let index of [1,2,3]">
     <div class="border-t border-b-0 border-solid border-x-0 pb-[24px] border-gray-600">
@@ -217,4 +263,53 @@
       </div>
     </div>
   </div>
+</ng-template>
+
+<!--API Collection Overview-->
+<ng-template #collectionOverview>
+  <nz-card class="rounded-lg">
+    <div class="pb-[30px]">
+      <div class="text-sm text-gray-500">Category</div>
+      <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
+        Category Name
+      </div>
+    </div>
+
+    <div class="pb-[30px]">
+      <div class="text-sm text-gray-500">API Collection Name</div>
+      <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
+        Lorem Ipsum
+      </div>
+    </div>
+
+    <div class="pb-[30px]">
+      <div class="text-sm text-gray-500">Short Description</div>
+      <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </div>
+    </div>
+
+    <div class="pb-[30px]">
+      <div class="text-sm text-gray-500">Long Description</div>
+      <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
+        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
+        some form, by injected humour, or randomised words which don't look even slightly believable. If you are going
+        to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of
+        text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this
+        the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful
+        of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is
+        therefore always free from repetition, injected humour, or non-characteristic words etc.
+      </div>
+    </div>
+  </nz-card>
+</ng-template>
+
+<!--API Object-->
+<ng-template #collectionObject>
+  234234
+</ng-template>
+
+<!--API Endpoints-->
+<ng-template #apiEndpoint>
+  234234
 </ng-template>

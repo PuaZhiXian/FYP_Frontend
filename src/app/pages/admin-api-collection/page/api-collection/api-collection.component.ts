@@ -50,7 +50,8 @@ export class ApiCollectionComponent implements OnInit {
   createCategorySubmittedTry: boolean = false;
   createCollectionSubmittedTry: boolean = false;
   currentFile: NzUploadFile[] = [];
-
+  previewModalVisibility: boolean = true;
+  pageNumber: number = 0;
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -274,6 +275,18 @@ export class ApiCollectionComponent implements OnInit {
           this.message.error(resp.error || "")
         }
       })
+  }
+
+  closePreviewModal() {
+    this.previewModalVisibility = false;
+  }
+
+  openPreviewModal() {
+    this.previewModalVisibility = true;
+  }
+
+  confirmCreateCollection() {
+    //TODO -- api to confirm collection create -- unpublish to publish
   }
 
 }

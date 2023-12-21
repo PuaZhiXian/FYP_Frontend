@@ -23,9 +23,10 @@ import {UIModule} from "../UI/UI.module";
 import {HeaderModule} from "../admin-header/header.module";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {PreviewCreateCollectionComponent} from './page/preview-create-collection/preview-create-collection.component';
+import {NzStepsModule} from "ng-zorro-antd/steps";
 
 @NgModule({
-  imports: [ApiCollectionRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, NzTagModule, NzDividerModule, NzUploadModule, NzAvatarModule, NzCheckboxModule, FormsModule, NzEmptyModule, UIModule, HeaderModule, NzIconModule],
+  imports: [ApiCollectionRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, NzTagModule, NzDividerModule, NzUploadModule, NzAvatarModule, NzCheckboxModule, FormsModule, NzEmptyModule, UIModule, HeaderModule, NzIconModule, NzStepsModule],
   declarations: [ApiCollectionComponent, PreviewCreateCollectionComponent],
   exports: [ApiCollectionComponent]
 })
