@@ -64,7 +64,6 @@ export class NotificationComponent implements OnInit {
   }
 
   initNotificationEvent() {
-    console.log(this.currMonth)
     if (this.currYear !== undefined && this.currMonth !== undefined) {
       this.notificationService.getNotificationEventList(this.currYear, this.currMonth)
         .subscribe((resp) => {

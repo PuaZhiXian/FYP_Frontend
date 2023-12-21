@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 import {VendorService} from "../../../../service/vendor/vendor.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {NzUploadChangeParam} from "ng-zorro-antd/upload";
-import {finalize} from "rxjs";
+import {NzUploadChangeParam, NzUploadFile} from "ng-zorro-antd/upload";
+import {finalize, Observable} from "rxjs";
 import {IAdminApiCategory} from "../../../../interface/api-collection/i-admin-api-category";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
 
@@ -49,6 +49,8 @@ export class ApiCollectionComponent implements OnInit {
   searchKey: string = '';
   createCategorySubmittedTry: boolean = false;
   createCollectionSubmittedTry: boolean = false;
+  currentFile: NzUploadFile[] = [];
+
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -64,10 +66,20 @@ export class ApiCollectionComponent implements OnInit {
     this.initApiCategoryList();
   }
 
+  beforeUpload = (file: NzUploadFile, fileList: NzUploadFile[]): boolean | Observable<boolean> => {
+    // Perform any checks or modifications here before uploading
+    if (this.currentFile.length > 0) {
+      return false;
+    }
+
+    return true; // Allow the file to be uploaded
+  }
+
   handleChange({file, fileList}: NzUploadChangeParam): void {
+    this.currentFile = fileList;
     const status = file.status;
     if (status !== 'uploading') {
-      console.log(file, fileList);
+      // console.log(file, fileList);
     }
     if (status === 'done') {
       this.message.success(`${file.name} file uploaded successfully.`);
@@ -186,12 +198,15 @@ export class ApiCollectionComponent implements OnInit {
 
   createNewCollection() {
     this.createCollectionSubmittedTry = true;
+    this.closeCreateNewCollectionModal();
     if (this.createNewCollectionForm.valid) {
       this.apiCollectionService.createNewApiCollection(this.createNewCollectionForm.value)
         .subscribe((resp) => {
           if (resp.message) {
             this.message.success(resp.message);
             this.closeCreateNewCollectionModal();
+            //TODO
+            //get preview collection obj
             this.initApiCategoryList();
           } else {
             this.message.error(resp.error || '');

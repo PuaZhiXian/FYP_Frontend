@@ -134,8 +134,7 @@ export class UserTableComponent implements OnInit {
     this.ref.markForCheck();
     this.ref.detectChanges();
     if (this.addUserModalValidateForm.valid) {
-      console.log('success call api')
-      /*this.vendorService.addUserSendEmail(this.addUserModalValidateForm.value)
+      this.vendorService.addUserSendEmail(this.addUserModalValidateForm.value)
         .subscribe((resp) => {
           if (resp.message) {
             this.message.success(resp.message);
@@ -144,9 +143,8 @@ export class UserTableComponent implements OnInit {
           } else if (resp.error) {
             this.message.error(resp.error);
           }
-        })*/
+        })
     } else {
-      console.log('error call api')
       Object.values(this.addUserModalValidateForm.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();

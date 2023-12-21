@@ -51,6 +51,5 @@ export class SingleApiCollectionComponent implements OnInit {
     this.loading = true;
     hljs.highlightAll();
     this.loading = false;
-    console.log('highlight')
   }
 }

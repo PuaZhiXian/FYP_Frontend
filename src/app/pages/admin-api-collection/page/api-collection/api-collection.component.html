@@ -138,6 +138,7 @@
   <nz-skeleton></nz-skeleton>
 </ng-template>
 
+<!--Create Category Modal-->
 <nz-modal (nzOnCancel)="closeCreateNewCategoryModal()" [(nzVisible)]="createNewCategoryModalVisibility">
   <div *nzModalTitle>
     <div>Create New Category</div>
@@ -169,27 +170,24 @@
   </div>
 </nz-modal>
 
+<!--Create Collection Modal - Upload File-->
 <nz-modal (nzOnCancel)="closeCreateNewCollectionModal()" [(nzVisible)]="createNewCollectionModalVisibility">
   <div *nzModalTitle>
     <div>Create New Collection</div>
   </div>
   <div *nzModalContent>
-    <div>
-      <form [formGroup]="createNewCollectionForm" nz-form>
-        <!--collection Name-->
-        <text-input [fieldRequired]="true" [submittedTry]="createCollectionSubmittedTry"
-                    errorMessage="Please input API Collection!"
-                    fieldTitle="API Collection Name" formControlName="api_collection_name"></text-input>
-        <!--Short description-->
-        <text-input [fieldRequired]="true" [submittedTry]="createCollectionSubmittedTry"
-                    errorMessage="Please input short description!"
-                    fieldTitle="Short Description" formControlName="short_description"></text-input>
-        <!--Long description-->
-        <text-input [fieldRequired]="true" [submittedTry]="createCollectionSubmittedTry"
-                    errorMessage="Please input long description!"
-                    fieldTitle="Long Description" formControlName="long_description"></text-input>
-      </form>
-    </div>
+    <nz-upload (nzChange)="handleChange($event)"
+               [nzAccept]="'application/json'" [nzBeforeUpload]="beforeUpload" [nzDisabled]="currentFile.length > 0"
+               nzAction="https://httpbin.org/post"
+               nzType="drag">
+      <p class="ant-upload-drag-icon">
+        <span nz-icon nzType="inbox"></span>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+      <p class="ant-upload-hint">
+        Only support for a single upload. Strictly prohibit from uploading company data or other band files
+      </p>
+    </nz-upload>
   </div>
   <div *nzModalFooter>
     <div>

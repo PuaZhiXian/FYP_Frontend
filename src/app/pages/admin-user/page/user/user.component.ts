@@ -58,7 +58,6 @@ export class UserComponent implements OnInit {
 
   getTotalUser() {
     this.loadingTotalUser = true;
-    console.log(this.selectedTotalUserDayOption)
     this.vendorService.getTotalUser(this.selectedTotalUserDayOption)
       .pipe(finalize(() => {
         this.loadingTotalUser = false;
