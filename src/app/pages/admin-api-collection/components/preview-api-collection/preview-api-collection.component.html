@@ -185,7 +185,8 @@
           </div>
           <ng-template #apiCollectionHeader>
             <div (click)="init()" class="flex items-center">
-              <div class="m-2 p-2 bg-rose-200 font-bold text-[10px] w-[80px] h-full text-center rounded-lg">
+              <div class="m-2 p-2 font-bold text-[10px] w-[80px] h-full text-center rounded-lg
+                   {{endpoint.api_method  === 'DELETE'? 'bg-rose-200' : endpoint.api_method === 'GET' ? 'bg-blue-200' :'bg-green-200'}} ">
                 {{endpoint.api_method}}
               </div>
               <div class="m-2">
