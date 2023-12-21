@@ -9,6 +9,7 @@ import hljs from "highlight.js";
 export class HighlightjsComponent implements OnInit, AfterViewInit {
 
   @Input() code!: string;
+  @Input() extraClass?: string = ''
   htmlTemplate: string = '';
 
   ngOnInit(): void {

@@ -201,6 +201,7 @@
   </div>
 </nz-modal>
 
+<!--Preview create collection modal-->
 <nz-modal (nzOnCancel)="closePreviewModal()" [(nzVisible)]="previewModalVisibility" [nzClassName]="'zero-padding-body'"
           [nzWidth]="1040">
   <div *nzModalTitle>
@@ -222,6 +223,9 @@
           </div>
           <div *ngSwitchCase="1">
             <ng-container *ngTemplateOutlet="collectionObject"></ng-container>
+          </div>
+          <div *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="apiEndpoint"></ng-container>
           </div>
         </div>
       </div>
@@ -349,5 +353,75 @@
 
 <!--API Endpoints-->
 <ng-template #apiEndpoint>
-  234234
+  <nz-card class="rounded-lg">
+    <nz-collapse [nzBordered]="false">
+      <div *ngFor="let endpoint of api_ids ; let j = index">
+        <nz-collapse-panel [nzHeader]="apiCollectionHeader" [nzShowArrow]="false">
+          <!--Collapse body-->
+          <div>
+            <div>
+              <!--Endpoint description-->
+              <div class="text-doc-text text-justify">{{endpoint.api_description}}</div>
+              <!--parameter attribute-->
+              <div class="mt-[20px]">
+                <div class="text-label text-gray-800 font-medium pb-[12px]">Parameters</div>
+                <div *ngFor="let attribute of endpoint.api_param_ids" class="py-[16px] border-t border-gray-300">
+                  <!--name & variable type-->
+                  <div class="flex items-center">
+                    <div class="text-doc-text font-semibold text-gray-700 mr-[4px]">{{attribute.attr_name}}</div>
+                    <div class="text-xs font-semibold text-gray-400 mr-[4px]">{{attribute.attr_type}}</div>
+                  </div>
+                  <!--description-->
+                  <div class="text-doc-text text-justify ">{{attribute.attr_description}}</div>
+                  <!--<div class="mt-[8px]" *ngIf="attribute.child_attr_ids">
+                    <child-attribute title="child attribute" [childObject]="attribute.child_attr_ids"></child-attribute>
+                  </div>-->
+                </div>
+                <div *ngIf="endpoint.api_param_ids?.length == 0"
+                     class="py-[16px] text-xs text-gray-400 font-normal border-t border-gray-300">
+                  No parameters
+                </div>
+              </div>
+              <!--Return-->
+              <div class="mt-[20px]">
+                <div class="text-label text-gray-800 font-medium pb-[12px]">Return</div>
+                <div class="text-doc-text text-justify py-[16px] border-t border-gray-300">{{endpoint.api_return}}</div>
+              </div>
+              <!--Request Code-->
+              <div class="mt-[12px]">
+                <div (click)="init()" class="text-label text-gray-800 font-medium pb-[12px]">Sample Code</div>
+                <code-editor (programmingLanguageChange)="switchLanguage($event)" *ngIf="!switchingLang"
+                             [code]="endpoint.api_req_code" [programmingLanguageOptions]="programmingLanguageOptions"
+                             [programmingLanguage]="programmingLanguage"
+                             [title]="endpoint.api_method + ' ' + endpoint.api_endpoint "
+                             class="mb-[12px]"></code-editor>
+              </div>
+              <!--Response Json-->
+              <div class="mt-[12px]">
+                <!--Header-->
+                <div
+                  class="px-[12px] py-[10px] text-gray-500 text-xs font-medium bg-gray-100 border rounded-t cursor-pointer">
+                  Response
+                </div>
+                <!--Content-->
+                <highlightjs [code]="endpoint.api_response_json" extraClass=" "></highlightjs>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #apiCollectionHeader>
+            <div (click)="init()" class="flex items-center">
+              <div class="m-2 p-2 bg-rose-200 font-bold text-[10px] w-[80px] h-full text-center rounded-lg">
+                {{endpoint.api_method}}
+              </div>
+              <div class="m-2">
+                <div class="font-bold">{{endpoint.api_name}}</div>
+                <div class="text-sm text-gray-400">{{endpoint.api_endpoint}}</div>
+              </div>
+            </div>
+          </ng-template>
+        </nz-collapse-panel>
+      </div>
+    </nz-collapse>
+  </nz-card>
 </ng-template>
