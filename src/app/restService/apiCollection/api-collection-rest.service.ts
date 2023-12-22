@@ -82,8 +82,8 @@ export class ApiCollectionRestService {
     return this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-api-category/' + categoryId, {withCredentials: true});
   }
 
-  uploadAPICollection(file: string): Observable<any> {
-    return this.httpClient.post<any>(this.ProjectUrl + '/custom/upload-file-content', {file}, {withCredentials: true});
+  uploadAPICollection(file: string): Observable<IMessage> {
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/upload-file-content', {file}, {withCredentials: true});
   }
 
 }
