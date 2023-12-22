@@ -177,8 +177,10 @@
   </div>
   <div *nzModalContent>
     <nz-upload (nzChange)="handleChange($event)"
+               [(nzFileList)]="fileList"
                [nzAccept]="'application/json'" [nzBeforeUpload]="beforeUpload" [nzDisabled]="currentFile.length > 0"
-               nzAction="https://httpbin.org/post"
+               [nzShowUploadList]="{showPreviewIcon: true, showRemoveIcon: true, showDownloadIcon: false }"
+               [nzWithCredentials]="true"
                nzType="drag">
       <p class="ant-upload-drag-icon">
         <span nz-icon nzType="inbox"></span>

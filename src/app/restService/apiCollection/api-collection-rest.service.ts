@@ -30,7 +30,7 @@ export class ApiCollectionRestService {
   }
 
   getApiDocumentation(programmingLanguage: string): Observable<IApiCategory[]> {
-    return this.authorizationService.handleApiError(this.httpClient.get<IApiCategory[]>(this.ProjectUrl + '/custom/api-collections/'+programmingLanguage, {withCredentials: true}));
+    return this.authorizationService.handleApiError(this.httpClient.get<IApiCategory[]>(this.ProjectUrl + '/custom/api-collections/' + programmingLanguage, {withCredentials: true}));
   }
 
   getSubscribedApiCollection(): Observable<ISelectingApiCollection[]> {
@@ -81,4 +81,9 @@ export class ApiCollectionRestService {
   deleteCategory(categoryId: number): Observable<IMessage> {
     return this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-api-category/' + categoryId, {withCredentials: true});
   }
+
+  uploadAPICollection(file: string): Observable<any> {
+    return this.httpClient.post<any>(this.ProjectUrl + '/custom/upload-file-content', {file}, {withCredentials: true});
+  }
+
 }
