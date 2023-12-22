@@ -21,6 +21,7 @@ import {ControlValueAccessor, FormBuilder, NG_VALIDATORS, NG_VALUE_ACCESSOR} fro
 })
 export class RangeDateInputv2Component extends AbstractNgModelComponent<string> implements ControlValueAccessor, OnDestroy, OnInit {
 
+  //TODO: --> 2nd batch add time , current only able accept whole date
   @Input() override minLength?: number;
   @Input() override maxLength?: number;
   @Input() override regex?: RegExp;
