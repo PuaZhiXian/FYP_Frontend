@@ -91,7 +91,7 @@ export class ApiCollectionRestService {
   }
 
   publishAPICollection(apiCollectionId: string): Observable<IMessage> {
-    return this.httpClient.post<IMessage>(this.ProjectUrl + '/api-collections/', {apiCollectionId}, {withCredentials: true});
+    return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/publish-api-collection', {apiCollectionId}, {withCredentials: true});
   }
 
 }
