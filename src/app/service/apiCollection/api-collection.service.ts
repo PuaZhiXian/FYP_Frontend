@@ -81,4 +81,8 @@ export class ApiCollectionService {
   uploadAPICollection(file: string): Observable<IMessage> {
     return this.apiCollectionRestService.uploadAPICollection(file);
   }
+
+  getSingleAPICollection(apiCollectionId: string): Observable<IApiCategory> {
+    return this.apiCollectionRestService.getSingleAPICollection(apiCollectionId);
+  }
 }

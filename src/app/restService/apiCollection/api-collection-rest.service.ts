@@ -86,4 +86,8 @@ export class ApiCollectionRestService {
     return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/upload-file-content', {file}, {withCredentials: true});
   }
 
+  getSingleAPICollection(apiCollectionId: string): Observable<IApiCategory> {
+    return this.httpClient.post<IApiCategory>(this.ProjectUrl + '/custom/upload-file-content', {apiCollectionId}, {withCredentials: true});
+  }
+
 }

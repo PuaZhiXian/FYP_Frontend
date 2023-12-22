@@ -40,9 +40,13 @@ export class PreviewApiCollectionComponent implements OnInit {
 
   initPreview() {
     //TODO - call preview collection by id
+    console.log(this.apiCollectionId)
     this.pageNumber = 0;
     this.singleCategory = Temp.singleCategory
-    console.log(this.apiCollectionId)
+    this.apiCollectionService.getSingleAPICollection(this.apiCollectionId)
+      .subscribe((resp) => {
+        this.singleCategory = resp
+      })
   }
 
   initProgrammingLanguageOptions() {
