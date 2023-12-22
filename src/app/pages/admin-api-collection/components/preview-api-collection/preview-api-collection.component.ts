@@ -7,6 +7,7 @@ import {finalize} from "rxjs";
 import {NzConfigService} from "ng-zorro-antd/core/config";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'preview-api-collection',
@@ -31,7 +32,8 @@ export class PreviewApiCollectionComponent implements OnInit {
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef,
               private apiCollectionService: ApiCollectionService,
-              private modal: NzModalService) {
+              private modal: NzModalService,
+              private message: NzMessageService) {
   }
 
   ngOnInit(): void {
@@ -71,8 +73,15 @@ export class PreviewApiCollectionComponent implements OnInit {
       nzOkType: 'primary',
       nzOkDanger: true,
       nzOnOk: () => {
-        this.previewModalVisibility = false;
-        this.previewModalVisibilityChange.emit(false);
+        this.apiCollectionService.deleteCollection(Number(this.apiCollectionId))
+          .subscribe((resp) => {
+            if (resp.message) {
+              this.previewModalVisibility = false;
+              this.previewModalVisibilityChange.emit(false);
+            } else {
+              this.message.error(resp.error || "")
+            }
+          })
         //TODO call delete unpublish api collection
       },
       nzCancelText: 'No'
@@ -85,8 +94,15 @@ export class PreviewApiCollectionComponent implements OnInit {
 
   confirmCreateCollection() {
     //TODO -- api to confirm collection create -- unpublish to publish
-    console.log('TODO -- api to confirm collection create -- unpublish to publish')
-    this.closePreviewModal();
+    this.apiCollectionService.publishAPICollection(this.apiCollectionId)
+      .subscribe((resp) => {
+        if (resp.message) {
+          this.message.success(resp.message)
+          this.closePreviewModal();
+        } else {
+          this.message.error(resp.error || '')
+        }
+      })
   }
 
   switchLanguage(programmingLanguage: string) {

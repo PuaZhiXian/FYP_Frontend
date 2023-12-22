@@ -85,4 +85,9 @@ export class ApiCollectionService {
   getSingleAPICollection(apiCollectionId: string): Observable<IApiCategory> {
     return this.apiCollectionRestService.getSingleAPICollection(apiCollectionId);
   }
+
+  publishAPICollection(apiCollectionId: string): Observable<IMessage> {
+    return this.apiCollectionRestService.publishAPICollection(apiCollectionId);
+  }
+
 }
