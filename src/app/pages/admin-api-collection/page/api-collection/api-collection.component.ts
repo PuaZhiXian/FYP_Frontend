@@ -208,6 +208,7 @@ export class ApiCollectionComponent implements OnInit {
     this.createCollectionSubmittedTry = true;
     this.closeCreateNewCollectionModal();
     if (this.fileList.length > 0) {
+      //TODO: --> 2nd batch change it to upload file instead, currently is read content from file and send to backend
       let fileContent: string = '';
       const reader = new FileReader();
       // Define the onload event handler
