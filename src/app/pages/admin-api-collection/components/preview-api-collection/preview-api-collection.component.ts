@@ -69,6 +69,7 @@ export class PreviewApiCollectionComponent implements OnInit {
       nzOnOk: () => {
         this.previewModalVisibility = false;
         this.previewModalVisibilityChange.emit(false);
+        //TODO call delete unpublish api collection
       },
       nzCancelText: 'No'
     });
@@ -97,7 +98,7 @@ export class PreviewApiCollectionComponent implements OnInit {
     this.ref.markForCheck();*/
   }
 
-  init() {
+  initHighlightJS() {
     hljs.highlightAll();
   }
 }

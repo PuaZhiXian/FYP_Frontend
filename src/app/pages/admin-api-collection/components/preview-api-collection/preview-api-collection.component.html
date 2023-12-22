@@ -164,7 +164,8 @@
               </div>
               <!--Request Code-->
               <div class="mt-[12px]">
-                <div (click)="init()" class="text-label text-gray-800 font-medium pb-[12px]">Sample Code</div>
+                <div (click)="initHighlightJS()" class="text-label text-gray-800 font-medium pb-[12px]">Sample Code
+                </div>
                 <code-editor (programmingLanguageChange)="switchLanguage($event)" *ngIf="!switchingLang"
                              [code]="endpoint.api_req_code" [programmingLanguageOptions]="programmingLanguageOptions"
                              [programmingLanguage]="programmingLanguage"
@@ -184,7 +185,7 @@
             </div>
           </div>
           <ng-template #apiCollectionHeader>
-            <div (click)="init()" class="flex items-center">
+            <div (click)="initHighlightJS()" class="flex items-center">
               <div class="m-2 p-2 font-bold text-[10px] w-[80px] h-full text-center rounded-lg
                    {{endpoint.api_method  === 'DELETE'? 'bg-rose-200' : endpoint.api_method === 'GET' ? 'bg-blue-200' :'bg-green-200'}} ">
                 {{endpoint.api_method}}
