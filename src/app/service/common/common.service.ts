@@ -13,7 +13,7 @@ export class CommonService {
               private message: NzMessageService,) {
   }
 
-  getAnnouncement(): Observable<IAnnouncement> {
+  getAnnouncement(): Observable<IAnnouncement[]> {
     return this.commonRestService.getAnnouncement();
   }
 

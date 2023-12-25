@@ -16,8 +16,8 @@ export class CommonRestService {
               private authorizationService: AuthorizationService) {
   }
 
-  getAnnouncement(): Observable<IAnnouncement> {
-    return this.authorizationService.handleApiError(this.httpClient.get<IAnnouncement>(this.ProjectUrl + '/announcements', {withCredentials: true}));
+  getAnnouncement(): Observable<IAnnouncement[]> {
+    return this.authorizationService.handleApiError(this.httpClient.get<IAnnouncement[]>(this.ProjectUrl + '/announcements', {withCredentials: true}));
   }
 
 }
