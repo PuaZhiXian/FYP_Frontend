@@ -190,7 +190,9 @@ export class NotificationTableComponent implements OnInit {
             this.message.success(resp.message);
             this.createNotificationDrawerVisibility = false;
             this.loadingEditNotificationDrawer = true;
+            this.closeNotificationDrawer();
             this.initNotification();
+            this.submittedTry = false;
           } else {
             this.message.error(resp.error || '')
           }
@@ -214,6 +216,7 @@ export class NotificationTableComponent implements OnInit {
   openNotificationDrawerCreate() {
     this.initForm()
     this.createNotificationDrawerVisibility = true;
+    this.htmlContent = '';
     let currentDate = new Date();
     let startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
     let endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 23, 59, 59)
