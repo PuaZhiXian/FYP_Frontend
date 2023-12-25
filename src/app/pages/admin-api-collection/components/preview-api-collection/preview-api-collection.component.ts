@@ -98,7 +98,8 @@ export class PreviewApiCollectionComponent implements OnInit {
       .subscribe((resp) => {
         if (resp.message) {
           this.message.success(resp.message)
-          this.closePreviewModal();
+          this.previewModalVisibility = false;
+          this.previewModalVisibilityChange.emit(false);
         } else {
           this.message.error(resp.error || '')
         }
