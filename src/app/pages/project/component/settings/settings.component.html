@@ -1,75 +1,74 @@
 <div>
   <nz-spin [nzSpinning]="updating">
-    <form nz-form [formGroup]="validateForm">
-
-      <div class="flex justify-between items-center">
-        <div class="font-bold text-[20px]">Project Name</div>
-        <div class="">
-          <button (click)="showDeleteConfirm()" class="h-full bg-[#ff4d4f]
-                    font-bold text-[14px] py-2.5 text-white px-[32px]
-                    text-center rounded-lg" nz-button nzDanger>
-            Delete Project
-          </button>
-        </div>
-      </div>
-      <div class="my-4">
-        <div *ngIf="!editMode" class="text-[16px]">
-          {{projectName}}
-        </div>
-        <nz-form-item *ngIf="editMode" class="grid w-3/4 ">
-          <nz-form-control nzErrorTip="Please input your project name!">
-            <input class="rounded bg-[#D9D9D9]" formControlName="project_name" placeholder="Enter Project Name"
-                   nz-input/>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-      <div class="my-2.5 font-bold text-[20px]">
-        Project Description
-      </div>
-
-      <div class="my-4">
-        <div *ngIf="!editMode" class="text-[16px]">
-          {{projectDescription}}
-        </div>
-        <nz-form-item *ngIf="editMode" class="grid w-3/4">
-          <nz-form-control nzErrorTip="Please input your project description!">
-            <div class="">
-              <textarea rows="4" nz-input class="rounded bg-[#D9D9D9]" formControlName="description"
-                        placeholder="Enter Project Description"></textarea>
+    <div class="flex justify-between">
+      <div class="w-1/2">
+        <!--ReadOnly Mode-->
+        <div *ngIf="!editMode">
+          <div class="pb-[30px]">
+            <div class="flex justify-between items-center">
+              <div class="text-sm text-gray-500">Project Name</div>
             </div>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div *ngIf="!editMode" class="mt-20 primary-button">
-        <button nz-button class="bg-primary-900 h-full
+            <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
+              {{projectName}}
+            </div>
+          </div>
+          <div class="pb-[30px]">
+            <div class="text-sm text-gray-500">Project Description</div>
+            <div class="appearance-none px-0 w-full text-input text-gray-900 bg-transparent border-0">
+              {{projectDescription}}
+            </div>
+          </div>
+          <div class="mt-20 primary-button">
+            <button class="bg-primary-900 h-full
                     font-bold text-[14px] py-2.5 text-white px-[32px]
-                    text-center rounded-lg" (click)="editProject()">
-          Edit Project
+                    text-center rounded-lg" nz-button (click)="editProject()">
+              Edit Project
+            </button>
+          </div>
+        </div>
+
+        <!--Edit Mode-->
+        <div *ngIf="editMode">
+          <form [formGroup]="validateForm" nz-form>
+            <!--Project Name Input-->
+            <text-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                        errorMessage="Please input your username!"
+                        fieldTitle="Project Name" formControlName="project_name"
+                        placeholder="Enter username"></text-input>
+            <!--Project Description Input-->
+            <textarea-input [fieldRequired]="true" [submittedTry]="submittedTry"
+                            errorMessage="Please input your project description!"
+                            fieldTitle="Project Description" formControlName="description"
+                            placeholder="Enter Project Description"></textarea-input>
+            <!--Rest & Save button-->
+            <div class="mt-20 flex">
+              <div class="grid grid-cols-2 gap-12">
+                <div class="col-span-1 primary-button">
+                  <button class="bg-primary-900 h-full w-full
+                    font-bold text-[14px] py-2.5 text-white px-[32px]
+                    text-center rounded-lg" nz-button (click)="reset()">
+                    Reset
+                  </button>
+                </div>
+                <div class="col-span-1 primary-button">
+                  <button class="bg-primary-900 h-full w-full
+                    font-bold text-[14px] py-2.5 text-white px-[32px]
+                    text-center rounded-lg" nz-button (click)="saveProject()">
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div>
+        <button (click)="showDeleteConfirm()"
+                class="bg-[#ff4d4f] font-bold text-[14px] text-white px-[32px] text-center rounded-lg"
+                nz-button nzDanger>Delete Project
         </button>
       </div>
-      <div *ngIf="editMode" class="mt-20 flex">
-        <div class="grid grid-cols-2 gap-12">
-          <div class="col-span-1 primary-button">
-            <button nz-button class="bg-primary-900 h-full w-full
-                    font-bold text-[14px] py-2.5 text-white px-[32px]
-                    text-center rounded-lg" (click)="reset()">
-              Reset
-            </button>
-          </div>
-          <div class="col-span-1 primary-button">
-            <button nz-button class="bg-primary-900 h-full w-full
-                    font-bold text-[14px] py-2.5 text-white px-[32px]
-                    text-center rounded-lg" (click)="saveProject()">
-              Save Changes
-            </button>
-          </div>
-        </div>
-        <div class="grow">
-
-        </div>
-      </div>
-    </form>
+    </div>
   </nz-spin>
 </div>
 

@@ -39,6 +39,7 @@ export class SettingsComponent implements OnInit {
   validateForm!: UntypedFormGroup;
   editMode: boolean = false;
   updating: boolean = false;
+  submittedTry: boolean = false;
 
   ngOnInit(): void {
     this.initForm();
@@ -94,6 +95,7 @@ export class SettingsComponent implements OnInit {
 
   saveProject() {
     this.updating = true;
+    this.submittedTry = true;
     this.ref.detectChanges();
     this.ref.markForCheck();
 
