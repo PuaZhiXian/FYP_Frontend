@@ -116,8 +116,8 @@ export class NotificationComponent implements OnInit {
     this.ref.markForCheck();
     this.ref.detectChanges();
     this.createNotificationDrawerVisibility = true;
-    let startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0)
-    let endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59)
+    let startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0)
+    let endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 8, 0, 0)
     this.validateForm.patchValue(
       {rangeDate: [startDate, endDate]}
     )

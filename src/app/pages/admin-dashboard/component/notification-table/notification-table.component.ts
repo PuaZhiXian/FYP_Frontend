@@ -173,9 +173,13 @@ export class NotificationTableComponent implements OnInit {
 
   createSaveNotification() {
     this.submittedTry = true;
+    let tempStartDate: Date = this.validateForm.value.rangeDate[0];
+    let tempEndDate: Date = this.validateForm.value.rangeDate[1];
+    tempStartDate = new Date(tempStartDate.getFullYear(), tempStartDate.getMonth(), tempStartDate.getDate(), 8, 0, 0)
+    tempEndDate = new Date(tempEndDate.getFullYear(), tempEndDate.getMonth(), tempEndDate.getDate(), 8, 0, 0)
     this.validateForm.patchValue({
-      startDate: this.validateForm.value.rangeDate[0],
-      endDate: this.validateForm.value.rangeDate[1],
+      startDate: tempStartDate,
+      endDate: tempEndDate,
       color: this.notificationColor,
       announcement_text: this.htmlContent
     })
