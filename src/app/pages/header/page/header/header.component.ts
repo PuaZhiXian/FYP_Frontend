@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {IHeaderList} from "../../../../interface/header/i-header-list";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,14 @@ export class HeaderComponent {
   static logined: boolean = true;
   headerList!: IHeaderList[];
   static headerIndicator: string = '';
+  static UserAbbre: string = '';
 
-  constructor(private router: Router,) {
+  constructor(private router: Router,
+              private cookieService: CookieService) {
+  }
+
+  get getUserAbbre() {
+    return this.cookieService.get('abbre');
   }
 
   get staticLogined() {

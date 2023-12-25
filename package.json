@@ -26,6 +26,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "highlight.js": "^11.8.0",
     "ng-zorro-antd": "^15.0.3",
+    "ngx-cookie-service": "^17.0.1",
     "rxjs": "~7.8.0",
     "showdown": "^2.1.0",
     "tslib": "^2.3.0",

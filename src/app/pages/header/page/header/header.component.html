@@ -1,25 +1,21 @@
 <div class="container mx-auto py-5">
   <div class="flex items-center">
     <div class="">
-      <img class="h-[60px] w-auto cursor-pointer" src="assets/images/header/skyworldLogo.png" (click)="redirect('dashboard')"/>
+      <img (click)="redirect('dashboard')" class="h-[60px] w-auto cursor-pointer"
+           src="assets/images/header/skyworldLogo.png"/>
     </div>
     <div class="grow ml-5 flex justify-end items-center" *ngIf="staticLogined">
-      <div (click)="redirect('dashboard')"
-           class="px-10 cursor-pointer text-header {{headerIndicator ==='dashboard'? 'text-[#59C3FF]':'text-white'}}">
-        Dashboard
+      <div class="px-10 text-header {{headerIndicator ==='dashboard'? 'text-[#59C3FF]':'text-white'}}">
+        <span (click)="redirect('dashboard')" class=" cursor-pointer ">Dashboard</span>
       </div>
-      <div (click)="redirect('product')"
-           class="px-10 cursor-pointer text-header {{headerIndicator ==='product'? 'text-[#59C3FF]':'text-white'}}">
-        Product
+      <div class="px-10 text-header {{headerIndicator ==='product'? 'text-[#59C3FF]':'text-white'}}">
+        <span (click)="redirect('product')" class=" cursor-pointer ">Product</span>
       </div>
-      <div (click)="redirect('guide')"
-           class="px-10 cursor-pointer text-header {{headerIndicator ==='guide'? 'text-[#59C3FF]':'text-white'}}">
-        Guide
+      <div class="px-10 text-header {{headerIndicator ==='guide'? 'text-[#59C3FF]':'text-white'}}">
+        <span (click)="redirect('guide')" class=" cursor-pointer ">Guide</span>
       </div>
       <div (click)="redirect('profile')"
-           class="px-10 cursor-pointer  {{headerIndicator ==='profile'? 'text-[#59C3FF]':'text-white'}}">
-        <span class="material-icons-outlined text-md">person</span>
-      </div>
+           class="rounded-full h-[40px] w-[40px] bg-rose-400 flex items-center justify-center cursor-pointer">{{getUserAbbre}}</div>
     </div>
   </div>
 
