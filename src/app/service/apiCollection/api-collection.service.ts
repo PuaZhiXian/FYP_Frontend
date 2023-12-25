@@ -11,7 +11,6 @@ import {IAdminApiCollection} from "../../interface/api-collection/i-admin-api-co
 import {IAdminSetAccessControl} from "../../interface/api-collection/i-admin-set-access-control";
 import {IMessage} from "../../interface/authorization/i-message";
 import {IAdminApiCategory} from "../../interface/api-collection/i-admin-api-category";
-import {NzUploadFile} from "ng-zorro-antd/upload";
 
 @Injectable({
   providedIn: 'root'
@@ -82,8 +81,8 @@ export class ApiCollectionService {
     return this.apiCollectionRestService.uploadAPICollection(file);
   }
 
-  getSingleAPICollection(apiCollectionId: string): Observable<IApiCategory> {
-    return this.apiCollectionRestService.getSingleAPICollection(apiCollectionId);
+  getSingleAPICollection(apiCollectionId: string, programmingLanguage: string): Observable<IApiCategory> {
+    return this.apiCollectionRestService.getSingleAPICollection(apiCollectionId, programmingLanguage);
   }
 
   publishAPICollection(apiCollectionId: string): Observable<IMessage> {

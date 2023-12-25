@@ -28,6 +28,7 @@ export class PreviewApiCollectionComponent implements OnInit {
 
   switchingLang = false;
   loadingProgrammingOption: boolean = true;
+  currentEndpoint!: number;
 
   constructor(private nzConfigService: NzConfigService,
               private ref: ChangeDetectorRef,
@@ -42,13 +43,11 @@ export class PreviewApiCollectionComponent implements OnInit {
 
   initPreview() {
     //TODO - call preview collection by id
-    console.log(this.apiCollectionId)
-    this.pageNumber = 0;
-    this.singleCategory = Temp.singleCategory
-    this.apiCollectionService.getSingleAPICollection(this.apiCollectionId)
+    /*this.apiCollectionService.getSingleAPICollection(this.apiCollectionId, this.programmingLanguage)
       .subscribe((resp) => {
         this.singleCategory = resp
-      })
+      })*/
+    this.singleCategory = Temp.singleCategory
   }
 
   initProgrammingLanguageOptions() {
@@ -107,16 +106,11 @@ export class PreviewApiCollectionComponent implements OnInit {
   }
 
   switchLanguage(programmingLanguage: string) {
+    this.programmingLanguage = programmingLanguage;
     this.initPreview()
-    /*this.switchingLang = true;
-    this.updatingCodeEditor = true;
+    this.pageNumber = 2;
     this.ref.detectChanges();
     this.ref.markForCheck();
-    this.programmingLanguage = programmingLanguage;
-    this.initDocumentation();
-    this.initGeneralDocumentation();
-    this.ref.detectChanges();
-    this.ref.markForCheck();*/
   }
 
   initHighlightJS() {

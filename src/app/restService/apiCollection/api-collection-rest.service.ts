@@ -86,8 +86,11 @@ export class ApiCollectionRestService {
     return this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/upload-file-content', {file}, {withCredentials: true});
   }
 
-  getSingleAPICollection(apiCollectionId: string): Observable<IApiCategory> {
-    return this.httpClient.get<IApiCategory>(this.ProjectUrl + '/api-collections/' + apiCollectionId, {withCredentials: true});
+  getSingleAPICollection(apiCollectionId: string, programmingLanguage: string): Observable<IApiCategory> {
+    return this.httpClient.post<IApiCategory>(this.ProjectUrl + '/api-collections/', {
+      apiCollectionId,
+      programmingLanguage
+    }, {withCredentials: true});
   }
 
   publishAPICollection(apiCollectionId: string): Observable<IMessage> {

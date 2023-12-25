@@ -40,7 +40,7 @@
       <button (click)="pageNumber = pageNumber - 1" [disabled]="pageNumber === 0"
               class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Back
       </button>
-      <button (click)="pageNumber = pageNumber + 1"
+      <button (click)="pageNumber = pageNumber + 1 ;"
               class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Next
       </button>
     </div>
@@ -131,7 +131,7 @@
   <nz-card class="rounded-lg">
     <nz-collapse [nzBordered]="false">
       <div *ngFor="let endpoint of singleCategory.api_collections[0].api_ids ; let j = index">
-        <nz-collapse-panel [nzHeader]="apiCollectionHeader" [nzShowArrow]="false">
+        <nz-collapse-panel [nzActive]="currentEndpoint === j" [nzHeader]="apiCollectionHeader" [nzShowArrow]="false">
           <!--Collapse body-->
           <div>
             <div>
@@ -164,9 +164,9 @@
               </div>
               <!--Request Code-->
               <div class="mt-[12px]">
-                <div (click)="initHighlightJS()" class="text-label text-gray-800 font-medium pb-[12px]">Sample Code
-                </div>
-                <code-editor (programmingLanguageChange)="switchLanguage($event)" *ngIf="!switchingLang"
+                <div class="text-label text-gray-800 font-medium pb-[12px]">Sample Code</div>
+                <code-editor (programmingLanguageChange)="switchLanguage($event)"
+                             (programmingLanguageChange)="currentEndpoint = j" *ngIf="!switchingLang"
                              [code]="endpoint.api_req_code" [programmingLanguageOptions]="programmingLanguageOptions"
                              [programmingLanguage]="programmingLanguage"
                              [title]="endpoint.api_method + ' ' + endpoint.api_endpoint "
