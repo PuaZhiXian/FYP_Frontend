@@ -28,7 +28,7 @@
   </section>
 
   <!--API Object-->
-  <section class="p-[68px] border-b" [id]="'api'+singleAPICollection.id+'object'">
+  <section *ngIf="singleAPICollection.object_id" [id]="'api'+singleAPICollection.id+'object'" class="p-[68px] border-b">
     <div class="text-doc-title font-medium">The {{singleAPICollection.api_collection_name}} object</div>
     <div class="lg:grid grid-cols-5 mt-[20px]">
       <div class="col-span-3 lg:mr-[68px]">
