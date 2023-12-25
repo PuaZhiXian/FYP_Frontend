@@ -7,7 +7,8 @@
 </div>
 <nz-collapse *ngIf="!loadingAccessControl; else loadingAccessControlTpl" [nzBordered]="false">
   <div *ngFor="let category of apiCategoryList ; let j = index">
-    <nz-collapse-panel *ngIf="category.api_collections.length > 0 " [nzActive]="category.isActive"
+    <nz-collapse-panel *ngIf="category.api_collections.length > 0 "
+                       [nzActive]="category.isActive || j === currentOpenCollection"
                        [nzHeader]="apiCollectionHeader" [nzShowArrow]="false">
 
       <div class="pb-[24px]">
@@ -15,7 +16,7 @@
           <div *ngFor="let apiCollection of category.api_collections ; let i = index "
                class="rounded-3xl pl-4 {{ randomColorsArray[i % 10]}}">
             <nz-card
-              (click)="editAccessControl(apiCollection.id, apiCollection.api_collection_name,apiCollection.isActive)"
+              (click)="editAccessControl(apiCollection.id, apiCollection.api_collection_name,apiCollection.isActive, j)"
               class="rounded-r-[1.3rem] border-2 cursor-pointer">
               <nz-spin [nzIndicator]="indicatorTemplate" [nzSpinning]="!apiCollection.isActive">
                 <div class="flex justify-between">
