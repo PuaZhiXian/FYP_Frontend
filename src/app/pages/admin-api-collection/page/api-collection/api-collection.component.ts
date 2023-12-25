@@ -201,11 +201,11 @@ export class ApiCollectionComponent implements OnInit {
 
   closeCreateNewCollectionModal() {
     this.createNewCollectionModalVisibility = false;
+    this.fileList = [];
   }
 
   createNewCollection() {
     this.createCollectionSubmittedTry = true;
-    this.closeCreateNewCollectionModal();
     if (this.fileList.length > 0) {
       //TODO: --> 2nd batch change it to upload file instead, currently is read content from file and send to backend
       let fileContent: string = '';
@@ -216,6 +216,7 @@ export class ApiCollectionComponent implements OnInit {
         this.apiCollectionService.uploadAPICollection(fileContent)
           .subscribe((resp) => {
             if (resp.message) {
+              this.closeCreateNewCollectionModal();
               this.previewApiCollectionId = resp.message;
               this.previewModalVisibility = true;
               this.ref.markForCheck();
