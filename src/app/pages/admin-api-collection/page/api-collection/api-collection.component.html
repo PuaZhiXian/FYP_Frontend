@@ -24,9 +24,9 @@
           </div>
           <div class="grid grid-cols-6 gap-1">
             <div *ngFor="let category of apiCategoryList"
-                 class="flex gap-1 w-full {{category.api_collections.length > 0 ? '': 'hidden'}}">
+                 class="flex gap-1 w-full ">
               <button (click)="removeFilter(category.id)"
-                      *ngIf="filterCategory.indexOf(category.id) !== -1 && category.api_collections.length > 0"
+                      *ngIf="filterCategory.indexOf(category.id) !== -1"
                       class="w-full" nz-button
                       nzShape="round" nzType="primary">
                 <div class="flex items-center justify-center gap-1">
@@ -35,7 +35,7 @@
                 </div>
               </button>
               <button (click)="addFilter(category.id)"
-                      *ngIf="filterCategory.indexOf(category.id) === -1 && category.api_collections.length > 0"
+                      *ngIf="filterCategory.indexOf(category.id) === -1"
                       class="text-sm w-full"
                       nz-button nzShape="round">{{category.category_name}}</button>
             </div>
@@ -52,7 +52,7 @@
     </div>
     <div *ngIf="!loading else loadingCollectionTpl">
       <div *ngFor="let category of filteredApiCategoryList; let j = index">
-        <div *ngIf="category.api_collections.length > 0 "
+        <div *ngIf="category.api_collections.length > 0 || this.searchKey.length === 0"
              class="border-t border-b-0 border-solid border-x-0 pb-[24px] border-gray-600">
           <div class="flex items-center my-[14px] gap-4">
             <div>
@@ -71,7 +71,7 @@
           </div>
           <div class="grid grid-cols-3 gap-4">
             <nz-card (click)="openCreateNewCollectionModal(category.id)"
-                     class="flex rounded-3xl items-center justify-center border-dotted border-2 border-[#59C3FF] cursor-pointer">
+                     class="flex rounded-3xl items-center justify-center border-dotted border-2 border-[#59C3FF] cursor-pointer min-h-[228px]">
               <div class="flex items-center">
                 <div class="material-icons-outlined text-[#59C3FF]">
                   add
