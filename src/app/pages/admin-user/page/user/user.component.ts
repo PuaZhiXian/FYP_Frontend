@@ -31,8 +31,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     HeaderComponent.headerIndicator = 'user';
-    this.selectedTotalUserDayOption = this.totalUserDayOption[0];
-    this.getTotalUser();
+    this.getTotalUser(this.totalUserDayOption[0]);
     this.getUserStatistic();
   }
 
@@ -56,7 +55,8 @@ export class UserComponent implements OnInit {
       })
   }
 
-  getTotalUser() {
+  getTotalUser($event: number) {
+    this.selectedTotalUserDayOption = $event;
     this.loadingTotalUser = true;
     this.vendorService.getTotalUser(this.selectedTotalUserDayOption)
       .pipe(finalize(() => {

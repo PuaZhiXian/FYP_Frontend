@@ -11,7 +11,7 @@
           <div class="flex justify-between items-center">
             <div>Total User</div>
             <div class="">
-              <nz-select (ngModelChange)="getTotalUser()" [(ngModel)]="selectedTotalUserDayOption">
+              <nz-select (ngModelChange)="getTotalUser($event)" [ngModel]="selectedTotalUserDayOption">
                 <nz-option *ngFor="let option of totalUserDayOption" [nzValue]="option"
                            nzLabel="{{option + ' Days'}}"></nz-option>
                 <nz-option [nzValue]="0" nzLabel="All Days"></nz-option>
