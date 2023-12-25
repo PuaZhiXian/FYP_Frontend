@@ -77,8 +77,8 @@ export class ApiCollectionService {
     return this.apiCollectionRestService.deleteCategory(categoryId);
   }
 
-  uploadAPICollection(file: string): Observable<IMessage> {
-    return this.apiCollectionRestService.uploadAPICollection(file);
+  uploadAPICollection(file: string, categoryId: string): Observable<IMessage> {
+    return this.apiCollectionRestService.uploadAPICollection(file, categoryId);
   }
 
   getSingleAPICollection(apiCollectionId: string, programmingLanguage: string): Observable<IApiCategory> {

@@ -58,6 +58,8 @@ export class ApiCollectionComponent implements OnInit {
   fileList: NzUploadFile[] = [];
   file!: File;
 
+  categoryIdOfUploadingCollection!: string;
+
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
               private ref: ChangeDetectorRef,
@@ -112,15 +114,6 @@ export class ApiCollectionComponent implements OnInit {
     this.createNewCategoryForm = this.fb.group({
       category_name: [null, [Validators.required, Validators.pattern('^[a-zA-Z].*')]],
       image_url: [null, [Validators.required]],
-    });
-  }
-
-  initCreateNewCollectionForm() {
-    this.createNewCollectionForm = this.fb.group({
-      api_collection_name: [null, [Validators.required]],
-      short_description: [null, [Validators.required]],
-      long_description: [null, [Validators.required]],
-      api_category_id: [null, [Validators.required]],
     });
   }
 
@@ -194,8 +187,7 @@ export class ApiCollectionComponent implements OnInit {
   }
 
   openCreateNewCollectionModal(id: number) {
-    this.initCreateNewCollectionForm();
-    this.createNewCollectionForm.patchValue({api_category_id: id})
+    this.categoryIdOfUploadingCollection = id + '';
     this.createNewCollectionModalVisibility = true;
   }
 
@@ -213,7 +205,7 @@ export class ApiCollectionComponent implements OnInit {
       // Define the onload event handler
       reader.onload = (loadEvent) => {
         fileContent = reader.result as string
-        this.apiCollectionService.uploadAPICollection(fileContent)
+        this.apiCollectionService.uploadAPICollection(fileContent, this.categoryIdOfUploadingCollection)
           .subscribe((resp) => {
             if (resp.message) {
               this.closeCreateNewCollectionModal();
