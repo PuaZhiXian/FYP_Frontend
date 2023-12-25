@@ -24,7 +24,7 @@ export class RangeDateInputv2Component extends AbstractNgModelComponent<string> 
   //TODO: --> 2nd batch add time , current only able accept whole date
   @Input() override minLength?: number;
   @Input() override maxLength?: number;
-  @Input() override regex?: RegExp;
+  @Input() override regex?: string;
   @Input() override fieldRequired?: boolean = false;
   @Input() override fieldTitle!: string;
   @Input() override placeholder?: string = '';

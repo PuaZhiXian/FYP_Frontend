@@ -147,8 +147,8 @@
     <div>
       <form [formGroup]="createNewCategoryForm" nz-form>
         <!--Category Name-->
-        <text-input [fieldRequired]="true" [submittedTry]="createCategorySubmittedTry"
-                    errorMessage="Please input category Name!"
+        <text-input [fieldRequired]="true" [regex]="'^[a-zA-Z].*'" [submittedTry]="createCategorySubmittedTry"
+                    errorMessage="First Letter need to be Alphabet"
                     fieldTitle="Category Name" formControlName="category_name"
                     placeholder="category"></text-input>
         <!--Img Url-->

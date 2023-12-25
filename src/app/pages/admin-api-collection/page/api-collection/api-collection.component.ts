@@ -110,7 +110,7 @@ export class ApiCollectionComponent implements OnInit {
 
   initCreateNewCategoryForm() {
     this.createNewCategoryForm = this.fb.group({
-      category_name: [null, [Validators.required]],
+      category_name: [null, [Validators.required, Validators.pattern('^[a-zA-Z].*')]],
       image_url: [null, [Validators.required]],
     });
   }

@@ -10,7 +10,7 @@ export class AbstractNgModelComponent<T = any> implements ControlValueAccessor {
 
   minLength?: number;
   maxLength?: number;
-  regex?: RegExp;
+  regex?: string;
   fieldRequired?: boolean = false;
   fieldTitle!: string;
   placeholder?: string = '';

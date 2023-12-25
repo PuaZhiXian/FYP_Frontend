@@ -23,7 +23,7 @@ export class EmailInputComponent extends AbstractNgModelComponent<string> implem
 
   @Input() override minLength?: number;
   @Input() override maxLength?: number;
-  @Input() override regex?: RegExp;
+  @Input() override regex?: string;
   @Input() override fieldRequired?: boolean = false;
   @Input() override fieldTitle!: string;
   @Input() override placeholder?: string = '';
