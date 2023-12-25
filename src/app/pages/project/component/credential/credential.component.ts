@@ -32,8 +32,7 @@ export class CredentialComponent implements OnInit {
   loadingToken: boolean = true;
 
   ngOnInit(): void {
-    this.initTable()
-    this.getTokenHistory();
+
   }
 
   requestToken() {
@@ -47,65 +46,7 @@ export class CredentialComponent implements OnInit {
       });
   }
 
-  getTokenHistory() {
-    this.projectService.getTokenHistory(this.projectId + "")
-      .pipe(finalize(() => {
-        this.loadingToken = false;
-        this.ref.detectChanges();
-        this.ref.markForCheck();
-      }))
-      .subscribe((resp) => {
-        this.tokenLog = resp
-      })
-  }
-
   copyToClipBoard() {
     this.commonService.copyToClipboard(this.currentSessionToken);
   }
-
-  initTable() {
-    this.listOfColumns = [
-      {
-        name: 'Token',
-        sortOrder: null,
-        sortFn: null,
-        sortDirections: [],
-        filterMultiple: false,
-        listOfFilter: [],
-        filterFn: null,
-        width: null
-      },
-      {
-        name: 'Created',
-        sortOrder: null,
-        sortFn: null,
-        sortDirections: [],
-        filterMultiple: false,
-        listOfFilter: [],
-        filterFn: null,
-        width: null,
-      },
-      {
-        name: 'Expiration',
-        sortOrder: null,
-        sortFn: null,
-        sortDirections: [],
-        filterMultiple: false,
-        listOfFilter: [],
-        filterFn: null,
-        width: null
-      },
-      {
-        name: 'Last Used Date',
-        sortOrder: null,
-        sortFn: null,
-        sortDirections: [],
-        filterMultiple: false,
-        listOfFilter: [],
-        filterFn: null,
-        width: null
-      }
-    ];
-  }
-
 }
