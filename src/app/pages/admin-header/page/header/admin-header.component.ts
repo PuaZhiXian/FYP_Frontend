@@ -7,10 +7,10 @@ import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'admin-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  templateUrl: './admin-header.component.html',
+  styleUrls: ['./admin-header.component.scss']
 })
-export class HeaderComponent {
+export class AdminHeaderComponent {
 
   static logined: boolean = true;
   static headerIndicator: string = '';
@@ -26,11 +26,11 @@ export class HeaderComponent {
   }
 
   get staticLogined() {
-    return HeaderComponent.logined;
+    return AdminHeaderComponent.logined;
   }
 
   get headerIndicator() {
-    return HeaderComponent.headerIndicator;
+    return AdminHeaderComponent.headerIndicator;
   }
 
   ngOnInit() {

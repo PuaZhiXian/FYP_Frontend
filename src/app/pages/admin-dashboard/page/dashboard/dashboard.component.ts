@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderComponent} from "../../../header/page/header/header.component";
+import {AdminHeaderComponent} from "../../../admin-header/page/header/admin-header.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +9,7 @@ import {HeaderComponent} from "../../../header/page/header/header.component";
 export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
-    HeaderComponent.headerIndicator = 'dashboard';
+    AdminHeaderComponent.headerIndicator = 'dashboard';
   }
 
 

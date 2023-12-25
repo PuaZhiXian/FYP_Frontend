@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {HeaderComponent} from "../../../header/page/header/header.component";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {VendorService} from "../../../../service/vendor/vendor.service";
@@ -10,7 +9,7 @@ import {finalize, Observable} from "rxjs";
 import {IAdminApiCategory} from "../../../../interface/api-collection/i-admin-api-category";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
 import {PreviewApiCollectionComponent} from "../../components/preview-api-collection/preview-api-collection.component";
-import {HttpClient} from "@angular/common/http";
+import {AdminHeaderComponent} from "../../../admin-header/page/header/admin-header.component";
 
 @Component({
   selector: 'app-api-collection',
@@ -70,7 +69,7 @@ export class ApiCollectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    HeaderComponent.headerIndicator = 'api';
+    AdminHeaderComponent.headerIndicator = 'api';
     this.initApiCategoryList();
   }
 

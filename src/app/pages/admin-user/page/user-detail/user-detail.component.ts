@@ -5,9 +5,9 @@ import {UntypedFormBuilder} from "@angular/forms";
 import {VendorService} from "../../../../service/vendor/vendor.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {HeaderComponent} from "../../../header/page/header/header.component";
 import {IAdminUserDetails} from "../../../../interface/user/i-admin-user-details";
 import {ApiCollectionService} from "../../../../service/apiCollection/api-collection.service";
+import {AdminHeaderComponent} from "../../../admin-header/page/header/admin-header.component";
 
 @Component({
   selector: 'app-user-detail',
@@ -35,7 +35,7 @@ export class UserDetailComponent implements OnInit {
       this.vendorId = params.get('id') || '';
     });
     this.initVendorDetail();
-    HeaderComponent.headerIndicator = '';
+    AdminHeaderComponent.headerIndicator = 'user';
   }
 
   initVendorDetail() {

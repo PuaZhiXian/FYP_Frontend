@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {HeaderComponent} from "../../../header/page/header/header.component";
 import {VendorService} from "../../../../service/vendor/vendor.service";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {finalize} from "rxjs";
 import {IAdminNewUser} from "../../../../interface/user/i-admin-new-user";
+import {AdminHeaderComponent} from "../../../admin-header/page/header/admin-header.component";
 
 @Component({
   selector: 'app-user',
@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    HeaderComponent.headerIndicator = 'user';
+    AdminHeaderComponent.headerIndicator = 'user';
     this.getTotalUser(this.totalUserDayOption[0]);
     this.getUserStatistic();
   }

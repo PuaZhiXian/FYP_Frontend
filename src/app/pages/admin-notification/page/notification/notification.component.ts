@@ -1,11 +1,11 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {HeaderComponent} from "../../../header/page/header/header.component";
 import {IAdminCalendarEvent} from "../../../../interface/calendar/i-admin-calendar-event";
 import {NotificationService} from "../../../../service/notification/notification.service";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {finalize} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
+import {AdminHeaderComponent} from "../../../admin-header/page/header/admin-header.component";
 
 @Component({
   selector: 'app-notification',
@@ -37,7 +37,7 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    HeaderComponent.headerIndicator = 'notification';
+    AdminHeaderComponent.headerIndicator = 'notification';
     this.initForm();
     this.initNotificationEvent();
     this.activeRoute.queryParams

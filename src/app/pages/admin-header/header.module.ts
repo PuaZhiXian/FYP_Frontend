@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HeaderComponent} from './page/header/header.component';
+import {AdminHeaderComponent} from './page/header/admin-header.component';
 import {HeaderRoutingModule} from "./header-routing.module";
 import {NzImageModule} from "ng-zorro-antd/image";
 import {NzMenuModule} from "ng-zorro-antd/menu";
@@ -15,10 +15,10 @@ import {NzMessageModule} from "ng-zorro-antd/message";
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    AdminHeaderComponent
   ],
   exports: [
-    HeaderComponent
+    AdminHeaderComponent
   ],
   imports: [
     HeaderRoutingModule,
