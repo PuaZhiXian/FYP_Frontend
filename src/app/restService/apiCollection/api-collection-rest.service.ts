@@ -90,7 +90,7 @@ export class ApiCollectionRestService {
   }
 
   getSingleAPICollection(apiCollectionId: string, programmingLanguage: string): Observable<IApiCategory> {
-    return this.httpClient.post<IApiCategory>(this.ProjectUrl + '/api-collections/', {
+    return this.httpClient.post<IApiCategory>(this.ProjectUrl + '/custom/api-collections/', {
       apiCollectionId,
       programmingLanguage
     }, {withCredentials: true});
