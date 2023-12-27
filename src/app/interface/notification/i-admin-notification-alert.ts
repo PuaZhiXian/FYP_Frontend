@@ -1,5 +1,5 @@
 export interface IAdminNotificationAlert {
-  endDate: Date,
+  startDate: Date,
   title: string,
   description: string,
   color: string,

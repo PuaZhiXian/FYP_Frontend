@@ -4,10 +4,10 @@
             {{alert.color === 'green' ? 'from-[#338b93] to-[#b6f492] hover:to-green-400' : ''}}
             {{alert.color === 'yellow' ? 'from-[#ffc87c] to-[#fcfb79] hover:to-yellow-400' : ''}}">
     <div class="flex gap-2 items-center">
-      <div class="text-title ">{{alert.endDate | date :'dd'}}</div>
+      <div class="text-title ">{{alert.startDate | date :'dd'}}</div>
       <div class="text-subtitle">{{alert.title}}</div>
     </div>
-    <div class="text-doc-text">{{alert.endDate | date: 'dd MMMM YYYY'}}</div>
+    <div class="text-doc-text">{{alert.startDate | date: 'dd MMMM YYYY'}}</div>
     <div class="text-doc-text ">{{alert.description}}</div>
   </div>
 </div>
