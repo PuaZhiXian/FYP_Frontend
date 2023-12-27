@@ -43,10 +43,10 @@ export class PreviewApiCollectionComponent implements OnInit {
 
   initPreview() {
     //TODO - call preview collection by id
-    /*this.apiCollectionService.getSingleAPICollection(this.apiCollectionId, this.programmingLanguage)
-      .subscribe((resp) => {
-        this.singleCategory = resp
-      })*/
+    // this.apiCollectionService.getSingleAPICollection(this.apiCollectionId, this.programmingLanguage)
+    //   .subscribe((resp) => {
+    //     this.singleCategory = resp
+    // })
     this.singleCategory = Temp.singleCategory
   }
 
