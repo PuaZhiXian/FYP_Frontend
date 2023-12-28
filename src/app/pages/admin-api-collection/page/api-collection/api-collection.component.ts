@@ -43,11 +43,11 @@ export class ApiCollectionComponent implements OnInit {
   loading: boolean = true;
 
   alphabetArray: string[] = [
-    '', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '',
   ];
 
-  selectedAlphabet: string = '';
+  selectedAlphabet: string = 'A';
   searchKey: string = '';
   createCategorySubmittedTry: boolean = false;
   createCollectionSubmittedTry: boolean = false;
