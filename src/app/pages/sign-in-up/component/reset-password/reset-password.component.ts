@@ -38,7 +38,7 @@ export class ResetPasswordComponent implements OnInit {
       this.token = params['token'];
     });
     this.validateForm = this.fb.group({
-      password: [null, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+      password: [null, [Validators.required, Validators.pattern('(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=[\\]{};\':"\\\\|,.<>/?]).{8,}')]],
       repassword: [null, [Validators.required]]
     }, {validators: this.checkIfMatchingPasswords('password', 'repassword')});
   }
