@@ -111,6 +111,8 @@ export class NotificationComponent implements OnInit {
   }
 
   openNotificationDrawerCreate(date: Date) {
+    this.htmlContent = '';
+    this.submittedTry = false;
     this.editNotification = false;
     this.initForm()
     this.ref.markForCheck();
@@ -125,6 +127,8 @@ export class NotificationComponent implements OnInit {
   }
 
   openNotificationDrawerEdit(eventId: string) {
+    this.htmlContent = '';
+    this.submittedTry = false;
     this.initForm()
     this.editNotification = true;
     this.createNotificationDrawerVisibility = true;
@@ -145,7 +149,7 @@ export class NotificationComponent implements OnInit {
           endDate: resp.endDate,
         });
         this.notificationColor = resp.color;
-        this.htmlContent = 'announcement_text'
+        this.htmlContent = resp.announcement_text || '';
       })
   }
 
