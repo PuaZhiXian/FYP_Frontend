@@ -26,9 +26,12 @@ import {NzStepsModule} from "ng-zorro-antd/steps";
 import {ProductModule} from "../product/product.module";
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {PreviewApiCollectionComponent} from './components/preview-api-collection/preview-api-collection.component';
+import {NzLayoutModule} from "ng-zorro-antd/layout";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzMenuModule} from "ng-zorro-antd/menu";
 
 @NgModule({
-  imports: [ApiCollectionRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, NzTagModule, NzDividerModule, NzUploadModule, NzAvatarModule, NzCheckboxModule, FormsModule, NzEmptyModule, UIModule, HeaderModule, NzIconModule, NzStepsModule, ProductModule, NzCollapseModule, NzMessageModule],
+  imports: [ApiCollectionRoutingModule, HeaderModule, NzButtonModule, NzFormModule, ReactiveFormsModule, NzInputModule, NzTableModule, CommonModule, NzSkeletonModule, NzModalModule, NzCardModule, NzMessageModule, NzToolTipModule, NzTagModule, NzDividerModule, NzUploadModule, NzAvatarModule, NzCheckboxModule, FormsModule, NzEmptyModule, UIModule, HeaderModule, NzIconModule, NzStepsModule, ProductModule, NzCollapseModule, NzMessageModule, HeaderModule, NzLayoutModule, NzSelectModule, NzMenuModule, HeaderModule],
   declarations: [ApiCollectionComponent, PreviewApiCollectionComponent],
   exports: [ApiCollectionComponent]
 })

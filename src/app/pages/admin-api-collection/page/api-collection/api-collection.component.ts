@@ -59,6 +59,7 @@ export class ApiCollectionComponent implements OnInit {
   file!: File;
 
   categoryIdOfUploadingCollection!: string;
+  isPreview: boolean = false;
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -211,6 +212,7 @@ export class ApiCollectionComponent implements OnInit {
               this.closeCreateNewCollectionModal();
               this.previewApiCollectionId = resp.message;
               this.previewModalVisibility = true;
+              this.isPreview = true;
               this.ref.markForCheck();
               this.ref.detectChanges();
               this.previewApiCollectionComponentRef.initPreview();
@@ -277,6 +279,15 @@ export class ApiCollectionComponent implements OnInit {
           this.message.error(resp.error || "")
         }
       })
+  }
+
+  openApiCollectionDetailPage(apiCollectionId: string) {
+    this.isPreview = false;
+    this.previewApiCollectionId = apiCollectionId;
+    this.previewModalVisibility = true;
+    this.ref.markForCheck();
+    this.ref.detectChanges();
+    this.previewApiCollectionComponentRef.initPreview();
   }
 
 }

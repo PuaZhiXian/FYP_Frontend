@@ -16,7 +16,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
 })
 export class PreviewApiCollectionComponent implements OnInit {
 
-
+  @Input() isPreview: boolean = true;
   @Input() previewModalVisibility: boolean = false;
   @Output() previewModalVisibilityChange = new EventEmitter<boolean>();
   @Input() apiCollectionId !: string;
@@ -47,7 +47,7 @@ export class PreviewApiCollectionComponent implements OnInit {
     //   .subscribe((resp) => {
     //     this.singleCategory = resp
     // })
-    this.singleCategory = Temp.singleCategory
+    this.singleCategory = this.isPreview ? Temp.singleCategory : Temp.singleCategoryNotPreview;
   }
 
   initProgrammingLanguageOptions() {
@@ -64,27 +64,31 @@ export class PreviewApiCollectionComponent implements OnInit {
   }
 
   closePreviewModal() {
-
-    this.modal.confirm({
-      nzTitle: 'Are you sure quit create api collection ?',
-      nzContent: '<b style="color: red;">This action is make all collection deleted</b>',
-      nzOkText: 'Yes',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => {
-        this.apiCollectionService.deleteCollection(Number(this.apiCollectionId))
-          .subscribe((resp) => {
-            if (resp.message) {
-              this.previewModalVisibility = false;
-              this.previewModalVisibilityChange.emit(false);
-            } else {
-              this.message.error(resp.error || "")
-            }
-          })
-        //TODO call delete unpublish api collection
-      },
-      nzCancelText: 'No'
-    });
+    if (this.isPreview) {
+      this.modal.confirm({
+        nzTitle: 'Are you sure quit create api collection ?',
+        nzContent: '<b style="color: red;">This action is make all collection deleted</b>',
+        nzOkText: 'Yes',
+        nzOkType: 'primary',
+        nzOkDanger: true,
+        nzOnOk: () => {
+          this.apiCollectionService.deleteCollection(Number(this.apiCollectionId))
+            .subscribe((resp) => {
+              if (resp.message) {
+                this.previewModalVisibility = false;
+                this.previewModalVisibilityChange.emit(false);
+              } else {
+                this.message.error(resp.error || "")
+              }
+            })
+          //TODO call delete unpublish api collection
+        },
+        nzCancelText: 'No'
+      });
+    } else {
+      this.previewModalVisibility = false;
+      this.previewModalVisibilityChange.emit(false);
+    }
   }
 
   openPreviewModal() {

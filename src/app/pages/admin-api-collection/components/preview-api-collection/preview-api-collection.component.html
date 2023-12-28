@@ -32,8 +32,13 @@
       <button (click)="pageNumber = pageNumber - 1"
               class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Back
       </button>
-      <button (click)="confirmCreateCollection()"
+      <!--Confirm Button for preview-->
+      <button (click)="confirmCreateCollection()" *ngIf="isPreview"
               class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]" nz-button>Confirm
+      </button>
+      <!--Next button for see existing-->
+      <button *ngIf="!isPreview" class="bg-primary-900 text-white px-[32px]rounded text-button font-bold min-w-[100px]"
+              disabled nz-button>Next
       </button>
     </div>
     <div *ngIf="pageNumber !== 2">

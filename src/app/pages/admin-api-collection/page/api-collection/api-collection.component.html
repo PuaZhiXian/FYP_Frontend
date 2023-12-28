@@ -96,7 +96,7 @@
                           (click)="confirmDeleteCollection(apiCollection.id, apiCollection.api_collection_name)"
                           nzTooltipTitle="Delete" nzTooltipPlacement="left" [nzTooltipMouseEnterDelay]="0.75"
                           class="text-danger material-icons-outlined cursor-pointer text-[24px]">delete_outline</span>-->
-                    <span [nzTooltipMouseEnterDelay]="0.75"
+                    <span (click)="openApiCollectionDetailPage(apiCollection.id+'')" [nzTooltipMouseEnterDelay]="0.75"
                           class="text-blue-600  material-icons-outlined cursor-pointer" nz-tooltip
                           nzTooltipPlacement="left"
                           nzTooltipTitle="Open In New Tab">open_in_new</span>
@@ -222,4 +222,5 @@
 </ng-template>
 
 <preview-api-collection #PreviewApiCollectionComponentRef [(previewModalVisibility)]="previewModalVisibility"
+                        [isPreview]="isPreview"
                         [apiCollectionId]="previewApiCollectionId"></preview-api-collection>
