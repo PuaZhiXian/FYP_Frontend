@@ -19,7 +19,7 @@ export class NotificationService {
     return this.notificationRestService.getNotificationList();
   }
 
-  deleteNotification(notificationId: number): Observable<IMessage> {
+  deleteNotification(notificationId: string): Observable<IMessage> {
     return this.notificationRestService.deleteNotification(notificationId);
   }
 

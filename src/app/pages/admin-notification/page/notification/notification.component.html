@@ -66,7 +66,12 @@
   </ng-container>
 </nz-drawer>
 <ng-template #footerTpl>
-  <div class="flex justify-end">
+  <div class="flex justify-end gap-4">
+    <button (click)="openDeleteNotificationModal()"
+            *ngIf="editNotification"
+            class="bg-red-600 text-white px-[32px] rounded text-button font-bold cursor-pointer">
+      Delete
+    </button>
     <button (click)="createSaveNotification()"
             class="bg-primary-900 text-white px-[32px] rounded text-button font-bold"
             nz-button>{{editNotification ? 'Save' : 'Create'}}

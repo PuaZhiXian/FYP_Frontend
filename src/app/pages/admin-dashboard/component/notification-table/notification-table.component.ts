@@ -135,7 +135,7 @@ export class NotificationTableComponent implements OnInit {
   }
 
   deleteNotification(notificationId: number) {
-    this.notificationService.deleteNotification(notificationId)
+    this.notificationService.deleteNotification(notificationId + '')
       .subscribe((resp) => {
         if (resp.message) {
           this.message.success(resp.message);

@@ -6,6 +6,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {finalize} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {AdminHeaderComponent} from "../../../admin-header/page/header/admin-header.component";
+import {NzModalService} from "ng-zorro-antd/modal";
 
 @Component({
   selector: 'app-notification',
@@ -28,12 +29,14 @@ export class NotificationComponent implements OnInit {
   date = new Date();
   currYear: number = this.date.getFullYear();
   currMonth: number = this.date.getMonth();
+  eventId: string = '';
 
   constructor(private notificationService: NotificationService,
               private fb: UntypedFormBuilder,
               private message: NzMessageService,
               private ref: ChangeDetectorRef,
-              private activeRoute: ActivatedRoute) {
+              private activeRoute: ActivatedRoute,
+              private modal: NzModalService) {
   }
 
   ngOnInit(): void {
@@ -127,6 +130,7 @@ export class NotificationComponent implements OnInit {
   }
 
   openNotificationDrawerEdit(eventId: string) {
+    this.eventId = eventId;
     this.htmlContent = '';
     this.submittedTry = false;
     this.initForm()
@@ -159,6 +163,32 @@ export class NotificationComponent implements OnInit {
 
   changeColor(color: string) {
     this.notificationColor = color;
+  }
+
+  openDeleteNotificationModal() {
+    this.modal.confirm({
+      nzTitle: 'Are you sure delete this notification?',
+      nzContent: '<b style="color: red;">This action is nonundoable</b>',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => this.deleteNotification(),
+      nzCancelText: 'No'
+    });
+  }
+
+  deleteNotification() {
+    this.notificationService.deleteNotification(this.eventId)
+      .subscribe((resp) => {
+        if (resp.message) {
+          this.message.success(resp.message);
+          this.closeNotificationDrawer();
+          this.initForm();
+          this.initNotificationEvent();
+        } else if (resp.error) {
+          this.message.error(resp.error);
+        }
+      })
   }
 
 }

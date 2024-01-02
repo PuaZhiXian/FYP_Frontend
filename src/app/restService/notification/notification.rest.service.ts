@@ -21,7 +21,7 @@ export class NotificationRestService {
     return this.httpClient.get<IAdminNotification[]>(this.ProjectUrl + '/custom/get-announcement-list', {withCredentials: true});
   }
 
-  deleteNotification(notificationId: number): Observable<IMessage> {
+  deleteNotification(notificationId: string): Observable<IMessage> {
     return this.httpClient.delete<IMessage>(this.ProjectUrl + '/custom/delete-announcement/' + notificationId, {withCredentials: true});
   }
 
