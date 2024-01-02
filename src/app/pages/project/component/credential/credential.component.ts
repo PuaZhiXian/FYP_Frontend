@@ -36,13 +36,17 @@ export class CredentialComponent implements OnInit {
   }
 
   requestToken() {
-    this.projectService.getProjectToken()
+    this.projectService.getProjectToken(this.projectId || '')
       .pipe(finalize(() => {
         this.ref.detectChanges();
         this.ref.markForCheck();
       }))
       .subscribe((resp) => {
-        this.currentSessionToken = Array.from({length: 10}, () => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'[Math.floor(Math.random() * 62)]).join('');
+        if (resp.message) {
+          this.currentSessionToken = resp.message
+        } else {
+          this.message.error(resp.error || '')
+        }
       });
   }
 

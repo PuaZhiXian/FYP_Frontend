@@ -45,9 +45,8 @@ export class ProjectRestService {
     return this.authorizationService.handleApiError(this.httpClient.get<IApi[]>(this.ProjectUrl + '/custom/get-project-api-collection/' + projectId, {withCredentials: true}));
   }
 
-  getProjectToken(): Observable<any> {
-    //TODO: wait jia hong
-    return this.authorizationService.handleApiError(this.httpClient.get<any>("https://api.github.com/users/hadley/orgs"));
+  getProjectToken(project_id: string): Observable<IMessage> {
+    return this.authorizationService.handleApiError(this.httpClient.post<IMessage>(this.ProjectUrl + '/custom/request-project-token', {project_id}, {withCredentials: true}));
   }
 
   getTokenHistory(projectId: string): Observable<IProjectTokenLog[]> {

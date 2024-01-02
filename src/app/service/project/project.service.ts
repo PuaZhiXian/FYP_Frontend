@@ -40,8 +40,8 @@ export class ProjectService {
     return this.projectRestService.getProjectAPICollection(projectId);
   }
 
-  getProjectToken(): Observable<any> {
-    return this.projectRestService.getProjectToken();
+  getProjectToken(project_id: string): Observable<IMessage> {
+    return this.projectRestService.getProjectToken(project_id);
   }
 
   getTokenHistory(projectId: string): Observable<IProjectTokenLog[]> {
