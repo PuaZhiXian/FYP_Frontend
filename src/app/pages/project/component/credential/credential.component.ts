@@ -7,6 +7,7 @@ import {finalize} from "rxjs";
 import {ColumnItem} from "../../../../interface/table/column-item";
 import {IProjectTokenLog} from "../../../../interface/project/i-project-token-log";
 import {CommonService} from "../../../../service/common/common.service";
+import {NzModalService} from "ng-zorro-antd/modal";
 
 @Component({
   selector: 'credential',
@@ -20,7 +21,8 @@ export class CredentialComponent implements OnInit {
               private projectService: ProjectService,
               private message: NzMessageService,
               private ref: ChangeDetectorRef,
-              private commonService: CommonService) {
+              private commonService: CommonService,
+              private modal: NzModalService) {
   }
 
   @Input() projectName!: string;
@@ -45,7 +47,10 @@ export class CredentialComponent implements OnInit {
         if (resp.message) {
           this.currentSessionToken = resp.message
         } else {
-          this.message.error(resp.error || '')
+          this.modal.error({
+            nzTitle: 'Request Failed',
+            nzContent: resp.error
+          });
         }
       });
   }
