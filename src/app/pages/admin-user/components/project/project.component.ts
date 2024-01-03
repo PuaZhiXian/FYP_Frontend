@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {ColumnItem} from "../../../../interface/table/column-item";
-import {UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
+import {UntypedFormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {VendorService} from "../../../../service/vendor/vendor.service";
 import {NzMessageService} from "ng-zorro-antd/message";
@@ -22,6 +22,7 @@ export class ProjectComponent implements OnInit {
 
   projectList: IAdminProjectDetail[] = [];
   filterProjectList: IAdminProjectDetail[] = [];
+  autoCompleteOptions: string[] = [];
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -41,6 +42,7 @@ export class ProjectComponent implements OnInit {
     this.loadingTable = true;
     this.projectService.getProjectList(this.vendorId)
       .pipe(finalize(() => {
+        this.autoCompleteOptions = this.projectList.map(value => value.project_name)
         this.loadingTable = false;
         this.ref.detectChanges();
         this.ref.markForCheck();

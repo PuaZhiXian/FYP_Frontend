@@ -3,8 +3,9 @@
     <nz-form-control>
       <nz-input-group [nzPrefix]="prefixIcon" class="rounded bg-gray-50 focus:shadow-xl active:shadow-xl " nzSearch
                       nzSize="large">
-        <input class="bg-gray-50 text-[#52606D] text-input" formControlName="searchKey"
+        <input [nzAutocomplete]="auto" class="bg-gray-50 text-[#52606D] text-input" formControlName="searchKey"
                [placeholder]="placeholder" nz-input/>
+        <nz-autocomplete #auto [nzBackfill]="true" [nzDataSource]="filteredOptions"></nz-autocomplete>
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>

@@ -5,7 +5,8 @@
 
   <div class="container md:mx-auto md:px-0 px-[20px]">
     <div class="my-4">
-      <search-bar (filter)="searching($event)" placeholder="Search Collection"></search-bar>
+      <search-bar (filter)="searching($event)" [autoCompleteOptions]="autoCompleteOptions"
+                  placeholder="Search Collection"></search-bar>
     </div>
     <!--alphabet filter -->
     <div class="flex gap-2 mb-4">

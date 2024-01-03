@@ -60,6 +60,7 @@ export class ApiCollectionComponent implements OnInit {
 
   categoryIdOfUploadingCollection!: string;
   isPreview: boolean = false;
+  autoCompleteOptions: string[] = [];
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -101,6 +102,7 @@ export class ApiCollectionComponent implements OnInit {
   initApiCategoryList() {
     this.apiCollectionService.getAPICategoryList(this.selectedAlphabet)
       .pipe(finalize(() => {
+        this.autoCompleteOptions = this.apiCategoryList.flatMap(value => value.api_collections.map(value2 => value2.api_collection_name));
         this.loading = false;
         this.ref.detectChanges();
         this.ref.markForCheck();

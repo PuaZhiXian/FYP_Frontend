@@ -29,6 +29,7 @@ export class NotificationTableComponent implements OnInit {
   notificationColor: string = 'green';
   loadingEditNotificationDrawer: boolean = true;
   submittedTry: boolean = false;
+  autoCompleteOptions: string[] = [];
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -48,6 +49,7 @@ export class NotificationTableComponent implements OnInit {
     this.loadingTable = true;
     this.notificationService.getNotificationList()
       .pipe(finalize(() => {
+        this.autoCompleteOptions = this.notificationList.map(value => value.title)
         this.loadingTable = false;
         this.ref.detectChanges();
         this.ref.markForCheck();

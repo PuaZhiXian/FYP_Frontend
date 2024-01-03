@@ -34,6 +34,7 @@ export class ProjectApiTableComponent implements OnInit {
 
   validateForm!: UntypedFormGroup;
   showToken: boolean = false;
+  autoCompleteOptions: string[] = []
 
   get passwordValidation() {
     return this.validateForm.controls['password'].invalid && this.validateForm.controls['password'].dirty;
@@ -65,6 +66,7 @@ export class ProjectApiTableComponent implements OnInit {
   initProject() {
     this.projectService.getAllProject()
       .pipe(finalize(() => {
+        this.autoCompleteOptions = this.projectData.map(value => value.project_name);
         this.loadingTable = false;
         this.ref.detectChanges();
         this.ref.markForCheck();

@@ -27,6 +27,7 @@ export class UserTableComponent implements OnInit {
 
   addUserModalVisibility: boolean = false;
   submittedTry: boolean = false;
+  autoCompleteOptions: string[] = []
 
   constructor(private router: Router,
               private fb: UntypedFormBuilder,
@@ -44,6 +45,7 @@ export class UserTableComponent implements OnInit {
   initUserList() {
     this.vendorService.getUserList()
       .pipe(finalize(() => {
+        this.autoCompleteOptions = this.userList.map(value => value.username);
         this.loadingTable = false;
         this.ref.detectChanges();
         this.ref.markForCheck();

@@ -8,7 +8,8 @@
       </button>
     </div>
     <div class="ml-6 w-1/2">
-      <search-bar (filter)="searching($event)" placeholder="Search Project"></search-bar>
+      <search-bar (filter)="searching($event)" [autoCompleteOptions]="autoCompleteOptions"
+                  placeholder="Search Project"></search-bar>
     </div>
   </div>
   <div class="my-6" *ngIf="!loadingTable; else loadingTpl">

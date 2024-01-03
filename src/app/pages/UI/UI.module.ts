@@ -11,6 +11,7 @@ import {AbstractNgModelComponent} from "./abstractFieldInput";
 import {TextareaInputComponent} from './components/textarea-input/textarea-input.component';
 import {RangeDateInputv2Component} from './components/range-date-inputv2/range-date-inputv2.component';
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {NzAutocompleteModule} from "ng-zorro-antd/auto-complete";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
     NzInputModule,
     ReactiveFormsModule,
     CommonModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    NzAutocompleteModule
   ]
 })
 export class UIModule {

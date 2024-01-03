@@ -2,7 +2,8 @@
   <nz-card>
     <div class="flex justify-between items-center">
       <div class="w-1/2">
-        <search-bar (filter)="searching($event)" placeholder="Search User"></search-bar>
+        <search-bar (filter)="searching($event)" [autoCompleteOptions]="autoCompleteOptions"
+                    placeholder="Search User"></search-bar>
       </div>
       <div class="">
         <button (click)="addUserModalOpen()"

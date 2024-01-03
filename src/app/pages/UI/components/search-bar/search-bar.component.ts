@@ -14,6 +14,8 @@ export class SearchBarComponent implements OnInit {
 
   @Input() placeholder: string = '';
   @Output() filter = new EventEmitter<string>();
+  @Input() autoCompleteOptions: string[] = [];
+  filteredOptions: string[] = [];
   validateForm!: UntypedFormGroup;
   addUserModalValidateForm!: UntypedFormGroup;
 
@@ -26,6 +28,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.filteredOptions = this.autoCompleteOptions;
     this.initForm();
     this.changeHandler();
   }
@@ -39,6 +42,7 @@ export class SearchBarComponent implements OnInit {
   changeHandler() {
     this.validateForm.get('searchKey')?.valueChanges.subscribe((value => {
       this.filter.emit(value);
+      this.filteredOptions = this.autoCompleteOptions.filter(option => option.toLowerCase().indexOf(value.toLowerCase()) !== -1);
     }));
   }
 

@@ -1,7 +1,8 @@
 <nz-card>
   <div class="flex items-center">
     <div class="w-1/2">
-      <search-bar (filter)="searching($event)" placeholder="Search Project"></search-bar>
+      <search-bar (filter)="searching($event)" [autoCompleteOptions]="autoCompleteOptions"
+                  placeholder="Search Project"></search-bar>
     </div>
   </div>
   <div *ngIf="!loadingTable; else loadingTpl" class="my-6">
