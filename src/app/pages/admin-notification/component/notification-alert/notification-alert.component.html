@@ -5,10 +5,10 @@
             {{alert.color === 'yellow' ? 'from-[#ffc87c] to-[#fcfb79] hover:to-yellow-400' : ''}}">
     <div class="flex gap-2 items-center">
       <div class="text-title ">{{alert.startDate | date :'dd'}}</div>
-      <div class="text-subtitle">{{alert.title}}</div>
+      <div class="text-subtitle truncate">{{alert.title}}</div>
     </div>
     <div class="text-doc-text">{{alert.startDate | date: 'dd MMMM YYYY'}}</div>
-    <div class="text-doc-text ">{{alert.description}}</div>
+    <div class="text-doc-text truncate">{{alert.description}}</div>
   </div>
 </div>
 
