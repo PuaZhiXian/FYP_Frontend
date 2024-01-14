@@ -1,11 +1,4 @@
-<div *ngIf="html.length > 0">
-  <nz-carousel *ngIf="!loadingAnnouncement ; else loadingTpl" nzAutoPlay>
-    <div *ngFor="let htmlContent of html" class=" py-[20px] px-[10px] bg-[#FED470]" nz-carousel-content>
-      <div class="col-span-7">
-        <div [innerHTML]="htmlContent"></div>
-      </div>
-    </div>
-  </nz-carousel>
+<div *ngIf="html.length < 1; else carousel">
 
 </div>
 
@@ -14,3 +7,13 @@
   <nz-skeleton></nz-skeleton>
 </ng-template>
 
+<ng-template #carousel>
+
+  <nz-carousel *ngIf="!loadingAnnouncement ; else loadingTpl" class="bg-[#FED470]" nzAutoPlay>
+    <div *ngFor="let htmlContent of html" class="div py-[20px] px-[10px] bg-[#FED470]" nz-carousel-content>
+      <div class="col-span-7">
+        <div [innerHTML]="htmlContent"></div>
+      </div>
+    </div>
+  </nz-carousel>
+</ng-template>
