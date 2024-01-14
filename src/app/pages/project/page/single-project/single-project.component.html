@@ -41,7 +41,7 @@
                   [projectId]="projectId" [projectName]="projectOverview.project_name"></settings>
         <statistics *ngIf="selectingTab =='statistics'" [projectId]="projectId"></statistics>
         <credential *ngIf="selectingTab == 'credentials'" [projectId]="projectId"
-                    [projectName]="'Project Name 1'"></credential>
+                    [projectName]="projectOverview.project_name"></credential>
         <api-collection *ngIf="selectingTab == 'api'" [projectId]="projectId"></api-collection>
       </div>
     </div>

@@ -20,7 +20,7 @@ export class HeaderComponent {
   }
 
   get getUserAbbre() {
-    return this.cookieService.get('abbre');
+    return this.cookieService.get('abbreName');
   }
 
   get staticLogined() {

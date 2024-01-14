@@ -6,6 +6,7 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {CookieService} from 'ngx-cookie-service';
 import {VendorService} from "../../../../service/vendor/vendor.service";
 import {HeaderComponent} from "../../../header/page/header/header.component";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'sign-in',
@@ -42,11 +43,31 @@ export class SignInComponent implements OnInit {
     this.router.navigate(['/', 'sign', link])
   }
 
+  getAbbreviation(userName: string) {
+    const words = userName.split(' ');
+    let abbreviation = '';
+
+    for (const word of words) {
+      if (word.length > 0) {
+        abbreviation += word[0].toUpperCase();
+      }
+      if (abbreviation.length > 1) {
+        break;
+      }
+    }
+    return abbreviation;
+  }
+
+
   submit() {
     if (this.validateForm.valid) {
       this.authorizationService.login(this.validateForm.value)
         .subscribe((resp) => {
           if (resp.message) {
+            this.vendorService.getVendorProfile()
+              .subscribe((info) => {
+                this.cookieService.set('abbreName', this.getAbbreviation(info.username));
+              })
             this.router.navigate(['/', 'dashboard'])
             this.message.success(resp.message)
           } else if (resp.error) {
