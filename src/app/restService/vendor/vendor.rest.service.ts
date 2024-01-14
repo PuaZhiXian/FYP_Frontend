@@ -22,7 +22,8 @@ export class VendorRestService {
   }
 
   getVendorProfile(): Observable<IPersonalInformation> {
-    return this.authorizationService.handleApiError(this.httpClient.get<IPersonalInformation>(this.ProjectUrl + '/vendors', {withCredentials: true}));
+    return this.httpClient.get<IPersonalInformation>(this.ProjectUrl + '/vendors', {withCredentials: true})
+    // return this.authorizationService.handleApiError(this.httpClient.get<IPersonalInformation>(this.ProjectUrl + '/vendors', {withCredentials: true}));
   }
 
   updateVendorProfile(personalInformation: IPersonalInformation): Observable<IMessage> {

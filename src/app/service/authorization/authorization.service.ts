@@ -69,4 +69,24 @@ export class AuthorizationService {
       })
     );
   }
+
+  handleApiErrorV2(observable: Observable<any>): Observable<any> {
+    return observable.pipe(
+      catchError(error => {
+        if (error.status === 401) {
+          return this.authorizationRestService.refreshToken().pipe(
+            switchMap((message) => {
+              return observable;
+            }),
+            catchError(e => {
+              return this.authorizationRestService.logout();
+            }));
+        } else if (error.status === 403) {
+          return this.router.navigate(['/', 'dashboard'])
+        } else {
+          return throwError(() => error);
+        }
+      })
+    );
+  }
 }
