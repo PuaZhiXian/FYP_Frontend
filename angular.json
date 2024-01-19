@@ -86,14 +86,14 @@
           "configurations": {
             "production": {
               "browserTarget": "testFileStructure:build:production",
-              "proxyConfig": "src/proxy.conf.json",
+              "proxyConfig": "src/proxy-prod.config.json",
               "host": "localhost",
               "port": 4200,
               "disableHostCheck": true
             },
             "development": {
               "browserTarget": "testFileStructure:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "proxyConfig": "src/proxy-local.config.json"
             }
           },
           "defaultConfiguration": "development"
